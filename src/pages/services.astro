@@ -1,0 +1,329 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const services = [
+  {
+    id: "web",
+    icon: `<svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>`,
+    color: "sky",
+    title: "Web Development",
+    desc: "We craft modern, performant, and beautiful web experiences that convert visitors into customers. From landing pages to complex enterprise platforms.",
+    features: ["React / Next.js / Astro", "Progressive Web Apps", "E-Commerce Solutions", "CMS Integration", "Performance Optimization", "SEO-First Architecture"],
+  },
+  {
+    id: "mobile",
+    icon: `<svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>`,
+    color: "violet",
+    title: "Mobile App Development",
+    desc: "Native iOS/Android and cross-platform apps built with Flutter and React Native. We deliver apps that feel seamless and perform beautifully.",
+    features: ["React Native / Flutter", "iOS & Android Native", "Offline-First Design", "Push Notifications", "App Store Optimization", "Real-Time Features"],
+  },
+  {
+    id: "cloud",
+    icon: `<svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>`,
+    color: "teal",
+    title: "Cloud Solutions",
+    desc: "Design, migration, and management of cloud infrastructure across AWS, Google Cloud, and Azure. Scale with confidence and control costs.",
+    features: ["Cloud Migration", "Kubernetes & Docker", "CI/CD Pipelines", "Serverless Architecture", "Cost Optimization", "Multi-Cloud Strategy"],
+  },
+  {
+    id: "ai",
+    icon: `<svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
+    color: "amber",
+    title: "AI & Automation",
+    desc: "Leverage the power of artificial intelligence to automate operations, gain insights, and create intelligent products that scale.",
+    features: ["Machine Learning Models", "LLM / ChatGPT Integration", "RPA Automation", "Predictive Analytics", "Computer Vision", "NLP Solutions"],
+  },
+  {
+    id: "consulting",
+    icon: `<svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+    color: "indigo",
+    title: "IT Consulting",
+    desc: "Strategic technology consulting that aligns your digital infrastructure with your business vision. We help you make the right tech decisions.",
+    features: ["Digital Strategy", "Tech Stack Review", "Architecture Design", "Vendor Selection", "Team Augmentation", "Technology Roadmaps"],
+  },
+];
+---
+
+<Layout title="Services" description="Explore N3 Global Tech's full range of technology services including web development, mobile apps, cloud solutions, AI automation and more.">
+  <Navbar />
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero__glow"></div>
+    <div class="container page-hero__inner">
+      <div class="badge badge-sky">Our Services</div>
+      <h1 class="page-hero__title">
+        Technology Services <br class="hide-sm" />
+        <span class="text-gradient">Built for Impact</span>
+      </h1>
+      <p class="page-hero__desc">
+        From full-stack development to AI and cloud, we deliver end-to-end solutions that help your business grow, scale, and lead.
+      </p>
+    </div>
+    <div class="page-hero__bg-dots"></div>
+  </section>
+
+  <!-- Services List -->
+  <section class="section services-page">
+    <div class="container">
+      <div class="services-list">
+        {services.map((service, i) => (
+          <div class={`svc-block svc-block--${service.color} ${i % 2 === 1 ? 'svc-block--reverse' : ''}`} id={service.id}>
+            <div class="svc-block__visual">
+              <div class={`svc-block__icon-wrap svc-block__icon-wrap--${service.color}`} set:html={service.icon} />
+              <div class="svc-block__features">
+                {service.features.map(f => (
+                  <div class="svc-feature">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    {f}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="svc-block__content">
+              <div class={`badge badge-${service.color}`}>{service.title}</div>
+              <h2 class="svc-block__title">{service.title}</h2>
+              <p class="svc-block__desc">{service.desc}</p>
+              <a href="/contact" class="btn btn-primary">
+                Get a Quote
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="services-cta-box">
+        <div class="services-cta-box__content">
+          <h2>Ready to Transform Your Business?</h2>
+          <p>Let's discuss exactly what you need and build a plan that works for your goals and budget.</p>
+        </div>
+        <div class="services-cta-box__actions">
+          <a href="/contact" class="btn btn-primary btn-lg">Start a Conversation</a>
+          <a href="/work" class="btn btn-ghost btn-lg">See Our Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Page hero */
+  .page-hero {
+    padding: calc(72px + 5rem) 0 5rem;
+    background: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero__bg-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--sky-200) 1px, transparent 1px);
+    background-size: 36px 36px;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  .page-hero__glow {
+    position: absolute;
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(14,165,233,0.12) 0%, transparent 70%);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .page-hero__inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  .page-hero__inner .badge { margin-bottom: 1.25rem; }
+
+  .page-hero__title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .page-hero__desc {
+    color: var(--gray-500);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .hide-sm { display: block; }
+
+  /* Services blocks */
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .svc-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    scroll-margin-top: 100px;
+  }
+
+  .svc-block--reverse {
+    direction: rtl;
+  }
+
+  .svc-block--reverse > * {
+    direction: ltr;
+  }
+
+  /* Visual side */
+  .svc-block__visual {
+    background: var(--gray-50);
+    border-radius: var(--radius-xl);
+    border: 1.5px solid var(--gray-100);
+    padding: 2.5rem;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .svc-block__icon-wrap {
+    width: 70px;
+    height: 70px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .svc-block__icon-wrap--sky { background: var(--sky-50); color: var(--sky-600); }
+  .svc-block__icon-wrap--violet { background: #f5f3ff; color: #7c3aed; }
+  .svc-block__icon-wrap--teal { background: #f0fdfa; color: #0d9488; }
+  .svc-block__icon-wrap--amber { background: #fffbeb; color: #d97706; }
+  .svc-block__icon-wrap--rose { background: #fff1f2; color: #e11d48; }
+  .svc-block__icon-wrap--indigo { background: #eef2ff; color: #4f46e5; }
+
+  .svc-block__features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .svc-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    font-weight: 500;
+  }
+
+  /* Content side */
+  .svc-block__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .svc-block__content .badge {
+    width: auto;
+  }
+
+  .svc-block__content .btn {
+    width: auto;
+  }
+
+  .svc-block__title {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--gray-900);
+  }
+
+  .svc-block__desc {
+    color: var(--gray-500);
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Badge colors */
+  .badge-sky { background: var(--sky-50); color: var(--sky-700); border: 1px solid var(--sky-100); }
+  .badge-violet { background: #f5f3ff; color: #7c3aed; border: 1px solid #ddd6fe; }
+  .badge-teal { background: #f0fdfa; color: #0d9488; border: 1px solid #ccfbf1; }
+  .badge-amber { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+  .badge-rose { background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; }
+  .badge-indigo { background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; }
+
+  /* CTA box */
+  .services-cta-box {
+    background: linear-gradient(135deg, var(--sky-50) 0%, var(--white) 100%);
+    border: 1.5px solid var(--sky-100);
+    border-radius: var(--radius-xl);
+    padding: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .services-cta-box__content h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .services-cta-box__content p {
+    color: var(--gray-500);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .services-cta-box__actions {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .svc-block, .svc-block--reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+      gap: 2rem;
+    }
+    .services-cta-box {
+      flex-direction: column;
+      text-align: center;
+    }
+    .services-cta-box__actions {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hide-sm { display: none; }
+    .svc-block__features { grid-template-columns: 1fr; }
+  }
+</style>

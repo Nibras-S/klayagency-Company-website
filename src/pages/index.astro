@@ -1,11 +1,1738 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Home" description="N3 Global Tech — Innovative technology solutions for modern businesses. Web development, mobile apps, cloud solutions, AI and more.">
+  <Navbar />
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero__bg-dots"></div>
+    <div class="hero__glow hero__glow--1"></div>
+    <div class="hero__glow hero__glow--2"></div>
+
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="badge badge-sky animate-fade-up">
+          <span class="badge-dot"></span>
+          Innovative Tech Solutions
+        </div>
+
+        <h1 class="hero__title animate-fade-up" style="animation-delay:0.1s">
+          Build the Future<br />
+          <span class="text-gradient">with Technology</span>
+        </h1>
+
+        <p class="hero__desc animate-fade-up" style="animation-delay:0.2s">
+          N3 Global Tech delivers cutting-edge software, cloud, and AI solutions that empower your business to scale, innovate, and lead.
+        </p>
+
+        <div class="hero__cta animate-fade-up" style="animation-delay:0.3s">
+          <a href="/contact" class="btn btn-primary btn-lg">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            Get Started Free
+          </a>
+          <a href="/work" class="btn btn-ghost btn-lg">View Our Work</a>
+        </div>
+
+        <div class="hero__stats animate-fade-up" style="animation-delay:0.4s">
+          <div class="stat">
+            <span class="stat__num">150+</span>
+            <span class="stat__label">Projects Delivered</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat__num">98%</span>
+            <span class="stat__label">Client Satisfaction</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat__num">12+</span>
+            <span class="stat__label">Years of Experience</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual animate-fade-up" style="animation-delay:0.2s">
+        <div class="hero__card-cluster">
+          <div class="hero__card hero__card--main animate-float">
+            <div class="hcard__icon">
+              <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="var(--sky-500)" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <div class="hcard__title">Full-Stack Development</div>
+              <div class="hcard__sub">React, Node, NextJS & more</div>
+            </div>
+          </div>
+
+          <div class="hero__card hero__card--secondary animate-float" style="animation-delay:0.6s">
+            <div class="hcard__icon hcard__icon--purple">
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#8b5cf6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            </div>
+            <div>
+              <div class="hcard__title">Cloud & DevOps</div>
+              <div class="hcard__sub">AWS, GCP, Azure</div>
+            </div>
+          </div>
+
+          <div class="hero__card hero__card--tertiary animate-float" style="animation-delay:1.2s">
+            <div class="hcard__icon hcard__icon--green">
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#10b981" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+            </div>
+            <div>
+              <div class="hcard__title">AI & Automation</div>
+              <div class="hcard__sub">Intelligent workflows</div>
+            </div>
+          </div>
+
+          <!-- Decorative circles -->
+          <div class="hero__orbit hero__orbit--1"></div>
+          <div class="hero__orbit hero__orbit--2"></div>
+          <div class="hero__logo-center">
+            <img src="/n3logo.svg" alt="N3" class="hero__center-logo" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client Logos Marquee -->
+    <div class="clients-marquee container">
+      <p class="clients-marquee__label">Trusted by Leading Brands</p>
+      <div class="clients-marquee__track-wrapper">
+        <div class="clients-marquee__track">
+          {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(n => (
+            <img src={`/clientlogo/clientlogo${n}.svg`} alt={`Client ${n}`} class="clients-marquee__logo" loading="lazy" />
+          ))}
+          {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(n => (
+            <img src={`/clientlogo/clientlogo${n}.svg`} alt={`Client ${n}`} class="clients-marquee__logo" loading="lazy" />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES PREVIEW ========== -->
+  <section class="section services-preview">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge-sky">What We Do</div>
+        <h2>End-to-End Technology<br /><span class="text-gradient">Services</span></h2>
+        <p>From idea to deployment, we deliver robust digital solutions tailored to your unique business challenges.</p>
+      </div>
+
+      <!-- Services: two-column premium list layout -->
+      <div class="svc-layout">
+
+        <!-- Column 1: Design -->
+        <div class="svc-col">
+          <p class="svc-col__label">Design</p>
+          <a href="/services#uiux" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">UI UX Design</span>
+              <span class="svc-row__desc">Web & Mobile App Design</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services#web-design" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect width="18" height="14" x="3" y="5" rx="2"/><path d="M3 9h18"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">Website Design</span>
+              <span class="svc-row__desc">Custom websites, Landing Page</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services#mobile-design" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">Mobile Design</span>
+              <span class="svc-row__desc">User-friendly Applications</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services#brand" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M12 8v3m-4.5 5l4.5-2 4.5 2"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">Brand Identity</span>
+              <span class="svc-row__desc">Logo, Typography, Color</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services#graphic" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">Graphic Design</span>
+              <span class="svc-row__desc">Brochures, Social media</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Column 2: Development + Solutions -->
+        <div class="svc-col">
+          <p class="svc-col__label">Development</p>
+          <a href="/services#landing" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect width="18" height="14" x="3" y="5" rx="2"/><path d="M8 21h8M12 19v2"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">Landing Page</span>
+              <span class="svc-row__desc">High Converting website</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services#web" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">Web Development</span>
+              <span class="svc-row__desc">Frontend & Backend Development</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services#mobile" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01M8 2h8"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">Mobile Development</span>
+              <span class="svc-row__desc">iOS, Android, Cross Platform</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+
+          <p class="svc-col__label" style="margin-top:2.5rem">Solutions</p>
+          <a href="/services#mvp" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">MVP Design</span>
+              <span class="svc-row__desc">MVPs to validate your idea</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services#redesign" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">Product Redesign</span>
+              <span class="svc-row__desc">Product with a Modern Experience</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services#marketing" class="svc-row">
+            <div class="svc-row__icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="svc-row__body">
+              <span class="svc-row__title">Digital Marketing</span>
+              <span class="svc-row__desc">Boost your brand's online presence</span>
+            </div>
+            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="services-cta">
+        <a href="/services" class="btn btn-outline btn-lg">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section class="section how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge-sky">Our Process</div>
+        <h2>How It <span class="text-gradient">Works</span></h2>
+        <p>A streamlined approach to delivering exceptional results for your business.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-card">
+          <div class="process-card__visual">
+            <div class="input-demo">
+              <div class="input-demo__field">
+                <span>yourproject.com</span>
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--sky-500)" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+              </div>
+            </div>
+          </div>
+          <h3 class="process-card__title">Share Your Vision</h3>
+          <p class="process-card__desc">Tell us about your project goals and challenges. We'll analyze your needs and craft a tailored strategy.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-card__visual">
+            <div class="build-demo">
+              <div class="build-demo__card">
+                <div class="build-demo__lines">
+                  <div class="build-demo__line"></div>
+                  <div class="build-demo__line build-demo__line--short"></div>
+                </div>
+                <div class="build-demo__btn"></div>
+              </div>
+              <span class="build-demo__plus">+</span>
+              <div class="build-demo__card">
+                <div class="build-demo__chart">
+                  <div class="build-demo__bar" style="height:40%"></div>
+                  <div class="build-demo__bar" style="height:70%"></div>
+                  <div class="build-demo__bar" style="height:55%"></div>
+                  <div class="build-demo__bar" style="height:85%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="process-card__title">We Build & Optimize</h3>
+          <p class="process-card__desc">Our expert team develops your solution using agile methodology with full transparency at every step.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-card__visual">
+            <div class="launch-demo">
+              <div class="launch-demo__chart">
+                <div class="launch-demo__bar" style="height:35%"></div>
+                <div class="launch-demo__bar" style="height:50%"></div>
+                <div class="launch-demo__bar" style="height:70%"></div>
+                <div class="launch-demo__bar" style="height:90%"></div>
+                <div class="launch-demo__bar" style="height:100%"></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="process-card__title">Launch & Scale</h3>
+          <p class="process-card__desc">Deploy your solution, monitor performance, and scale with confidence as your business grows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== VISION & MISSION ========== -->
+  <section class="section vision-mission">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge-sky">Our Purpose</div>
+        <h2>Vision & <span class="text-gradient">Mission</span></h2>
+        <p>Our north star guides everything we build and every relationship we nurture.</p>
+      </div>
+      <div class="vision-grid">
+        <div class="vision-card vision-card--vision">
+          <div class="vision-card__icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          </div>
+          <h3 class="vision-card__title">Our Vision</h3>
+          <p class="vision-card__body">To be the leading catalyst for digital transformation, empowering businesses globally with innovative technology and creating a future where software seamlessly drives human progress.</p>
+        </div>
+        <div class="vision-card vision-card--mission">
+          <div class="vision-card__icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="vision-card__title">Our Mission</h3>
+          <p class="vision-card__body">To deliver scalable, secure, and cutting-edge digital solutions that solve real-world challenges. We build impactful products that foster growth, streamline operations, and increase efficiency for our clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHY N3 ========== -->
+  <section class="section why-section">
+    <div class="why-section__bg"></div>
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-content">
+          <div class="badge badge-sky">Why Choose Us</div>
+          <h2>We Don't Just Build — We <span class="text-gradient">Solve</span></h2>
+          <p class="why-desc">
+            At N3 Global Tech, we combine technical expertise with a deep understanding of your business to deliver solutions that truly matter. We're not just a vendor — we're your long-term technology partner.
+          </p>
+
+          <ul class="why-list">
+            {[
+              { title: "Agile & Transparent", desc: "We iterate fast with full visibility into progress, timelines, and deliverables." },
+              { title: "Expert Team", desc: "Our engineers and designers bring proven expertise from Fortune 500 to fast-growth startups." },
+              { title: "Future-Proof Tech", desc: "We build for the long run, using scalable architectures and modern best practices." },
+              { title: "End-to-End Ownership", desc: "From strategy to launch and beyond, we take responsibility for every stage." },
+            ].map(item => (
+              <li class="why-item">
+                <div class="why-item__check">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>{item.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <a href="/contact" class="btn btn-primary btn-lg" style="margin-top:0.5rem">
+            Let's Talk
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <div class="why-visual">
+          <div class="metric-card metric-card--1">
+            <div class="metric-card__num">150+</div>
+            <div class="metric-card__label">Projects Delivered</div>
+            <div class="metric-card__bar"><div class="metric-card__fill" style="width:85%"></div></div>
+          </div>
+          <div class="metric-card metric-card--2">
+            <div class="metric-card__num">98%</div>
+            <div class="metric-card__label">Client Satisfaction</div>
+            <div class="metric-card__bar"><div class="metric-card__fill" style="width:98%"></div></div>
+          </div>
+          <div class="metric-card metric-card--3">
+            <div class="metric-card__num">12+</div>
+            <div class="metric-card__label">Years Experience</div>
+            <div class="metric-card__bar"><div class="metric-card__fill metric-card__fill--teal" style="width:75%"></div></div>
+          </div>
+          <div class="metric-card metric-card--4">
+            <div class="metric-card__num">40+</div>
+            <div class="metric-card__label">Expert Team Members</div>
+            <div class="metric-card__bar"><div class="metric-card__fill metric-card__fill--violet" style="width:60%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXPERTISE ========== -->
+  <section class="section expertise-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge-sky">Industries & Tech</div>
+        <h2>Domains We <span class="text-gradient">Empower</span></h2>
+        <p>Combining emerging technologies with deep industry knowledge to build the right solutions at scale.</p>
+      </div>
+      <div class="expertise-grid">
+
+        <div class="expertise-card expertise-card--sky">
+          <div class="expertise-card__header">
+            <div class="expertise-card__icon expertise-card__icon--sky">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            </div>
+            <h3>Emerging Technologies</h3>
+          </div>
+          <div class="expertise-tags">
+            <span>SaaS Solutions</span>
+            <span>Innovative Health Tech</span>
+          </div>
+        </div>
+
+        <div class="expertise-card expertise-card--rose">
+          <div class="expertise-card__header">
+            <div class="expertise-card__icon expertise-card__icon--rose">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <h3>Healthcare & Wellness</h3>
+          </div>
+          <div class="expertise-tags">
+            <span>Mental Health</span>
+            <span>Wellness</span>
+            <span>Insurance</span>
+            <span>Fitness</span>
+          </div>
+        </div>
+
+        <div class="expertise-card expertise-card--violet">
+          <div class="expertise-card__header">
+            <div class="expertise-card__icon expertise-card__icon--violet">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h3>AI & ML</h3>
+          </div>
+          <div class="expertise-tags">
+            <span>AI Chatbots</span>
+            <span>AI Marketing</span>
+            <span>HR & AI</span>
+            <span>Healthcare AI</span>
+          </div>
+        </div>
+
+        <div class="expertise-card expertise-card--teal">
+          <div class="expertise-card__header">
+            <div class="expertise-card__icon expertise-card__icon--teal">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </div>
+            <h3>Enterprise Software</h3>
+          </div>
+          <div class="expertise-tags">
+            <span>CRM</span>
+            <span>ERP</span>
+            <span>HR</span>
+            <span>AI-powered Automation</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA SECTION ========== -->
+  <section class="cta-section">
+    <div class="container cta-inner">
+      <div class="cta-content">
+        <div class="badge badge-sky" style="background:rgba(14,165,233,0.15); color:var(--sky-300); border-color:rgba(14,165,233,0.3);">
+          Ready to Start?
+        </div>
+        <h2 class="cta-title">Let's Build Something<br /><span class="text-gradient-light">Great Together</span></h2>
+        <p class="cta-desc">Tell us about your project and we'll get back to you within 24 hours with a tailored proposal.</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn-primary btn-xl">
+            Start a Project
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="/services" class="btn" style="background:rgba(255,255,255,0.08); color:white; border:2px solid rgba(255,255,255,0.2);">
+            Explore Services
+          </a>
+        </div>
+      </div>
+      <div class="cta-decoration">
+        <div class="cta-ring cta-ring--1"></div>
+        <div class="cta-ring cta-ring--2"></div>
+        <div class="cta-icon">
+          <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="rgba(14,165,233,0.6)" stroke-width="1.2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
 </Layout>
+
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 72px;
+    background: var(--white);
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  .hero__bg-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--sky-200) 1px, transparent 1px);
+    background-size: 36px 36px;
+    opacity: 0.35;
+  }
+
+  .hero__glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero__glow--1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%);
+    top: -100px;
+    right: -80px;
+  }
+
+  .hero__glow--2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%);
+    bottom: 0;
+    left: -50px;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 1rem 0;
+    letter-spacing: -0.03em;
+    color: var(--gray-900);
+  }
+
+  .hero__desc {
+    color: var(--gray-500);
+    font-size: 1.1rem;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+
+  .hero__cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-lg { padding: 0.875rem 2rem !important; font-size: 1rem !important; }
+  .btn-xl { padding: 1rem 2.25rem !important; font-size: 1.05rem !important; }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--sky-500);
+    animation: pulse-ring 2s ease-in-out infinite;
+  }
+
+  /* Stats */
+  .hero__stats {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .stat__num {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    letter-spacing: -0.03em;
+  }
+
+  .stat__label {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    font-weight: 500;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--gray-200);
+  }
+
+  /* Hero visual */
+  .hero__visual {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero__card-cluster {
+    position: relative;
+    width: 460px;
+    height: 460px;
+    overflow: visible;
+  }
+
+  .hero__card {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    box-shadow: var(--shadow-lg);
+    width: fit-content;
+  }
+
+  .hero__card--main {
+    top: 20px;
+    left: 0;
+    z-index: 3;
+    border-color: var(--sky-100);
+  }
+
+  .hero__card--secondary {
+    top: 170px;
+    right: -20px;
+    z-index: 3;
+  }
+
+  .hero__card--tertiary {
+    bottom: 20px;
+    left: 20px;
+    z-index: 3;
+  }
+
+  .hcard__icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: var(--radius-md);
+    background: var(--sky-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hcard__icon--purple { background: #f5f3ff; }
+  .hcard__icon--green { background: #f0fdf4; }
+
+  .hcard__title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--gray-900);
+    font-family: var(--font-heading);
+    margin-bottom: 0.15rem;
+    white-space: nowrap;
+  }
+
+  .hcard__sub {
+    font-size: 0.75rem;
+    color: var(--gray-400);
+  }
+
+  /* Orbit circles */
+  .hero__orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px dashed var(--sky-200);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+    animation: spin 20s linear infinite;
+  }
+
+  .hero__orbit--1 {
+    width: 280px;
+    height: 280px;
+  }
+
+  .hero__orbit--2 {
+    width: 180px;
+    height: 180px;
+    border-style: solid;
+    border-color: var(--sky-100);
+    animation-direction: reverse;
+    animation-duration: 12s;
+    opacity: 0.5;
+  }
+
+  @keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .hero__logo-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background: var(--white);
+    border-radius: 18px;
+    box-shadow: var(--shadow-xl);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--sky-100);
+  }
+
+  .hero__center-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 12px;
+  }
+
+  /* Trusted */
+  .hero__trusted {
+    padding: 2.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--gray-100);
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .trusted__label {
+    font-size: 0.78rem;
+    color: var(--gray-400);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .trusted__logos {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .trusted__logo-item {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--gray-300);
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+
+  .trusted__logo-item:hover { color: var(--gray-400); }
+
+  /* ===== SERVICES GRID ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.75rem;
+    border-radius: var(--radius-xl);
+    background: var(--white);
+    border: 1.5px solid var(--gray-100);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .service-card:hover::before { opacity: 1; }
+
+  .service-card--sky:hover { border-color: var(--sky-200); }
+  .service-card--sky::before { background: var(--sky-500); }
+  .service-card--violet:hover { border-color: #ddd6fe; }
+  .service-card--violet::before { background: #8b5cf6; }
+  .service-card--teal:hover { border-color: #99f6e4; }
+  .service-card--teal::before { background: #14b8a6; }
+  .service-card--amber:hover { border-color: #fde68a; }
+  .service-card--amber::before { background: #f59e0b; }
+  .service-card--rose:hover { border-color: #fecdd3; }
+  .service-card--rose::before { background: #f43f5e; }
+  .service-card--indigo:hover { border-color: #c7d2fe; }
+  .service-card--indigo::before { background: #6366f1; }
+
+  .service-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.25rem;
+  }
+
+  .service-card__icon--sky { background: var(--sky-50); color: var(--sky-600); }
+  .service-card__icon--violet { background: #f5f3ff; color: #7c3aed; }
+  .service-card__icon--teal { background: #f0fdfa; color: #0d9488; }
+  .service-card__icon--amber { background: #fffbeb; color: #d97706; }
+  .service-card__icon--rose { background: #fff1f2; color: #e11d48; }
+  .service-card__icon--indigo { background: #eef2ff; color: #4f46e5; }
+
+  .service-card__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+
+  .service-card__desc {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .service-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 0.5rem;
+    transition: gap 0.2s;
+  }
+
+  .service-card:hover .service-card__link {
+    gap: 0.75rem;
+  }
+
+  .services-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  /* ===== HOW IT WORKS ===== */
+  .how-it-works {
+    background: var(--white);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .process-card {
+    background: var(--white);
+    border: 1.5px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    position: relative;
+    transition: var(--transition);
+    overflow: hidden;
+  }
+
+  .process-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--sky-100);
+  }
+
+  .process-card__number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--gray-300);
+  }
+
+  .process-card__visual {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-100);
+  }
+
+  .process-card__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+
+  .process-card__desc {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    line-height: 1.65;
+  }
+
+  /* Input demo */
+  .input-demo {
+    width: 90%;
+  }
+
+  .input-demo__field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    color: var(--gray-400);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Build demo */
+  .build-demo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .build-demo__card {
+    width: 70px;
+    height: 80px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .build-demo__lines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .build-demo__line {
+    height: 6px;
+    background: var(--gray-200);
+    border-radius: 3px;
+  }
+
+  .build-demo__line--short {
+    width: 60%;
+  }
+
+  .build-demo__btn {
+    height: 16px;
+    background: var(--sky-500);
+    border-radius: 4px;
+  }
+
+  .build-demo__plus {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-400);
+  }
+
+  .build-demo__chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 100%;
+    padding: 0.5rem;
+  }
+
+  .build-demo__bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--sky-400), var(--sky-500));
+    border-radius: 3px;
+  }
+
+  /* Launch demo */
+  .launch-demo {
+    position: relative;
+    width: 90%;
+  }
+
+  .launch-demo__chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 90px;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    border: 1px solid var(--gray-100);
+  }
+
+  .launch-demo__bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--sky-300), var(--sky-500));
+    border-radius: 4px;
+  }
+
+  .launch-demo__badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+  }
+
+  .launch-demo__dot {
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    animation: pulse-ring 2s ease-in-out infinite;
+  }
+
+  /* ===== WHY SECTION ===== */
+  .why-section {
+    position: relative;
+    background: var(--gray-50);
+    overflow: hidden;
+  }
+
+  .why-section__bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 80% 20%, rgba(14,165,233,0.07) 0%, transparent 60%);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .why-content .badge { margin-bottom: 1rem; }
+
+  .why-content h2 {
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  .why-desc {
+    color: var(--gray-500);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .why-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .why-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .why-item__check {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.1rem;
+  }
+
+  .why-item strong {
+    display: block;
+    font-weight: 700;
+    color: var(--gray-800);
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .why-item p {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    line-height: 1.6;
+  }
+
+  /* Metrics */
+  .why-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .metric-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    border: 1.5px solid var(--gray-100);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+
+  .metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sky);
+    border-color: var(--sky-100);
+  }
+
+  .metric-card__num {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gray-900);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
+  }
+
+  .metric-card__label {
+    font-size: 0.78rem;
+    color: var(--gray-400);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .metric-card__bar {
+    height: 4px;
+    background: var(--gray-100);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .metric-card__fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--sky-500), var(--sky-400));
+    border-radius: 4px;
+    transition: width 1s ease;
+  }
+
+  .metric-card__fill--teal {
+    background: linear-gradient(90deg, #0d9488, #14b8a6);
+  }
+
+  .metric-card__fill--violet {
+    background: linear-gradient(90deg, #7c3aed, #8b5cf6);
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    background: linear-gradient(135deg, var(--gray-900) 0%, var(--sky-900) 100%);
+    padding: 6rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    position: relative;
+  }
+
+  .cta-content {
+    max-width: 580px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    margin: 1rem 0;
+    line-height: 1.1;
+  }
+
+  .text-gradient-light {
+    background: linear-gradient(135deg, var(--sky-300) 0%, var(--sky-500) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cta-desc {
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-decoration {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cta-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(14,165,233,0.3);
+  }
+
+  .cta-ring--1 {
+    width: 200px;
+    height: 200px;
+    animation: pulse-ring 3s ease infinite;
+  }
+
+  .cta-ring--2 {
+    width: 140px;
+    height: 140px;
+    border-color: rgba(14,165,233,0.15);
+    animation: pulse-ring 3s ease 0.5s infinite;
+  }
+
+  .cta-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(14,165,233,0.1);
+    border: 2px solid rgba(14,165,233,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 3rem;
+    }
+    .hero__desc, .hero__cta, .hero__stats { justify-content: center; margin-left: auto; margin-right: auto; }
+    .hero__cta { justify-content: center; }
+    .hero__stats { justify-content: center; }
+    .hero__visual { display: none; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .why-visual { grid-template-columns: repeat(2, 1fr); }
+    .cta-decoration { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .why-visual { grid-template-columns: 1fr 1fr; }
+    .hero__stats { flex-direction: column; gap: 1rem; align-items: center; }
+    .stat-divider { display: none; }
+  }
+</style>
+
+<style is:global>
+  /* ===== SERVICE LIST LAYOUT ===== */
+  .svc-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-width: 960px;
+    margin: 0 auto;
+    border: 1.5px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    background: var(--white);
+  }
+
+  .svc-col {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .svc-col:first-child {
+    border-right: 1.5px solid var(--gray-100);
+  }
+
+  .svc-col__label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sky-500);
+    margin-bottom: 1rem;
+    font-family: var(--font-body);
+  }
+
+  .svc-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 0.75rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: var(--transition);
+    margin-bottom: 0.15rem;
+    color: inherit;
+  }
+
+  .svc-row:hover {
+    background: var(--sky-50);
+  }
+
+  .svc-row:hover .svc-row__arrow {
+    color: var(--sky-500);
+    opacity: 1;
+    transform: translateX(3px);
+  }
+
+  .svc-row__icon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-700);
+    transition: var(--transition);
+  }
+
+  .svc-row:hover .svc-row__icon {
+    background: var(--white);
+    border-color: var(--sky-200);
+    color: var(--sky-600);
+    box-shadow: 0 2px 8px rgba(14,165,233,0.12);
+  }
+
+  .svc-row__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .svc-row__title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--gray-900);
+    font-family: var(--font-heading);
+  }
+
+  .svc-row__desc {
+    font-size: 0.8rem;
+    color: var(--gray-400);
+    font-family: var(--font-body);
+  }
+
+  .svc-row__arrow {
+    color: var(--gray-300);
+    opacity: 0;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  /* ===== VISION & MISSION ===== */
+  .vision-mission {
+    background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+  }
+
+  .vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .vision-card {
+    position: relative;
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    border: 1.5px solid var(--gray-100);
+    padding: 2.5rem;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+
+  .vision-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .vision-card--vision::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--sky-400), var(--sky-600));
+    border-radius: 4px 4px 0 0;
+  }
+
+  .vision-card--mission::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b5cf6, #6366f1);
+    border-radius: 4px 4px 0 0;
+  }
+
+  .vision-card__number {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.75rem;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--gray-100);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .vision-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: var(--sky-50);
+    color: var(--sky-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .vision-card--mission .vision-card__icon {
+    background: #f5f3ff;
+    color: #8b5cf6;
+  }
+
+  .vision-card__title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 0.75rem;
+    font-family: var(--font-heading);
+  }
+
+  .vision-card__body {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    font-family: var(--font-body);
+  }
+
+  .vision-card__line {
+    height: 2px;
+    background: var(--gray-100);
+    border-radius: 2px;
+  }
+
+  /* ===== EXPERTISE / DOMAINS ===== */
+  .expertise-section {
+    background: var(--white);
+  }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .expertise-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    border: 1.5px solid var(--gray-100);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .expertise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .expertise-card__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .expertise-card__header h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    font-family: var(--font-heading);
+  }
+
+  .expertise-card__icon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .expertise-card__icon--sky { background: var(--sky-50); color: var(--sky-600); }
+  .expertise-card__icon--rose { background: #fff1f2; color: #e11d48; }
+  .expertise-card__icon--violet { background: #f5f3ff; color: #7c3aed; }
+  .expertise-card__icon--teal { background: #f0fdfa; color: #0d9488; }
+
+  .expertise-card--sky:hover { border-color: var(--sky-200); }
+  .expertise-card--rose:hover { border-color: #fecdd3; }
+  .expertise-card--violet:hover { border-color: #ddd6fe; }
+  .expertise-card--teal:hover { border-color: #99f6e4; }
+
+  .expertise-card--sky::after,
+  .expertise-card--rose::after,
+  .expertise-card--violet::after,
+  .expertise-card--teal::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .expertise-card:hover::after { opacity: 1; }
+  .expertise-card--sky::after { background: var(--sky-500); }
+  .expertise-card--rose::after { background: #f43f5e; }
+  .expertise-card--violet::after { background: #7c3aed; }
+  .expertise-card--teal::after { background: #0d9488; }
+
+  .expertise-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .expertise-tags span {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    color: var(--gray-600);
+    font-weight: 600;
+    transition: var(--transition);
+    font-family: var(--font-body);
+  }
+
+  .expertise-card--sky:hover .expertise-tags span { border-color: var(--sky-200); color: var(--sky-700); background: var(--sky-50); }
+  .expertise-card--rose:hover .expertise-tags span { border-color: #fecdd3; color: #e11d48; background: #fff1f2; }
+  .expertise-card--violet:hover .expertise-tags span { border-color: #ddd6fe; color: #7c3aed; background: #f5f3ff; }
+  .expertise-card--teal:hover .expertise-tags span { border-color: #99f6e4; color: #0d9488; background: #f0fdfa; }
+
+  /* Responsive for new sections */
+  @media (max-width: 1024px) {
+    .svc-layout { grid-template-columns: 1fr; }
+    .svc-col:first-child { border-right: none; border-bottom: 1.5px solid var(--gray-100); }
+    .vision-grid { grid-template-columns: 1fr; }
+    .expertise-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .svc-col { padding: 1.5rem; }
+    .vision-card { padding: 1.75rem; }
+    .expertise-card { padding: 1.5rem; }
+  }
+
+  /* ===== CLIENT LOGO MARQUEE ===== */
+  .clients-marquee {
+    padding: 2.5rem 0;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--gray-100);
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .clients-marquee__label {
+    font-size: 0.78rem;
+    color: var(--gray-400);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1.75rem;
+    font-family: var(--font-body);
+  }
+
+  .clients-marquee__track-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+  .clients-marquee__track {
+    display: flex;
+    gap: 3.5rem;
+    align-items: center;
+    width: max-content;
+    animation: marquee-scroll 35s linear infinite;
+  }
+
+  .clients-marquee__track:hover {
+    animation-play-state: paused;
+  }
+
+  .clients-marquee__logo {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .clients-marquee__logo:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
