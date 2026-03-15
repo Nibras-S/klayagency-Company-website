@@ -931,6 +931,13 @@ import Footer from '../components/Footer.astro';
     margin-top: 1rem;
   }
 
+  @media (max-width: 768px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
   .process-card {
     background: var(--white);
     border: 1.5px solid var(--gray-100);
@@ -939,6 +946,7 @@ import Footer from '../components/Footer.astro';
     position: relative;
     transition: var(--transition);
     overflow: hidden;
+    min-width: 0;
   }
 
   .process-card:hover {
@@ -1350,6 +1358,7 @@ import Footer from '../components/Footer.astro';
     .why-grid { grid-template-columns: 1fr; gap: 3rem; }
     .why-visual { grid-template-columns: repeat(2, 1fr); }
     .cta-decoration { display: none; }
+    .process-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 640px) {
