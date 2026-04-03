@@ -5,12 +5,31 @@ import Footer from '../components/Footer.astro';
 
 const projects = [
   {
+    category: "E-Commerce",
+    name: "enJoyful Life",
+    desc: "A high-performance e-commerce platform for a natural skincare brand. It features seamless product discovery, secure payments, and a responsive UI optimized for scalability.",
+    technologies: "Next.js, Tailwind, Appwrite, AWS",
+    client: "enJoyful Life",
+    status: "Development Ongoing",
+    link: "https://enjoyful.vercel.app/",
+    image: "/products/ecom.png",
+  },
+  {
+    category: "EdTech & Talent Tech",
+    name: "ShareInfo",
+    desc: "ShareInfo is a multi-sided AI-powered talent ecosystem designed to bridge the gap between students, educational institutions, and recruiters. The platform integrates learning, mentorship, and hiring into a unified system, enabling efficient skill development and smarter recruitment through data-driven matching.",
+    technologies: "AI, Modern Web Stack",
+    client: "ShareInfo",
+    link: "https://share-info-product-website.vercel.app/",
+    image: "/products/shareinfo.png",
+  },
+  {
     category: "Digital Transformation & CRM",
     name: "Viera Natural Wooden Flooring",
     desc: "A digital transformation featuring an immersive 3D website and custom CRM. It elegantly showcases the brand's portfolio while the CRM manages staff operations, site progress, and task automation.",
     technologies: "3D Animations, React, Node.js",
     client: "Viera Natural Wooden Flooring",
-    image: "https://images.unsplash.com/photo-1541123437800-14a33fb6edad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    image: "/products/viera.jpg",
   },
   {
     category: "Corporate Website",
@@ -20,44 +39,7 @@ const projects = [
     client: "anabb.tech",
     status: "Live",
     link: "https://anabb.tech/",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    category: "E-Commerce",
-    name: "enJoyful Life",
-    desc: "A high-performance e-commerce platform for a natural skincare brand. It features seamless product discovery, secure payments, and a responsive UI optimized for scalability.",
-    technologies: "Next.js, Tailwind, Appwrite, AWS",
-    client: "enJoyful Life",
-    status: "Development Ongoing",
-    link: "https://enjoyful.vercel.app/",
-    image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    category: "Fintech",
-    name: "PulseBank Dashboard",
-    desc: "A real-time financial analytics dashboard for digital banking, featuring live transaction monitoring and AI-powered spending insights.",
-    technologies: "React, Node.js, PostgreSQL, AI/ML",
-    client: "PulseBank",
-    review: "N3 Global Tech transformed our data infrastructure. The dashboard they built handles 10x more throughput than our old system.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    category: "Healthcare",
-    name: "MediFlow EHR System",
-    desc: "A HIPAA-compliant medical records platform for clinics. Includes patient portals, appointment scheduling, and telemedicine integration.",
-    technologies: "Next.js, AWS, HIPAA, Telemedicine",
-    client: "MediFlow Health",
-    review: "Honestly the best tech partner we've worked with. They understood healthcare compliance requirements from day one.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    category: "E-Commerce",
-    name: "RetailNexus Platform",
-    desc: "A scalable multi-vendor marketplace platform featuring dynamic pricing, seller analytics, and smart product recommendations.",
-    technologies: "Vue.js, Django, Redis, Stripe",
-    client: "RetailNexus",
-    review: "We went from MVP to $2M monthly GMV in under a year. N3's scalable architecture made that growth possible.",
-    image: "https://images.unsplash.com/photo-1472851294502-8ce3b4845a47?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    image: "/products/anabb.png",
   },
 ];
 ---
@@ -114,6 +96,11 @@ const projects = [
               </div>
             );
           })}
+        </div>
+
+        <div class="coming-soon-projects">
+          <h3>More Case Studies Coming Soon ✨</h3>
+          <p>We are continuously working with our clients to deliver cutting-edge solutions. Stay tuned as we update our portfolio with more recent successes.</p>
         </div>
 
       </div>
@@ -181,7 +168,7 @@ const projects = [
   /* Image block */
   .item-visual {
     flex: 1;
-    border-radius: 1.5rem;
+    border-radius: 0.75rem;
     overflow: hidden;
     position: relative;
     box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* Lighter shadow */
@@ -201,11 +188,6 @@ const projects = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.7s ease;
-  }
-
-  .showcase-item:hover .img-wrapper img {
-    transform: scale(1.05);
   }
 
   .img-overlay {
@@ -313,6 +295,32 @@ const projects = [
     background: var(--primary);
     color: #ffffff;
     box-shadow: 0 10px 25px rgba(14, 165, 233, 0.25);
+  }
+
+  /* Coming Soon Section */
+  .coming-soon-projects {
+    text-align: center;
+    padding: 4rem 2rem;
+    margin-top: 6rem;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border-radius: 1.5rem;
+    border: 1px dashed #cbd5e1;
+  }
+
+  .coming-soon-projects h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 1rem;
+  }
+
+  .coming-soon-projects p {
+    color: #64748b;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
   }
 
   /* Bottom CTA */

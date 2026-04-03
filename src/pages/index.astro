@@ -334,17 +334,23 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="vision-grid">
         <div class="vision-card vision-card--vision">
-          <div class="vision-card__icon">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          <div class="vision-card__header">
+            <div class="vision-card__icon">
+              <!-- Target icon for Vision -->
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <h3 class="vision-card__title">Our Vision</h3>
           </div>
-          <h3 class="vision-card__title">Our Vision</h3>
           <p class="vision-card__body">To be the leading catalyst for digital transformation, empowering businesses globally with innovative technology and creating a future where software seamlessly drives human progress.</p>
         </div>
         <div class="vision-card vision-card--mission">
-          <div class="vision-card__icon">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <div class="vision-card__header">
+            <div class="vision-card__icon">
+              <!-- Rocket icon for Mission -->
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15 3.3 3.3a1 1 0 0 0 1.4 0l2.6-2.6a1 1 0 0 0 0-1.4L16 11"/><path d="m11 16-4.3-4.3a1 1 0 0 1 0-1.4l2.6-2.6a1 1 0 0 1 1.4 0L14 11"/><path d="M15 4c-5-2-12 1-12 1s3 7 1 12l2.6 2.6c5 2 12-1 12-1s-3-7-1-12z"/></svg>
+            </div>
+            <h3 class="vision-card__title">Our Mission</h3>
           </div>
-          <h3 class="vision-card__title">Our Mission</h3>
           <p class="vision-card__body">To deliver scalable, secure, and cutting-edge digital solutions that solve real-world challenges. We build impactful products that foster growth, streamline operations, and increase efficiency for our clients.</p>
         </div>
       </div>
@@ -392,22 +398,18 @@ import Footer from '../components/Footer.astro';
           <div class="metric-card metric-card--1">
             <div class="metric-card__num">50+</div>
             <div class="metric-card__label">Projects Delivered</div>
-            <div class="metric-card__bar"><div class="metric-card__fill" style="width:85%"></div></div>
           </div>
           <div class="metric-card metric-card--2">
             <div class="metric-card__num">98%</div>
             <div class="metric-card__label">Client Satisfaction</div>
-            <div class="metric-card__bar"><div class="metric-card__fill" style="width:98%"></div></div>
           </div>
           <div class="metric-card metric-card--3">
             <div class="metric-card__num">3+</div>
             <div class="metric-card__label">Years Experience</div>
-            <div class="metric-card__bar"><div class="metric-card__fill metric-card__fill--teal" style="width:75%"></div></div>
           </div>
           <div class="metric-card metric-card--4">
             <div class="metric-card__num">40+</div>
             <div class="metric-card__label">Expert Team Members</div>
-            <div class="metric-card__bar"><div class="metric-card__fill metric-card__fill--violet" style="width:60%"></div></div>
           </div>
         </div>
       </div>
@@ -565,10 +567,13 @@ import Footer from '../components/Footer.astro';
   .hero__inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: clamp(2rem, 4vw, 5rem);
     align-items: center;
     padding-top: 4rem;
     padding-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero__content {
@@ -924,6 +929,7 @@ import Footer from '../components/Footer.astro';
   /* ===== HOW IT WORKS ===== */
   .how-it-works {
     background: var(--white);
+    padding-top: 2rem;
   }
 
   .process-grid {
@@ -931,6 +937,9 @@ import Footer from '../components/Footer.astro';
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-top: 1rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media (max-width: 768px) {
@@ -1133,10 +1142,13 @@ import Footer from '../components/Footer.astro';
   .why-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: clamp(3rem, 4vw, 5rem);
     align-items: center;
     position: relative;
     z-index: 1;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .why-content .badge { margin-bottom: 1rem; }
@@ -1346,6 +1358,20 @@ import Footer from '../components/Footer.astro';
   }
 
   /* ===== RESPONSIVE ===== */
+
+  /* Large screens: tighter inner widths */
+  @media (min-width: 1440px) {
+    .hero__inner {
+      max-width: 1200px;
+    }
+    .why-grid {
+      max-width: 1100px;
+    }
+    .process-grid {
+      max-width: 1100px;
+    }
+  }
+
   @media (max-width: 1024px) {
     .hero {
       min-height: auto;
@@ -1356,7 +1382,8 @@ import Footer from '../components/Footer.astro';
       grid-template-columns: 1fr;
       text-align: center;
       gap: 2.5rem;
-      padding-top: 1rem; /* Removed the 4rem top gap */
+      max-width: 100%;
+      padding-top: 1rem;
       padding-bottom: 1rem;
     }
     .hero__desc, .hero__cta, .hero__stats { justify-content: center; margin-left: auto; margin-right: auto; }
@@ -1364,10 +1391,10 @@ import Footer from '../components/Footer.astro';
     .hero__stats { justify-content: center; }
     .hero__visual { display: none; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .why-grid { grid-template-columns: 1fr; gap: 3rem; max-width: 100%; }
     .why-visual { grid-template-columns: repeat(2, 1fr); }
     .cta-decoration { display: none; }
-    .process-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr; max-width: 100%; }
   }
 
   @media (max-width: 640px) {
@@ -1532,16 +1559,23 @@ import Footer from '../components/Footer.astro';
     user-select: none;
   }
 
+  .vision-card__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
   .vision-card__icon {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     border-radius: var(--radius-md);
     background: var(--sky-50);
     color: var(--sky-500);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    flex-shrink: 0;
   }
 
   .vision-card--mission .vision-card__icon {
@@ -1553,8 +1587,8 @@ import Footer from '../components/Footer.astro';
     font-size: 1.4rem;
     font-weight: 800;
     color: var(--gray-900);
-    margin-bottom: 0.75rem;
     font-family: var(--font-heading);
+    margin-bottom: 0;
   }
 
   .vision-card__body {

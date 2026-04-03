@@ -121,6 +121,13 @@ const { title, description = "N3 Global Tech — Empowering businesses through i
     padding: 0 2rem;
   }
 
+  /* Large screens: increase spacing but cap width */
+  @media (min-width: 1440px) {
+    .container {
+      padding: 0 3rem;
+    }
+  }
+
   .section {
     padding: 6rem 0;
   }
@@ -278,5 +285,12 @@ const { title, description = "N3 Global Tech — Empowering businesses through i
   @media (max-width: 768px) {
     .container { padding: 0 1.25rem; }
     .section { padding: 4rem 0; }
+  }
+
+  /* Extra-large screens (1920px+) — prevent content from spreading too wide */
+  @media (min-width: 1600px) {
+    .container {
+      max-width: 1400px;
+    }
   }
 </style>
