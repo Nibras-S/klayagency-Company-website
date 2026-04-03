@@ -48,7 +48,7 @@ const footerLinks = {
 
       <!-- Links -->
       {Object.entries(footerLinks).map(([group, links]) => (
-        <div class="footer__col">
+        <div class={`footer__col footer__col--${group.toLowerCase()}`}>
           <h4 class="footer__col-title">{group}</h4>
           <ul class="footer__col-links">
             {links.map(link => (
@@ -204,11 +204,10 @@ const footerLinks = {
       justify-content: center;
       gap: 1rem;
     }
-  }
-
-  @media (max-width: 400px) {
-    .footer__top {
-      grid-template-columns: 1fr;
+    :global(.footer__col--company) {
+      display: none !important;
     }
   }
+
+  /* Removed 400px breakpoint keeping 2-column layout on all small devices */
 </style>

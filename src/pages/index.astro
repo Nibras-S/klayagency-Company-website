@@ -39,7 +39,7 @@ import Footer from '../components/Footer.astro';
 
         <div class="hero__stats animate-fade-up" style="animation-delay:0.4s">
           <div class="stat">
-            <span class="stat__num">150+</span>
+            <span class="stat__num">50+</span>
             <span class="stat__label">Projects Delivered</span>
           </div>
           <div class="stat-divider"></div>
@@ -49,7 +49,7 @@ import Footer from '../components/Footer.astro';
           </div>
           <div class="stat-divider"></div>
           <div class="stat">
-            <span class="stat__num">12+</span>
+            <span class="stat__num">3+</span>
             <span class="stat__label">Years of Experience</span>
           </div>
         </div>
@@ -96,22 +96,24 @@ import Footer from '../components/Footer.astro';
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Client Logos Marquee -->
-    <div class="clients-marquee container">
-      <p class="clients-marquee__label">Trusted by Leading Brands</p>
-      <div class="clients-marquee__track-wrapper">
-        <div class="clients-marquee__track">
-          {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(n => (
-            <img src={`/clientlogo/clientlogo${n}.svg`} alt={`Client ${n}`} class="clients-marquee__logo" loading="lazy" />
-          ))}
-          {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(n => (
-            <img src={`/clientlogo/clientlogo${n}.svg`} alt={`Client ${n}`} class="clients-marquee__logo" loading="lazy" />
-          ))}
-        </div>
+  <!-- Client Logos Marquee (outside hero to avoid overflow clipping) -->
+  <div class="clients-marquee container">
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <span style="display:inline-block; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#0284c7; background-color:rgba(14,165,233,0.1); border:1.5px solid rgba(14,165,233,0.3); padding:0.35rem 1.1rem; border-radius:9999px;">Trusted by Leading Brands</span>
+    </div>
+    <div class="clients-marquee__track-wrapper">
+      <div class="clients-marquee__track">
+        {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(n => (
+          <img src={`/clientlogo/clientlogo${n}.svg`} alt={`Client ${n}`} class="clients-marquee__logo" loading="lazy" />
+        ))}
+        {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(n => (
+          <img src={`/clientlogo/clientlogo${n}.svg`} alt={`Client ${n}`} class="clients-marquee__logo" loading="lazy" />
+        ))}
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- ========== SERVICES PREVIEW ========== -->
   <section class="section services-preview">
@@ -388,7 +390,7 @@ import Footer from '../components/Footer.astro';
 
         <div class="why-visual">
           <div class="metric-card metric-card--1">
-            <div class="metric-card__num">150+</div>
+            <div class="metric-card__num">50+</div>
             <div class="metric-card__label">Projects Delivered</div>
             <div class="metric-card__bar"><div class="metric-card__fill" style="width:85%"></div></div>
           </div>
@@ -398,7 +400,7 @@ import Footer from '../components/Footer.astro';
             <div class="metric-card__bar"><div class="metric-card__fill" style="width:98%"></div></div>
           </div>
           <div class="metric-card metric-card--3">
-            <div class="metric-card__num">12+</div>
+            <div class="metric-card__num">3+</div>
             <div class="metric-card__label">Years Experience</div>
             <div class="metric-card__bar"><div class="metric-card__fill metric-card__fill--teal" style="width:75%"></div></div>
           </div>
@@ -1345,10 +1347,17 @@ import Footer from '../components/Footer.astro';
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 1024px) {
+    .hero {
+      min-height: auto;
+      padding-top: 80px;
+      padding-bottom: 0.5rem;
+    }
     .hero__inner {
       grid-template-columns: 1fr;
       text-align: center;
-      gap: 3rem;
+      gap: 2.5rem;
+      padding-top: 1rem; /* Removed the 4rem top gap */
+      padding-bottom: 1rem;
     }
     .hero__desc, .hero__cta, .hero__stats { justify-content: center; margin-left: auto; margin-right: auto; }
     .hero__cta { justify-content: center; }
@@ -1364,8 +1373,9 @@ import Footer from '../components/Footer.astro';
   @media (max-width: 640px) {
     .services-grid { grid-template-columns: 1fr; }
     .why-visual { grid-template-columns: 1fr 1fr; }
-    .hero__stats { flex-direction: column; gap: 1rem; align-items: center; }
-    .stat-divider { display: none; }
+    .hero__stats { flex-direction: row; gap: 1rem; align-items: center; justify-content: center; }
+    .clients-marquee { padding: 1.25rem 0; margin-top: 0; }
+    .services-preview { padding-top: 2rem !important; }
   }
 </style>
 
@@ -1498,26 +1508,16 @@ import Footer from '../components/Footer.astro';
   }
 
   .vision-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+    transform: none;
+    box-shadow: none;
   }
 
   .vision-card--vision::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--sky-400), var(--sky-600));
-    border-radius: 4px 4px 0 0;
+    content: none;
   }
 
   .vision-card--mission::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #8b5cf6, #6366f1);
-    border-radius: 4px 4px 0 0;
+    content: none;
   }
 
   .vision-card__number {
@@ -1681,7 +1681,36 @@ import Footer from '../components/Footer.astro';
   }
 
   @media (max-width: 640px) {
-    .svc-col { padding: 1.5rem; }
+    .svc-layout {
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      gap: 2.5rem;
+      overflow: visible;
+    }
+    .svc-col {
+      padding: 0;
+      gap: 0.85rem;
+    }
+    .svc-col:first-child {
+      border-bottom: none;
+    }
+    .svc-col__label {
+      margin-bottom: 0;
+      font-size: 0.85rem;
+      padding-left: 0.5rem;
+    }
+    .svc-row {
+      background: var(--white);
+      border: 1px solid var(--sky-100);
+      border-radius: var(--radius-xl);
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(14,165,233,0.06);
+      margin-bottom: 0;
+    }
+    .svc-row:active {
+      transform: scale(0.98);
+    }
     .vision-card { padding: 1.75rem; }
     .expertise-card { padding: 1.5rem; }
   }
@@ -1697,13 +1726,7 @@ import Footer from '../components/Footer.astro';
   }
 
   .clients-marquee__label {
-    font-size: 0.78rem;
-    color: var(--gray-400);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 1.75rem;
-    font-family: var(--font-body);
+    display: none; /* replaced with direct badge approach in HTML */
   }
 
   .clients-marquee__track-wrapper {
@@ -1716,10 +1739,9 @@ import Footer from '../components/Footer.astro';
 
   .clients-marquee__track {
     display: flex;
-    gap: 3.5rem;
     align-items: center;
     width: max-content;
-    animation: marquee-scroll 35s linear infinite;
+    animation: marquee-scroll 40s linear infinite;
   }
 
   .clients-marquee__track:hover {
@@ -1727,12 +1749,16 @@ import Footer from '../components/Footer.astro';
   }
 
   .clients-marquee__logo {
-    height: 32px;
+    height: 36px;
     width: auto;
+    min-width: 80px;
+    max-width: 180px;
     object-fit: contain;
-    opacity: 0.85;
+    opacity: 0.7;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    margin-right: 4rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
   }
 
   .clients-marquee__logo:hover {

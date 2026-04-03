@@ -6,440 +6,343 @@ import Footer from '../components/Footer.astro';
 const projects = [
   {
     category: "Fintech",
-    title: "PulseBank Dashboard",
+    name: "PulseBank Dashboard",
     desc: "A real-time financial analytics platform for a digital bank, featuring live transaction monitoring, fraud detection alerts, and AI-based spending insights for 50,000+ users.",
-    tags: ["React", "Node.js", "PostgreSQL", "AI/ML"],
-    color: "sky",
-    result: "40% faster transaction reporting",
-    icon: `<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>`,
+    technologies: "React, Node.js, PostgreSQL, AI/ML",
+    client: "PulseBank",
+    review: "N3 Global Tech transformed our data infrastructure. The dashboard they built handles 10x more throughput than our old system, and the AI insights have been a game-changer.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
     category: "Healthcare",
-    title: "MediFlow EHR System",
+    name: "MediFlow EHR System",
     desc: "A HIPAA-compliant electronic health records platform built for a network of 120 clinics. Includes patient portal, appointment scheduling, billing integration, and telemedicine.",
-    tags: ["Next.js", "AWS", "HIPAA", "Telemedicine"],
-    color: "teal",
-    result: "120 clinics onboarded",
-    icon: `<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`,
+    technologies: "Next.js, AWS, HIPAA, Telemedicine",
+    client: "MediFlow Health",
+    review: "Honestly the best tech partner we've worked with. They understood healthcare compliance requirements from day one, and their team was incredibly responsive.",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
     category: "E-Commerce",
-    title: "RetailNexus Platform",
+    name: "RetailNexus Platform",
     desc: "A scalable multi-vendor e-commerce marketplace processing $2M+ monthly. Features dynamic pricing engine, seller analytics, logistics integration, and smart recommendations.",
-    tags: ["Vue.js", "Django", "Redis", "Stripe"],
-    color: "violet",
-    result: "$2M+ monthly GMV",
-    icon: `<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>`,
+    technologies: "Vue.js, Django, Redis, Stripe",
+    client: "RetailNexus",
+    review: "We went from MVP to $2M monthly GMV in under a year. N3's scalable architecture made that growth possible without a single major outage. Worth every penny.",
+    image: "https://images.unsplash.com/photo-1472851294502-8ce3b4845a47?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
     category: "Logistics",
-    title: "TrackRoute Mobile App",
+    name: "TrackRoute Mobile App",
     desc: "A real-time logistics tracking app for a fleet of 3,000+ vehicles. Provides live GPS tracking, driver communication, route optimization, and delivery verification.",
-    tags: ["Flutter", "Firebase", "Google Maps", "IoT"],
-    color: "amber",
-    result: "3,000+ vehicles tracked",
-    icon: `<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"/><path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>`,
+    technologies: "Flutter, Firebase, Google Maps, IoT",
+    client: "GlobalFleet Logistics",
+    review: "The mobile app's tracking accuracy is phenomenal. It significantly reduced our dispatch times and is easily the best logistics investment we've ever made.",
+    image: "https://images.unsplash.com/photo-1566847420516-0c68abf66c98?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
     category: "EdTech",
-    title: "LearnSphere LMS",
+    name: "LearnSphere LMS",
     desc: "A comprehensive learning management system for a global online university. Supports 200,000+ students with live classes, AI-graded assessments, certifications, and multi-language content.",
-    tags: ["React", "Go", "WebRTC", "AI Grading"],
-    color: "rose",
-    result: "200K+ learners served",
-    icon: `<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>`,
+    technologies: "React, Go, WebRTC, AI Grading",
+    client: "OpenU",
+    review: "Scaling to 200,000 students concurrently happened effortlessly thanks to the robust architecture N3 delivered. The real-time video features are flawless.",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
     category: "Real Estate",
-    title: "PropVault Platform",
+    name: "PropVault Platform",
     desc: "A smart property management SaaS for 80+ real estate agencies. Includes AI-generated property descriptions, virtual tour integration, lead management, and automated lease processing.",
-    tags: ["Next.js", "AI/GPT", "Stripe", "3D Tours"],
-    color: "indigo",
-    result: "80+ agencies onboarded",
-    icon: `<svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
-  },
-];
-
-const testimonials = [
-  {
-    name: "Sarah Chen",
-    role: "CTO, PulseBank",
-    text: "N3 Global Tech transformed our data infrastructure. The dashboard they built handles 10x more throughput than our old system, and the AI insights have been a game-changer for fraud detection.",
-    avatar: "SC",
-    color: "sky",
-  },
-  {
-    name: "Dr. Marcus Webb",
-    role: "Director of IT, MediFlow Health",
-    text: "Honestly the best tech partner we've worked with. They understood healthcare compliance requirements from day one, and their team was incredibly responsive throughout the build.",
-    avatar: "MW",
-    color: "teal",
-  },
-  {
-    name: "Priya Sharma",
-    role: "CEO, RetailNexus",
-    text: "We went from MVP to $2M monthly GMV in under a year. N3's scalable architecture made that growth possible without a single major outage. Worth every penny.",
-    avatar: "PS",
-    color: "violet",
+    technologies: "Next.js, AI/GPT, Stripe, 3D Tours",
+    client: "Elite Estates",
+    review: "Handling our virtual tours and automating the lease processing directly through the portal increased our deal closure rate by an incredible 30%.",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
 ];
 ---
 
-<Layout title="Our Work" description="Explore N3 Global Tech's portfolio — real-world projects across fintech, healthcare, e-commerce, logistics, and education.">
-  <Navbar />
+<Layout title="Our Work | Portfolio" description="Explore N3 Global Tech's portfolio of custom software solutions, digital transformations, and client success stories.">
+  <div class="page-wrapper">
+    <Navbar />
 
-  <!-- Page Hero -->
-  <section class="page-hero">
-    <div class="page-hero__glow"></div>
-    <div class="page-hero__bg-dots"></div>
-    <div class="container page-hero__inner">
-      <div class="badge badge-sky">Our Work</div>
-      <h1 class="page-hero__title">
-        Real Projects, <br />
-        <span class="text-gradient">Real Results</span>
-      </h1>
-      <p class="page-hero__desc">
-        From startups to enterprises, we've helped businesses across industries build technology that drives measurable outcomes.
-      </p>
-    </div>
-  </section>
+    <section class="solutions-showcase">
+      <div class="container">
+        
+        <div class="showcase-header">
+          <h1 class="showcase-title">Client Success Stories,</h1>
+        </div>
 
-  <!-- Projects Grid -->
-  <section class="section">
-    <div class="container">
-      <div class="projects-grid">
-        {projects.map(project => (
-          <div class={`project-card project-card--${project.color}`}>
-            <div class="project-card__header">
-              <div class={`project-icon project-icon--${project.color}`} set:html={project.icon} />
-              <span class="project-category">{project.category}</span>
-            </div>
-            <h3 class="project-title">{project.title}</h3>
-            <p class="project-desc">{project.desc}</p>
-
-            <div class="project-tags">
-              {project.tags.map(tag => (
-                <span class="project-tag">{tag}</span>
-              ))}
-            </div>
-
-            <div class={`project-result project-result--${project.color}`}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              {project.result}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="section testimonials-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="badge badge-sky">Client Stories</div>
-        <h2>What Our Clients <span class="text-gradient">Say</span></h2>
-        <p>Real feedback from real partners who trusted us with their most critical projects.</p>
-      </div>
-
-      <div class="testimonials-grid">
-        {testimonials.map(t => (
-          <div class="testimonial-card">
-            <div class="testimonial-quote">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--sky-100)"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-            </div>
-            <p class="testimonial-text">{t.text}</p>
-            <div class="testimonial-author">
-              <div class={`testimonial-avatar testimonial-avatar--${t.color}`}>{t.avatar}</div>
-              <div>
-                <div class="testimonial-name">{t.name}</div>
-                <div class="testimonial-role">{t.role}</div>
+        <div class="showcase-list">
+          {projects.map((project, index) => {
+            return (
+              <div class={`showcase-item ${index % 2 !== 0 ? 'reverse' : ''}`}>
+                <div class="item-visual">
+                  <div class="img-wrapper">
+                    <img src={project.image} alt={project.name} loading="lazy" />
+                    <div class="img-overlay"></div>
+                  </div>
+                </div>
+                
+                <div class="item-content">
+                  <div class="tag">{project.category}</div>
+                  <h2 class="name">{project.name}</h2>
+                  <p class="desc">{project.desc}</p>
+                  
+                  <div class="tech-client">
+                    <p><strong>Technologies:</strong> {project.technologies}</p>
+                    <p><strong>Client:</strong> {project.client}</p>
+                  </div>
+                  
+                  <a href="/contact" class="btn-case-study">
+                    Start a Project
+                    <span class="icon-wrap">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                    </span>
+                  </a>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+            );
+          })}
+        </div>
 
-  <!-- Work CTA -->
-  <section class="section-sm">
-    <div class="container">
-      <div class="work-cta-box">
-        <h2>Your Project Could Be Next</h2>
-        <p>Whether you're building from scratch or improving an existing system, we'd love to hear about your vision.</p>
-        <a href="/contact" class="btn btn-primary btn-xl">
-          Start Your Project
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <Footer />
+    <!-- Bottom CTA -->
+    <section class="bottom-cta">
+      <div class="container">
+        <h2>Ready to build something amazing?</h2>
+        <p>Your business could be our next big success story. Let's discuss your requirements and see how we can help.</p>
+        <a href="/contact" class="btn btn-primary btn-xl">Get Started</a>
+      </div>
+    </section>
+
+    <Footer />
+  </div>
+</Layout>
+
 </Layout>
 
 <style>
-  .page-hero {
-    padding: calc(72px + 5rem) 0 5rem;
-    background: var(--white);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  /* Light theme container */
+  .page-wrapper {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    min-height: 100vh;
   }
-  .page-hero__bg-dots {
+
+  .solutions-showcase {
+    padding: calc(60px + 3rem) 0 6rem;
+    font-family: var(--font-body);
+  }
+
+  .showcase-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .showcase-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 800;
+    color: #0f172a !important; /* Dark gray / black */
+    margin-bottom: 0;
+    letter-spacing: -0.04em;
+  }
+
+  /* Showcase List */
+  .showcase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+  }
+
+  .showcase-item {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  .showcase-item.reverse {
+    flex-direction: row-reverse;
+  }
+
+  /* Image block */
+  .item-visual {
+    flex: 1;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* Lighter shadow */
+    background: #f8fafc;
+  }
+
+  .img-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 75%; /* 4:3 aspect ratio */
+  }
+
+  .img-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+
+  .showcase-item:hover .img-wrapper img {
+    transform: scale(1.05);
+  }
+
+  .img-overlay {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle, var(--sky-200) 1px, transparent 1px);
-    background-size: 36px 36px;
-    opacity: 0.25;
+    background: linear-gradient(to top, rgba(0,0,0,0.15), transparent);
     pointer-events: none;
   }
-  .page-hero__glow {
-    position: absolute;
-    width: 800px;
-    height: 400px;
-    background: radial-gradient(ellipse, rgba(14,165,233,0.12) 0%, transparent 70%);
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    pointer-events: none;
-  }
-  .page-hero__inner { position: relative; z-index: 2; }
-  .page-hero__inner .badge { margin-bottom: 1.25rem; }
-  .page-hero__title {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-  }
-  .page-hero__desc {
-    color: var(--gray-500);
-    font-size: 1.1rem;
-    line-height: 1.8;
-    max-width: 560px;
-    margin: 0 auto;
-  }
 
-  /* Projects */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-  }
-
-  .project-card {
-    background: var(--white);
-    border-radius: var(--radius-xl);
-    border: 1.5px solid var(--gray-100);
-    padding: 2rem;
+  /* Content block */
+  .item-content {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
+    align-items: flex-start;
   }
 
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    border-radius: 3px 3px 0 0;
-    opacity: 0;
-    transition: opacity 0.25s;
-  }
-
-  .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
-  .project-card:hover::before { opacity: 1; }
-
-  .project-card--sky:hover { border-color: var(--sky-200); }
-  .project-card--sky::before { background: var(--sky-500); }
-  .project-card--teal:hover { border-color: #99f6e4; }
-  .project-card--teal::before { background: #14b8a6; }
-  .project-card--violet:hover { border-color: #ddd6fe; }
-  .project-card--violet::before { background: #8b5cf6; }
-  .project-card--amber:hover { border-color: #fde68a; }
-  .project-card--amber::before { background: #f59e0b; }
-  .project-card--rose:hover { border-color: #fecdd3; }
-  .project-card--rose::before { background: #f43f5e; }
-  .project-card--indigo:hover { border-color: #c7d2fe; }
-  .project-card--indigo::before { background: #6366f1; }
-
-  .project-card__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .project-icon {
-    width: 52px; height: 52px;
-    border-radius: var(--radius-md);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .project-icon--sky { background: var(--sky-50); color: var(--sky-600); }
-  .project-icon--teal { background: #f0fdfa; color: #0d9488; }
-  .project-icon--violet { background: #f5f3ff; color: #7c3aed; }
-  .project-icon--amber { background: #fffbeb; color: #d97706; }
-  .project-icon--rose { background: #fff1f2; color: #e11d48; }
-  .project-icon--indigo { background: #eef2ff; color: #4f46e5; }
-
-  .project-category {
-    font-size: 0.72rem;
+  .tag {
+    font-size: 0.85rem;
     font-weight: 700;
+    color: #64748b;
+    margin-bottom: 0.5rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--gray-400);
+    letter-spacing: 0.05em;
   }
 
-  .project-title {
-    font-size: 1.2rem;
+  .name {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
     font-weight: 800;
-    color: var(--gray-900);
+    color: #0f172a !important; /* Dark text */
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
     letter-spacing: -0.02em;
   }
 
-  .project-desc {
-    color: var(--gray-500);
-    font-size: 0.875rem;
+  .desc {
+    font-size: 1.05rem;
+    color: #475569 !important;
     line-height: 1.7;
-    flex: 1;
+    margin-bottom: 2rem;
+    max-width: 500px;
   }
 
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .project-tag {
-    padding: 0.25rem 0.65rem;
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-full);
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--gray-600);
-  }
-
-  .project-result {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-    padding: 0.6rem 0.875rem;
-    border-radius: var(--radius-md);
-    margin-top: auto;
-  }
-
-  .project-result--sky { background: var(--sky-50); color: var(--sky-700); }
-  .project-result--teal { background: #f0fdfa; color: #0d9488; }
-  .project-result--violet { background: #f5f3ff; color: #7c3aed; }
-  .project-result--amber { background: #fffbeb; color: #d97706; }
-  .project-result--rose { background: #fff1f2; color: #e11d48; }
-  .project-result--indigo { background: #eef2ff; color: #4f46e5; }
-
-  /* Testimonials */
-  .testimonials-section { background: var(--gray-50); }
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .testimonial-card {
-    background: var(--white);
-    border-radius: var(--radius-xl);
-    border: 1.5px solid var(--gray-100);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    transition: var(--transition);
-  }
-
-  .testimonial-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--sky-100);
-  }
-
-  .testimonial-text {
-    color: var(--gray-600);
+  /* Tech & Client */
+  .tech-client {
     font-size: 0.9rem;
-    line-height: 1.8;
-    flex: 1;
-    font-style: italic;
+    color: #475569;
+    margin-bottom: 2.5rem;
   }
 
-  .testimonial-author {
-    display: flex;
+  .tech-client p {
+    margin-bottom: 0.4rem;
+  }
+
+  .tech-client strong {
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  /* View Case Study Button */
+  .btn-case-study {
+    display: inline-flex;
     align-items: center;
-    gap: 0.875rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--gray-100);
+    gap: 1rem;
+    background: var(--primary); /* Use primary sky blue */
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.5rem 0.5rem 1.75rem;
+    border-radius: 99px;
+    transition: all 0.3s ease;
   }
 
-  .testimonial-avatar {
-    width: 44px; height: 44px;
+  .btn-case-study:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(14, 165, 233, 0.25); /* Primary glow */
+  }
+
+  .icon-wrap {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.2); /* Semi transparent white */
     border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800;
-    font-size: 0.875rem;
-    flex-shrink: 0;
-    font-family: var(--font-heading);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
   }
 
-  .testimonial-avatar--sky { background: var(--sky-100); color: var(--sky-700); }
-  .testimonial-avatar--teal { background: #ccfbf1; color: #0d9488; }
-  .testimonial-avatar--violet { background: #ede9fe; color: #7c3aed; }
-
-  .testimonial-name {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--gray-900);
-    font-family: var(--font-heading);
-  }
-
-  .testimonial-role {
-    font-size: 0.78rem;
-    color: var(--gray-400);
-  }
-
-  /* Work CTA */
-  .work-cta-box {
+  /* Bottom CTA */
+  .bottom-cta {
     text-align: center;
-    background: linear-gradient(135deg, var(--sky-50) 0%, var(--white) 100%);
-    border: 1.5px solid var(--sky-100);
-    border-radius: var(--radius-xl);
-    padding: 4rem;
+    padding: 6rem 0;
+    border-top: 1px solid #f1f5f9;
+    background: #fafafa;
   }
 
-  .work-cta-box h2 {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
+  .bottom-cta h2 {
+    color: #0f172a;
+    font-size: 2rem;
     margin-bottom: 1rem;
   }
 
-  .work-cta-box p {
-    color: var(--gray-500);
-    font-size: 1rem;
-    line-height: 1.75;
-    max-width: 480px;
-    margin: 0 auto 2rem;
+  .bottom-cta p {
+    color: #64748b;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
   }
 
+  /* Responsive Design */
   @media (max-width: 1024px) {
-    .projects-grid { grid-template-columns: repeat(2, 1fr); }
-    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .showcase-item, .showcase-item.reverse {
+      flex-direction: column;
+      gap: 3rem;
+    }
+    .item-visual {
+      width: 100%;
+    }
+    .item-content {
+      width: 100%;
+      align-items: flex-start;
+    }
+    .desc, .review-box {
+      max-width: 100%;
+    }
+    .showcase-list {
+      gap: 5rem;
+    }
   }
 
-  @media (max-width: 640px) {
-    .projects-grid { grid-template-columns: 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .work-cta-box { padding: 2.5rem 1.5rem; }
+  @media (max-width: 768px) {
+    .solutions-showcase {
+      padding: calc(60px + 1.5rem) 0 4rem;
+    }
+    .showcase-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .showcase-list {
+      gap: 4rem;
+    }
+    .name {
+      font-size: 1.8rem;
+    }
+    .btn-case-study {
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 </style>
