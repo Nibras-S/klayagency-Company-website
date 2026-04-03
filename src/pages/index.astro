@@ -1665,24 +1665,6 @@ import Footer from '../components/Footer.astro';
   .expertise-card--violet:hover { border-color: #ddd6fe; }
   .expertise-card--teal:hover { border-color: #99f6e4; }
 
-  .expertise-card--sky::after,
-  .expertise-card--rose::after,
-  .expertise-card--violet::after,
-  .expertise-card--teal::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    border-radius: 3px 3px 0 0;
-    opacity: 0;
-    transition: opacity 0.25s;
-  }
-  .expertise-card:hover::after { opacity: 1; }
-  .expertise-card--sky::after { background: var(--sky-500); }
-  .expertise-card--rose::after { background: #f43f5e; }
-  .expertise-card--violet::after { background: #7c3aed; }
-  .expertise-card--teal::after { background: #0d9488; }
-
   .expertise-tags {
     display: flex;
     flex-wrap: wrap;
