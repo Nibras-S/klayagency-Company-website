@@ -5,58 +5,59 @@ import Footer from '../components/Footer.astro';
 
 const projects = [
   {
+    category: "Digital Transformation & CRM",
+    name: "Viera Natural Wooden Flooring",
+    desc: "A digital transformation featuring an immersive 3D website and custom CRM. It elegantly showcases the brand's portfolio while the CRM manages staff operations, site progress, and task automation.",
+    technologies: "3D Animations, React, Node.js",
+    client: "Viera Natural Wooden Flooring",
+    image: "https://images.unsplash.com/photo-1541123437800-14a33fb6edad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    category: "Corporate Website",
+    name: "anabb.tech",
+    desc: "We crafted a professional and scalable website for anabb.tech, focusing on clean UI/UX, performance, and a strong digital identity.",
+    technologies: "Modern Web Stack",
+    client: "anabb.tech",
+    status: "Live",
+    link: "https://anabb.tech/",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    category: "E-Commerce",
+    name: "enJoyful Life",
+    desc: "A high-performance e-commerce platform for a natural skincare brand. It features seamless product discovery, secure payments, and a responsive UI optimized for scalability.",
+    technologies: "Next.js, Tailwind, Appwrite, AWS",
+    client: "enJoyful Life",
+    status: "Development Ongoing",
+    link: "https://enjoyful.vercel.app/",
+    image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+  },
+  {
     category: "Fintech",
     name: "PulseBank Dashboard",
-    desc: "A real-time financial analytics platform for a digital bank, featuring live transaction monitoring, fraud detection alerts, and AI-based spending insights for 50,000+ users.",
+    desc: "A real-time financial analytics dashboard for digital banking, featuring live transaction monitoring and AI-powered spending insights.",
     technologies: "React, Node.js, PostgreSQL, AI/ML",
     client: "PulseBank",
-    review: "N3 Global Tech transformed our data infrastructure. The dashboard they built handles 10x more throughput than our old system, and the AI insights have been a game-changer.",
+    review: "N3 Global Tech transformed our data infrastructure. The dashboard they built handles 10x more throughput than our old system.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
     category: "Healthcare",
     name: "MediFlow EHR System",
-    desc: "A HIPAA-compliant electronic health records platform built for a network of 120 clinics. Includes patient portal, appointment scheduling, billing integration, and telemedicine.",
+    desc: "A HIPAA-compliant medical records platform for clinics. Includes patient portals, appointment scheduling, and telemedicine integration.",
     technologies: "Next.js, AWS, HIPAA, Telemedicine",
     client: "MediFlow Health",
-    review: "Honestly the best tech partner we've worked with. They understood healthcare compliance requirements from day one, and their team was incredibly responsive.",
+    review: "Honestly the best tech partner we've worked with. They understood healthcare compliance requirements from day one.",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
     category: "E-Commerce",
     name: "RetailNexus Platform",
-    desc: "A scalable multi-vendor e-commerce marketplace processing $2M+ monthly. Features dynamic pricing engine, seller analytics, logistics integration, and smart recommendations.",
+    desc: "A scalable multi-vendor marketplace platform featuring dynamic pricing, seller analytics, and smart product recommendations.",
     technologies: "Vue.js, Django, Redis, Stripe",
     client: "RetailNexus",
-    review: "We went from MVP to $2M monthly GMV in under a year. N3's scalable architecture made that growth possible without a single major outage. Worth every penny.",
+    review: "We went from MVP to $2M monthly GMV in under a year. N3's scalable architecture made that growth possible.",
     image: "https://images.unsplash.com/photo-1472851294502-8ce3b4845a47?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    category: "Logistics",
-    name: "TrackRoute Mobile App",
-    desc: "A real-time logistics tracking app for a fleet of 3,000+ vehicles. Provides live GPS tracking, driver communication, route optimization, and delivery verification.",
-    technologies: "Flutter, Firebase, Google Maps, IoT",
-    client: "GlobalFleet Logistics",
-    review: "The mobile app's tracking accuracy is phenomenal. It significantly reduced our dispatch times and is easily the best logistics investment we've ever made.",
-    image: "https://images.unsplash.com/photo-1566847420516-0c68abf66c98?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    category: "EdTech",
-    name: "LearnSphere LMS",
-    desc: "A comprehensive learning management system for a global online university. Supports 200,000+ students with live classes, AI-graded assessments, certifications, and multi-language content.",
-    technologies: "React, Go, WebRTC, AI Grading",
-    client: "OpenU",
-    review: "Scaling to 200,000 students concurrently happened effortlessly thanks to the robust architecture N3 delivered. The real-time video features are flawless.",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    category: "Real Estate",
-    name: "PropVault Platform",
-    desc: "A smart property management SaaS for 80+ real estate agencies. Includes AI-generated property descriptions, virtual tour integration, lead management, and automated lease processing.",
-    technologies: "Next.js, AI/GPT, Stripe, 3D Tours",
-    client: "Elite Estates",
-    review: "Handling our virtual tours and automating the lease processing directly through the portal increased our deal closure rate by an incredible 30%.",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
 ];
 ---
@@ -91,14 +92,24 @@ const projects = [
                   <div class="tech-client">
                     <p><strong>Technologies:</strong> {project.technologies}</p>
                     <p><strong>Client:</strong> {project.client}</p>
+                    {project.status && <p><strong>Status:</strong> {project.status}</p>}
                   </div>
                   
-                  <a href="/contact" class="btn-case-study">
-                    Start a Project
-                    <span class="icon-wrap">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                    </span>
-                  </a>
+                  <div class="btn-group" style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <a href="/contact" class="btn-case-study">
+                      Start a Project
+                      <span class="icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                      </span>
+                    </a>
+
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" class="btn-live-link">
+                        Live Preview
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5L21 3m0 0h-5.25m5.25 0v5.25m-9 13.5H3.75A2.25 2.25 0 011.5 19.5V8.25a2.25 2.25 0 012.25-2.25h5.25" /></svg>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             );
@@ -283,6 +294,25 @@ const projects = [
     align-items: center;
     justify-content: center;
     color: #ffffff;
+  }
+
+  .btn-live-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 99px;
+    border: 2px solid var(--primary);
+    transition: all 0.3s ease;
+  }
+
+  .btn-live-link:hover {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(14, 165, 233, 0.25);
   }
 
   /* Bottom CTA */

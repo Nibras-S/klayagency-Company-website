@@ -6,11 +6,11 @@ import Footer from '../components/Footer.astro';
 const products = [
   {
     tag: "Vehicle Management",
-    name: "N3 Book",
+    name: "N3 Service Book",
     desc: "A comprehensive vehicle service management software that streamlines bookings, service tracking, invoicing, and customer management for auto service businesses.",
     technologies: "React, Node.js, PostgreSQL, Tailwind CSS",
     client: "AutoServe Garage",
-    review: "N3 Book completely transformed how we manage our garage. Efficiency and booking turnaround have improved by over 300%.",
+    review: "N3 Service Book completely transformed how we manage our garage. Efficiency and booking turnaround have improved by over 300%.",
     image: "https://images.unsplash.com/photo-1635843477119-9403328eeb31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
@@ -25,20 +25,20 @@ const products = [
   {
     tag: "Gym Management",
     name: "N3 Fit",
-    desc: "A powerful gym management solution built for fitness businesses — manage memberships, class schedules, trainer assignments, attendance, and payments effortlessly.",
-    technologies: "React Native, Node.js, MongoDB",
-    client: "Elite Fitness Studios",
+    desc: "An AI-powered gym management platform designed for modern fitness businesses, simplifying memberships, automating schedules, optimizing trainer assignments, and managing attendance and payments effortlessly.",
+    technologies: "React, React Native, Node.js, MongoDB",
+    client: "Elite Fitness Studios, AzeeFit",
     review: "Since switching to N3 Fit, we've automated our membership renewals and class bookings. It's a lifesaver.",
     image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
-    tag: "Accounting Software",
-    name: "N3 Acc",
-    desc: "A complete accounting software designed for small to mid-size businesses — manage ledgers, generate financial reports, handle GST/tax compliance, and keep your books clean.",
-    technologies: "Vue.js, Laravel, MySQL",
-    client: "SMB Enterprises",
-    review: "The tax reporting features alone save our finance team hours every week. Highly recommended for any growing business.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    tag: "Full-Stack Web Application",
+    name: "N3 Wedding Card",
+    desc: "A full-stack digital wedding invitation platform that transforms traditional invitations into interactive web experiences. It enables users to create personalized wedding websites by adding event details, venue, address, and other essential information, allowing seamless sharing with guests online.",
+    technologies: "React.js, Node.js, PostgreSQL",
+    client: "Independent Couples",
+    review: "N3 Wedding Card made sharing our special day so easy and beautiful. Our guests loved the interactive experience!",
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
     tag: "Invoicing Software",
@@ -52,21 +52,21 @@ const products = [
   {
     tag: "Flagship Product",
     name: "Circle for Work",
-    desc: "Our flagship platform for freelancers and vendors. Find clients, manage projects, sell products, and grow your independent business — all from one powerful hub.",
-    technologies: "Next.js, Go, PostgreSQL, WebRTC",
-    client: "Independent Creatives",
-    review: "Circle for Work is going to change how independent contractors manage their everyday operations. Can't wait for the full launch!",
+    desc: "Our flagship platform built for the modern independent workforce — enabling freelancers and vendors to discover opportunities, manage projects efficiently, communicate in real-time, and sell their services or products within a unified ecosystem. Designed to simplify workflows and accelerate business growth, Circle for Work brings everything into one powerful, scalable platform.",
+    technologies: "React.js, WebRTC, Node.js, Express.js, AWS, GitHub Actions",
+    targetUsers: "Freelancers, Vendors, and Independent Creatives",
+    status: "Currently in Development",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
 ];
 ---
 
-<Layout title="Our Solutions" description="Explore N3 Global Tech's suite of software products — N3 Book, N3 Pfin, N3 Fit, N3 Acc, N3 Invoice, and Circle for Work.">
+<Layout title="Our Products" description="Explore N3 Global Tech's suite of software products — N3 Service Book, N3 Pfin, N3 Fit, N3 Wedding Card, N3 Invoice, and Circle for Work.">
   <div class="page-wrapper">
     <!-- Navbar overrides for dark theme if necessary -->
     <Navbar />
 
-    <section class="solutions-showcase">
+    <section class="products-showcase">
       <div class="container">
         
         <div class="showcase-header">
@@ -91,7 +91,9 @@ const products = [
                 
                 <div class="tech-client">
                   <p><strong>Technologies:</strong> {product.technologies}</p>
-                  <p><strong>Client:</strong> {product.client}</p>
+                  {product.client && <p><strong>Client:</strong> {product.client}</p>}
+                  {product.targetUsers && <p><strong>Target Users:</strong> {product.targetUsers}</p>}
+                  {product.status && <p><strong>Status:</strong> {product.status}</p>}
                 </div>
                 
                 <a href="/contact" class="btn-case-study">
@@ -109,10 +111,10 @@ const products = [
       </div>
     </section>
 
-    <!-- Optional Custom Solutions CTA at the bottom -->
+    <!-- Optional Custom Products CTA at the bottom -->
     <section class="bottom-cta">
       <div class="container">
-        <h2>Need a Tailored Solution?</h2>
+        <h2>Need a Tailored Product?</h2>
         <p>Don't see exactly what you're looking for? We specialize in building custom software from the ground up — designed exactly for your unique needs and workflows.</p>
         <a href="/contact" class="btn btn-primary btn-xl">Contact Us</a>
       </div>
@@ -131,7 +133,7 @@ const products = [
   }
 
   /* Override Layout fonts/colors specifically for this section */
-  .solutions-showcase {
+  .products-showcase {
     padding: calc(60px + 3rem) 0 6rem;
     font-family: var(--font-body);
   }
@@ -327,7 +329,7 @@ const products = [
   }
 
   @media (max-width: 768px) {
-    .solutions-showcase {
+    .products-showcase {
       padding: calc(60px + 1.5rem) 0 4rem;
     }
     .showcase-title {
