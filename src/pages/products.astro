@@ -11,7 +11,7 @@ const products = [
     technologies: "React, Node.js, PostgreSQL, Tailwind CSS",
     client: "AutoServe Garage",
     date: "12 Oct 2024",
-    image: "/products/servicebook.jpg",
+    image: "/products/n3_service_book_icon.png",
   },
 
   {
@@ -21,7 +21,7 @@ const products = [
     technologies: "React, React Native, Node.js, MongoDB",
     client: "Elite Fitness Studios, AzeeFit",
     date: "15 Mar 2025",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    image: "/products/n3_fit_icon.png",
   },
   {
     tag: "Full-Stack Web Application",
@@ -30,7 +30,7 @@ const products = [
     technologies: "React.js, Node.js, PostgreSQL",
     client: "Independent Couples",
     date: "20 May 2025",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    image: "/products/n3_wedding_card_icon.png",
   },
   {
     tag: "Invoicing Software",
@@ -39,7 +39,7 @@ const products = [
     technologies: "React, Firebase, Stripe API",
     client: "Freelancer Hub",
     date: "08 Jul 2025",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    image: "/products/n3_invoice_icon.png",
   }
 ];
 ---
@@ -114,7 +114,7 @@ const products = [
   }
 
   .main-content {
-    padding: calc(80px + 3rem) 2rem 6rem;
+    padding: calc(68px + 3rem) 2rem 6rem;
   }
 
   .container-narrow {
@@ -259,11 +259,15 @@ const products = [
 
   /* Responsive Adjustments */
   @media (max-width: 900px) {
+    .main-content {
+      padding-top: 40px; /* Reduced top gap for mobile */
+    }
+
     .featured-section {
       flex-direction: column;
       text-align: left;
-      margin-bottom: 2rem; 
-      gap: 2rem;
+      margin-bottom: 25px; 
+      gap: 1.5rem;
     }
 
     .featured-right {
