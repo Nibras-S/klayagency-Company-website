@@ -10,34 +10,26 @@ const products = [
     desc: "A comprehensive vehicle service management software that streamlines bookings, service tracking, invoicing, and customer management for auto service businesses.",
     technologies: "React, Node.js, PostgreSQL, Tailwind CSS",
     client: "AutoServe Garage",
-    review: "N3 Service Book completely transformed how we manage our garage. Efficiency and booking turnaround have improved by over 300%.",
+    date: "12 Oct 2024",
     image: "/products/servicebook.jpg",
   },
-  {
-    tag: "Personal Finance",
-    name: "N3 Pfin",
-    desc: "A complete personal finance tracker that helps individuals manage budgets, track expenses, set savings goals, and gain full control of their financial health.",
-    technologies: "Next.js, Python, AWS, Stripe",
-    client: "FinTech Individuals",
-    review: "This app finally gives me the clarity I need for my finances. The budget planner is incredibly intuitive.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-  },
+
   {
     tag: "Gym Management",
     name: "N3 Fit",
     desc: "An AI-powered gym management platform designed for modern fitness businesses, simplifying memberships, automating schedules, optimizing trainer assignments, and managing attendance and payments effortlessly.",
     technologies: "React, React Native, Node.js, MongoDB",
     client: "Elite Fitness Studios, AzeeFit",
-    review: "Since switching to N3 Fit, we've automated our membership renewals and class bookings. It's a lifesaver.",
+    date: "15 Mar 2025",
     image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
     tag: "Full-Stack Web Application",
     name: "N3 Wedding Card",
-    desc: "A full-stack digital wedding invitation platform that transforms traditional invitations into interactive web experiences. It enables users to create personalized wedding websites by adding event details, venue, address, and other essential information, allowing seamless sharing with guests online.",
+    desc: "A full-stack digital wedding invitation platform that transforms traditional invitations into interactive web experiences.",
     technologies: "React.js, Node.js, PostgreSQL",
     client: "Independent Couples",
-    review: "N3 Wedding Card made sharing our special day so easy and beautiful. Our guests loved the interactive experience!",
+    date: "20 May 2025",
     image: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
   },
   {
@@ -46,300 +38,276 @@ const products = [
     desc: "A complete invoicing platform purpose-built for small-scale businesses. Create professional invoices, track payments, manage clients, and send reminders — all in one place.",
     technologies: "React, Firebase, Stripe API",
     client: "Freelancer Hub",
-    review: "I get paid twice as fast now. The automated follow-ups for overdue invoices are exactly what I needed.",
+    date: "08 Jul 2025",
     image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    tag: "Flagship Product",
-    name: "Circle for Work",
-    desc: "Our flagship platform built for the modern independent workforce — enabling freelancers and vendors to discover opportunities, manage projects efficiently, communicate in real-time, and sell their services or products within a unified ecosystem. Designed to simplify workflows and accelerate business growth, Circle for Work brings everything into one powerful, scalable platform.",
-    technologies: "React.js, WebRTC, Node.js, Express.js, AWS, GitHub Actions",
-    targetUsers: "Freelancers, Vendors, and Independent Creatives",
-    status: "Currently in Development",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-  },
+  }
 ];
 ---
 
-<Layout title="Our Products" description="Explore N3 Global Tech's suite of software products — N3 Service Book, N3 Pfin, N3 Fit, N3 Wedding Card, N3 Invoice, and Circle for Work.">
+<Layout title="Our Products" description="Explore N3 Global Tech's suite of software products.">
   <div class="page-wrapper">
-    <!-- Navbar overrides for dark theme if necessary -->
     <Navbar />
 
-    <section class="products-showcase">
-      <div class="container">
+    <main class="main-content">
+      <div class="container-narrow">
         
-        <div class="showcase-header">
-          <h1 class="showcase-title">Work We've Done,</h1>
+        <!-- Featured Section -->
+        <section class="featured-section">
+          <div class="featured-left">
+            <span class="meta-tag uppercase">Featured</span>
+            <h1 class="featured-title">Something big is coming...<br />A new era for work</h1>
+            
+            <div class="meta-row">
+              <span class="meta-date">Launch 2026</span>
+              <span class="meta-tag">Product</span>
+            </div>
+            
+            <a href="/contact" class="btn-pill">Get Early Access</a>
+          </div>
+          
+          <div class="featured-right">
+            <div class="featured-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Coming Soon" class="featured-image" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="section-header">
+          <h2 class="section-title">Our Products</h2>
         </div>
 
-        <div class="showcase-list">
-          {products.map((product, index) => {
-            return (
-              <div class={`showcase-item ${index % 2 !== 0 ? 'reverse' : ''}`}>
-                <div class="item-visual">
-                <div class="img-wrapper">
-                  <img src={product.image} alt={product.name} loading="lazy" />
-                  <div class="img-overlay"></div>
+        <!-- Product Grid -->
+        <section class="product-grid">
+          {products.map((product) => (
+            <div class="product-card">
+              <div class="card-content">
+                <h2 class="card-title">{product.name}</h2>
+                <div class="meta-row">
+                  <span class="meta-date">{product.date}</span>
+                  <span class="meta-tag">Product</span>
                 </div>
+                <a href="/contact" class="btn-pill">Read blog</a>
               </div>
-              
-              <div class="item-content">
-                <div class="tag">{product.tag}</div>
-                <h2 class="name">{product.name}</h2>
-                <p class="desc">{product.desc}</p>
-                
-                <div class="tech-client">
-                  <p><strong>Technologies:</strong> {product.technologies}</p>
-                  {product.client && <p><strong>Client:</strong> {product.client}</p>}
-                  {product.targetUsers && <p><strong>Target Users:</strong> {product.targetUsers}</p>}
-                  {product.status && <p><strong>Status:</strong> {product.status}</p>}
-                </div>
-                
-                <a href="/contact" class="btn-case-study">
-                  View Case Study
-                  <span class="icon-wrap">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                  </span>
-                </a>
+              <div class="card-image-wrapper">
+                <img src={product.image} alt={product.name} class="card-image" loading="lazy" />
               </div>
             </div>
-            );
-          })}
-        </div>
+          ))}
+        </section>
 
       </div>
-    </section>
-
-    <!-- Optional Custom Products CTA at the bottom -->
-    <section class="bottom-cta">
-      <div class="container">
-        <h2>Need a Tailored Product?</h2>
-        <p>Don't see exactly what you're looking for? We specialize in building custom software from the ground up — designed exactly for your unique needs and workflows.</p>
-        <a href="/contact" class="btn btn-primary btn-xl">Contact Us</a>
-      </div>
-    </section>
+    </main>
 
     <Footer />
   </div>
 </Layout>
 
 <style>
-  /* Wrap the page in a light theme container */
+  /* Base Overrides for this layout */
   .page-wrapper {
-    background-color: #ffffff !important; /* White background */
-    color: #0f172a !important; /* Dark text */
+    background-color: #ffffff !important;
+    color: #111827 !important;
     min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    letter-spacing: -0.01em;
   }
 
-  /* Override Layout fonts/colors specifically for this section */
-  .products-showcase {
-    padding: calc(60px + 3rem) 0 6rem;
-    font-family: var(--font-body);
+  .main-content {
+    padding: calc(80px + 3rem) 2rem 6rem;
   }
 
-  .showcase-header {
-    text-align: center;
-    margin-bottom: 3rem;
+  .container-narrow {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  .showcase-title {
-    font-family: var(--font-heading);
-    font-size: clamp(3rem, 6vw, 4.5rem);
-    font-weight: 800;
-    color: #0f172a !important; /* Dark gray / black */
-    margin-bottom: 0;
-    letter-spacing: -0.04em;
+  /* Typography specific to minimal Google layout */
+  .meta-tag, .meta-date {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 500;
   }
 
-  /* Showcase List */
-  .showcase-list {
+  .meta-tag.uppercase {
+    text-transform: none; /* In Google design "Featured" is proper case */
+    color: #374151;
+  }
+
+  .meta-row {
     display: flex;
-    flex-direction: column;
-    gap: 8rem;
-  }
-
-  .showcase-item {
-    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
     align-items: center;
-    gap: 5rem;
   }
 
-  .showcase-item.reverse {
-    flex-direction: row-reverse;
+  .btn-pill {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: #f3f4f6;
+    color: #111827;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
   }
 
-  /* Image block */
-  .item-visual {
-    flex: 1;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* Lighter shadow */
-    background: #f8fafc;
+  .btn-pill:hover {
+    background-color: #e5e7eb;
   }
 
-  .img-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 75%; /* 4:3 aspect ratio */
+  /* Featured Section */
+  .featured-section {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 4rem;
   }
 
-  .img-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .img-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.15), transparent);
-    pointer-events: none;
-  }
-
-  /* Content block */
-  .item-content {
+  .featured-left {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .tag {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #64748b;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .featured-left > .meta-tag {
+    margin-bottom: 1.5rem;
   }
 
-  .name {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 3.5vw, 2.75rem);
-    font-weight: 800;
-    color: #0f172a !important; /* Dark text */
-    margin-bottom: 1.25rem;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-  }
-
-  .desc {
-    font-size: 1.05rem;
-    color: #475569 !important;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    max-width: 500px;
-  }
-
-  /* Tech & Client */
-  .tech-client {
-    font-size: 0.9rem;
-    color: #475569;
-    margin-bottom: 2.5rem;
-  }
-
-  .tech-client p {
-    margin-bottom: 0.4rem;
-  }
-
-  .tech-client strong {
-    color: #0f172a;
-    font-weight: 700;
-  }
-
-  /* View Case Study Button */
-  .btn-case-study {
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    background: var(--primary); /* Use primary sky blue */
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 0.95rem;
-    padding: 0.5rem 0.5rem 0.5rem 1.75rem;
-    border-radius: 99px;
-    transition: all 0.3s ease;
-  }
-
-  .btn-case-study:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(14, 165, 233, 0.25); /* Primary glow */
-  }
-
-  .icon-wrap {
-    width: 38px;
-    height: 38px;
-    background: rgba(255, 255, 255, 0.2); /* Semi transparent white */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-  }
-
-  /* Bottom CTA */
-  .bottom-cta {
-    text-align: center;
-    padding: 6rem 0;
-    border-top: 1px solid #f1f5f9;
-    background: #fafafa;
-  }
-
-  .bottom-cta h2 {
-    color: #0f172a;
-    font-size: 2rem;
+  .featured-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 400; /* Thin, elegant font weight based on images */
+    line-height: 1.1;
+    color: #111827;
+    letter-spacing: -0.03em;
     margin-bottom: 1rem;
   }
 
-  .bottom-cta p {
-    color: #64748b;
-    max-width: 500px;
-    margin: 0 auto 2.5rem;
+  .featured-right {
+    flex: 1.2;
   }
 
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .showcase-item, .showcase-item.reverse {
+  .featured-image-wrapper {
+    background-color: #000;
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8; /* Stylized darkness */
+  }
+
+  /* Product Grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Exactly 2 columns to match reference */
+    gap: 3rem 2rem; 
+    margin: 0;
+    padding: 0;
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    margin: 0;
+    width: 100%;
+  }
+
+  .card-content {
+    flex: 1;
+    padding-right: 1.5rem;
+    margin: 0;
+  }
+
+  .card-image-wrapper {
+    width: 140px;
+    height: 140px; 
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1; 
+    background-color: #000;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+  }
+
+  .card-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    color: #111827;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .featured-section {
       flex-direction: column;
-      gap: 3rem;
+      text-align: left;
+      margin-bottom: 2rem; 
+      gap: 2rem;
     }
-    .item-visual {
+
+    .featured-right {
       width: 100%;
     }
-    .item-content {
+
+    .product-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .product-card {
+      flex-direction: column; 
+    }
+
+    .card-content {
+      padding-right: 0;
       width: 100%;
-      align-items: flex-start;
+      order: 2; /* Content second */
     }
-    .desc, .review-box {
-      max-width: 100%;
-    }
-    .showcase-list {
-      gap: 5rem;
+
+    .card-image-wrapper {
+      width: 160px; 
+      height: 160px;
+      margin: 0 0 1rem 0;
+      order: 1; /* Image first */
+      align-self: flex-start; /* Force left align */
     }
   }
 
-  @media (max-width: 768px) {
-    .products-showcase {
-      padding: calc(60px + 1.5rem) 0 4rem;
-    }
-    .showcase-title {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-    }
-    .showcase-list {
-      gap: 4rem;
-    }
-    .name {
-      font-size: 1.8rem;
-    }
-    .btn-case-study {
-      width: 100%;
-      justify-content: space-between;
-    }
+  /* Section Title Spacing */
+  .section-header {
+    margin: 0 0 1rem 0;
+    padding: 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #111827;
+    letter-spacing: -0.02em;
+    padding-bottom: 0.5rem;
+    margin: 0;
+    text-align: left; /* Force left align to fix centering */
+    border-bottom: 1px solid #e5e7eb;
   }
 </style>
