@@ -6,22 +6,24 @@ import Footer from '../components/Footer.astro';
 const products = [
   {
     tag: "Vehicle Management",
-    name: "N3 Service Book",
+    name: "N3 ServiceBook",
     desc: "A comprehensive vehicle service management software that streamlines bookings, service tracking, invoicing, and customer management for auto service businesses.",
     technologies: "React, Node.js, PostgreSQL, Tailwind CSS",
     client: "AutoServe Garage",
     date: "12 Oct 2024",
-    image: "/products/n3_service_book_icon.png",
+    image: "/products/ServiceBook.svg",
+    imageBg: "#ffffff",
+    imageFit: "contain",
   },
 
   {
     tag: "Gym Management",
-    name: "N3 Fit",
+    name: "N3 FitBook",
     desc: "An AI-powered gym management platform designed for modern fitness businesses, simplifying memberships, automating schedules, optimizing trainer assignments, and managing attendance and payments effortlessly.",
     technologies: "React, React Native, Node.js, MongoDB",
     client: "Elite Fitness Studios, AzeeFit",
     date: "15 Mar 2025",
-    image: "/products/n3_fit_icon.png",
+    image: "/products/FitBook.svg",
   },
   {
     tag: "Full-Stack Web Application",
@@ -89,8 +91,8 @@ const products = [
                 </div>
                 <a href="/contact" class="btn-pill">Read blog</a>
               </div>
-              <div class="card-image-wrapper">
-                <img src={product.image} alt={product.name} class="card-image" loading="lazy" />
+              <div class="card-image-wrapper" style={product.imageBg ? `background-color: ${product.imageBg};` : undefined}>
+                <img src={product.image} alt={product.name} class="card-image" loading="lazy" style={product.imageFit ? `object-fit: ${product.imageFit}; padding: 0.75rem;` : undefined} />
               </div>
             </div>
           ))}
