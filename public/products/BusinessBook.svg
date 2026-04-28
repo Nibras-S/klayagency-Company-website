@@ -1,0 +1,76 @@
+<svg width="762" height="763" viewBox="0 0 762 763" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="762" height="763" rx="180" fill="url(#bgGrad)"/>
+<path d="M562.394 278L381.894 343C369.725 244.504 484.642 182.195 552.283 160.109C557.341 158.458 562.394 162.304 562.394 167.624V278Z" fill="url(#pageGradR)"/>
+<path d="M200 278L380.5 343C392.67 244.504 277.753 182.195 210.112 160.109C205.054 158.458 200 162.304 200 167.624V278Z" fill="url(#pageGradL)"/>
+<g filter="url(#filterPageR)">
+<path d="M557 281.844L388.833 343C377.538 250.678 483.756 192.146 546.866 171.162C551.923 169.48 557 173.324 557 178.653V281.844Z" stroke="#C8EBD3"/>
+</g>
+<g filter="url(#filterPageL)">
+<path d="M206 281.844L375.162 343C386.528 250.644 279.597 192.102 216.122 171.138C211.067 169.468 206 173.312 206 178.636V281.844Z" stroke="#C8EBD3"/>
+</g>
+<g filter="url(#filterShadow)">
+<path d="M381 323V635L632.455 542.41C636.388 540.962 639 537.216 639 533.026V237.601C639 230.572 631.94 225.737 625.386 228.277L381 323Z" fill="url(#bookGradR)"/>
+<path d="M381 323V635L129.545 542.41C125.612 540.962 123 537.216 123 533.026V237.601C123 230.572 130.06 225.737 136.614 228.277L381 323Z" fill="url(#bookGradL)"/>
+</g>
+<g filter="url(#filterInnerLine)">
+<path d="M132 247.606C132 242.313 137.445 238.568 142.586 240.526L380 330.943V626.148L137.073 538.258C134.008 537.149 132 534.294 132 531.133V247.606ZM621.414 240.526C626.555 238.568 632 242.313 632 247.606V531.133C632 534.294 629.992 537.149 626.927 538.258L384 626.148V330.943L621.414 240.526Z" stroke="white" stroke-width="4"/>
+</g>
+<g transform="translate(459, 360)">
+<rect x="0" y="62" width="22" height="44" rx="5" fill="#0E6B3D"/>
+<rect x="34" y="36" width="22" height="70" rx="5" fill="#0E6B3D"/>
+<rect x="68" y="10" width="22" height="96" rx="5" fill="#0E6B3D"/>
+<path d="M6 56 L42 30 L78 4" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<circle cx="78" cy="4" r="7" fill="white"/>
+</g>
+<defs>
+<linearGradient id="bgGrad" x1="0" y1="0" x2="762" y2="763" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0E6B3D"/>
+<stop offset="1" stop-color="#0A4F2C"/>
+</linearGradient>
+<linearGradient id="pageGradR" x1="476" y1="253" x2="489" y2="289.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#D8F0E0"/>
+</linearGradient>
+<linearGradient id="pageGradL" x1="286.395" y1="253" x2="276" y2="290.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#D8F0E0"/>
+</linearGradient>
+<linearGradient id="bookGradR" x1="123" y1="398" x2="639" y2="409.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F4FBF6"/>
+<stop offset="0.497" stop-color="#DCF1E2"/>
+<stop offset="0.535" stop-color="#B5DCC1"/>
+<stop offset="1" stop-color="#F4FBF6"/>
+</linearGradient>
+<linearGradient id="bookGradL" x1="123" y1="398" x2="639" y2="409.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F4FBF6"/>
+<stop offset="0.497" stop-color="#DCF1E2"/>
+<stop offset="0.535" stop-color="#B5DCC1"/>
+<stop offset="1" stop-color="#F4FBF6"/>
+</linearGradient>
+<filter id="filterPageR" x="383.3" y="166.061" width="178.4" height="181.824" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.1" result="effect1_foregroundBlur"/>
+</filter>
+<filter id="filterPageL" x="201.3" y="166.042" width="179.4" height="181.841" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.1" result="effect1_foregroundBlur"/>
+</filter>
+<filter id="filterShadow" x="105.7" y="227.292" width="642.6" height="534.008" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="46" dy="63"/>
+<feGaussianBlur stdDeviation="31.65"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<filter id="filterInnerLine" x="119.6" y="227.6" width="524.8" height="411.8" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="5.2" result="effect1_foregroundBlur"/>
+</filter>
+</defs>
+</svg>

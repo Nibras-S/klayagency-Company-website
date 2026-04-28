@@ -2,9 +2,135 @@
 export interface Props {
   title: string;
   description?: string;
+  keywords?: string;
+  image?: string;
+  noindex?: boolean;
+  type?: 'website' | 'article';
+  faqs?: { question: string; answer: string }[];
 }
 
-const { title, description = "N3 Global Tech — Empowering businesses through innovative technology solutions." } = Astro.props;
+const {
+  title,
+  description = "N3 Global Tech is a custom software development company building scalable web apps, mobile apps, cloud platforms, AI solutions, and SaaS products for startups and enterprises worldwide.",
+  keywords = "software development company, web development, mobile app development, cloud solutions, SaaS development, custom software, AI development, UI UX design, MVP development, digital transformation, startup tech partner, CRM, ERP, Astro, React, Node.js",
+  image = "/n3logo.svg",
+  noindex = false,
+  type = 'website',
+  faqs,
+} = Astro.props;
+
+const siteName = "N3 Global Tech";
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const siteUrl = Astro.site ?? new URL("https://n3global.tech");
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = new URL(image, siteUrl).href;
+const siteUrlString = siteUrl.toString();
+
+// Auto-generate breadcrumbs from URL path
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbItems = [
+  { name: 'Home', url: siteUrlString },
+  ...pathSegments.map((seg, idx) => {
+    const path = '/' + pathSegments.slice(0, idx + 1).join('/');
+    const label = seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' ');
+    return { name: label, url: new URL(path, siteUrl).href };
+  }),
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, idx) => ({
+    "@type": "ListItem",
+    position: idx + 1,
+    name: item.name,
+    item: item.url,
+  })),
+};
+
+const faqSchema = faqs && faqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+} : null;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${siteUrlString}#organization`,
+  name: siteName,
+  legalName: "N3 Global Tech",
+  url: siteUrlString,
+  logo: {
+    "@type": "ImageObject",
+    url: new URL("/n3logo.svg", siteUrl).href,
+    width: 512,
+    height: 512,
+  },
+  image: ogImage,
+  description: "Custom software development company offering web, mobile, cloud, AI and SaaS product engineering for startups and enterprises.",
+  email: "contact@n3global.tech",
+  telephone: "+91-9645091256",
+  priceRange: "$$",
+  areaServed: { "@type": "Place", name: "Worldwide" },
+  knowsAbout: [
+    "Software Development",
+    "Web Development",
+    "Mobile App Development",
+    "Cloud Solutions",
+    "Artificial Intelligence",
+    "SaaS Development",
+    "UI/UX Design",
+    "Digital Transformation",
+    "MVP Development",
+    "CRM",
+    "ERP",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Web Development", description: "Custom websites & landing pages built with modern frameworks." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Mobile App Development", description: "iOS, Android and cross-platform mobile applications." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "UI/UX Design", description: "Wireframes, prototypes, and full design systems." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "MVP Development", description: "Validate ideas fast with launch-ready MVPs." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Product Redesign", description: "Modernize legacy products with refreshed UX and tech." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Marketing", description: "Grow online presence through SEO, content and ads." } },
+    ],
+  },
+  sameAs: [
+    "https://www.instagram.com/n3globaltech",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    email: "contact@n3global.tech",
+    telephone: "+91-9645091256",
+    availableLanguage: ["English"],
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrlString}#website`,
+  name: siteName,
+  url: siteUrlString,
+  publisher: { "@id": `${siteUrlString}#organization` },
+  inLanguage: "en-US",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrlString}?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
 ---
 
 <!doctype html>
@@ -12,13 +138,59 @@ const { title, description = "N3 Global Tech — Empowering businesses through i
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/n3logo.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
     <meta name="description" content={description} />
-    <title>{title} | N3 Global Tech</title>
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={siteName} />
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+    <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow"} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/n3logo.svg" />
+    <link rel="apple-touch-icon" href="/n3logo.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- Structured Data: Organization (ProfessionalService) -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(orgSchema)}></script>
+    <!-- Structured Data: WebSite -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)}></script>
+    <!-- Structured Data: Breadcrumbs -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)}></script>
+    {faqSchema && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)}></script>
+    )}
   </head>
   <body>
     <slot />

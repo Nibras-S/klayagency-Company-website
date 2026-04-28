@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /ui&pdf/
+
+Sitemap: https://n3global.tech/sitemap.xml

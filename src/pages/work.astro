@@ -32,6 +32,15 @@ const projects = [
     link: "https://viera-two.vercel.app/",
     image: "/products/viera.jpg",
   },
+  {
+    category: "Aviation Services",
+    name: "Flyger Aviation Services",
+    desc: "A professional corporate website for a global aviation support provider specializing in end-to-end flight operations. The site showcases their flight planning, permit acquisition, dispatch coordination, and crew logistics services with a clean, premium UI tailored for international operators.",
+    technologies: "Modern Web Stack",
+    client: "Flyger Aviation Services",
+    link: "https://flyger.aero",
+    image: "/products/flyger.webp",
+  },
 
   {
     category: "Corporate Website",
@@ -87,7 +96,11 @@ const projects = [
 ];
 ---
 
-<Layout title="Our Work | Portfolio" description="Explore N3 Global Tech's portfolio of custom software solutions, digital transformations, and client success stories.">
+<Layout
+  title="Portfolio & Case Studies"
+  description="Real client success stories — e-commerce, AI talent ecosystems, 3D websites, custom CRMs, aviation portals and digital transformations built end-to-end."
+  keywords="software development portfolio, web development case studies, custom CRM examples, e-commerce development portfolio, 3D website portfolio, digital transformation case studies, aviation website, AI talent platform"
+>
   <div class="page-wrapper">
     <Navbar />
 
@@ -120,21 +133,25 @@ const projects = [
                     {project.status && <p><strong>Status:</strong> {project.status}</p>}
                   </div>
                   
-                  <div class="btn-group" style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                    <a href={project.pdfLink ? project.pdfLink : "/contact"} target={project.pdfLink ? "_blank" : undefined} rel={project.pdfLink ? "noopener noreferrer" : undefined} class="btn-case-study">
-                      {project.pdfLink ? "View UI Design" : "View Case Study"}
-                      <span class="icon-wrap">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-                      </span>
-                    </a>
+                  {(project.pdfLink || project.link) && (
+                    <div class="btn-group" style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                      {project.pdfLink && (
+                        <a href={project.pdfLink} target="_blank" rel="noopener noreferrer" class="btn-case-study">
+                          View UI Design
+                          <span class="icon-wrap">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                          </span>
+                        </a>
+                      )}
 
-                    {project.link && (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" class="btn-live-link">
-                        Live Preview
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5L21 3m0 0h-5.25m5.25 0v5.25m-9 13.5H3.75A2.25 2.25 0 011.5 19.5V8.25a2.25 2.25 0 012.25-2.25h5.25" /></svg>
-                      </a>
-                    )}
-                  </div>
+                      {project.link && (
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" class="btn-live-link">
+                          Live Preview
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5L21 3m0 0h-5.25m5.25 0v5.25m-9 13.5H3.75A2.25 2.25 0 011.5 19.5V8.25a2.25 2.25 0 012.25-2.25h5.25" /></svg>
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             );

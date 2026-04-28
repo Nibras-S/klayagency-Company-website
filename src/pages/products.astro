@@ -26,27 +26,22 @@ const products = [
     image: "/products/FitBook.svg",
   },
   {
-    tag: "Full-Stack Web Application",
-    name: "N3 Wedding Card",
-    desc: "A full-stack digital wedding invitation platform that transforms traditional invitations into interactive web experiences.",
+    tag: "Business Management",
+    name: "N3 BusinessBook",
+    desc: "An all-in-one business management platform that streamlines operations, finances, clients, and team workflows for small to mid-sized businesses.",
     technologies: "React.js, Node.js, PostgreSQL",
-    client: "Independent Couples",
+    client: "Small & Mid-Sized Businesses",
     date: "20 May 2025",
-    image: "/products/n3_wedding_card_icon.png",
-  },
-  {
-    tag: "Invoicing Software",
-    name: "N3 Invoice",
-    desc: "A complete invoicing platform purpose-built for small-scale businesses. Create professional invoices, track payments, manage clients, and send reminders — all in one place.",
-    technologies: "React, Firebase, Stripe API",
-    client: "Freelancer Hub",
-    date: "08 Jul 2025",
-    image: "/products/n3_invoice_icon.png",
+    image: "/products/BusinessBook.svg",
   }
 ];
 ---
 
-<Layout title="Our Products" description="Explore N3 Global Tech's suite of software products.">
+<Layout
+  title="Our SaaS Products"
+  description="Explore our SaaS suite: N3 ServiceBook for vehicle service management, N3 FitBook for gym operations, and N3 BusinessBook for end-to-end business workflows."
+  keywords="SaaS products, gym management software, vehicle service software, business management software, N3 ServiceBook, N3 FitBook, N3 BusinessBook, custom SaaS, fitness software, automotive service software"
+>
   <div class="page-wrapper">
     <Navbar />
 
@@ -89,7 +84,6 @@ const products = [
                   <span class="meta-date">{product.date}</span>
                   <span class="meta-tag">Product</span>
                 </div>
-                <a href="/contact" class="btn-pill">Read blog</a>
               </div>
               <div class="card-image-wrapper" style={product.imageBg ? `background-color: ${product.imageBg};` : undefined}>
                 <img src={product.image} alt={product.name} class="card-image" loading="lazy" style={product.imageFit ? `object-fit: ${product.imageFit}; padding: 0.75rem;` : undefined} />
@@ -209,17 +203,18 @@ const products = [
   /* Product Grid */
   .product-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Exactly 2 columns to match reference */
-    gap: 3rem 2rem; 
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 2rem;
     margin: 0;
     padding: 0;
   }
 
   .product-card {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid #e5e7eb;
     margin: 0;
@@ -227,20 +222,27 @@ const products = [
   }
 
   .card-content {
-    flex: 1;
-    padding-right: 1.5rem;
+    width: 100%;
+    padding-right: 0;
     margin: 0;
+    order: 2;
+  }
+
+  .card-content .meta-row {
+    justify-content: center;
   }
 
   .card-image-wrapper {
     width: 140px;
-    height: 140px; 
+    height: 140px;
     flex-shrink: 0;
-    aspect-ratio: 1 / 1; 
+    aspect-ratio: 1 / 1;
     background-color: #000;
     border-radius: 1rem;
     overflow: hidden;
-    margin: 0;
+    margin: 0 0 1rem 0;
+    order: 1;
+    align-self: center;
   }
 
   .card-image {
@@ -260,6 +262,12 @@ const products = [
   }
 
   /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 900px) {
     .main-content {
       padding-top: 40px; /* Reduced top gap for mobile */
@@ -268,35 +276,24 @@ const products = [
     .featured-section {
       flex-direction: column;
       text-align: left;
-      margin-bottom: 25px; 
+      margin-bottom: 25px;
       gap: 1.5rem;
     }
 
     .featured-right {
       width: 100%;
     }
+  }
 
+  @media (max-width: 600px) {
     .product-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
 
-    .product-card {
-      flex-direction: column; 
-    }
-
-    .card-content {
-      padding-right: 0;
-      width: 100%;
-      order: 2; /* Content second */
-    }
-
     .card-image-wrapper {
-      width: 160px; 
+      width: 160px;
       height: 160px;
-      margin: 0 0 1rem 0;
-      order: 1; /* Image first */
-      align-self: flex-start; /* Force left align */
     }
   }
 
