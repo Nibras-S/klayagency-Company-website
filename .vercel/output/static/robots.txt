@@ -1,0 +1,18 @@
+# robots.txt for https://n3global.tech
+# Reference: https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Block non-essential or sensitive paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /ui&pdf/
+Disallow: /_vercel/
+
+# NOTE: /_astro/ is intentionally NOT blocked.
+# It contains the bundled CSS and JS that Googlebot needs to render
+# pages correctly. Blocking it would break rendered SEO and Core Web Vitals.
+
+Sitemap: https://n3global.tech/sitemap.xml

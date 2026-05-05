@@ -34,7 +34,7 @@ export const GET: APIRoute = ({ site }) => {
   const paths = Array.from(new Set(
     Object.keys(pages)
       .map(toUrlPath)
-      .filter((p) => !p.startsWith('/_'))
+      .filter((p) => !p.startsWith('/_') && !p.startsWith('/api/'))
   )).sort();
 
   const body = paths
