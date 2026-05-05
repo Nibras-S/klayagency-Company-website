@@ -12,6 +12,9 @@ const META: Record<string, { priority: number; changefreq: string }> = {
   '/work/':                                   { priority: 0.8,  changefreq: 'monthly' },
   '/blog/custom-software-saas-kerala/':       { priority: 0.7,  changefreq: 'weekly'  },
   '/contact/':                                { priority: 0.7,  changefreq: 'yearly'  },
+  '/privacy-policy/':                         { priority: 0.3,  changefreq: 'yearly'  },
+  '/terms-of-service/':                       { priority: 0.3,  changefreq: 'yearly'  },
+  '/cookie-policy/':                          { priority: 0.3,  changefreq: 'yearly'  },
 };
 const DEFAULT_META = { priority: 0.5, changefreq: 'monthly' };
 

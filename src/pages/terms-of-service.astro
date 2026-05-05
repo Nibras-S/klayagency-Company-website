@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = "May 5, 2026";
+---
+
+<Layout
+  title="Terms of Service"
+  description="The terms and conditions that govern your use of the N3 Global Tech website and services."
+  keywords="terms of service, terms and conditions, N3 Global Tech terms, website terms, service agreement"
+>
+  <Navbar />
+
+  <section class="legal-hero">
+    <div class="container legal-hero__inner">
+      <div class="badge badge-sky">Legal</div>
+      <h1>Terms of Service</h1>
+      <p class="legal-hero__meta">Last updated: <time datetime="2026-05-05">{lastUpdated}</time></p>
+    </div>
+  </section>
+
+  <article class="legal-article">
+    <div class="container legal-narrow">
+
+      <p class="legal-lead">
+        These terms govern your use of the N3 Global Tech website at <a href="https://n3global.tech">n3global.tech</a>. By accessing or using the website, you agree to these terms. If you don't agree, please don't use the site. Specific work we do for you (custom software development, SaaS development, consulting) is governed by a separate written agreement, not by these terms.
+      </p>
+
+      <h2>1. Who we are</h2>
+      <p>
+        N3 Global Tech is a software development company based in Kannur, Kerala, India. You can contact us at <a href="mailto:contact@n3global.tech">contact@n3global.tech</a> or <a href="tel:+919645091256">+91 96450 91256</a>.
+      </p>
+
+      <h2>2. Use of the website</h2>
+      <p>You may use this website for lawful purposes only. You agree not to:</p>
+      <ul>
+        <li>Use the site in any way that breaks applicable law or regulation</li>
+        <li>Attempt to gain unauthorized access to any portion of the site, our servers, or related systems</li>
+        <li>Interfere with the site's functionality, including by introducing malware or running automated scrapers without permission</li>
+        <li>Misrepresent your identity, including impersonating a person or organization</li>
+        <li>Use the site to send unsolicited commercial communications</li>
+      </ul>
+
+      <h2>3. Intellectual property</h2>
+      <p>
+        All content on this website — including text, graphics, logos, code, images, and the overall design — is owned by N3 Global Tech or our licensors and is protected by copyright, trademark, and other intellectual property laws. You may view, share, and link to our content for personal, non-commercial use, but you may not copy, modify, distribute, or republish it without our written permission.
+      </p>
+      <p>
+        The "N3 Global Tech" name, the N3 logo, and the names of our products (N3 ServiceBook, N3 FitBook, N3 BusinessBook) are trademarks of N3 Global Tech.
+      </p>
+
+      <h2>4. Third-party links</h2>
+      <p>
+        Our website may link to external sites we don't operate (for example, our clients' production websites or our LinkedIn profile). We are not responsible for the content, privacy practices, or security of those sites. Use them at your own discretion.
+      </p>
+
+      <h2>5. No warranty</h2>
+      <p>
+        The website is provided "as is" and "as available," without warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, or non-infringement. We do not guarantee that the site will be uninterrupted, error-free, or secure, or that any information on it is current or accurate. Any reliance you place on the site's content is at your own risk.
+      </p>
+      <p>
+        For paid engagements (custom development, SaaS builds, consulting), the warranties and service levels are defined in your specific contract with us, not here.
+      </p>
+
+      <h2>6. Limitation of liability</h2>
+      <p>
+        To the fullest extent permitted by law, N3 Global Tech, its founders, employees, and affiliates will not be liable for any indirect, incidental, special, consequential, or punitive damages — including lost profits, lost data, or business interruption — arising out of or related to your use of, or inability to use, this website. Our total liability for any direct claim related to this website will not exceed ₹5,000 (five thousand Indian rupees) or the equivalent in your local currency.
+      </p>
+
+      <h2>7. Indemnification</h2>
+      <p>
+        You agree to indemnify and hold N3 Global Tech harmless from any claims, losses, liabilities, damages, costs, or expenses (including reasonable attorney's fees) arising out of your breach of these terms or your misuse of the website.
+      </p>
+
+      <h2>8. Termination</h2>
+      <p>
+        We may suspend or terminate your access to the website at any time, with or without notice, if we believe you have violated these terms or applicable law.
+      </p>
+
+      <h2>9. Governing law</h2>
+      <p>
+        These terms are governed by the laws of India. Any disputes arising from these terms or your use of the website will be subject to the exclusive jurisdiction of the courts in Kannur, Kerala, India.
+      </p>
+
+      <h2>10. Changes to these terms</h2>
+      <p>
+        We may update these terms from time to time. Updated terms will be posted here with a revised "Last updated" date. By continuing to use the site after changes are posted, you agree to the revised terms.
+      </p>
+
+      <h2>11. Severability</h2>
+      <p>
+        If any provision of these terms is found to be unenforceable, the remaining provisions will continue in full force and effect.
+      </p>
+
+      <h2>12. Contact us</h2>
+      <p>
+        For any questions about these terms, contact us at:
+      </p>
+      <ul>
+        <li>Email: <a href="mailto:contact@n3global.tech">contact@n3global.tech</a></li>
+        <li>Phone: <a href="tel:+919645091256">+91 96450 91256</a></li>
+        <li>Postal: N3 Global Tech, Kannur, Kerala, India</li>
+      </ul>
+
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  .legal-hero {
+    padding: calc(80px + 3rem) 0 2.5rem;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .legal-hero__inner {
+    text-align: center;
+  }
+  .legal-hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 1rem 0 0.5rem;
+  }
+  .legal-hero__meta {
+    color: var(--gray-500);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .legal-article {
+    padding: 3rem 0 5rem;
+  }
+  .legal-narrow {
+    max-width: 960px;
+  }
+  .legal-lead {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--gray-700);
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .legal-narrow h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 2.5rem 0 0.75rem;
+    color: var(--gray-900);
+    letter-spacing: -0.01em;
+  }
+  .legal-narrow p,
+  .legal-narrow ul {
+    color: var(--gray-700);
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 1.1rem;
+  }
+  .legal-narrow ul {
+    padding-left: 1.5rem;
+  }
+  .legal-narrow li {
+    margin-bottom: 0.5rem;
+  }
+  .legal-narrow a {
+    color: var(--sky-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>
