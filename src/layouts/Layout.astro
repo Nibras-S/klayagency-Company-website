@@ -22,7 +22,10 @@ const {
 const siteName = "N3 Global Tech";
 const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 const siteUrl = Astro.site ?? new URL("https://n3global.tech");
-const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const canonicalPath = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : Astro.url.pathname + '/';
+const canonicalUrl = new URL(canonicalPath, siteUrl).href;
 const ogImage = new URL(image, siteUrl).href;
 const siteUrlString = siteUrl.toString();
 
