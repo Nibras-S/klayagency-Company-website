@@ -13,7 +13,7 @@ const {
   title,
   description = "N3 Global Tech is a custom software development company building scalable web apps, mobile apps, cloud platforms, AI solutions, and SaaS products for startups and enterprises worldwide.",
   keywords = "software development company, web development, mobile app development, cloud solutions, SaaS development, custom software, AI development, UI UX design, MVP development, digital transformation, startup tech partner, CRM, ERP, Astro, React, Node.js",
-  image = "/n3logo.svg",
+  image = "/n3logo.webp",
   noindex = false,
   type = 'website',
   faqs,
@@ -70,7 +70,7 @@ const orgSchema = {
   url: siteUrlString,
   logo: {
     "@type": "ImageObject",
-    url: new URL("/n3logo.svg", siteUrl).href,
+    url: new URL("/n3logo.webp", siteUrl).href,
     width: 512,
     height: 512,
   },
@@ -157,8 +157,9 @@ const websiteSchema = {
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Icons -->
-    <link rel="icon" type="image/svg+xml" href="/n3logo.svg" />
-    <link rel="apple-touch-icon" href="/n3logo.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/webp" href="/n3logo.webp" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Open Graph -->
     <meta property="og:type" content={type} />
