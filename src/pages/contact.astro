@@ -622,7 +622,7 @@ import Footer from '../components/Footer.astro';
       e.preventDefault();
       clearError();
 
-      // Honeypot — bots fill this, humans never see it
+      // Honeypot: bots fill this, humans never see it
       var hp = form.querySelector('#website');
       if (hp && hp.value) return;
 
@@ -654,7 +654,7 @@ import Footer from '../components/Footer.astro';
       submitLabel.textContent = 'Sending...';
 
       try {
-        // POST to our own server endpoint — token stays server-side
+        // POST to our own server endpoint (token stays server-side)
         var res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

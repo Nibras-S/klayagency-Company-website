@@ -31,7 +31,7 @@ const founders = [
   {
     name: "Farseen",
     role: "Mentor &amp; Co-founder",
-    bio: "Our earliest mentor — guided us from first projects in college to industry practices. Continues to shape how we build today.",
+    bio: "Our earliest mentor. Guided us from first projects in college to industry practices, and continues to shape how we build today.",
     initials: "F",
     color: "amber",
     image: "/team/farseen.webp",
@@ -51,13 +51,13 @@ const stats = [
   { value: "4", label: "Co-founders" },
   { value: "30+", label: "Companies served" },
   { value: "3+", label: "Years in production" },
-  { value: "1", label: "Hometown — Kannur" },
+  { value: "1", label: "Hometown · Kannur" },
 ];
 ---
 
 <Layout
-  title="About Us — Our Story, Founders & Mission"
-  description="Meet the team behind N3 Global Tech. Founded by Nibras, Nabeel, Nafi, and Farseen — engineers turned co-founders building custom software and SaaS for businesses in Kerala, India, and beyond."
+  title="About Us | Our Story, Founders & Mission"
+  description="Meet the team behind N3 Global Tech. Founded by Nibras, Nabeel, Nafi, and Farseen, four engineers turned co-founders building custom software and SaaS for businesses in Kerala, India, and beyond."
   keywords="about N3 Global Tech, software company Kerala, software company Kannur, custom software founders, N3 team, Nibras Nabeel Nafi Farseen, Kerala tech founders, software company story"
 >
   <Navbar />
@@ -71,7 +71,7 @@ const stats = [
         From Classmates to <span class="text-gradient">Co-founders</span>
       </h1>
       <p class="page-hero__desc">
-        N3 Global Tech was born out of a simple idea: that the right team, building practical software, can change how businesses operate. We are four engineers from Kannur, Kerala — and this is how we got here.
+        N3 Global Tech was born out of a simple idea: that the right team, building practical software, can change how businesses operate. We are four engineers from Kannur, Kerala. This is how we got here.
       </p>
     </div>
   </section>
@@ -96,15 +96,15 @@ const stats = [
 
       <h2>Where it began</h2>
       <p>
-        Our story starts in the classrooms of <strong>Thalassery Engineering College</strong>, where the four of us — Nibras, Nabeel, Nafi, and Farseen — pursued our B.Tech together. What began as a shared interest in solving real problems through technology grew, project by project, into something more.
+        Our story starts in the classrooms of <strong>Thalassery Engineering College</strong>, where the four of us (Nibras, Nabeel, Nafi, and Farseen) pursued our B.Tech together. What began as a shared interest in solving real problems through technology grew, project by project, into something more.
       </p>
       <p>
-        Across third-year mini projects and our final-year build, we got hands-on with the kind of work that doesn't appear in textbooks: shipping software that real users actually rely on. Farseen played a defining role in this stage — both as a peer and as a mentor — helping us understand how the industry really works and shaping how we approach problems today. He continues to be an integral part of our team.
+        Across third-year mini projects and our final-year build, we got hands-on with the kind of work that doesn't appear in textbooks: shipping software that real users actually rely on. Farseen played a defining role in this stage, both as a peer and as a mentor, helping us understand how the industry really works and shaping how we approach problems today. He continues to be an integral part of our team.
       </p>
 
       <h2>Our first client</h2>
       <p>
-        Our first real-world opportunity came in our final year: a <strong>perfume eCommerce platform for a client in the UAE</strong>. It was the moment we stopped being students with a project and started being a team with a customer. That shift — building for someone whose business depended on it — changed how we work to this day.
+        Our first real-world opportunity came in our final year: a <strong>perfume eCommerce platform for a client in the UAE</strong>. It was the moment we stopped being students with a project and started being a team with a customer. That shift, building for someone whose business depended on it, changed how we work to this day.
       </p>
       <p>
         Soon after, we built our first major product: a <strong>fitness management system for gym owners</strong>, allowing businesses to manage members, track payments, send automated reminders, and run daily operations efficiently. We are proud to share that this platform is still actively used by our client more than 2–3 years on, and we continue shipping regular updates, security improvements, and new features as their needs evolve.
@@ -120,15 +120,15 @@ const stats = [
         <li><strong>Nibras</strong> worked as a Cloud &amp; DevOps Engineer in <strong>Abu Dhabi</strong>, managing infrastructure for global-scale applications.</li>
       </ul>
       <p>
-        We pursued individual careers — but always with one shared vision: gain real experience first, then come back together to build something of our own.
+        We pursued individual careers, but always with one shared vision: gain real experience first, then come back together to build something of our own.
       </p>
 
       <h2>Today</h2>
       <p>
-        With that experience behind us, we reunited and founded N3 Global Tech. We have since launched multiple products, including <a href="/products/">N3 FitBook, N3 ServiceBook, and N3 BusinessBook</a>, and we are actively building new platforms aimed at solving everyday operational problems for businesses across India.
+        With that experience behind us, we reunited and founded N3 Global Tech. We have since launched multiple products, including <strong>N3 FitBook, N3 ServiceBook, and N3 BusinessBook</strong>, and we are actively building new platforms aimed at solving everyday operational problems for businesses across India.
       </p>
       <p>
-        We are proud to have supported <strong>more than 30 companies</strong>, helping them adopt modern technology and improve operations through tailored digital solutions. Alongside that, we have taken a strong initiative to support <strong>local businesses in Kannur, Kerala</strong> — helping them transition from traditional methods to efficient, technology-driven systems through honest consultation and practical implementation.
+        We are proud to have supported <strong>more than 30 companies</strong>, helping them adopt modern technology and improve operations through tailored digital solutions. Alongside that, we have taken a strong initiative to support <strong>local businesses in Kannur, Kerala</strong>, helping them transition from traditional methods to efficient, technology-driven systems through honest consultation and practical implementation.
       </p>
 
     </div>
@@ -140,7 +140,7 @@ const stats = [
       <div class="section-header">
         <div class="badge badge-sky">The Team</div>
         <h2>Meet the <span class="text-gradient">Co-founders</span></h2>
-        <p>Four engineers who grew up building together — and never stopped.</p>
+        <p>Four engineers who grew up building together, and never stopped.</p>
       </div>
 
       <div class="founders-grid">
@@ -148,7 +148,7 @@ const stats = [
           <article class={`founder-card founder-card--${f.color}`}>
             {f.image ? (
               <div class={`founder-card__photo-wrap founder-card__photo-wrap--${f.color}`}>
-                <img src={f.image} alt={`${f.name} — ${f.role.replace(/&amp;/g, '&').replace(/<[^>]+>/g, '')}`} class="founder-card__photo" width="80" height="80" loading="lazy" />
+                <img src={f.image} alt={`${f.name}, ${f.role.replace(/&amp;/g, '&').replace(/<[^>]+>/g, '')}`} class="founder-card__photo" width="80" height="80" loading="lazy" />
               </div>
             ) : (
               <div class={`founder-card__avatar founder-card__avatar--${f.color}`} aria-hidden="true">

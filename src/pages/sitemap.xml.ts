@@ -29,7 +29,7 @@ function toUrlPath(file: string): string {
 
 export const GET: APIRoute = ({ site }) => {
   const today = new Date().toISOString().split('T')[0];
-  const base = (site?.toString() ?? 'https://n3global.tech/').replace(/\/$/, '');
+  const base = (site?.toString() ?? 'https://www.n3global.tech/').replace(/\/$/, '');
 
   const paths = Array.from(new Set(
     Object.keys(pages)

@@ -1,4 +1,4 @@
-# robots.txt for https://n3global.tech
+# robots.txt for https://www.n3global.tech
 # Reference: https://www.robotstxt.org/robotstxt.html
 
 User-agent: *
@@ -15,4 +15,4 @@ Disallow: /_vercel/
 # It contains the bundled CSS and JS that Googlebot needs to render
 # pages correctly. Blocking it would break rendered SEO and Core Web Vitals.
 
-Sitemap: https://n3global.tech/sitemap.xml
+Sitemap: https://www.n3global.tech/sitemap.xml
