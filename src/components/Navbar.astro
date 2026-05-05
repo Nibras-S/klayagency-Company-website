@@ -4,7 +4,8 @@ const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/products", label: "Our Products" },
   { href: "/work", label: "Our Work" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const pathname = Astro.url.pathname;
@@ -64,6 +65,12 @@ const pathname = Astro.url.pathname;
     </ul>
   </div>
 </header>
+
+<!-- Mobile sticky bottom CTA -->
+<a href="/contact/" class="mobile-cta-sticky" id="mobile-cta-sticky" aria-label="Start a Project">
+  Start a Project
+  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+</a>
 
 <style>
   /* ── Wrapper: always fixed at top, full-width ── */
@@ -326,6 +333,42 @@ const pathname = Astro.url.pathname;
   @media (max-width: 480px) {
     .logo-text { display: none; }
   }
+
+  /* ── Mobile sticky bottom CTA ── */
+  .mobile-cta-sticky {
+    display: none;
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%, 120%);
+    z-index: 90;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    background: var(--gray-900);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    border-radius: 9999px;
+    box-shadow: 0 12px 28px rgba(14, 165, 233, 0.35), 0 4px 10px rgba(0, 0, 0, 0.18);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease;
+    pointer-events: none;
+  }
+  .mobile-cta-sticky.is-visible {
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+  }
+  .mobile-cta-sticky:hover {
+    background: var(--sky-600);
+  }
+  @media (max-width: 768px) {
+    .mobile-cta-sticky { display: inline-flex; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-cta-sticky { transition: none; }
+  }
 </style>
 
 <script is:inline>
@@ -335,11 +378,21 @@ const pathname = Astro.url.pathname;
     var mobileMenu = document.getElementById('mobile-menu');
     if (!wrapper || !hamburger || !mobileMenu) return;
 
+    var stickyCta = document.getElementById('mobile-cta-sticky');
+
     function onScroll() {
-      if (window.scrollY > 40) {
+      var y = window.scrollY;
+      if (y > 40) {
         wrapper.classList.add('scrolled');
       } else {
         wrapper.classList.remove('scrolled');
+      }
+      if (stickyCta) {
+        if (y > 400) {
+          stickyCta.classList.add('is-visible');
+        } else {
+          stickyCta.classList.remove('is-visible');
+        }
       }
     }
 

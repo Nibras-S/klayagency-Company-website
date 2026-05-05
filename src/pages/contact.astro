@@ -18,10 +18,10 @@ import Footer from '../components/Footer.astro';
     <div class="container page-hero__inner">
       <div class="badge badge-sky">Contact Us</div>
       <h1 class="page-hero__title">
-        Let's Start a <span class="text-gradient">Conversation</span>
+        Let's Build Something <span class="text-gradient">Great Together</span>
       </h1>
       <p class="page-hero__desc">
-        Have a project in mind? We'd love to hear about it. Fill in the form and we'll get back to you within 24 hours.
+        Whether you need <a href="/custom-software-development/">custom software</a>, a <a href="/saas-development-company/">SaaS platform</a>, or a mobile app, we're ready to listen. Share your idea or workflow problem and we'll respond within 24 hours with a tailored proposal.
       </p>
     </div>
   </section>
@@ -268,8 +268,13 @@ import Footer from '../components/Footer.astro';
     color: var(--gray-500);
     font-size: 1.1rem;
     line-height: 1.8;
-    max-width: 560px;
+    max-width: 640px;
     margin: 0 auto;
+  }
+  .page-hero__desc a {
+    color: var(--sky-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   /* Contact layout */

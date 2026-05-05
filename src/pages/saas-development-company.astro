@@ -1,0 +1,246 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const faqs = [
+  {
+    question: "What is SaaS development?",
+    answer: "SaaS (Software as a Service) development is the practice of building cloud-hosted applications that customers access through a browser or mobile app on a subscription basis — rather than installing software on their own machines.",
+  },
+  {
+    question: "Do you build SaaS products from scratch or only customize existing ones?",
+    answer: "Both. We help founders go from idea to MVP launch, and we also help existing SaaS teams modernize legacy platforms, add multi-tenancy, integrate billing, or scale infrastructure as user counts grow.",
+  },
+  {
+    question: "What does a typical SaaS project include?",
+    answer: "A complete SaaS build typically covers product design, multi-tenant architecture, authentication and role-based access, subscription billing (Stripe, Razorpay), admin dashboards, third-party integrations, and the cloud infrastructure to run it all reliably.",
+  },
+  {
+    question: "Can my SaaS handle thousands of customers?",
+    answer: "Yes. Every SaaS we build is designed for horizontal scale from day one — managed databases, queue-based background workers, CDN-cached frontends, and observability tooling so you can grow without surprise outages.",
+  },
+];
+---
+
+<Layout
+  title="SaaS Development Company"
+  description="SaaS development company building scalable, multi-tenant SaaS platforms with subscription billing, integrations, and modern cloud architecture. Trusted partner for founders and growing businesses."
+  keywords="SaaS development company, SaaS development India, SaaS platform development, multi-tenant SaaS, build a SaaS product, SaaS MVP development, custom SaaS, cloud-based software, subscription software, SaaS Kerala"
+  service={{
+    name: "SaaS Development",
+    description: "End-to-end SaaS development services covering multi-tenant architecture, subscription billing, integrations, and cloud infrastructure for founders and growing businesses.",
+    serviceType: "SaaS Development",
+  }}
+  faqs={faqs}
+>
+  <Navbar />
+
+  <section class="page-hero">
+    <div class="page-hero__glow"></div>
+    <div class="page-hero__bg-dots"></div>
+    <div class="container page-hero__inner">
+      <div class="badge badge-sky">SaaS Development</div>
+      <h1 class="page-hero__title">
+        SaaS <span class="text-gradient">Development Company</span>
+      </h1>
+      <p class="page-hero__desc">
+        We build scalable, secure, and beautifully simple SaaS platforms — from idea-stage MVPs to multi-tenant systems serving thousands of users. Cloud-first by default, designed for the long run.
+      </p>
+      <div class="page-hero__cta">
+        <a href="/contact/" class="btn btn-primary btn-lg">Start Your SaaS</a>
+        <a href="/products/" class="btn btn-ghost btn-lg">See Our SaaS Products</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section content-section">
+    <div class="container content-narrow">
+
+      <h2>What is SaaS development?</h2>
+      <p>
+        Software as a Service (SaaS) is software you access through a browser or mobile app on a subscription, with the provider handling hosting, security, and updates. For businesses, it means lower upfront cost, faster onboarding, and predictable monthly economics. For founders, it means a recurring-revenue model that can scale globally from day one.
+      </p>
+      <p>
+        Building a SaaS product is fundamentally different from building a one-off web application — it requires multi-tenancy, billing, identity, observability, and an infrastructure plan that holds up when traffic grows 10× overnight. This is what we specialize in.
+      </p>
+
+      <h2>Our SaaS expertise</h2>
+
+      <h3>Multi-tenant architecture</h3>
+      <p>
+        We design tenant isolation patterns — database-per-tenant, schema-per-tenant, or shared with row-level security — based on your security, compliance, and cost requirements. Each customer gets the experience of a private system on shared infrastructure.
+      </p>
+
+      <h3>Subscription billing &amp; payments</h3>
+      <p>
+        Stripe, Razorpay, Paddle — we integrate the right billing platform for your audience. Plans, trials, proration, dunning, tax handling, invoicing, and self-service upgrades all built in so your team doesn't manage subscriptions manually.
+      </p>
+
+      <h3>APIs, integrations &amp; webhooks</h3>
+      <p>
+        Modern SaaS rarely lives alone. We build clean REST and GraphQL APIs for your customers and integrate yours with the tools they already use — Slack, Google Workspace, HubSpot, Zoho, custom CRMs, and more.
+      </p>
+
+      <h3>Cloud infrastructure that scales</h3>
+      <p>
+        Managed Postgres or MongoDB, container-based deploys on AWS or Vercel, background job queues, CDN-cached frontends, and observability with Sentry, LogRocket, or Datadog. You get a system you can grow into, not one you have to outgrow.
+      </p>
+
+      <h2>Our own SaaS products</h2>
+      <p>
+        We don't just build SaaS for clients — we build and run our own. That experience shapes every decision we make on partner projects.
+      </p>
+      <ul class="content-list">
+        <li><strong>N3 ServiceBook</strong> — vehicle service management software for auto service businesses, automating bookings, invoicing, and customer follow-ups.</li>
+        <li><strong>N3 FitBook</strong> — AI-assisted gym management platform for memberships, trainer assignments, attendance, and payments.</li>
+        <li><strong>N3 BusinessBook</strong> — all-in-one operations platform for small-to-mid-sized businesses managing finances, clients, and team workflows.</li>
+      </ul>
+      <p>
+        Browse the full <a href="/products/">products page</a> to see what we ship — and then imagine what we could build for you.
+      </p>
+
+      <h2>Why choose us as your SaaS partner</h2>
+      <p>
+        We are a hybrid product + service company. That means we bring not just engineering, but the lived experience of operating SaaS products in production: how to onboard the first customer, how to debug a midnight outage, how to plan the price tiers that actually convert. You get a partner who has been in the trenches, not a vendor following a checklist.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      {faqs.map(f => (
+        <div class="faq-item">
+          <h3>{f.question}</h3>
+          <p>{f.answer}</p>
+        </div>
+      ))}
+
+      <div class="page-cta">
+        <h2>Have a SaaS idea or existing product to scale?</h2>
+        <p>Tell us where you are — pre-launch, growing fast, or modernizing legacy code. We'll respond within 24 hours with a concrete next step.</p>
+        <a href="/contact/" class="btn btn-primary btn-xl">Talk to Our Team</a>
+        <p class="page-cta__note">
+          Want bespoke internal tools instead of SaaS? See our <a href="/custom-software-development/">custom software development services</a>.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    position: relative;
+    padding: calc(80px + 4rem) 0 4rem;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    overflow: hidden;
+  }
+  .page-hero__glow {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 400px;
+    background: radial-gradient(ellipse, rgba(14,165,233,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero__inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 760px;
+  }
+  .page-hero__title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin: 1rem 0 1.5rem;
+  }
+  .page-hero__desc {
+    font-size: 1.1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+  .page-hero__cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-lg { padding: 0.85rem 2rem; font-size: 1rem; }
+  .btn-xl { padding: 1rem 2.5rem; font-size: 1.05rem; }
+
+  .content-section { padding: 4rem 0 6rem; }
+  .content-narrow { max-width: 800px; }
+  .content-narrow h2 {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 800;
+    margin: 3rem 0 1rem;
+    letter-spacing: -0.02em;
+  }
+  .content-narrow h2:first-child { margin-top: 0; }
+  .content-narrow h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 2rem 0 0.6rem;
+    color: var(--gray-900);
+  }
+  .content-narrow p {
+    color: var(--gray-700);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+    font-size: 1.02rem;
+  }
+  .content-narrow p a, .content-list a {
+    color: var(--sky-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .content-list {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--gray-700);
+    line-height: 1.85;
+  }
+  .content-list li { margin-bottom: 0.75rem; }
+
+  .faq-item {
+    border-top: 1px solid var(--gray-200);
+    padding: 1.5rem 0;
+  }
+  .faq-item h3 {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+  }
+  .faq-item p {
+    margin: 0;
+    color: var(--gray-600);
+  }
+
+  .page-cta {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--gray-900), var(--sky-900));
+    color: #fff;
+    border-radius: 1.5rem;
+    text-align: center;
+  }
+  .page-cta h2 {
+    color: #fff;
+    margin: 0 0 1rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  .page-cta p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 2rem;
+  }
+  .page-cta__note {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .page-cta__note a {
+    color: var(--sky-300);
+    text-decoration: underline;
+  }
+</style>

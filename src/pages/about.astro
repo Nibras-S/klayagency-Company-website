@@ -1,0 +1,517 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const founders = [
+  {
+    name: "Nibras",
+    role: "Co-founder · Cloud &amp; DevOps",
+    bio: "Cloud and DevOps engineer with industry experience in Abu Dhabi. Drives our infrastructure, scalability, and deployment strategy.",
+    initials: "N",
+    color: "sky",
+    image: "/team/nibras.webp", // optional — falls back to initials if file missing
+  },
+  {
+    name: "Nabeel",
+    role: "Co-founder · Mobile",
+    bio: "Mobile developer who began his career in Kochi. Leads native iOS, Android, and cross-platform mobile work across our products.",
+    initials: "N",
+    color: "violet",
+    image: "/team/nabeel.webp",
+  },
+  {
+    name: "Nafi",
+    role: "Co-founder · Backend",
+    bio: "Java developer with hands-on experience in Wayanad. Anchors our backend architecture, APIs, and integrations.",
+    initials: "N",
+    color: "teal",
+    image: "/team/nafi.webp",
+  },
+  {
+    name: "Farseen",
+    role: "Mentor &amp; Co-founder",
+    bio: "Our earliest mentor — guided us from first projects in college to industry practices. Continues to shape how we build today.",
+    initials: "F",
+    color: "amber",
+    image: "/team/farseen.webp",
+  },
+];
+
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+const publicDir = join(process.cwd(), 'public');
+// Hide image at build time if file doesn't exist; cards fall back to initial avatars
+const foundersWithPhotos = founders.map(f => ({
+  ...f,
+  image: f.image && existsSync(join(publicDir, f.image)) ? f.image : null,
+}));
+
+const stats = [
+  { value: "4", label: "Co-founders" },
+  { value: "30+", label: "Companies served" },
+  { value: "3+", label: "Years in production" },
+  { value: "1", label: "Hometown — Kannur" },
+];
+---
+
+<Layout
+  title="About Us — Our Story, Founders & Mission"
+  description="Meet the team behind N3 Global Tech. Founded by Nibras, Nabeel, Nafi, and Farseen — engineers turned co-founders building custom software and SaaS for businesses in Kerala, India, and beyond."
+  keywords="about N3 Global Tech, software company Kerala, software company Kannur, custom software founders, N3 team, Nibras Nabeel Nafi Farseen, Kerala tech founders, software company story"
+>
+  <Navbar />
+
+  <section class="page-hero">
+    <div class="page-hero__glow"></div>
+    <div class="page-hero__bg-dots"></div>
+    <div class="container page-hero__inner">
+      <div class="badge badge-sky">About Us</div>
+      <h1 class="page-hero__title">
+        From Classmates to <span class="text-gradient">Co-founders</span>
+      </h1>
+      <p class="page-hero__desc">
+        N3 Global Tech was born out of a simple idea: that the right team, building practical software, can change how businesses operate. We are four engineers from Kannur, Kerala — and this is how we got here.
+      </p>
+    </div>
+  </section>
+
+  <!-- Stats strip -->
+  <section class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map(s => (
+          <div class="stat-item">
+            <div class="stat-item__value">{s.value}</div>
+            <div class="stat-item__label">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Origin story -->
+  <section class="section about-section">
+    <div class="container content-narrow">
+
+      <h2>Where it began</h2>
+      <p>
+        Our story starts in the classrooms of <strong>Thalassery Engineering College</strong>, where the four of us — Nibras, Nabeel, Nafi, and Farseen — pursued our B.Tech together. What began as a shared interest in solving real problems through technology grew, project by project, into something more.
+      </p>
+      <p>
+        Across third-year mini projects and our final-year build, we got hands-on with the kind of work that doesn't appear in textbooks: shipping software that real users actually rely on. Farseen played a defining role in this stage — both as a peer and as a mentor — helping us understand how the industry really works and shaping how we approach problems today. He continues to be an integral part of our team.
+      </p>
+
+      <h2>Our first client</h2>
+      <p>
+        Our first real-world opportunity came in our final year: a <strong>perfume eCommerce platform for a client in the UAE</strong>. It was the moment we stopped being students with a project and started being a team with a customer. That shift — building for someone whose business depended on it — changed how we work to this day.
+      </p>
+      <p>
+        Soon after, we built our first major product: a <strong>fitness management system for gym owners</strong>, allowing businesses to manage members, track payments, send automated reminders, and run daily operations efficiently. We are proud to share that this platform is still actively used by our client more than 2–3 years on, and we continue shipping regular updates, security improvements, and new features as their needs evolve.
+      </p>
+
+      <h2>Industry experience along the way</h2>
+      <p>
+        After graduation, we each took different paths to gain real industry experience:
+      </p>
+      <ul class="content-list">
+        <li><strong>Nabeel</strong> worked as a Mobile Developer in <strong>Kochi</strong>, building native and cross-platform applications for production users.</li>
+        <li><strong>Nafi</strong> worked as a Java Developer in <strong>Wayanad</strong>, focused on backend systems and enterprise integrations.</li>
+        <li><strong>Nibras</strong> worked as a Cloud &amp; DevOps Engineer in <strong>Abu Dhabi</strong>, managing infrastructure for global-scale applications.</li>
+      </ul>
+      <p>
+        We pursued individual careers — but always with one shared vision: gain real experience first, then come back together to build something of our own.
+      </p>
+
+      <h2>Today</h2>
+      <p>
+        With that experience behind us, we reunited and founded N3 Global Tech. We have since launched multiple products, including <a href="/products/">N3 FitBook, N3 ServiceBook, and N3 BusinessBook</a>, and we are actively building new platforms aimed at solving everyday operational problems for businesses across India.
+      </p>
+      <p>
+        We are proud to have supported <strong>more than 30 companies</strong>, helping them adopt modern technology and improve operations through tailored digital solutions. Alongside that, we have taken a strong initiative to support <strong>local businesses in Kannur, Kerala</strong> — helping them transition from traditional methods to efficient, technology-driven systems through honest consultation and practical implementation.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Founders -->
+  <section class="section founders-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge-sky">The Team</div>
+        <h2>Meet the <span class="text-gradient">Co-founders</span></h2>
+        <p>Four engineers who grew up building together — and never stopped.</p>
+      </div>
+
+      <div class="founders-grid">
+        {foundersWithPhotos.map(f => (
+          <article class={`founder-card founder-card--${f.color}`}>
+            {f.image ? (
+              <div class={`founder-card__photo-wrap founder-card__photo-wrap--${f.color}`}>
+                <img src={f.image} alt={`${f.name} — ${f.role.replace(/&amp;/g, '&').replace(/<[^>]+>/g, '')}`} class="founder-card__photo" width="80" height="80" loading="lazy" />
+              </div>
+            ) : (
+              <div class={`founder-card__avatar founder-card__avatar--${f.color}`} aria-hidden="true">
+                {f.initials}
+              </div>
+            )}
+            <h3 class="founder-card__name">{f.name}</h3>
+            <p class="founder-card__role" set:html={f.role} />
+            <p class="founder-card__bio">{f.bio}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="section mv-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge-sky">Our Purpose</div>
+        <h2>Mission &amp; <span class="text-gradient">Vision</span></h2>
+      </div>
+
+      <div class="mv-grid">
+        <article class="mv-card">
+          <div class="mv-card__icon mv-card__icon--mission">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+              <path d="m12 15 3.3 3.3a1 1 0 0 0 1.4 0l2.6-2.6a1 1 0 0 0 0-1.4L16 11"/>
+              <path d="m11 16-4.3-4.3a1 1 0 0 1 0-1.4l2.6-2.6a1 1 0 0 1 1.4 0L14 11"/>
+              <path d="M15 4c-5-2-12 1-12 1s3 7 1 12l2.6 2.6c5 2 12-1 12-1s-3-7-1-12z"/>
+            </svg>
+          </div>
+          <h3>Our Mission</h3>
+          <p>To empower businesses with practical, scalable, and user-focused digital solutions that solve real-world problems and drive sustainable growth.</p>
+        </article>
+
+        <article class="mv-card">
+          <div class="mv-card__icon mv-card__icon--vision">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+          </div>
+          <h3>Our Vision</h3>
+          <p>To become a trusted technology partner for businesses, creating impactful digital solutions that improve everyday operations and contribute to a more connected and efficient future.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section about-cta-section">
+    <div class="container">
+      <div class="about-cta">
+        <h2>Want to work with us?</h2>
+        <p>Whether you have a project in mind or just want to chat about what's possible, we'd love to hear from you. Tell us where you are and we'll respond within 24 hours.</p>
+        <div class="about-cta__actions">
+          <a href="/contact/" class="btn btn-primary btn-xl">Start a Project</a>
+          <a href="/work/" class="btn btn-ghost btn-xl">See Our Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    position: relative;
+    padding: calc(80px + 4rem) 0 3rem;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    overflow: hidden;
+  }
+  .page-hero__glow {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 400px;
+    background: radial-gradient(ellipse, rgba(14,165,233,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero__bg-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--sky-200) 1px, transparent 1px);
+    background-size: 36px 36px;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  .page-hero__inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 760px;
+  }
+  .page-hero__title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin: 1rem 0 1.5rem;
+  }
+  .page-hero__desc {
+    font-size: 1.1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* Stats strip */
+  .stats-strip {
+    padding: 0 0 3rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background: #ffffff;
+    border: 1.5px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.06);
+  }
+  .stat-item {
+    text-align: center;
+    border-right: 1px solid var(--gray-100);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item__value {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--sky-600);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-item__label {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    font-weight: 600;
+  }
+
+  /* About content */
+  .about-section { padding-top: 4rem; padding-bottom: 4rem; }
+  .content-narrow { max-width: 960px; }
+  .content-narrow h2 {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 800;
+    margin: 3rem 0 1rem;
+    letter-spacing: -0.02em;
+  }
+  .content-narrow h2:first-child { margin-top: 0; }
+  .content-narrow p {
+    color: var(--gray-700);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+  }
+  .content-narrow p a {
+    color: var(--sky-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .content-list {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--gray-700);
+    line-height: 1.85;
+  }
+  .content-list li { margin-bottom: 0.85rem; }
+
+  /* Founders */
+  .founders-section {
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    padding: 5rem 0;
+  }
+  .founders-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .founder-card {
+    background: #ffffff;
+    border: 1.5px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+  }
+  .founder-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.12);
+  }
+  .founder-card--sky:hover { border-color: var(--sky-300); }
+  .founder-card--violet:hover { border-color: #ddd6fe; }
+  .founder-card--teal:hover { border-color: #99f6e4; }
+  .founder-card--amber:hover { border-color: #fde68a; }
+
+  .founder-card__avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+  .founder-card__avatar--sky    { background: linear-gradient(135deg, #38bdf8, #0284c7); }
+  .founder-card__avatar--violet { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
+  .founder-card__avatar--teal   { background: linear-gradient(135deg, #2dd4bf, #0d9488); }
+  .founder-card__avatar--amber  { background: linear-gradient(135deg, #fbbf24, #d97706); }
+
+  /* Founder photo (when image present) */
+  .founder-card__photo-wrap {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    padding: 3px;
+    background: linear-gradient(135deg, #38bdf8, #0284c7);
+  }
+  .founder-card__photo-wrap--violet { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
+  .founder-card__photo-wrap--teal   { background: linear-gradient(135deg, #2dd4bf, #0d9488); }
+  .founder-card__photo-wrap--amber  { background: linear-gradient(135deg, #fbbf24, #d97706); }
+  .founder-card__photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background: #ffffff;
+  }
+
+  .founder-card__name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+    color: var(--gray-900);
+  }
+  .founder-card__role {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--sky-700);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .founder-card__bio {
+    font-size: 0.92rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* Mission & Vision */
+  .mv-section { padding: 5rem 0; }
+  .mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mv-card {
+    background: #ffffff;
+    border: 1.5px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    padding: 2.25rem 2rem;
+    transition: var(--transition);
+  }
+  .mv-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.1);
+    border-color: var(--sky-200);
+  }
+  .mv-card__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+  .mv-card__icon--mission { background: var(--sky-50); color: var(--sky-600); }
+  .mv-card__icon--vision  { background: #f5f3ff; color: #7c3aed; }
+  .mv-card h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.02em;
+    color: var(--gray-900);
+  }
+  .mv-card p {
+    color: var(--gray-700);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* CTA */
+  .about-cta-section { padding-top: 0; padding-bottom: 6rem; }
+  .about-cta {
+    background: linear-gradient(135deg, var(--gray-900), var(--sky-900));
+    color: #ffffff;
+    padding: 3.5rem 2.5rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .about-cta h2 {
+    color: #ffffff;
+    margin: 0 0 1rem;
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+  }
+  .about-cta p {
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+  .about-cta__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .about-cta__actions .btn-ghost {
+    background: rgba(255,255,255,0.08);
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.2);
+  }
+  .about-cta__actions .btn-ghost:hover {
+    background: rgba(255,255,255,0.15);
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  .btn-xl { padding: 1rem 2.5rem; font-size: 1.05rem; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .stat-item { padding: 0.5rem 0; }
+    .founders-grid { grid-template-columns: repeat(2, 1fr); }
+    .mv-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .founders-grid { grid-template-columns: 1fr; }
+  }
+</style>

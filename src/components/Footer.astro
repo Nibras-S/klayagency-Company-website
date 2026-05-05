@@ -4,25 +4,31 @@ const year = new Date().getFullYear();
 const footerLinks = {
   Company: [
     { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
-    { href: "/products", label: "Our Products" },
-    // { href: "/work", label: "Our Work" }, // TODO: add back later
-    { href: "/contact", label: "Contact Us" },
+    { href: "/about/", label: "About Us" },
+    { href: "/services/", label: "Services" },
+    { href: "/products/", label: "Our Products" },
+    { href: "/work/", label: "Our Work" },
+    { href: "/contact/", label: "Contact Us" },
   ],
   Services: [
+    { href: "/custom-software-development/", label: "Custom Software Development" },
+    { href: "/saas-development-company/", label: "SaaS Development" },
     { href: "/services#web", label: "Web Development" },
     { href: "/services#mobile", label: "Mobile Apps" },
-    { href: "/services#cloud", label: "Cloud Solutions" },
     { href: "/services#ai", label: "AI & Automation" },
-    { href: "/services#consulting", label: "IT Consulting" },
+  ],
+  Resources: [
+    { href: "/blog/custom-software-saas-kerala/", label: "Blog" },
+    { href: "/work/", label: "Case Studies" },
+    { href: "/products/", label: "Our SaaS Products" },
+    { href: "/contact/", label: "Get a Quote" },
   ],
   Connect: [
     { href: "mailto:contact@n3global.tech", label: "contact@n3global.tech" },
     { href: "tel:+919645091256", label: "+91 96450 91256" },
-    { href: "#", label: "LinkedIn" },
-    { href: "#", label: "Twitter / X" },
+    { href: "https://www.linkedin.com/company/n3-global-tech", label: "LinkedIn" },
+    // { href: "#", label: "Twitter / X" }, // hidden until profile URL is ready
     { href: "https://www.instagram.com/n3globaltech?igsh=MWoyYnFuZ3I2cTZxcQ%3D%3D&utm_source=qr", label: "Instagram" },
-
   ],
 };
 ---
@@ -92,8 +98,8 @@ const footerLinks = {
 
   .footer__top {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 3.5rem;
+    grid-template-columns: 2fr 1.2fr 1.2fr 1fr 1.4fr;
+    gap: 2.5rem;
     padding-bottom: 3.5rem;
     border-bottom: 1px solid rgba(255,255,255,0.07);
   }

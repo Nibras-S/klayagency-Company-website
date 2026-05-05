@@ -108,7 +108,10 @@ const projects = [
       <div class="container">
         
         <div class="showcase-header">
-          <h1 class="showcase-title">Client Success Stories,</h1>
+          <h1 class="showcase-title">Client Success Stories</h1>
+          <p class="showcase-subtitle">
+            A selection of <a href="/custom-software-development/">custom software</a> and <a href="/saas-development-company/">SaaS platforms</a> we've shipped — from immersive 3D corporate sites to multi-tenant CRMs and aviation portals. Every project below is live, every client is real.
+          </p>
         </div>
 
         <div class="showcase-list">
@@ -203,9 +206,22 @@ const projects = [
     font-family: var(--font-heading);
     font-size: clamp(3rem, 6vw, 4.5rem);
     font-weight: 800;
-    color: #0f172a !important; /* Dark gray / black */
-    margin-bottom: 0;
+    color: #0f172a !important;
+    margin-bottom: 1rem;
     letter-spacing: -0.04em;
+  }
+
+  .showcase-subtitle {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #475569;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .showcase-subtitle a {
+    color: #0369a1;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   /* Showcase List */

@@ -7,6 +7,19 @@ export interface Props {
   noindex?: boolean;
   type?: 'website' | 'article';
   faqs?: { question: string; answer: string }[];
+  article?: {
+    headline: string;
+    description: string;
+    datePublished: string;
+    dateModified?: string;
+    image?: string;
+    author?: string;
+  };
+  service?: {
+    name: string;
+    description: string;
+    serviceType?: string;
+  };
 }
 
 const {
@@ -17,6 +30,8 @@ const {
   noindex = false,
   type = 'website',
   faqs,
+  article,
+  service,
 } = Astro.props;
 
 const siteName = "N3 Global Tech";
@@ -61,6 +76,34 @@ const faqSchema = faqs && faqs.length > 0 ? {
   })),
 } : null;
 
+const articleSchema = article ? {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: article.headline,
+  description: article.description,
+  image: article.image ? new URL(article.image, siteUrl).href : ogImage,
+  datePublished: article.datePublished,
+  dateModified: article.dateModified ?? article.datePublished,
+  author: {
+    "@type": "Organization",
+    name: article.author ?? "N3 Global Tech",
+    url: siteUrlString,
+  },
+  publisher: { "@id": `${siteUrlString}#organization` },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+} : null;
+
+const serviceSchema = service ? {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: service.name,
+  description: service.description,
+  serviceType: service.serviceType ?? service.name,
+  provider: { "@id": `${siteUrlString}#organization` },
+  areaServed: { "@type": "Place", name: "Worldwide" },
+  url: canonicalUrl,
+} : null;
+
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -79,6 +122,12 @@ const orgSchema = {
   email: "contact@n3global.tech",
   telephone: "+91-9645091256",
   priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kannur",
+    addressRegion: "Kerala",
+    addressCountry: "IN",
+  },
   areaServed: { "@type": "Place", name: "Worldwide" },
   knowsAbout: [
     "Software Development",
@@ -106,6 +155,7 @@ const orgSchema = {
     ],
   },
   sameAs: [
+    "https://www.linkedin.com/company/n3-global-tech",
     "https://www.instagram.com/n3globaltech",
   ],
   contactPoint: {
@@ -181,7 +231,7 @@ const websiteSchema = {
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
 
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -195,9 +245,42 @@ const websiteSchema = {
     {faqSchema && (
       <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)}></script>
     )}
+    {articleSchema && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)}></script>
+    )}
+    {serviceSchema && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)}></script>
+    )}
   </head>
   <body>
     <slot />
+    <script is:inline>
+      (function () {
+        if (!('IntersectionObserver' in window)) {
+          document.querySelectorAll('.reveal').forEach(function (el) {
+            el.classList.add('is-visible');
+          });
+          return;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.querySelectorAll('.reveal').forEach(function (el) {
+            el.classList.add('is-visible');
+          });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+    </script>
   </body>
 </html>
 
@@ -237,9 +320,12 @@ const websiteSchema = {
     --primary-light: var(--sky-400);
     --primary-pale: var(--sky-50);
 
+    --accent: #f59e0b;
+    --accent-dark: #d97706;
+    --accent-pale: #fffbeb;
+
     --font-body: 'Nunito', sans-serif;
     --font-heading: 'Instrument Sans', sans-serif;
-    --font-serif: 'Instrument Serif', serif;
 
     --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
     --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
@@ -325,12 +411,48 @@ const websiteSchema = {
     border: 2px solid transparent;
     transition: var(--transition);
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
   }
 
   .btn-primary {
     background: var(--primary);
     color: var(--white);
     box-shadow: var(--shadow-sky);
+  }
+
+  .btn-primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(245, 158, 11, 0.35) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%);
+    pointer-events: none;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-primary:hover::before {
+    transform: translateX(100%);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-primary {
+      animation: btnIdleShine 8s ease-in-out infinite;
+    }
+  }
+
+  @keyframes btnIdleShine {
+    0%, 88%, 100% {
+      box-shadow: var(--shadow-sky);
+    }
+    92% {
+      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.28), var(--shadow-sky);
+    }
   }
 
   .btn-primary:hover {
@@ -457,10 +579,29 @@ const websiteSchema = {
     animation: float 4s ease-in-out infinite;
   }
 
+  /* Scroll-triggered reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .container { padding: 0 1.25rem; }
-    .section { padding: 4rem 0; }
+    .section { padding: 2.5rem 0; }
   }
 
   /* Extra-large screens (1920px+) — prevent content from spreading too wide */
