@@ -12,7 +12,7 @@ const pathname = Astro.url.pathname;
 ---
 
 <header class="navbar-wrapper" id="navbar-wrapper">
-  <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar" aria-label="Primary">
     <!-- Logo -->
     <a href="/" class="navbar__logo" aria-label="N3 Global Tech Home">
       <img src="/n3logo.webp" alt="N3 Global Tech" class="logo-img" width="36" height="36" />
@@ -20,7 +20,7 @@ const pathname = Astro.url.pathname;
     </a>
 
     <!-- Desktop Nav -->
-    <ul class="nav-list" aria-label="Main navigation">
+    <ul class="nav-list">
       {navLinks.map(link => (
         <li>
           <a

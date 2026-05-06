@@ -228,10 +228,13 @@ const websiteSchema = {
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={title} />
 
+    <!-- Preload LCP candidate (used in navbar on every page) -->
+    <link rel="preload" as="image" href="/n3logo.webp" type="image/webp" fetchpriority="high" />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -253,7 +256,10 @@ const websiteSchema = {
     )}
   </head>
   <body>
-    <slot />
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <main id="main-content">
+      <slot />
+    </main>
     <script is:inline>
       (function () {
         if (!('IntersectionObserver' in window)) {
@@ -398,6 +404,27 @@ const websiteSchema = {
     padding: 4rem 0;
   }
 
+  /* Accessibility: skip-to-content link for keyboard users */
+  .skip-link {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 9999;
+    padding: 0.65rem 1rem;
+    background: var(--gray-900);
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transform: translateY(-150%);
+    transition: transform 0.18s ease;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+    outline: 3px solid var(--sky-300);
+    outline-offset: 2px;
+  }
+
   .btn {
     display: inline-flex;
     align-items: center;
@@ -438,21 +465,6 @@ const websiteSchema = {
 
   .btn-primary:hover::before {
     transform: translateX(100%);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .btn-primary {
-      animation: btnIdleShine 8s ease-in-out infinite;
-    }
-  }
-
-  @keyframes btnIdleShine {
-    0%, 88%, 100% {
-      box-shadow: var(--shadow-sky);
-    }
-    92% {
-      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.28), var(--shadow-sky);
-    }
   }
 
   .btn-primary:hover {

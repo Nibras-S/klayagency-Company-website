@@ -8,4 +8,10 @@ export default defineConfig({
   // Static by default; only API routes opt into server-side via `export const prerender = false`
   output: 'static',
   adapter: vercel(),
+  build: {
+    // Inline all stylesheets into <style> blocks so there's no render-blocking
+    // <link rel="stylesheet"> request. Per-page CSS is small enough (~5–10 KB
+    // gzipped each) that inlining is a net win for first paint.
+    inlineStylesheets: 'always',
+  },
 });
