@@ -26,7 +26,7 @@ const {
   title,
   description = "N3 Global Tech is a custom software development company building scalable web apps, mobile apps, cloud platforms, AI solutions, and SaaS products for startups and enterprises worldwide.",
   keywords = "software development company, web development, mobile app development, cloud solutions, SaaS development, custom software, AI development, UI UX design, MVP development, digital transformation, startup tech partner, CRM, ERP, Astro, React, Node.js",
-  image = "/n3logo.webp",
+  image = "/og-image.png",
   noindex = false,
   type = 'website',
   faqs,
@@ -218,6 +218,8 @@ const websiteSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content="en_US" />
 
