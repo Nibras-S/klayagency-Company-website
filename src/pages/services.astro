@@ -127,6 +127,83 @@ const services = [
     </div>
   </section>
 
+  <!-- Engagement Models -->
+  <section class="section-sm engagement-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge-sky">How We Work</div>
+        <h2>Engagement <span class="text-gradient">Models</span></h2>
+        <p>Pick the way of working that fits your project. We're flexible across all three, and most clients shift between them as their needs evolve.</p>
+      </div>
+
+      <div class="engagement-grid">
+        <article class="engagement-card">
+          <div class="engagement-card__icon">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+          </div>
+          <h3>Fixed-price project</h3>
+          <p>Best for clearly scoped builds with a defined deliverable. We share milestones, timeline, and a flat price upfront after a paid discovery call.</p>
+          <span class="engagement-card__tag">For: websites, MVPs, single platforms</span>
+        </article>
+
+        <article class="engagement-card">
+          <div class="engagement-card__icon">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <h3>Dedicated team</h3>
+          <p>Best for ongoing product work, scaling SaaS, or evolving roadmaps. A small team works as part of yours on a monthly retainer with regular sprints.</p>
+          <span class="engagement-card__tag">For: SaaS scale-up, long-term partners</span>
+        </article>
+
+        <article class="engagement-card">
+          <div class="engagement-card__icon">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3>Hourly consulting</h3>
+          <p>Best for advisory, code reviews, or short engagements where the scope can't be fixed in advance. Tracked weekly, billed monthly, no minimum commitment.</p>
+          <span class="engagement-card__tag">For: tech reviews, expert input, fixes</span>
+        </article>
+      </div>
+
+      <p class="engagement-note">
+        Not sure which fits? Most projects start with a paid discovery call where we map out the right model together. <a href="/contact/">Tell us about your project</a> and we'll suggest the cleanest path.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="section-sm tech-stack-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge-sky">Our Stack</div>
+        <h2>The <span class="text-gradient">Tools</span> We Build With</h2>
+        <p>We pick the right tool for the problem, not the other way around. Here's the stack we use most often across web, mobile, cloud, and SaaS projects.</p>
+      </div>
+
+      <div class="tech-grid">
+        {[
+          ['React', 'Frontend'],
+          ['Next.js', 'Full-stack web'],
+          ['Astro', 'Marketing & docs'],
+          ['Node.js', 'Backend / APIs'],
+          ['React Native', 'Mobile cross-platform'],
+          ['Flutter', 'Mobile native UI'],
+          ['PostgreSQL', 'Relational database'],
+          ['MongoDB', 'Document database'],
+          ['Firebase', 'Realtime / auth'],
+          ['AWS', 'Cloud infrastructure'],
+          ['Docker', 'Containers'],
+          ['Kubernetes', 'Orchestration'],
+        ].map(([name, role]) => (
+          <div class="tech-tile">
+            <span class="tech-tile__name">{name}</span>
+            <span class="tech-tile__role">{role}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="section-sm">
     <div class="container">
@@ -373,6 +450,128 @@ const services = [
   .badge-amber { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
   .badge-rose { background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; }
   .badge-indigo { background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; }
+
+  /* Engagement models */
+  .engagement-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .engagement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .engagement-card {
+    background: #ffffff;
+    border: 1.5px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    padding: 1.85rem 1.6rem;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .engagement-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--sky-200);
+    box-shadow: 0 12px 28px rgba(14, 165, 233, 0.1);
+  }
+  .engagement-card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--sky-50);
+    color: var(--sky-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .engagement-card h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+    color: var(--gray-900);
+    letter-spacing: -0.01em;
+  }
+  .engagement-card p {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin: 0 0 1rem;
+    flex-grow: 1;
+  }
+  .engagement-card__tag {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--sky-700);
+    background: var(--sky-50);
+    padding: 0.4rem 0.75rem;
+    border-radius: 9999px;
+    align-self: flex-start;
+  }
+  .engagement-note {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--gray-600);
+    font-size: 0.95rem;
+  }
+  .engagement-note a {
+    color: var(--sky-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media (max-width: 900px) {
+    .engagement-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Tech stack */
+  .tech-stack-section {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .tech-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 1.1rem 1.25rem;
+    background: #ffffff;
+    border: 1.5px solid var(--gray-100);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+  }
+  .tech-tile:hover {
+    transform: translateY(-2px);
+    border-color: var(--sky-200);
+    box-shadow: 0 6px 16px rgba(14,165,233,0.08);
+  }
+  .tech-tile__name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    letter-spacing: -0.01em;
+  }
+  .tech-tile__role {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    font-weight: 600;
+  }
+  @media (max-width: 800px) {
+    .tech-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .tech-grid { grid-template-columns: 1fr; }
+  }
 
   /* CTA box */
   .services-cta-box {

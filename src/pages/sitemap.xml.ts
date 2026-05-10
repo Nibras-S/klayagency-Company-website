@@ -3,18 +3,20 @@ import type { APIRoute } from 'astro';
 export const prerender = true;
 
 const META: Record<string, { priority: number; changefreq: string }> = {
-  '/':                                        { priority: 1.0,  changefreq: 'weekly'  },
-  '/services/':                               { priority: 0.9,  changefreq: 'monthly' },
-  '/products/':                               { priority: 0.9,  changefreq: 'monthly' },
-  '/about/':                                  { priority: 0.85, changefreq: 'monthly' },
-  '/custom-software-development/':            { priority: 0.85, changefreq: 'monthly' },
-  '/saas-development-company/':               { priority: 0.85, changefreq: 'monthly' },
-  '/work/':                                   { priority: 0.8,  changefreq: 'monthly' },
-  '/blog/custom-software-saas-kerala/':       { priority: 0.7,  changefreq: 'weekly'  },
-  '/contact/':                                { priority: 0.7,  changefreq: 'yearly'  },
-  '/privacy-policy/':                         { priority: 0.3,  changefreq: 'yearly'  },
-  '/terms-of-service/':                       { priority: 0.3,  changefreq: 'yearly'  },
-  '/cookie-policy/':                          { priority: 0.3,  changefreq: 'yearly'  },
+  '/':                                            { priority: 1.0,  changefreq: 'weekly'  },
+  '/services/':                                   { priority: 0.9,  changefreq: 'monthly' },
+  '/products/':                                   { priority: 0.9,  changefreq: 'monthly' },
+  '/software-development-company-kannur/':        { priority: 0.9,  changefreq: 'monthly' },
+  '/about/':                                      { priority: 0.85, changefreq: 'monthly' },
+  '/custom-software-development/':                { priority: 0.85, changefreq: 'monthly' },
+  '/saas-development-company/':                   { priority: 0.85, changefreq: 'monthly' },
+  '/work/':                                       { priority: 0.8,  changefreq: 'monthly' },
+  '/blog/custom-software-saas-kerala/':           { priority: 0.7,  changefreq: 'weekly'  },
+  '/blog/website-development-cost-kerala-2026/':  { priority: 0.7,  changefreq: 'weekly'  },
+  '/contact/':                                    { priority: 0.7,  changefreq: 'yearly'  },
+  '/privacy-policy/':                             { priority: 0.3,  changefreq: 'yearly'  },
+  '/terms-of-service/':                           { priority: 0.3,  changefreq: 'yearly'  },
+  '/cookie-policy/':                              { priority: 0.3,  changefreq: 'yearly'  },
 };
 const DEFAULT_META = { priority: 0.5, changefreq: 'monthly' };
 

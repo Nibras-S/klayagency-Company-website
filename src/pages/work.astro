@@ -31,6 +31,12 @@ const projects = [
     client: "Viera Natural Wooden Flooring",
     link: "https://viera-two.vercel.app/",
     image: "/products/viera.webp",
+    caseStudy: {
+      challenge: "Viera's premium wooden-flooring brand was being represented by a static brochure site that did the product no favours. Behind the scenes, site supervisors and office staff coordinated installations through WhatsApp groups and spreadsheets that nobody fully trusted.",
+      build: "We shipped two pieces in parallel. The public site is an immersive 3D experience that lets prospects rotate, view, and interact with flooring patterns in a real-room context, replacing flat photos with something that actually conveys texture and finish. The internal CRM gives the operations team a single dashboard for sites, staff, tasks, and progress photos, with role-based access for owners, supervisors, and on-site teams.",
+      outcome: "Sales conversations now start with the product feeling premium before the first phone call. Site visibility is real-time instead of end-of-week.",
+      stack: ["React", "Three.js", "Node.js", "PostgreSQL"],
+    },
   },
   {
     category: "Aviation Services",
@@ -40,6 +46,12 @@ const projects = [
     client: "Flyger Aviation Services",
     link: "https://flyger.aero",
     image: "/products/flyger.webp",
+    caseStudy: {
+      challenge: "Flyger needed a corporate web presence that matched the seriousness of their actual operation: end-to-end flight support for international operators. The previous site looked like a generic agency template, which created friction during enterprise sales conversations.",
+      build: "We rebuilt the site from scratch with a clean, premium UI that walks prospects through their service map (flight planning, permits, dispatch, crew logistics) without overwhelming them. The information architecture was rebuilt around how aviation buyers actually evaluate providers, and the responsive layout works equally well on a phone in a hangar and a desktop in a procurement office.",
+      outcome: "Live at flyger.aero. Inquiry-to-conversation time has dropped because the site does more of the qualifying upfront.",
+      stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    },
   },
 
   {
@@ -129,9 +141,29 @@ const projects = [
                   <div class="tag">{project.category}</div>
                   <h2 class="name">{project.name}</h2>
                   <p class="desc">{project.desc}</p>
-                  
+
+                  {project.caseStudy && (
+                    <div class="case-study">
+                      <div class="case-study__block">
+                        <h3 class="case-study__label">Challenge</h3>
+                        <p>{project.caseStudy.challenge}</p>
+                      </div>
+                      <div class="case-study__block">
+                        <h3 class="case-study__label">What we built</h3>
+                        <p>{project.caseStudy.build}</p>
+                      </div>
+                      <div class="case-study__block">
+                        <h3 class="case-study__label">Outcome</h3>
+                        <p>{project.caseStudy.outcome}</p>
+                      </div>
+                      <div class="case-study__stack">
+                        {project.caseStudy.stack.map(s => <span class="case-study__chip">{s}</span>)}
+                      </div>
+                    </div>
+                  )}
+
                   <div class="tech-client">
-                    <p><strong>Technologies:</strong> {project.technologies}</p>
+                    {!project.caseStudy && <p><strong>Technologies:</strong> {project.technologies}</p>}
                     <p><strong>Client:</strong> {project.client}</p>
                     {project.status && <p><strong>Status:</strong> {project.status}</p>}
                   </div>
@@ -306,6 +338,50 @@ const projects = [
     line-height: 1.7;
     margin-bottom: 2rem;
     max-width: 500px;
+  }
+
+  /* Detailed case study */
+  .case-study {
+    margin: 1.5rem 0 2rem;
+    padding: 1.5rem 1.75rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    max-width: 540px;
+  }
+  .case-study__block { margin-bottom: 1rem; }
+  .case-study__block:last-of-type { margin-bottom: 1.25rem; }
+  .case-study__label {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sky-700);
+    margin: 0 0 0.4rem;
+  }
+  .case-study__block p {
+    font-size: 0.92rem;
+    color: #475569;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .case-study__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid #e2e8f0;
+  }
+  .case-study__chip {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #0f172a;
   }
 
   /* Tech & Client */

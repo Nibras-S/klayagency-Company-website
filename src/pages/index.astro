@@ -67,7 +67,7 @@ const faqs = [
         </h1>
 
         <p class="hero__desc animate-fade-up" style="animation-delay:0.2s">
-          N3 Global Tech delivers cutting-edge software, cloud, and AI solutions that empower your business to scale, innovate, and lead.
+          A <a href="/software-development-company-kannur/">Kannur, Kerala-based software company</a> building custom software, SaaS platforms, web and mobile apps for businesses across India and worldwide. Practical engineering, on time, and built to last.
         </p>
 
         <div class="hero__cta animate-fade-up" style="animation-delay:0.3s">
@@ -378,6 +378,67 @@ const faqs = [
     </div>
   </section>
 
+  <!-- ========== INDUSTRIES WE SERVE ========== -->
+  <section class="section industries-section reveal">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge-sky">Industries</div>
+        <h2>Industries We <span class="text-gradient">Serve</span></h2>
+        <p>From auto service workshops in Kannur to aviation operators going global, we build software that fits how each industry actually works.</p>
+      </div>
+
+      <div class="industries-grid">
+        <div class="industry-card">
+          <div class="industry-card__icon">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13l1-3.5A2 2 0 016 8h12a2 2 0 011.94 1.5L21 13M5 17h14M6 20h0M18 20h0M5 13v4M19 13v4"/></svg>
+          </div>
+          <h3>Auto Service & Workshops</h3>
+          <p>Booking, job cards, invoicing, and customer follow-ups. See <strong>N3 ServiceBook</strong>.</p>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-card__icon">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M6.5 6.5l11 11M3 13a3 3 0 014.24-4.24M16.76 16.76A3 3 0 0021 13M9 9.75L13.75 5l5.25 5.25M5 14.25L9.75 19l5.25-5.25"/></svg>
+          </div>
+          <h3>Fitness & Gyms</h3>
+          <p>Memberships, attendance, trainer schedules, recurring payments. See <strong>N3 FitBook</strong>.</p>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-card__icon">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </div>
+          <h3>Aviation & Logistics</h3>
+          <p>Global-facing corporate sites and ops platforms. See <strong>Flyger Aviation</strong>.</p>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-card__icon">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21V7l9-4 9 4v14M9 21V12h6v9"/></svg>
+          </div>
+          <h3>Retail & E-Commerce</h3>
+          <p>Storefronts, custom checkout, inventory and order management.</p>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-card__icon">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zM3 9v6l9 5 9-5V9"/></svg>
+          </div>
+          <h3>Training & Education</h3>
+          <p>Course platforms, student management, certifications.</p>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-card__icon">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3>SMB & Operations</h3>
+          <p>Internal tools, finance and team workflows. See <strong>N3 BusinessBook</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== HOW IT WORKS ========== -->
   <section class="section how-it-works reveal">
     <div class="container">
@@ -534,7 +595,7 @@ const faqs = [
               )
             ))}
           </div>
-          <p class="founders-stack__caption">Co-founders: Nibras · Nabeel · Nafi · Farseen</p>
+          <p class="founders-stack__caption">Founders: Nibras · Nabeel · Nafi · Farseen</p>
         </div>
       </div>
     </div>
@@ -1145,6 +1206,66 @@ const faqs = [
   @media (max-width: 760px) {
     .work-preview__grid { grid-template-columns: 1fr; gap: 1.5rem; }
     .work-preview { padding-top: 3rem; padding-bottom: 3rem; }
+  }
+
+  /* ===== INDUSTRIES SERVED ===== */
+  .industries-section {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .industry-card {
+    background: #ffffff;
+    border: 1.5px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem 1.5rem;
+    transition: var(--transition);
+  }
+  .industry-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--sky-200);
+    box-shadow: 0 12px 28px rgba(14, 165, 233, 0.1);
+  }
+
+  .industry-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: var(--sky-50);
+    color: var(--sky-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .industry-card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin: 0 0 0.4rem;
+    color: var(--gray-900);
+    letter-spacing: -0.01em;
+  }
+
+  .industry-card p {
+    font-size: 0.92rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .industries-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .industries-grid { grid-template-columns: 1fr; }
   }
 
   /* ===== ABOUT PREVIEW ===== */
