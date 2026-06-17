@@ -62,6 +62,20 @@ const stats = [
 >
   <Navbar />
 
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.n3global.tech/about/"
+    },
+    "name": "About N3 Global Tech",
+    "description": "Meet the team behind N3 Global Tech. Four engineers turned founders building custom software and SaaS for businesses worldwide.",
+    "publisher": {
+      "@id": "https://www.n3global.tech/#organization"
+    }
+  })}></script>
+
   <section class="page-hero">
     <div class="page-hero__glow"></div>
     <div class="page-hero__bg-dots"></div>
@@ -125,7 +139,7 @@ const stats = [
 
       <h2>Today</h2>
       <p>
-        With that experience behind us, we reunited and founded N3 Global Tech. We have since launched multiple products, including <strong>N3 FitBook, N3 ServiceBook, and N3 BusinessBook</strong>, and we are actively building new platforms aimed at solving everyday operational problems for businesses across India.
+        With that experience behind us, we reunited and founded N3 Global Tech (often searched as N3GlobalTech or n3global.tech). We have since launched multiple products, including <strong>N3 FitBook, N3 ServiceBook, and N3 BusinessBook</strong>, and we are actively building new platforms aimed at solving everyday operational problems for businesses across India.
       </p>
       <p>
         We are proud to have supported <strong>more than 30 companies</strong>, helping them adopt modern technology and improve operations through tailored digital solutions. Alongside that, we have taken a strong initiative to support <strong>local businesses in Kannur, Kerala</strong>, helping them transition from traditional methods to efficient, technology-driven systems through honest consultation and practical implementation.
@@ -196,6 +210,39 @@ const stats = [
           </div>
           <h3>Our Vision</h3>
           <p>To become a trusted technology partner for businesses, creating impactful digital solutions that improve everyday operations and contribute to a more connected and efficient future.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering Culture -->
+  <section class="section culture-section">
+    <div class="container content-narrow">
+      <div class="section-header">
+        <div class="badge badge-sky">How We Build</div>
+        <h2>Our <span class="text-gradient">Engineering Culture</span></h2>
+        <p>Software is only as good as the process and the people behind it. We don't just write code; we engineer scalable, long-lasting systems and maintain rigorous quality standards.</p>
+      </div>
+      
+      <div class="culture-grid">
+        <article class="culture-card">
+          <h3>Pragmatic Technology Choices</h3>
+          <p>We avoid "hype-driven development." We choose technologies based on the specific problem, focusing on established, battle-tested tools like React, Node.js, and PostgreSQL that guarantee long-term stability and easier maintenance for our clients.</p>
+        </article>
+        
+        <article class="culture-card">
+          <h3>Built for Scale from Day One</h3>
+          <p>Whether we are building a fast MVP for a startup or a complex enterprise SaaS platform, we design the architecture to scale horizontally. We implement proper database indexing, caching strategies, and stateless API designs from the very first commit.</p>
+        </article>
+
+        <article class="culture-card">
+          <h3>Security by Default</h3>
+          <p>Data privacy and system security are not afterthoughts. We integrate role-based access control (RBAC), secure authentication flows, and automated security testing into our CI/CD pipelines to ensure every deployment is rock-solid.</p>
+        </article>
+
+        <article class="culture-card">
+          <h3>Continuous Delivery</h3>
+          <p>We work in transparent, agile sprints. By utilizing automated testing and continuous integration, we ship features to staging environments weekly, allowing our clients to see progress and provide feedback long before the final release.</p>
         </article>
       </div>
     </div>
@@ -503,6 +550,14 @@ const stats = [
 
   .btn-xl { padding: 1rem 2.5rem; font-size: 1.05rem; }
 
+  /* Culture Section */
+  .culture-section { background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); padding-top: 5rem; padding-bottom: 5rem; }
+  .culture-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .culture-card { background: #ffffff; padding: 2.25rem 2rem; border-radius: var(--radius-xl); border: 1.5px solid var(--gray-100); transition: var(--transition); }
+  .culture-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(14, 165, 233, 0.1); border-color: var(--sky-200); }
+  .culture-card h3 { font-size: 1.25rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.85rem; letter-spacing: -0.01em; }
+  .culture-card p { color: var(--gray-600); line-height: 1.75; font-size: 0.95rem; margin: 0; }
+
   /* Responsive */
   @media (max-width: 900px) {
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -510,6 +565,7 @@ const stats = [
     .stat-item { padding: 0.5rem 0; }
     .founders-grid { grid-template-columns: repeat(2, 1fr); }
     .mv-grid { grid-template-columns: 1fr; }
+    .culture-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
     .founders-grid { grid-template-columns: 1fr; }

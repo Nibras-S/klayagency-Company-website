@@ -126,6 +126,14 @@ const projects = [
           </p>
         </div>
 
+        <!-- Industry Context -->
+        <div class="industry-context">
+          <h3>Driving Business Outcomes Across Industries</h3>
+          <p>
+            We don't just write code; we deliver digital transformation that directly impacts the bottom line. Whether it's building an e-commerce platform that handles massive traffic spikes, designing an AI-driven talent ecosystem, or implementing a scalable custom CRM for the manufacturing and flooring industry, our focus is always on solving complex operational challenges. Our solutions have reduced manual overhead, increased sales conversions, and optimized workflows for businesses spanning aviation, ed-tech, manufacturing, and social impact sectors.
+          </p>
+        </div>
+
         <div class="showcase-list">
           {projects.map((project, index) => {
             return (
@@ -556,5 +564,29 @@ const projects = [
       width: 100%;
       justify-content: space-between;
     }
+  }
+
+  /* Industry Context */
+  .industry-context {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    max-width: 800px;
+    margin: 0 auto 5rem auto;
+    text-align: center;
+  }
+  .industry-context h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 1rem;
+  }
+  .industry-context p {
+    color: #475569;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
   }
 </style>

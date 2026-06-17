@@ -25,7 +25,7 @@ export interface Props {
 const {
   title,
   description = "N3 Global Tech is a custom software development company building scalable web apps, mobile apps, cloud platforms, AI solutions, and SaaS products for startups and enterprises worldwide.",
-  keywords = "software development company, web development, mobile app development, cloud solutions, SaaS development, custom software, AI development, UI UX design, MVP development, digital transformation, startup tech partner, CRM, ERP, Astro, React, Node.js",
+  keywords = "N3GlobalTech, n3global.tech, n3globaltech, software development company, web development, mobile app development, cloud solutions, SaaS development, custom software, AI development, UI UX design, MVP development, digital transformation, startup tech partner, CRM, ERP, Astro, React, Node.js",
   image = "/og-image.png",
   noindex = false,
   type = 'website',
@@ -110,6 +110,7 @@ const orgSchema = {
   "@id": `${siteUrlString}#organization`,
   name: siteName,
   legalName: "N3 Global Tech",
+  alternateName: ["N3GlobalTech", "n3globaltech", "n3global.tech", "N3 Global Tech"],
   url: siteUrlString,
   logo: {
     "@type": "ImageObject",
@@ -185,6 +186,7 @@ const websiteSchema = {
   "@type": "WebSite",
   "@id": `${siteUrlString}#website`,
   name: siteName,
+  alternateName: ["N3GlobalTech", "n3globaltech", "n3global.tech", "N3 Global Tech"],
   url: siteUrlString,
   publisher: { "@id": `${siteUrlString}#organization` },
   inLanguage: "en-US",
