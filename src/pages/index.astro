@@ -56,10 +56,6 @@ const faqs = [
 
     <div class="container hero__inner">
       <div class="hero__content">
-        <div class="badge badge-sky animate-fade-up">
-          <span class="badge-dot"></span>
-          Innovative Tech Solutions
-        </div>
 
         <h1 class="hero__title animate-fade-up" style="animation-delay:0.1s">
           Build the Future<br />
@@ -330,53 +326,95 @@ const faqs = [
     </div>
   </section>
 
-  <!-- ========== WORK PREVIEW ========== -->
-  <section class="section work-preview reveal">
-    <div class="container">
-      <div class="section-header">
+  <!-- ========== WORK SHOWCASE — STICKY SCROLL ANIMATION ========== -->
+  <div class="ws-scroll-track" id="ws-scroll-track">
+    <div class="ws-sticky" id="ws-sticky">
+      <!-- Heading -->
+      <div class="ws-heading" id="ws-heading">
         <div class="badge badge-sky">Our Work</div>
         <h2>Recent Projects We're <span class="text-gradient">Proud Of</span></h2>
-        <p>A glimpse of what we've shipped, from immersive 3D websites to global aviation portals. Every project below is live in production.</p>
+        <p>From immersive 3D websites to global aviation portals &mdash; every project below is live in production.</p>
       </div>
 
-      <div class="work-preview__grid">
-        <a href="https://viera-two.vercel.app/" target="_blank" rel="noopener noreferrer" class="work-preview-card">
-          <div class="work-preview-card__image-wrap">
-            <img src="/products/viera.webp" alt="Viera Natural Wooden Flooring: immersive 3D website with custom CRM" loading="lazy" />
-            <div class="work-preview-card__overlay">
-              <span class="work-preview-card__view">View Live ↗</span>
-            </div>
+      <!-- Card stage: same cards animate from stacked → grid -->
+      <div class="ws-stage" id="ws-stage">
+        <!-- Card 0: Viera (LEFT) -->
+        <div class="ws-card" id="ws-card-0" style="cursor: pointer;"
+             data-name="Viera Natural Wooden Flooring"
+             data-category="Digital Transformation & CRM"
+             data-desc="A digital transformation featuring an immersive 3D website and custom CRM. It elegantly showcases the brand's portfolio while the CRM manages staff operations, site progress, and task automation."
+             data-tech="3D Animations, React, Node.js"
+             data-client="Viera Natural Wooden Flooring"
+             data-status="Live"
+             data-link="https://viera-two.vercel.app/"
+             data-pdf=""
+             data-image="/products/viera.webp">
+          <div class="ws-card__img">
+            <img src="/products/viera.webp" alt="Viera Natural Wooden Flooring" loading="lazy" />
+            <div class="ws-card__chip">3D &amp; CRM</div>
+            <div class="ws-card__hover-label">Quick View 👁️</div>
           </div>
-          <div class="work-preview-card__body">
-            <span class="work-preview-card__tag">Digital Transformation &amp; CRM</span>
-            <h3 class="work-preview-card__title">Viera Natural Wooden Flooring</h3>
-            <p class="work-preview-card__desc">An immersive 3D brand experience paired with a custom CRM that runs daily site operations.</p>
+          <div class="ws-card__meta">
+            <strong class="ws-card__name">Viera Natural Flooring</strong>
+            <p class="ws-card__desc">Immersive 3D brand experience with custom CRM.</p>
           </div>
-        </a>
+        </div>
 
-        <a href="https://flyger.aero" target="_blank" rel="noopener noreferrer" class="work-preview-card">
-          <div class="work-preview-card__image-wrap">
-            <img src="/products/flyger.webp" alt="Flyger Aviation Services: global flight operations website" loading="lazy" />
-            <div class="work-preview-card__overlay">
-              <span class="work-preview-card__view">View Live ↗</span>
-            </div>
+        <!-- Card 1: enJoyful (CENTER) -->
+        <div class="ws-card" id="ws-card-1" style="cursor: pointer;"
+             data-name="enJoyful Life"
+             data-category="E-Commerce"
+             data-desc="A high-performance e-commerce platform for a natural skincare brand. It features seamless product discovery, secure payments, and a responsive UI optimized for scalability."
+             data-tech="Next.js, Tailwind, Appwrite, AWS"
+             data-client="enJoyful Life"
+             data-status="Development Ongoing"
+             data-link="https://enjoyful.vercel.app/"
+             data-pdf=""
+             data-image="/products/ecom.webp">
+          <div class="ws-card__img">
+            <img src="/products/ecom.webp" alt="enJoyful Life E-Commerce" loading="lazy" />
+            <div class="ws-card__chip">E-Commerce</div>
+            <div class="ws-card__hover-label">Quick View 👁️</div>
           </div>
-          <div class="work-preview-card__body">
-            <span class="work-preview-card__tag">Aviation Services</span>
-            <h3 class="work-preview-card__title">Flyger Aviation Services</h3>
-            <p class="work-preview-card__desc">A professional corporate site for a global aviation support provider serving operators worldwide.</p>
+          <div class="ws-card__meta">
+            <strong class="ws-card__name">enJoyful Life</strong>
+            <p class="ws-card__desc">Natural skincare e-commerce, built for scale.</p>
           </div>
-        </a>
+        </div>
+
+        <!-- Card 2: Flyger (RIGHT) -->
+        <div class="ws-card" id="ws-card-2" style="cursor: pointer;"
+             data-name="Flyger Aviation Services"
+             data-category="Aviation Services"
+             data-desc="A professional corporate website for a global aviation support provider specializing in end-to-end flight operations. The site showcases their flight planning, permit acquisition, dispatch coordination, and crew logistics services with a clean, premium UI tailored for international operators."
+             data-tech="Modern Web Stack"
+             data-client="Flyger Aviation Services"
+             data-status="Live"
+             data-link="https://flyger.aero"
+             data-pdf=""
+             data-image="/products/flyger.webp">
+          <div class="ws-card__img">
+            <img src="/products/flyger.webp" alt="Flyger Aviation Services" loading="lazy" />
+            <div class="ws-card__chip">Aviation</div>
+            <div class="ws-card__hover-label">Quick View 👁️</div>
+          </div>
+          <div class="ws-card__meta">
+            <strong class="ws-card__name">Flyger Aviation</strong>
+            <p class="ws-card__desc">Global aviation support portal, live in production.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="work-preview__cta">
+      <!-- CTA -->
+      <div class="ws-cta" id="ws-cta">
         <a href="/work/" class="btn btn-outline btn-lg">
           See All Projects
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </div>
     </div>
-  </section>
+  </div>
+
 
   <!-- ========== INDUSTRIES WE SERVE ========== -->
   <section class="section industries-section reveal">
@@ -602,6 +640,76 @@ const faqs = [
   </section>
 
   <Footer />
+
+  <!-- Dynamic Project Preview Modal -->
+  <div class="project-modal" id="project-modal">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-window">
+      <div class="modal-iframe-container">
+        <div class="browser-mockup">
+          <div class="browser-chrome">
+            <div class="chrome-dots">
+              <span class="chrome-dot red"></span>
+              <span class="chrome-dot yellow"></span>
+              <span class="chrome-dot green"></span>
+            </div>
+            <div class="chrome-url" id="modal-chrome-url">n3global.tech</div>
+          </div>
+          <div class="browser-content">
+            <div class="iframe-loading-indicator">
+              <div class="spinner"></div>
+              <span>Loading preview...</span>
+            </div>
+            <iframe id="modal-iframe" src="" frameborder="0"></iframe>
+            <div id="modal-image-fallback" class="image-fallback">
+              <img id="modal-fallback-img" src="" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-sidebar">
+        <button class="modal-close" id="modal-close" aria-label="Close modal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        
+        <div class="sidebar-header">
+          <h2 id="modal-title" class="sidebar-title">Project Title</h2>
+          <div class="sidebar-avatar-row">
+            <div class="sidebar-avatar" id="modal-avatar">N</div>
+            <div class="sidebar-author-info">
+              <span class="sidebar-author-label">by <span class="sidebar-client">Client Name</span></span>
+              <span class="sidebar-verified" title="Verified Project">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#3b82f6" stroke="#ffffff" stroke-width="2.5" style="margin-left: 2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0110 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0114 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.745 3.745 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-actions">
+          <a id="modal-btn-live" href="" target="_blank" rel="noopener noreferrer" class="sidebar-btn btn-primary-action">
+            Preview Site
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left: 4px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5L21 3m0 0h-5.25m5.25 0v5.25m-9 13.5H3.75A2.25 2.25 0 011.5 19.5V8.25a2.25 2.25 0 012.25-2.25h5.25" /></svg>
+          </a>
+          <a id="modal-btn-ui" href="" target="_blank" rel="noopener noreferrer" class="sidebar-btn btn-secondary-action">
+            View UI Design
+          </a>
+        </div>
+
+        <div class="sidebar-body">
+          <h3 class="section-title">About this website</h3>
+          <div id="modal-tags" class="sidebar-tags">
+            <!-- Tags go here dynamically -->
+          </div>
+          <p id="modal-desc" class="sidebar-description">Project description goes here...</p>
+          
+          <div class="sidebar-details-box">
+            <p><strong>Technologies:</strong> <span id="modal-tech">Tech list</span></p>
+            <p><strong>Status:</strong> <span id="modal-status">Status</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>
 
 <style>
@@ -1093,120 +1201,225 @@ const faqs = [
     .principles-grid { grid-template-columns: 1fr; }
   }
 
-  /* ===== WORK PREVIEW ===== */
-  .work-preview {
+  /* ===== WORK SHOWCASE — STICKY SCROLL ANIMATION ===== */
+
+  /* Scroll track: gives the sticky panel room to animate */
+  .ws-scroll-track {
+    position: relative;
+    height: 230vh;
     background: #ffffff;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
   }
 
-  .work-preview__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto 3rem;
-  }
-
-  .work-preview-card {
-    display: block;
-    background: #ffffff;
-    border: 1.5px solid var(--gray-100);
-    border-radius: var(--radius-xl);
+  /* Sticky panel fills viewport while track scrolls */
+  .ws-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
     overflow: hidden;
+    background: #ffffff;
+  }
+
+  /* Heading block */
+  .ws-heading {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 2rem;
+    position: relative;
+    z-index: 10;
+  }
+  .ws-heading h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--gray-900);
+    margin: 0.5rem 0;
+    line-height: 1.15;
+  }
+  .ws-heading p {
+    color: var(--gray-500);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+
+  /* Card stage — full available width, centered */
+  .ws-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 290px;
+    flex-shrink: 0;
+  }
+
+  /* Individual project cards — flex column: image top, meta bottom */
+  .ws-card {
+    position: absolute;
+    /* size — 340×300 desktop (image + meta), sized by JS */
+    width: 340px;
+    height: 300px;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     color: inherit;
-    transition: var(--transition);
+    background: #ffffff;
+    border: 1.5px solid rgba(0,0,0,0.07);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.05),
+      0 12px 32px rgba(0,0,0,0.10),
+      0 28px 60px rgba(0,0,0,0.08);
+    will-change: transform;
+    transform-origin: center bottom;
+    transition: box-shadow 0.35s ease;
+    /* JS sets initial stacked transforms */
+  }
+  .ws-card:hover {
+    box-shadow:
+      0 8px 16px rgba(0,0,0,0.07),
+      0 20px 48px rgba(0,0,0,0.14),
+      0 40px 80px rgba(0,0,0,0.10);
   }
 
-  .work-preview-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--sky-300);
-    box-shadow: 0 18px 40px rgba(14, 165, 233, 0.15);
-  }
-
-  .work-preview-card__image-wrap {
+  /* Image section — takes all available space above meta */
+  .ws-card__img {
     position: relative;
-    aspect-ratio: 16 / 10;
-    background: var(--gray-100);
+    flex: 1;
+    min-height: 0;
     overflow: hidden;
+    background: var(--gray-100);
   }
-
-  .work-preview-card__image-wrap img {
+  .ws-card__img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+    transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+  }
+  .ws-card:hover .ws-card__img img {
+    transform: scale(1.04);
   }
 
-  .work-preview-card:hover .work-preview-card__image-wrap img {
-    transform: scale(1.05);
-  }
-
-  .work-preview-card__overlay {
+  /* Subtle dark overlay on hover */
+  .ws-card__img::after {
+    content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(15,23,42,0) 50%, rgba(15,23,42,0.85) 100%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 1.25rem;
+    background: linear-gradient(180deg, rgba(10,14,30,0) 50%, rgba(10,14,30,0.55) 100%);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.35s ease;
   }
-
-  .work-preview-card:hover .work-preview-card__overlay {
+  .ws-card:hover .ws-card__img::after {
     opacity: 1;
   }
 
-  .work-preview-card__view {
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 0.92rem;
+  /* "View Live" pill — appears on hover inside image */
+  .ws-card__hover-label {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    z-index: 3;
     background: var(--accent);
-    padding: 0.55rem 1rem;
-    border-radius: var(--radius-full);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  .work-preview-card__body {
-    padding: 1.5rem 1.75rem 1.75rem;
-  }
-
-  .work-preview-card__tag {
-    display: inline-block;
-    font-size: 0.75rem;
+    color: #fff;
+    font-size: 0.78rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--sky-700);
-    margin-bottom: 0.6rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    pointer-events: none;
+  }
+  .ws-card:hover .ws-card__hover-label {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .work-preview-card__title {
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin: 0 0 0.5rem;
-    letter-spacing: -0.02em;
+  /* Category pill — top-left of image */
+  .ws-card__chip {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 4;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: var(--gray-900);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+    pointer-events: none;
   }
 
-  .work-preview-card__desc {
-    font-size: 0.95rem;
-    color: var(--gray-600);
-    line-height: 1.65;
+  /* Meta panel — white text section below image */
+  .ws-card__meta {
+    flex-shrink: 0;
+    padding: 0.85rem 1rem 0.9rem;
+    background: #ffffff;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .ws-card__name {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    line-height: 1.3;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ws-card__desc {
     margin: 0;
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    line-height: 1.45;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .work-preview__cta {
+  /* CTA */
+  .ws-cta {
+    margin-top: 2rem;
     display: flex;
     justify-content: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+    position: relative;
+    z-index: 5;
+  }
+  .ws-cta.ws-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
+
+  /* Mobile */
   @media (max-width: 760px) {
-    .work-preview__grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .work-preview { padding-top: 3rem; padding-bottom: 3rem; }
+    .ws-scroll-track { height: 260vh; }   /* more room for vertical card deal */
+    .ws-heading { margin-bottom: 1.25rem; }
+    .ws-stage { height: 800px; }          /* 3 × 250px + 16px gaps × 2 + buffer */
+    .ws-card { width: 280px; height: 250px; border-radius: 14px; }
+    .ws-labels { grid-template-columns: 1fr; gap: 0.6rem; margin-top: 1.25rem; }
+    .ws-card__meta { padding: 0.7rem 0.85rem 0.75rem; }
+    .ws-card__name { font-size: 0.85rem; }
+    .ws-card__desc { font-size: 0.72rem; }
   }
+
 
   /* ===== INDUSTRIES SERVED ===== */
   .industries-section {
@@ -1978,4 +2191,780 @@ const faqs = [
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
+
+  /* Project Modal Overlay */
+  .project-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+  }
+
+  .project-modal.modal-active {
+    display: flex;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-window {
+    position: relative;
+    width: 95vw;
+    height: 88vh;
+    max-width: 1450px;
+    max-height: 900px;
+    background: #f8fafc; /* premium light gray behind cards */
+    border-radius: 1.75rem;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    overflow: hidden;
+    z-index: 10;
+    border: 1px solid #e2e8f0;
+    animation: modalScaleUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes modalScaleUp {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .modal-iframe-container {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .browser-mockup {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.12), 0 1px 3px rgba(15, 23, 42, 0.04);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .browser-chrome {
+    height: 44px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .chrome-dots {
+    display: flex;
+    gap: 6px;
+    position: absolute;
+    left: 1.25rem;
+  }
+
+  .chrome-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+
+  .chrome-dot.red { background: #ef4444; }
+  .chrome-dot.yellow { background: #f59e0b; }
+  .chrome-dot.green { background: #10b981; }
+
+  .chrome-url {
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    color: #64748b;
+    padding: 3px 2.5rem;
+    min-width: 220px;
+    max-width: 420px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+  }
+
+  .browser-content {
+    flex: 1;
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .browser-content iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #ffffff;
+  }
+
+  .iframe-loading-indicator {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: #64748b;
+    font-size: 0.95rem;
+    font-weight: 600;
+    pointer-events: none; /* prevent click interception */
+    z-index: 15;
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 3.5px solid #e2e8f0;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .image-fallback {
+    position: absolute;
+    inset: 0;
+    background: #f8fafc;
+    display: block;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0;
+  }
+
+  .image-fallback img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .modal-sidebar {
+    width: 420px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 1.25rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.12), 0 1px 3px rgba(15, 23, 42, 0.04);
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 20;
+  }
+
+  .modal-close:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+    transform: scale(1.05);
+  }
+
+  .sidebar-header {
+    padding: 2.5rem 2rem 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .sidebar-title {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+    padding-right: 2.5rem;
+  }
+
+  .sidebar-avatar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sidebar-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #3b82f6;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  .sidebar-author-info {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .sidebar-author-label {
+    font-size: 0.85rem;
+    color: #475569;
+    font-weight: 600;
+  }
+
+  .sidebar-verified {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .sidebar-actions {
+    padding: 1.25rem 2rem;
+    display: flex;
+    gap: 0.75rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .sidebar-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .btn-primary-action {
+    background: #3b82f6;
+    color: #ffffff;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary-action:hover {
+    background: #2563eb;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+  }
+
+  .btn-secondary-action {
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+  }
+
+  .btn-secondary-action:hover {
+    background: #f8fafc;
+    color: #0f172a;
+    border-color: #94a3b8;
+  }
+
+  .sidebar-body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .sidebar-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  .sidebar-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .sidebar-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+  .sidebar-body::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  .sidebar-body .section-title {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  .sidebar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .sidebar-tag-chip {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 99px;
+  }
+
+  .sidebar-description {
+    font-size: 0.92rem;
+    color: #475569;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .sidebar-details-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .sidebar-details-box p {
+    margin: 0;
+  }
+
+  .sidebar-details-box strong {
+    color: #334155;
+  }
+
+  .sidebar-footer {
+    padding: 1.25rem 2rem;
+    border-top: 1px solid #f1f5f9;
+    background: #ffffff;
+  }
+
+  .chat-input-wrapper {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 99px;
+    padding: 0.25rem 0.25rem 0.25rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    transition: all 0.2s ease;
+  }
+
+  .chat-input-wrapper:focus-within {
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .chat-input-wrapper input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    font-size: 0.88rem;
+    color: #0f172a;
+    background: transparent;
+  }
+
+  .chat-input-wrapper input::placeholder {
+    color: #94a3b8;
+  }
+
+  .chat-input-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .chat-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 0;
+    background: transparent;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chat-btn:hover {
+    color: #475569;
+    background: #f1f5f9;
+  }
+
+  .chat-btn.btn-send {
+    background: #3b82f6;
+    color: #ffffff;
+  }
+
+  .chat-btn.btn-send:hover {
+    background: #2563eb;
+    color: #ffffff;
+  }
+
+  /* Responsive Modal Layout */
+  @media (max-width: 1024px) {
+    .project-modal {
+      padding: 0.75rem;
+    }
+    .modal-window {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      flex-direction: column;
+      border-radius: 1.25rem;
+      gap: 0.75rem;
+      padding: 0.75rem;
+    }
+    .modal-iframe-container {
+      height: 52%;
+      min-height: 250px;
+      padding: 0;
+    }
+    .browser-mockup {
+      border-radius: 0.75rem;
+    }
+    .browser-chrome {
+      height: 38px;
+    }
+    .modal-sidebar {
+      width: 100%;
+      height: 48%;
+      border-left: 0;
+      border-radius: 0.75rem;
+    }
+    .sidebar-header {
+      padding: 1.5rem 1.5rem 1rem;
+    }
+    .sidebar-actions {
+      padding: 1rem 1.5rem;
+    }
+    .sidebar-body {
+      padding: 1rem 1.5rem;
+    }
+    .sidebar-footer {
+      padding: 1rem 1.5rem;
+    }
+  }
 </style>
+
+<script is:inline>
+(function () {
+  /* ============================================================
+     Work Showcase — Sticky scroll-linked card animation
+     Cards animate from stacked/rotated → side-by-side
+     as the user scrolls through the 230vh .ws-scroll-track.
+  ============================================================ */
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+  }
+  function clamp(v,lo,hi) { return Math.max(lo,Math.min(hi,v)); }
+  const isMobile = () => window.innerWidth <= 760;
+
+  // Returns card dimensions + stacked/final position configs
+  function getConfig() {
+    const m   = isMobile();
+    const cW  = m ? 260 : 340;   // mobile: full-ish width; desktop: 3-col
+    const cH  = m ? 250 : 300;   // taller cards to fit image + meta text panel
+    const gap = m ? 16  : 28;
+
+    if (m) {
+      // Mobile: cards deal out VERTICALLY (top → center → bottom)
+      const vspan = cH + gap;
+      return {
+        cW, cH, n: 3,
+        stacked: [
+          { x: -cW*0.06, y:  cH*0.04, r: -5,  z: 4, s: 1.00 },
+          { x:  cW*0.08, y: -cH*0.03, r:  7,  z: 3, s: 0.94 },
+          { x:  cW*0.20, y: -cH*0.07, r:  14, z: 2, s: 0.86 },
+        ],
+        final: [
+          { x: 0, y: -vspan, r: 0, z: 2, s: 1.00 },  // TOP
+          { x: 0, y:      0, r: 0, z: 1, s: 1.00 },  // MIDDLE
+          { x: 0, y: +vspan, r: 0, z: 0, s: 1.00 },  // BOTTOM
+        ],
+      };
+    }
+
+    // Desktop: cards deal out HORIZONTALLY (left → center → right)
+    const span = cW + gap;
+    return {
+      cW, cH, n: 3,
+      stacked: [
+        { x: -cW*0.08, y:  cH*0.04, r: -5,  z: 4, s: 1.00 },
+        { x:  cW*0.10, y: -cH*0.03, r:  7,  z: 3, s: 0.94 },
+        { x:  cW*0.26, y: -cH*0.07, r:  15, z: 2, s: 0.86 },
+      ],
+      final: [
+        { x: -span, y: 0, r: 0, z: 2, s: 1.00 },   // LEFT
+        { x:     0, y: 0, r: 0, z: 1, s: 1.00 },   // CENTER
+        { x: +span, y: 0, r: 0, z: 0, s: 1.00 },   // RIGHT
+      ],
+    };
+  }
+
+  function applyCards(progress) {
+    const cfg = getConfig();
+    const p   = easeInOutCubic(clamp(progress, 0, 1));
+    for (let i = 0; i < cfg.n; i++) {
+      const el = document.getElementById('ws-card-'+i);
+      if (!el) continue;
+      const s = cfg.stacked[i], f = cfg.final[i];
+      const x  = lerp(s.x, f.x, p);
+      const y  = lerp(s.y, f.y, p);
+      const r  = lerp(s.r, f.r, p);
+      const sc = lerp(s.s, f.s, p);
+      el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${r}deg) scale(${sc})`;
+      el.style.zIndex = String(Math.round(lerp(s.z, f.z, p)));
+    }
+  }
+
+  function setSizes() {
+    const cfg = getConfig();
+    for (let i = 0; i < cfg.n; i++) {
+      const el = document.getElementById('ws-card-'+i);
+      if (el) { el.style.width = cfg.cW+'px'; el.style.height = cfg.cH+'px'; }
+    }
+    const stage = document.getElementById('ws-stage');
+    if (stage) {
+      // Mobile: stage must be tall enough for 3 vertical cards
+      // Desktop: single card height + padding
+      const m = isMobile();
+      const gap = m ? 16 : 28;
+      const stageH = m
+        ? cfg.cH * 3 + gap * 2 + 48   // 3 cards stacked + gaps + buffer
+        : cfg.cH + 48;
+      stage.style.height = stageH + 'px';
+    }
+  }
+
+  let track, cta, lastP = -1;
+
+  function onScroll() {
+    track = track || document.getElementById('ws-scroll-track');
+    cta   = cta   || document.getElementById('ws-cta');
+    if (!track) return;
+
+    const scrollY    = window.scrollY || window.pageYOffset;
+    const winH       = window.innerHeight;
+    const trackTop   = track.getBoundingClientRect().top + scrollY;
+    const scrollable = track.offsetHeight - winH;
+    const raw        = scrollable > 0 ? clamp((scrollY - trackTop) / scrollable, 0, 1) : 1;
+    if (Math.abs(raw - lastP) < 0.0005) return;
+    lastP = raw;
+
+    applyCards(raw);
+
+    if (raw > 0.88) {
+      cta && cta.classList.add('ws-visible');
+    } else {
+      cta && cta.classList.remove('ws-visible');
+    }
+  }
+
+  function init() {
+    const cfg = getConfig();
+    // Position all 3 cards from center of stage
+    for (let i = 0; i < cfg.n; i++) {
+      const el = document.getElementById('ws-card-'+i);
+      if (el) { el.style.top = '50%'; el.style.left = '50%'; el.style.position = 'absolute'; }
+    }
+    setSizes();
+    applyCards(0); // set initial stacked state
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { setSizes(); onScroll(); });
+    onScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.ws-card');
+    const modal = document.getElementById('project-modal');
+    const backdrop = document.getElementById('modal-backdrop');
+    const closeBtn = document.getElementById('modal-close');
+    const iframe = document.getElementById('modal-iframe');
+    const chromeUrl = document.getElementById('modal-chrome-url');
+    const fallbackContainer = document.getElementById('modal-image-fallback');
+    const fallbackImg = document.getElementById('modal-fallback-img');
+    
+    const mTitle = document.getElementById('modal-title');
+    const mAvatar = document.getElementById('modal-avatar');
+    const mClient = document.querySelector('.sidebar-client');
+    const mDesc = document.getElementById('modal-desc');
+    const mTech = document.getElementById('modal-tech');
+    const mStatus = document.getElementById('modal-status');
+    const mTags = document.getElementById('modal-tags');
+    const btnLive = document.getElementById('modal-btn-live');
+    const btnUI = document.getElementById('modal-btn-ui');
+    const loadingIndicator = document.querySelector('.iframe-loading-indicator');
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const name = card.getAttribute('data-name');
+        const category = card.getAttribute('data-category');
+        const desc = card.getAttribute('data-desc');
+        const tech = card.getAttribute('data-tech');
+        const client = card.getAttribute('data-client');
+        const status = card.getAttribute('data-status');
+        const link = card.getAttribute('data-link');
+        const pdf = card.getAttribute('data-pdf');
+        const image = card.getAttribute('data-image');
+        
+        if (!name) return;
+        
+        // Populate fields
+        mTitle.textContent = name;
+        mClient.textContent = client || '';
+        mDesc.textContent = desc;
+        mTech.textContent = tech || 'Modern Web Stack';
+        mStatus.textContent = status || 'Live';
+        
+        // Set avatar letter
+        if (client) {
+          mAvatar.textContent = client.trim().charAt(0).toUpperCase();
+        } else {
+          mAvatar.textContent = 'N';
+        }
+        
+        // Tags
+        mTags.innerHTML = '';
+        if (category) {
+          category.split('&').forEach(t => {
+            const span = document.createElement('span');
+            span.className = 'sidebar-tag-chip';
+            span.textContent = t.trim();
+            mTags.appendChild(span);
+          });
+        }
+        
+        // Set buttons
+        if (link) {
+          btnLive.href = link;
+          btnLive.style.display = 'inline-flex';
+        } else {
+          btnLive.style.display = 'none';
+        }
+        
+        if (pdf) {
+          btnUI.href = pdf;
+          btnUI.style.display = 'inline-flex';
+        } else {
+          btnUI.style.display = 'none';
+        }
+        
+        const isMobile = window.innerWidth <= 1024;
+        const interactiveUrl = link || pdf;
+        const useImageFallback = !interactiveUrl || isMobile;
+        
+        if (!useImageFallback) {
+          iframe.style.display = 'block';
+          fallbackContainer.style.display = 'none';
+          loadingIndicator.style.display = 'flex';
+          iframe.src = interactiveUrl;
+          
+          try {
+            chromeUrl.textContent = new URL(interactiveUrl).hostname;
+          } catch (_) {
+            if (interactiveUrl.endsWith('.pdf')) {
+              chromeUrl.textContent = interactiveUrl.substring(interactiveUrl.lastIndexOf('/') + 1);
+            } else {
+              chromeUrl.textContent = interactiveUrl;
+            }
+          }
+        } else {
+          iframe.style.display = 'none';
+          loadingIndicator.style.display = 'none';
+          fallbackContainer.style.display = 'block';
+          fallbackImg.src = image;
+          
+          if (pdf) {
+            chromeUrl.textContent = pdf.substring(pdf.lastIndexOf('/') + 1);
+          } else {
+            chromeUrl.textContent = name;
+          }
+        }
+        
+        // Open modal
+        modal.classList.add('modal-active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    iframe.addEventListener('load', () => {
+      loadingIndicator.style.display = 'none';
+    });
+
+    function closeModal() {
+      modal.classList.remove('modal-active');
+      document.body.style.overflow = '';
+      iframe.src = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+    
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  });
+</script>
+

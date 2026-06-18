@@ -649,6 +649,29 @@ import Footer from '../components/Footer.astro';
 
     if (!form || !successMsg || !errorMsg || !submitBtn || !submitLabel) return;
 
+    // Prefill form from URL query parameters (e.g., from modal feedback)
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var projectParam = params.get('project');
+      var msgParam = params.get('msg') || params.get('message');
+      
+      if (projectParam || msgParam) {
+        var messageInput = document.getElementById('message');
+        if (messageInput) {
+          var prefillText = "";
+          if (projectParam) {
+            prefillText += "Regarding the \"" + projectParam + "\" project:\n";
+          }
+          if (msgParam) {
+            prefillText += msgParam;
+          }
+          messageInput.value = prefillText;
+        }
+      }
+    } catch (e) {
+      console.error('Error prefilling form:', e);
+    }
+
     function showError(text) {
       errorText.textContent = text || 'Something went wrong. Please try again or email us at contact@n3global.tech.';
       errorMsg.hidden = false;
