@@ -5,14 +5,24 @@ import Footer from '../components/Footer.astro';
 
 const projects = [
   {
+    category: "Digital Transformation & CRM",
+    name: "Viera Natural Wooden Flooring",
+    desc: "A digital transformation featuring an immersive 3D website and custom CRM. It elegantly showcases the brand's portfolio while the CRM manages staff operations, site progress, and task automation.",
+    technologies: "3D Animations, React, Node.js",
+    client: "Viera Natural Wooden Flooring",
+    link: "https://viera-two.vercel.app/",
+    image: "/products/viera.webp",
+  },
+  {
     category: "E-Commerce",
-    name: "enJoyful Life",
+    name: "Enjoyful Life",
     desc: "A high-performance e-commerce platform for a natural skincare brand. It features seamless product discovery, secure payments, and a responsive UI optimized for scalability.",
     technologies: "Next.js, Tailwind, Appwrite, AWS",
-    client: "enJoyful Life",
+    client: "Enjoyful Life",
     status: "Development Ongoing",
-    link: "https://enjoyful.vercel.app/",
+    link: "https://www.enjoyfullife.com/",
     image: "/products/ecom.webp",
+    noIframe: true,
   },
   {
     category: "EdTech & Talent Tech",
@@ -24,15 +34,6 @@ const projects = [
     image: "/products/shareinfo.webp",
   },
   {
-    category: "Digital Transformation & CRM",
-    name: "Viera Natural Wooden Flooring",
-    desc: "A digital transformation featuring an immersive 3D website and custom CRM. It elegantly showcases the brand's portfolio while the CRM manages staff operations, site progress, and task automation.",
-    technologies: "3D Animations, React, Node.js",
-    client: "Viera Natural Wooden Flooring",
-    link: "https://viera-two.vercel.app/",
-    image: "/products/viera.webp",
-  },
-  {
     category: "Aviation Services",
     name: "Flyger Aviation Services",
     desc: "A professional corporate website for a global aviation support provider specializing in end-to-end flight operations. The site showcases their flight planning, permit acquisition, dispatch coordination, and crew logistics services with a clean, premium UI tailored for international operators.",
@@ -40,28 +41,6 @@ const projects = [
     client: "Flyger Aviation Services",
     link: "https://flyger.aero",
     image: "/products/flyger.webp",
-  },
-
-  {
-    category: "Corporate Website",
-    name: "Happiness Address",
-    desc: "A dynamic corporate website for a creative marketing and branding agency. It highlights print media services, corporate branding, and promotional solutions through a clean, engaging UI designed to attract and convert clients.",
-    technologies: "Modern Web Stack",
-    client: "Happiness Address",
-    status: "Design / Concept",
-    pdfLink: "/ui&pdf/hapadrs.pdf",
-    image: "/products/happiness-address.webp",
-  },
-
-  {
-    category: "Social Impact Platform",
-    name: "Impulse Loop",
-    desc: "A modern, flexible volunteering ecosystem that connects charities, businesses, and volunteers. It revolutionizes traditional volunteering by rewarding contributions with Impact Coins, creating a self-sustaining platform for giving back.",
-    technologies: "Modern Web Stack",
-    client: "Impulse Loop",
-    status: "Design / Concept",
-    pdfLink: "/ui&pdf/impulseloop.pdf",
-    image: "/products/impulseloop.webp",
   },
   {
     category: "Custom Printing Services",
@@ -72,6 +51,26 @@ const projects = [
     status: "Design / Concept",
     pdfLink: "/ui&pdf/Rida.pdf",
     image: "/products/Rida.webp",
+  },
+  {
+    category: "Corporate Website",
+    name: "Happiness Address",
+    desc: "A dynamic corporate website for a creative marketing and branding agency. It highlights print media services, corporate branding, and promotional solutions through a clean, engaging UI designed to attract and convert clients.",
+    technologies: "Modern Web Stack",
+    client: "Happiness Address",
+    status: "Design / Concept",
+    pdfLink: "/ui&pdf/hapadrs.pdf",
+    image: "/products/happiness-address.webp",
+  },
+  {
+    category: "Social Impact Platform",
+    name: "Impulse Loop",
+    desc: "A modern, flexible volunteering ecosystem that connects charities, businesses, and volunteers. It revolutionizes traditional volunteering by rewarding contributions with Impact Coins, creating a self-sustaining platform for giving back.",
+    technologies: "Modern Web Stack",
+    client: "Impulse Loop",
+    status: "Design / Concept",
+    pdfLink: "/ui&pdf/impulseloop.pdf",
+    image: "/products/impulseloop.webp",
   },
   {
     category: "Training & Certification",
@@ -127,6 +126,7 @@ const projects = [
                    data-status={project.status || ""}
                    data-link={project.link || ""}
                    data-pdf={project.pdfLink || ""}
+                   data-noiframe={project.noIframe ? "true" : ""}
                    data-image={project.image}>
                 <div class="card-visual">
                   <div class="card-img-wrapper">
@@ -989,6 +989,16 @@ const projects = [
         }
         
         e.preventDefault();
+
+        const link = card.getAttribute('data-link');
+        const pdf = card.getAttribute('data-pdf');
+        const isMobile = window.innerWidth <= 1024;
+
+        // On mobile, skip modal and open the live site or PDF directly
+        if (isMobile && (link || pdf)) {
+          window.open(link || pdf, '_blank');
+          return;
+        }
         
         const name = card.getAttribute('data-name');
         const category = card.getAttribute('data-category');
@@ -996,8 +1006,6 @@ const projects = [
         const tech = card.getAttribute('data-tech');
         const client = card.getAttribute('data-client');
         const status = card.getAttribute('data-status');
-        const link = card.getAttribute('data-link');
-        const pdf = card.getAttribute('data-pdf');
         const image = card.getAttribute('data-image');
         
         // Populate fields
@@ -1043,9 +1051,10 @@ const projects = [
         // Device check and fallback determination
         // To allow seamless touch scrolling and avoid heavy iframe loads on mobile/tablet,
         // we use the static mockup image for mobile devices, or when no live link is configured.
-        const isMobile = window.innerWidth <= 1024;
+        const isMobileDevice = window.innerWidth <= 1024;
+        const noIframe = card.getAttribute('data-noiframe') === 'true';
         const interactiveUrl = link || pdf;
-        const useImageFallback = !interactiveUrl || isMobile;
+        const useImageFallback = !interactiveUrl || isMobileDevice || noIframe;
         
         if (!useImageFallback) {
           iframe.style.display = 'block';

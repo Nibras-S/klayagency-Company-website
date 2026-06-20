@@ -283,7 +283,7 @@ const faqs = [
       <div class="section-header">
         <div class="badge badge-sky">Our Brand Philosophy</div>
         <h2>What <span class="text-gradient">N3</span> Stands For</h2>
-        <p>At N3 Global Tech (also recognized as N3GlobalTech or n3global.tech), our name represents more than just a brand. It reflects how we think, build, and solve problems. Three core principles guide everything we do.</p>
+        <p>N3 is built on three simple ideas that shape how we work and what we create.</p>
       </div>
 
       <div class="principles-grid">
@@ -293,7 +293,7 @@ const faqs = [
             <h3 class="principle-card__title">Next</h3>
           </div>
           <p class="principle-card__desc">
-            We focus on building next-generation digital solutions that help businesses stay ahead in a rapidly evolving world. Our approach is forward-thinking, ensuring every system we create is scalable, adaptable, and ready for the future.
+            Always looking ahead and building solutions that are ready for tomorrow.
           </p>
         </article>
 
@@ -303,7 +303,7 @@ const faqs = [
             <h3 class="principle-card__title">Network</h3>
           </div>
           <p class="principle-card__desc">
-            We believe technology should connect, not complicate. Our solutions bring together people, processes, and systems into a unified digital ecosystem that improves collaboration and efficiency.
+            Bringing people, businesses, and technology together in meaningful ways.
           </p>
         </article>
 
@@ -313,7 +313,7 @@ const faqs = [
             <h3 class="principle-card__title">Navigate</h3>
           </div>
           <p class="principle-card__desc">
-            We simplify complexity. From user experience to system workflows, we build platforms that are intuitive, easy to use, and designed to help businesses operate with clarity and confidence.
+            Making complex things simple, clear, and easy to use.
           </p>
         </article>
       </div>
@@ -351,8 +351,6 @@ const faqs = [
              data-image="/products/viera.webp">
           <div class="ws-card__img">
             <img src="/products/viera.webp" alt="Viera Natural Wooden Flooring" loading="lazy" />
-            <div class="ws-card__chip">3D &amp; CRM</div>
-            <div class="ws-card__hover-label">Quick View 👁️</div>
           </div>
           <div class="ws-card__meta">
             <strong class="ws-card__name">Viera Natural Flooring</strong>
@@ -362,22 +360,20 @@ const faqs = [
 
         <!-- Card 1: enJoyful (CENTER) -->
         <div class="ws-card" id="ws-card-1" style="cursor: pointer;"
-             data-name="enJoyful Life"
+             data-name="Enjoyful Life"
              data-category="E-Commerce"
              data-desc="A high-performance e-commerce platform for a natural skincare brand. It features seamless product discovery, secure payments, and a responsive UI optimized for scalability."
              data-tech="Next.js, Tailwind, Appwrite, AWS"
-             data-client="enJoyful Life"
+             data-client="Enjoyful Life"
              data-status="Development Ongoing"
-             data-link="https://enjoyful.vercel.app/"
+             data-link="https://www.enjoyfullife.com/"
              data-pdf=""
              data-image="/products/ecom.webp">
           <div class="ws-card__img">
-            <img src="/products/ecom.webp" alt="enJoyful Life E-Commerce" loading="lazy" />
-            <div class="ws-card__chip">E-Commerce</div>
-            <div class="ws-card__hover-label">Quick View 👁️</div>
+            <img src="/products/ecom.webp" alt="Enjoyful Life E-Commerce" loading="lazy" />
           </div>
           <div class="ws-card__meta">
-            <strong class="ws-card__name">enJoyful Life</strong>
+            <strong class="ws-card__name">Enjoyful Life</strong>
             <p class="ws-card__desc">Natural skincare e-commerce, built for scale.</p>
           </div>
         </div>
@@ -395,8 +391,6 @@ const faqs = [
              data-image="/products/flyger.webp">
           <div class="ws-card__img">
             <img src="/products/flyger.webp" alt="Flyger Aviation Services" loading="lazy" />
-            <div class="ws-card__chip">Aviation</div>
-            <div class="ws-card__hover-label">Quick View 👁️</div>
           </div>
           <div class="ws-card__meta">
             <strong class="ws-card__name">Flyger Aviation</strong>
@@ -1203,9 +1197,9 @@ const faqs = [
   /* Individual project cards — flex column: image top, meta bottom */
   .ws-card {
     position: absolute;
-    /* size — 340×300 desktop (image + meta), sized by JS */
-    width: 340px;
-    height: 300px;
+    /* size — 390×345 desktop (image + meta), sized by JS */
+    width: 390px;
+    height: 345px;
     border-radius: 18px;
     overflow: hidden;
     display: flex;
@@ -1249,59 +1243,7 @@ const faqs = [
     transform: scale(1.04);
   }
 
-  /* Subtle dark overlay on hover */
-  .ws-card__img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,14,30,0) 50%, rgba(10,14,30,0.55) 100%);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-  }
-  .ws-card:hover .ws-card__img::after {
-    opacity: 1;
-  }
-
-  /* "View Live" pill — appears on hover inside image */
-  .ws-card__hover-label {
-    position: absolute;
-    bottom: 0.75rem;
-    right: 0.75rem;
-    z-index: 3;
-    background: var(--accent);
-    color: #fff;
-    font-size: 0.78rem;
-    font-weight: 700;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
-    opacity: 0;
-    transform: translateY(5px);
-    transition: opacity 0.28s ease, transform 0.28s ease;
-    pointer-events: none;
-  }
-  .ws-card:hover .ws-card__hover-label {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Category pill — top-left of image */
-  .ws-card__chip {
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    z-index: 4;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: var(--gray-900);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    padding: 0.3rem 0.75rem;
-    border-radius: 999px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
-    pointer-events: none;
-  }
+  /* Subtle dark overlay on hover — removed */
 
   /* Meta panel — white text section below image */
   .ws-card__meta {
@@ -1352,7 +1294,8 @@ const faqs = [
   /* Mobile */
   @media (max-width: 760px) {
     .ws-scroll-track { height: 260vh; }   /* more room for vertical card deal */
-    .ws-heading { margin-bottom: 1.25rem; }
+    .ws-sticky { justify-content: flex-start; padding-top: 2rem; }
+    .ws-heading { margin-bottom: 1.25rem; flex-shrink: 0; }
     .ws-stage { height: 800px; }          /* 3 × 250px + 16px gaps × 2 + buffer */
     .ws-card { width: 280px; height: 250px; border-radius: 14px; }
     .ws-labels { grid-template-columns: 1fr; gap: 0.6rem; margin-top: 1.25rem; }
@@ -2597,8 +2540,8 @@ const faqs = [
   // Returns card dimensions + stacked/final position configs
   function getConfig() {
     const m   = isMobile();
-    const cW  = m ? 260 : 340;   // mobile: full-ish width; desktop: 3-col
-    const cH  = m ? 250 : 300;   // taller cards to fit image + meta text panel
+    const cW  = m ? 260 : 390;   // mobile: full-ish width; desktop: 3-col
+    const cH  = m ? 250 : 345;   // taller cards to fit image + meta text panel
     const gap = m ? 16  : 28;
 
     if (m) {
@@ -2742,14 +2685,22 @@ const faqs = [
       card.addEventListener('click', (e) => {
         e.preventDefault();
         
+        const link = card.getAttribute('data-link');
+        const pdf = card.getAttribute('data-pdf');
+        const isMobile = window.innerWidth <= 1024;
+
+        // On mobile, skip modal and open the live site or PDF directly
+        if (isMobile && (link || pdf)) {
+          window.open(link || pdf, '_blank');
+          return;
+        }
+        
         const name = card.getAttribute('data-name');
         const category = card.getAttribute('data-category');
         const desc = card.getAttribute('data-desc');
         const tech = card.getAttribute('data-tech');
         const client = card.getAttribute('data-client');
         const status = card.getAttribute('data-status');
-        const link = card.getAttribute('data-link');
-        const pdf = card.getAttribute('data-pdf');
         const image = card.getAttribute('data-image');
         
         if (!name) return;
@@ -2794,9 +2745,9 @@ const faqs = [
           btnUI.style.display = 'none';
         }
         
-        const isMobile = window.innerWidth <= 1024;
+        // Always use image fallback on homepage — external client sites block iframe embedding
         const interactiveUrl = link || pdf;
-        const useImageFallback = !interactiveUrl || isMobile;
+        const useImageFallback = true;
         
         if (!useImageFallback) {
           iframe.style.display = 'block';
