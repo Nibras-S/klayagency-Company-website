@@ -329,82 +329,84 @@ const faqs = [
   <!-- ========== WORK SHOWCASE — STICKY SCROLL ANIMATION ========== -->
   <div class="ws-scroll-track" id="ws-scroll-track">
     <div class="ws-sticky" id="ws-sticky">
-      <!-- Heading -->
-      <div class="ws-heading" id="ws-heading">
-        <div class="badge badge-sky">Our Work</div>
-        <h2>Recent Projects We're <span class="text-gradient">Proud Of</span></h2>
-        <p>From immersive 3D websites to global aviation portals &mdash; every project below is live in production.</p>
-      </div>
+      <div class="ws-sticky-inner" id="ws-sticky-inner">
+        <!-- Heading -->
+        <div class="ws-heading" id="ws-heading">
+          <div class="badge badge-sky">Our Work</div>
+          <h2>Recent Projects We're <span class="text-gradient">Proud Of</span></h2>
+          <p>From immersive 3D websites to global aviation portals &mdash; every project below is live in production.</p>
+        </div>
 
-      <!-- Card stage: same cards animate from stacked → grid -->
-      <div class="ws-stage" id="ws-stage">
-        <!-- Card 0: Viera (LEFT) -->
-        <div class="ws-card" id="ws-card-0" style="cursor: pointer;"
-             data-name="Viera Natural Wooden Flooring"
-             data-category="Digital Transformation & CRM"
-             data-desc="A digital transformation featuring an immersive 3D website and custom CRM. It elegantly showcases the brand's portfolio while the CRM manages staff operations, site progress, and task automation."
-             data-tech="3D Animations, React, Node.js"
-             data-client="Viera Natural Wooden Flooring"
-             data-status="Live"
-             data-link="https://viera-two.vercel.app/"
-             data-pdf=""
-             data-image="/products/viera.webp">
-          <div class="ws-card__img">
-            <img src="/products/viera.webp" alt="Viera Natural Wooden Flooring" loading="lazy" />
+        <!-- Card stage: same cards animate from stacked → grid -->
+        <div class="ws-stage" id="ws-stage">
+          <!-- Card 0: Viera (LEFT) -->
+          <div class="ws-card" id="ws-card-0" style="cursor: pointer;"
+               data-name="Viera Natural Wooden Flooring"
+               data-category="Digital Transformation & CRM"
+               data-desc="A digital transformation featuring an immersive 3D website and custom CRM. It elegantly showcases the brand's portfolio while the CRM manages staff operations, site progress, and task automation."
+               data-tech="3D Animations, React, Node.js"
+               data-client="Viera Natural Wooden Flooring"
+               data-status="Live"
+               data-link="https://viera-two.vercel.app/"
+               data-pdf=""
+               data-image="/products/viera.webp">
+            <div class="ws-card__img">
+              <img src="/products/viera.webp" alt="Viera Natural Wooden Flooring" loading="lazy" />
+            </div>
+            <div class="ws-card__meta">
+              <strong class="ws-card__name">Viera Natural Flooring</strong>
+              <p class="ws-card__desc">Immersive 3D brand experience with custom CRM.</p>
+            </div>
           </div>
-          <div class="ws-card__meta">
-            <strong class="ws-card__name">Viera Natural Flooring</strong>
-            <p class="ws-card__desc">Immersive 3D brand experience with custom CRM.</p>
+
+          <!-- Card 1: enJoyful (CENTER) -->
+          <div class="ws-card" id="ws-card-1" style="cursor: pointer;"
+               data-name="Enjoyful Life"
+               data-category="E-Commerce"
+               data-desc="A high-performance e-commerce platform for a natural skincare brand. It features seamless product discovery, secure payments, and a responsive UI optimized for scalability."
+               data-tech="Next.js, Tailwind, Appwrite, AWS"
+               data-client="Enjoyful Life"
+               data-status="Development Ongoing"
+               data-link="https://www.enjoyfullife.com/"
+               data-pdf=""
+               data-image="/products/ecom.webp">
+            <div class="ws-card__img">
+              <img src="/products/ecom.webp" alt="Enjoyful Life E-Commerce" loading="lazy" />
+            </div>
+            <div class="ws-card__meta">
+              <strong class="ws-card__name">Enjoyful Life</strong>
+              <p class="ws-card__desc">Natural skincare e-commerce, built for scale.</p>
+            </div>
+          </div>
+
+          <!-- Card 2: Flyger (RIGHT) -->
+          <div class="ws-card" id="ws-card-2" style="cursor: pointer;"
+               data-name="Flyger Aviation Services"
+               data-category="Aviation Services"
+               data-desc="A professional corporate website for a global aviation support provider specializing in end-to-end flight operations. The site showcases their flight planning, permit acquisition, dispatch coordination, and crew logistics services with a clean, premium UI tailored for international operators."
+               data-tech="Modern Web Stack"
+               data-client="Flyger Aviation Services"
+               data-status="Live"
+               data-link="https://flyger.aero"
+               data-pdf=""
+               data-image="/products/flyger.webp">
+            <div class="ws-card__img">
+              <img src="/products/flyger.webp" alt="Flyger Aviation Services" loading="lazy" />
+            </div>
+            <div class="ws-card__meta">
+              <strong class="ws-card__name">Flyger Aviation</strong>
+              <p class="ws-card__desc">Global aviation support portal, live in production.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Card 1: enJoyful (CENTER) -->
-        <div class="ws-card" id="ws-card-1" style="cursor: pointer;"
-             data-name="Enjoyful Life"
-             data-category="E-Commerce"
-             data-desc="A high-performance e-commerce platform for a natural skincare brand. It features seamless product discovery, secure payments, and a responsive UI optimized for scalability."
-             data-tech="Next.js, Tailwind, Appwrite, AWS"
-             data-client="Enjoyful Life"
-             data-status="Development Ongoing"
-             data-link="https://www.enjoyfullife.com/"
-             data-pdf=""
-             data-image="/products/ecom.webp">
-          <div class="ws-card__img">
-            <img src="/products/ecom.webp" alt="Enjoyful Life E-Commerce" loading="lazy" />
-          </div>
-          <div class="ws-card__meta">
-            <strong class="ws-card__name">Enjoyful Life</strong>
-            <p class="ws-card__desc">Natural skincare e-commerce, built for scale.</p>
-          </div>
+        <!-- CTA -->
+        <div class="ws-cta" id="ws-cta">
+          <a href="/work/" class="btn btn-outline btn-lg">
+            See All Projects
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
         </div>
-
-        <!-- Card 2: Flyger (RIGHT) -->
-        <div class="ws-card" id="ws-card-2" style="cursor: pointer;"
-             data-name="Flyger Aviation Services"
-             data-category="Aviation Services"
-             data-desc="A professional corporate website for a global aviation support provider specializing in end-to-end flight operations. The site showcases their flight planning, permit acquisition, dispatch coordination, and crew logistics services with a clean, premium UI tailored for international operators."
-             data-tech="Modern Web Stack"
-             data-client="Flyger Aviation Services"
-             data-status="Live"
-             data-link="https://flyger.aero"
-             data-pdf=""
-             data-image="/products/flyger.webp">
-          <div class="ws-card__img">
-            <img src="/products/flyger.webp" alt="Flyger Aviation Services" loading="lazy" />
-          </div>
-          <div class="ws-card__meta">
-            <strong class="ws-card__name">Flyger Aviation</strong>
-            <p class="ws-card__desc">Global aviation support portal, live in production.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="ws-cta" id="ws-cta">
-        <a href="/work/" class="btn btn-outline btn-lg">
-          See All Projects
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
       </div>
     </div>
   </div>
@@ -1159,6 +1161,15 @@ const faqs = [
     background: #ffffff;
   }
 
+  .ws-sticky-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    will-change: transform;
+  }
+
   /* Heading block */
   .ws-heading {
     text-align: center;
@@ -1293,10 +1304,10 @@ const faqs = [
 
   /* Mobile */
   @media (max-width: 760px) {
-    .ws-scroll-track { height: 260vh; }   /* more room for vertical card deal */
-    .ws-sticky { justify-content: flex-start; padding-top: 2rem; }
+    .ws-scroll-track { height: 300vh; }   /* more room for vertical card deal & camera pan */
+    .ws-sticky { justify-content: flex-start; padding-top: 2.5rem; }
     .ws-heading { margin-bottom: 1.25rem; flex-shrink: 0; }
-    .ws-stage { height: 800px; }          /* 3 × 250px + 16px gaps × 2 + buffer */
+    .ws-stage { height: 830px; }          /* 3 × 250px + 16px gaps × 2 + buffer */
     .ws-card { width: 280px; height: 250px; border-radius: 14px; }
     .ws-labels { grid-template-columns: 1fr; gap: 0.6rem; margin-top: 1.25rem; }
     .ws-card__meta { padding: 0.7rem 0.85rem 0.75rem; }
@@ -2540,7 +2551,7 @@ const faqs = [
   // Returns card dimensions + stacked/final position configs
   function getConfig() {
     const m   = isMobile();
-    const cW  = m ? 260 : 390;   // mobile: full-ish width; desktop: 3-col
+    const cW  = m ? 280 : 390;   // mobile: full-ish width; desktop: 3-col
     const cH  = m ? 250 : 345;   // taller cards to fit image + meta text panel
     const gap = m ? 16  : 28;
 
@@ -2548,11 +2559,11 @@ const faqs = [
       // Mobile: cards deal out VERTICALLY (top → center → bottom)
       const vspan = cH + gap;
       return {
-        cW, cH, n: 3,
+        cW, cH, gap, n: 3,
         stacked: [
-          { x: -cW*0.06, y:  cH*0.04, r: -5,  z: 4, s: 1.00 },
-          { x:  cW*0.08, y: -cH*0.03, r:  7,  z: 3, s: 0.94 },
-          { x:  cW*0.20, y: -cH*0.07, r:  14, z: 2, s: 0.86 },
+          { x: -cW*0.04, y: -vspan,      r: -5, z: 4, s: 1.00 },
+          { x:  cW*0.04, y: -vspan + 60,  r:  7, z: 3, s: 0.94 },
+          { x:  cW*0.08, y: -vspan + 120, r:  15, z: 2, s: 0.86 },
         ],
         final: [
           { x: 0, y: -vspan, r: 0, z: 2, s: 1.00 },  // TOP
@@ -2565,7 +2576,7 @@ const faqs = [
     // Desktop: cards deal out HORIZONTALLY (left → center → right)
     const span = cW + gap;
     return {
-      cW, cH, n: 3,
+      cW, cH, gap, n: 3,
       stacked: [
         { x: -cW*0.08, y:  cH*0.04, r: -5,  z: 4, s: 1.00 },
         { x:  cW*0.10, y: -cH*0.03, r:  7,  z: 3, s: 0.94 },
@@ -2603,22 +2614,20 @@ const faqs = [
     }
     const stage = document.getElementById('ws-stage');
     if (stage) {
-      // Mobile: stage must be tall enough for 3 vertical cards
-      // Desktop: single card height + padding
       const m = isMobile();
-      const gap = m ? 16 : 28;
       const stageH = m
-        ? cfg.cH * 3 + gap * 2 + 48   // 3 cards stacked + gaps + buffer
+        ? cfg.cH * 3 + cfg.gap * 2 + 48
         : cfg.cH + 48;
       stage.style.height = stageH + 'px';
     }
   }
 
-  let track, cta, lastP = -1;
+  let track, cta, inner, lastP = -1;
 
   function onScroll() {
     track = track || document.getElementById('ws-scroll-track');
     cta   = cta   || document.getElementById('ws-cta');
+    inner = inner || document.getElementById('ws-sticky-inner');
     if (!track) return;
 
     const scrollY    = window.scrollY || window.pageYOffset;
@@ -2631,7 +2640,20 @@ const faqs = [
 
     applyCards(raw);
 
-    if (raw > 0.88) {
+    const m = isMobile();
+    if (m && inner) {
+      // Calculate panAmount to bring the bottom card and CTA completely into view.
+      // Total content height including heading (~110px), stage (830px), CTA (~60px), and bottom safety spacing (~160px) is ~1200px.
+      const contentH = 1200;
+      const panAmount = Math.max(0, contentH - winH);
+      const p = easeInOutCubic(raw);
+      const currentPan = lerp(0, -panAmount, p);
+      inner.style.transform = `translateY(${currentPan}px)`;
+    } else if (inner) {
+      inner.style.transform = '';
+    }
+
+    if (raw > 0.80) {
       cta && cta.classList.add('ws-visible');
     } else {
       cta && cta.classList.remove('ws-visible');
