@@ -77,16 +77,6 @@ const products = [
           </p>
         </div>
 
-        <!-- Product Engineering Philosophy -->
-        <section class="philosophy-section">
-          <div class="philosophy-content">
-            <h3>Our Product Engineering Philosophy</h3>
-            <p>
-              We believe the best way to understand the challenges of running a SaaS business is to run one yourself. Our proprietary platforms are built on the exact same multi-tenant cloud architecture, subscription billing logic, and robust <a href="/custom-software-development/">custom software development</a> standards that we bring to our clients' projects. When we build products, we focus on high availability, seamless user onboarding, and enterprise-grade security from day one.
-            </p>
-          </div>
-        </section>
-
         <!-- Product Grid -->
         <section class="product-grid">
           {products.map((product) => (
@@ -103,6 +93,16 @@ const products = [
               </div>
             </div>
           ))}
+        </section>
+
+        <!-- Product Engineering Philosophy -->
+        <section class="philosophy-section">
+          <div class="philosophy-content">
+            <h3>Our Product Engineering Philosophy</h3>
+            <p>
+              We believe the best way to understand the challenges of running a SaaS business is to run one yourself. Our proprietary platforms are built on the exact same multi-tenant cloud architecture, subscription billing logic, and robust <a href="/custom-software-development/">custom software development</a> standards that we bring to our clients' projects. When we build products, we focus on high availability, seamless user onboarding, and enterprise-grade security from day one.
+            </p>
+          </div>
         </section>
 
       </div>
@@ -283,7 +283,7 @@ const products = [
 
   @media (max-width: 900px) {
     .main-content {
-      padding-top: 40px; /* Reduced top gap for mobile */
+      padding: calc(68px + 2rem) 1.5rem 4rem;
     }
 
     .featured-section {
@@ -299,6 +299,17 @@ const products = [
   }
 
   @media (max-width: 600px) {
+    .main-content {
+      padding: calc(56px + 1.5rem) 1rem 3rem;
+    }
+
+    .philosophy-section {
+      padding: 1.5rem 1.25rem;
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      border-radius: 0.75rem;
+    }
+
     .product-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
@@ -345,6 +356,7 @@ const products = [
     background: #f8fafc;
     border-radius: 1rem;
     padding: 2.5rem;
+    margin-top: 4rem;
     margin-bottom: 4rem;
     border: 1px solid #e2e8f0;
   }

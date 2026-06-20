@@ -35,7 +35,8 @@ const {
 } = Astro.props;
 
 const siteName = "N3 Global Tech";
-const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const alternateSiteName = "N3GlobalTech";
+const fullTitle = title.includes(siteName) || title.includes(alternateSiteName) ? title : `${title} | ${siteName} (${alternateSiteName})`;
 const siteUrl = Astro.site ?? new URL("https://www.n3global.tech");
 const canonicalPath = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
