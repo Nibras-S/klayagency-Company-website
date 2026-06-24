@@ -2,19 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
-
-const publicDir = join(process.cwd(), 'public');
 const teamPreview = [
   { name: "Nibras",  initials: "N", color: "sky",    image: "/team/nibras.webp"  },
   { name: "Nabeel",  initials: "N", color: "violet", image: "/team/nabeel.webp"  },
   { name: "Nafi",    initials: "N", color: "teal",   image: "/team/nafi.webp"    },
   { name: "Farseen", initials: "F", color: "amber",  image: "/team/farseen.webp" },
-].map(f => ({
-  ...f,
-  image: existsSync(join(publicDir, f.image)) ? f.image : null,
-}));
+];
 
 const faqs = [
   {

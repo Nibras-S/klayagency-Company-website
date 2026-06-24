@@ -1,7 +1,4 @@
 import type { APIRoute } from 'astro';
-// Loads .env into process.env for local dev. No-op on Vercel where env vars
-// are injected directly into the function's runtime.
-import 'dotenv/config';
 
 // Server-side endpoint: forwards lead data to the CRM with the bearer token
 // attached server-side, so the token never touches the browser.
@@ -22,10 +19,10 @@ function jsonResponse(status: number, body: Record<string, unknown>): Response {
 }
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
-  // Read at runtime from process.env so Vite doesn't bake the literal into the
-  // bundled function. On Vercel these come from Project → Settings → Environment Variables.
-  const apiUrl = process.env.CRM_API_URL;
-  const apiToken = process.env.CRM_API_TOKEN;
+  // Use import.meta.env for Cloudflare Pages/Astro compatibility.
+  // In Cloudflare, Astro reads these from bindings.
+  const apiUrl = import.meta.env.CRM_API_URL;
+  const apiToken = import.meta.env.CRM_API_TOKEN;
 
   if (!apiUrl || !apiToken) {
     return jsonResponse(500, {

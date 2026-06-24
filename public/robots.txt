@@ -9,8 +9,6 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /private/
 Disallow: /ui&pdf/
-Disallow: /_vercel/
-
 # NOTE: /_astro/ is intentionally NOT blocked.
 # It contains the bundled CSS and JS that Googlebot needs to render
 # pages correctly. Blocking it would break rendered SEO and Core Web Vitals.

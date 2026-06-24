@@ -38,14 +38,7 @@ const founders = [
   },
 ];
 
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
-const publicDir = join(process.cwd(), 'public');
-// Hide image at build time if file doesn't exist; cards fall back to initial avatars
-const foundersWithPhotos = founders.map(f => ({
-  ...f,
-  image: f.image && existsSync(join(publicDir, f.image)) ? f.image : null,
-}));
+const foundersWithPhotos = founders;
 
 const stats = [
   { value: "4", label: "Co-founders" },
