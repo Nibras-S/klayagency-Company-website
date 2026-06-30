@@ -1,0 +1,120 @@
+---
+export interface Props {
+  authorName?: string;
+  role?: string;
+  bio?: string;
+  date?: string;
+  readTime?: string;
+}
+
+const {
+  authorName = "N3 Global Tech Engineering Leadership",
+  role = "Cloud & AI Solutions Architects · Kannur HQ",
+  bio = "Authored by senior full-stack architects and data engineers at N3 Global Tech (n3globaltech), delivering silicon-grade custom software, AI workflows, and cloud native SaaS platforms across Kerala, India, and the GCC.",
+  date,
+  readTime
+} = Astro.props;
+---
+
+<div class="author-box">
+  <div class="author-box__avatar">
+    <img src="/n3logo.webp" alt="N3 Global Tech Logo" width="48" height="48" loading="lazy" />
+  </div>
+  <div class="author-box__content">
+    <div class="author-box__header">
+      <span class="author-name">{authorName}</span>
+      <span class="author-role">{role}</span>
+    </div>
+    <p class="author-bio">{bio}</p>
+    {(date || readTime) && (
+      <div class="author-meta">
+        {date && <time datetime={date}>{date}</time>}
+        {date && readTime && <span class="meta-dot" aria-hidden="true">·</span>}
+        {readTime && <span>{readTime}</span>}
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .author-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 1.25rem;
+    margin: 2rem 0;
+  }
+
+  .author-box__avatar {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 1rem;
+    background: var(--gray-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  }
+
+  .author-box__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .author-box__content {
+    flex: 1;
+  }
+
+  .author-box__header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+  }
+
+  .author-name {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--gray-900);
+  }
+
+  .author-role {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--sky-600);
+  }
+
+  .author-bio {
+    font-size: 0.94rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .author-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--gray-500);
+    font-weight: 500;
+  }
+
+  .meta-dot {
+    color: var(--gray-300);
+  }
+
+  @media (max-width: 640px) {
+    .author-box {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+</style>

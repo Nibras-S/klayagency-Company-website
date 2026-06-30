@@ -1,0 +1,139 @@
+---
+export interface GuideCardItem {
+  title: string;
+  url: string;
+  category: string;
+  readTime?: string;
+  description: string;
+}
+
+export interface Props {
+  guides: GuideCardItem[];
+  heading?: string;
+}
+
+const { guides = [], heading = "Explore Related Engineering Guides" } = Astro.props;
+---
+
+{guides.length > 0 && (
+  <section class="related-guides">
+    <h3 class="related-heading">{heading}</h3>
+    <div class="guides-grid">
+      {guides.map(guide => (
+        <a href={guide.url} class="guide-card">
+          <div class="guide-card__meta">
+            <span class="badge">{guide.category}</span>
+            {guide.readTime && <span class="read-time">{guide.readTime}</span>}
+          </div>
+          <h4 class="guide-card__title">{guide.title}</h4>
+          <p class="guide-card__desc">{guide.description}</p>
+          <span class="guide-card__link">
+            Read Guide
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .related-guides {
+    margin: 4rem 0 2rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .related-heading {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--gray-900);
+    margin-bottom: 1.75rem;
+  }
+
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .guide-card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .guide-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--sky-500);
+    box-shadow: 0 15px 30px -10px rgba(14, 165, 233, 0.12);
+  }
+
+  .guide-card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .badge {
+    background: var(--sky-50);
+    color: var(--sky-600);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .read-time {
+    font-size: 0.8rem;
+    color: var(--gray-400);
+    font-weight: 500;
+  }
+
+  .guide-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin: 0 0 0.75rem;
+    line-height: 1.35;
+  }
+
+  .guide-card__desc {
+    font-size: 0.88rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+    flex: 1;
+  }
+
+  .guide-card__link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--sky-600);
+  }
+
+  .guide-card__link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+
+  .guide-card:hover .guide-card__link svg {
+    transform: translateX(4px);
+  }
+</style>

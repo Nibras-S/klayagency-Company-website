@@ -1,0 +1,318 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import SchemaInjection from '../../components/SchemaInjection.astro';
+
+// Dynamically discover all published guides in subdirectories using Vite glob import
+const rawGuides = import.meta.glob('./**/*.astro', { eager: true });
+
+interface GuideMeta {
+  title: string;
+  description: string;
+  category: string;
+  readTime: string;
+  date: string;
+  url: string;
+  featured?: boolean;
+}
+
+const guides: GuideMeta[] = [];
+for (const path in rawGuides) {
+  if (path.includes('index.astro')) continue;
+  const mod: any = rawGuides[path];
+  if (mod.guideMeta) {
+    guides.push(mod.guideMeta);
+  }
+}
+
+// Fallback initial guides if none discovered yet
+if (guides.length === 0) {
+  guides.push({
+    title: "Model Context Protocol (MCP): Enterprise Server Architecture",
+    description: "Architectural blueprint for deploying secure MCP servers connecting autonomous AI agents to enterprise SQL databases and corporate APIs.",
+    category: "AI",
+    readTime: "14 min read",
+    date: "July 2026",
+    url: "/guides/ai/model-context-protocol-mcp-server-architecture/",
+    featured: true
+  });
+}
+
+const featuredGuide = guides.find(g => g.featured) || guides[0];
+const categories = ['All', 'AI', 'Software Architecture', 'Cloud Engineering', 'Databases'];
+---
+
+<Layout
+  title="Engineering Knowledge Library & Guides | N3 Global Tech (n3globaltech)"
+  description="Explore evergreen technical guides, software architecture blueprints, RAG/MCP implementations, and system design benchmarks by N3 Global Tech engineering leadership."
+  keywords="N3 Global Tech guides, engineering library, software architecture blueprints, RAG MCP implementations, system design benchmarks"
+>
+  <SchemaInjection 
+    type="WebPage"
+    title="Engineering Knowledge Library & Guides | N3 Global Tech"
+    description="Explore evergreen technical guides, software architecture blueprints, and AI execution manuals."
+    url={Astro.url.href}
+    breadcrumbs={[
+      { name: "Home", item: "/" },
+      { name: "Guides & Engineering Library", item: "/guides/" }
+    ]}
+  />
+  <style>
+    .hero-library {
+      background: radial-gradient(circle at 50% 0%, var(--sky-50) 0%, var(--white) 75%);
+      color: var(--gray-900);
+      padding: calc(80px + 4rem) 1.5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-library::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.25), transparent);
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--sky-50);
+      color: var(--sky-700);
+      border: 1px solid var(--sky-200);
+      padding: 0.45rem 1.1rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 5vw, 3.75rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin: 0 0 1.25rem;
+      color: var(--gray-900);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--gray-600);
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .filter-btn {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      padding: 0.6rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--gray-900);
+      color: #ffffff;
+      border-color: var(--gray-900);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    }
+
+    /* Featured Section */
+    .featured-banner {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1.75rem;
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .featured-banner:hover {
+      border-color: var(--sky-500);
+    }
+
+    .featured-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .featured-tag {
+      background: #0ea5e9;
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.3rem 0.8rem;
+      border-radius: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .featured-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 800;
+      color: var(--gray-900);
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .featured-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .featured-desc {
+      font-size: 1.05rem;
+      color: #475569;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--sky-600);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    /* Grid Layout */
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .guide-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .guide-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--sky-500);
+      box-shadow: 0 15px 30px -10px rgba(14, 165, 233, 0.1);
+    }
+
+    .guide-card.is-filtered-out {
+      display: none;
+    }
+  </style>
+
+  <Navbar />
+
+  <header class="hero-library">
+    <div class="badge-pill">Technical Reference & Architecture Manuals</div>
+    <h1 class="hero-title">Engineering Knowledge Library</h1>
+    <p class="hero-subtitle">
+      System design patterns, RAG & MCP server implementations, cloud native benchmarks, and architectural blueprints engineered by N3 Global Tech (n3globaltech).
+    </p>
+  </header>
+
+  <main class="container">
+    {featuredGuide && (
+      <article class="featured-banner">
+        <div class="featured-meta">
+          <span class="featured-tag">Featured Guide</span>
+          <span style="color: #64748b; font-size: 0.88rem; font-weight: 600;">{featuredGuide.category} · {featuredGuide.readTime}</span>
+        </div>
+        <h2 class="featured-title">
+          <a href={featuredGuide.url}>{featuredGuide.title}</a>
+        </h2>
+        <p class="featured-desc">{featuredGuide.description}</p>
+        <div>
+          <a href={featuredGuide.url} class="read-btn">Read Architectural Blueprint &rarr;</a>
+        </div>
+      </article>
+    )}
+
+    <div class="filter-bar">
+      {categories.map((cat, idx) => (
+        <button class={`filter-btn ${idx === 0 ? 'active' : ''}`} data-filter={cat}>{cat}</button>
+      ))}
+    </div>
+
+    <div class="guides-grid" id="guides-grid">
+      {guides.map(guide => (
+        <article class="guide-card" data-category={guide.category}>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <span style="background: #f0f9ff; color: #0369a1; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 9999px; text-transform: uppercase;">{guide.category}</span>
+            <span style="font-size: 0.8rem; color: #94a3b8; font-weight: 500;">{guide.readTime}</span>
+          </div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin: 0 0 0.75rem; line-height: 1.35;">
+            <a href={guide.url} style="color: inherit; text-decoration: none;">{guide.title}</a>
+          </h3>
+          <p style="font-size: 0.92rem; color: #64748b; line-height: 1.6; margin: 0 0 1.5rem; flex: 1;">{guide.description}</p>
+          <a href={guide.url} class="read-btn" style="font-size: 0.88rem;">Explore Reference Manual &rarr;</a>
+        </article>
+      ))}
+    </div>
+  </main>
+
+  <Footer />
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const buttons = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.guide-card');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.getAttribute('data-filter');
+
+          cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'All' || category === filter) {
+              card.classList.remove('is-filtered-out');
+            } else {
+              card.classList.add('is-filtered-out');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</Layout>

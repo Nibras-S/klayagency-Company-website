@@ -1,0 +1,96 @@
+---
+export interface TOCItem {
+  id: string;
+  title: string;
+  depth?: number;
+}
+
+export interface Props {
+  items: TOCItem[];
+  title?: string;
+}
+
+const { items = [], title = "In This Guide" } = Astro.props;
+---
+
+{items.length > 0 && (
+  <nav class="toc-card" aria-label="Table of Contents">
+    <div class="toc-card__header">
+      <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
+      <span>{title}</span>
+    </div>
+    <ul class="toc-list">
+      {items.map(item => (
+        <li class={`toc-item depth-${item.depth || 2}`}>
+          <a href={`#${item.id}`}>{item.title}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+  .toc-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.04);
+  }
+
+  .toc-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--gray-900);
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--gray-100);
+    margin-bottom: 0.85rem;
+  }
+
+  .toc-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--sky-500);
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .toc-item a {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--gray-600);
+    text-decoration: none;
+    line-height: 1.45;
+    transition: all 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.4rem;
+  }
+
+  .toc-item a:hover {
+    color: var(--sky-600);
+    background: var(--sky-50);
+    padding-left: 0.75rem;
+  }
+
+  .toc-item.depth-3 {
+    padding-left: 1rem;
+  }
+</style>

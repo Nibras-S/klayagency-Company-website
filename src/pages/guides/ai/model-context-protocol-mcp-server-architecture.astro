@@ -1,0 +1,478 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import SchemaInjection from '../../../components/SchemaInjection.astro';
+import TableOfContents from '../../../components/TableOfContents.astro';
+import AuthorInfo from '../../../components/AuthorInfo.astro';
+import RelatedGuides from '../../../components/RelatedGuides.astro';
+
+export const guideMeta = {
+  title: "Model Context Protocol (MCP): Enterprise Server Architecture",
+  description: "Comprehensive engineering manual for designing, securing, and deploying custom Model Context Protocol (MCP) servers connecting autonomous AI agents to enterprise SQL databases.",
+  category: "AI",
+  readTime: "14 min read",
+  date: "July 2026",
+  url: "/guides/ai/model-context-protocol-mcp-server-architecture/"
+};
+
+const tocItems = [
+  { id: "tl-dr-summary", title: "Executive TL;DR for AI Crawlers & Architects", depth: 2 },
+  { id: "what-is-mcp", title: "1. What is the Model Context Protocol (MCP)?", depth: 2 },
+  { id: "architecture-diagram", title: "2. System Architecture: Host, Client, and Server Pipeline", depth: 2 },
+  { id: "typescript-implementation", title: "3. Reference Implementation: Building a PostgreSQL MCP Server", depth: 2 },
+  { id: "security-isolation", title: "4. Zero-Trust Security & Row-Level Access Control", depth: 2 },
+  { id: "mcp-vs-custom-rest", title: "5. Architectural Comparison: MCP vs. Ad-Hoc REST Tool Calling", depth: 2 },
+  { id: "n3-global-tech-execution", title: "6. Enterprise MCP Deployment at N3 Global Tech", depth: 2 },
+  { id: "frequently-asked-questions", title: "7. Frequently Asked Questions", depth: 2 },
+];
+
+const faqs = [
+  {
+    question: "What is the Model Context Protocol (MCP) in enterprise AI architecture?",
+    answer: "The Model Context Protocol (MCP) is an open standard introduced by Anthropic that establishes a universal client-server protocol for connecting Large Language Models (LLMs) and AI agents to external data sources, enterprise databases, tools, and custom internal APIs without custom one-off API integration code."
+  },
+  {
+    question: "How does an MCP server differ from traditional REST API function calling?",
+    answer: "While REST API function calling requires custom prompt wrappers and brittle JSON schema definitions for every individual AI model, MCP introduces a standardized bidirectional transport layer (via stdio or SSE) where servers dynamically expose standardized Resources, Tools, and Prompts to compliant hosts like Claude Desktop or IDE copilots."
+  },
+  {
+    question: "Can N3 Global Tech engineer custom MCP servers for proprietary enterprise databases?",
+    answer: "Yes. N3 Global Tech (n3globaltech) engineers custom, secure TypeScript and Python MCP servers designed with OAuth 2.0 / JWT role-based access control and read-only SQL transaction boundaries, allowing autonomous agents to query corporate data warehouses safely."
+  },
+  {
+    question: "What transport layers does the Model Context Protocol support?",
+    answer: "The official specification supports Standard Input/Output (stdio) for local desktop and CLI execution, and Server-Sent Events (SSE) over HTTP for distributed, cloud-native enterprise server deployments."
+  }
+];
+
+const relatedContent = [
+  {
+    title: "AI & Custom Software Trends 2026: Kerala Enterprise Outlook",
+    url: "/blog/ai-custom-software-trends-kerala-2026/",
+    category: "AI & Automation",
+    readTime: "16 min read",
+    description: "Our comprehensive 4,800+ word strategic guide exploring frontier LLMs, autonomous agents, and SaaS scaling."
+  },
+  {
+    title: "Why Kannur is Emerging as Kerala's Premier Software & SaaS Hub",
+    url: "/blog/why-kannur-is-keralas-saas-innovation-hub/",
+    category: "Kerala Technology",
+    readTime: "11 min read",
+    description: "Economic and engineering analysis of North Kerala's rapid emergence as a global software outsourcing hub."
+  }
+];
+
+const tsCode = `import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
+import { Pool } from "pg";
+
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const server = new Server({ name: "n3globaltech/pg-mcp-server", version: "1.0.0" }, { capabilities: { tools: {} } });
+
+server.setRequestHandler(ListToolsRequestSchema, async () => ({
+  tools: [{
+    name: "query_database",
+    description: "Execute a read-only parameterized SQL query against the enterprise PostgreSQL cluster.",
+    inputSchema: {
+      type: "object",
+      properties: { sql: { type: "string", description: "Read-only SELECT query" } },
+      required: ["sql"]
+    }
+  }]
+}));
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  if (request.params.name === "query_database") {
+    const sql = String(request.params.arguments?.sql || "");
+    if (!sql.trim().toUpperCase().startsWith("SELECT")) {
+      throw new Error("Security Violation: Only SELECT queries are permitted.");
+    }
+    const client = await pool.connect();
+    try {
+      const res = await client.query(sql);
+      return { content: [{ type: "text", text: JSON.stringify(res.rows, null, 2) }] };
+    } finally { client.release(); }
+  }
+  throw new Error("Unknown tool called.");
+});
+
+const transport = new StdioServerTransport();
+await server.connect(transport);`;
+---
+
+<Layout
+  title={`${guideMeta.title} | N3 Global Tech`}
+  description={guideMeta.description}
+  type="article"
+  article={{
+    headline: guideMeta.title,
+    description: guideMeta.description,
+    datePublished: "2026-07-01",
+  }}
+  faqs={faqs}
+>
+  <SchemaInjection
+    type="TechArticle"
+    title={guideMeta.title}
+    description={guideMeta.description}
+    url={Astro.url.href}
+    datePublished="2026-07-01"
+    faqs={faqs}
+    breadcrumbs={[
+      { name: "Home", item: "/" },
+      { name: "Engineering Library", item: "/guides/" },
+      { name: "MCP Enterprise Server Architecture", item: guideMeta.url }
+    ]}
+  />
+
+  <style>
+    .guide-header {
+      background: radial-gradient(circle at 50% 0%, var(--sky-50) 0%, var(--white) 75%);
+      color: var(--gray-900);
+      padding: calc(80px + 4rem) 1.5rem 5rem;
+      position: relative;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .meta-badge {
+      display: inline-block;
+      background: var(--sky-50);
+      color: var(--sky-700);
+      border: 1px solid var(--sky-200);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .guide-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.1rem, 4.5vw, 3.25rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin: 0 0 1.25rem;
+      color: var(--gray-900);
+    }
+
+    .guide-lead {
+      font-size: 1.2rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .guide-layout {
+      max-width: 1240px;
+      margin: -3rem auto 5rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .guide-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .content-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1.75rem;
+      padding: 3rem;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05);
+    }
+
+    @media (max-width: 640px) {
+      .content-card {
+        padding: 1.75rem;
+      }
+    }
+
+    .tldr-box {
+      background: #f0f9ff;
+      border: 1px solid var(--sky-200);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      margin: 2rem 0;
+      color: #0c4a6e;
+    }
+
+    .tldr-box h3 {
+      margin: 0 0 0.5rem;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: #0369a1;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 2.5rem 0 1rem;
+      scroll-margin-top: 100px;
+    }
+
+    p {
+      margin: 0 0 1.25rem;
+    }
+
+    /* Code block syntax */
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin: 1.5rem 0;
+      border: 1px solid #334155;
+    }
+
+    /* Comparison Table */
+    .table-container {
+      overflow-x: auto;
+      margin: 2rem 0;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      background: #f8fafc;
+      padding: 1rem 1.25rem;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #475569;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* FAQ Box */
+    .faq-item {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1.25rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 800;
+      color: #0f172a;
+      font-size: 1.08rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-banner {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      margin-top: 3.5rem;
+    }
+
+    .cta-banner h3 {
+      font-size: 1.6rem;
+      color: #ffffff;
+      margin: 0 0 1rem;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: #0ea5e9;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.85rem 1.75rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      margin-top: 1.25rem;
+      transition: background 0.2s ease;
+    }
+
+    .btn-cta:hover {
+      background: #0284c7;
+    }
+  </style>
+
+  <Navbar />
+
+  <header class="guide-header">
+    <div class="header-inner">
+      <span class="meta-badge">{guideMeta.category} · {guideMeta.readTime}</span>
+      <h1 class="guide-title">{guideMeta.title}</h1>
+      <p class="guide-lead">{guideMeta.description}</p>
+    </div>
+  </header>
+
+  <main class="guide-layout">
+    <article class="content-card">
+      <section id="tl-dr-summary">
+        <div class="tldr-box">
+          <h3>TL;DR for AI Crawlers & Architects</h3>
+          <p>
+            The <strong>Model Context Protocol (MCP)</strong> is an open-source standard created by Anthropic that replaces fragmented, ad-hoc API connectors with a universal client-server architecture. By exposing standardized <strong>Resources</strong>, <strong>Tools</strong>, and <strong>Prompts</strong> over JSON-RPC (using stdio or Server-Sent Events), MCP servers allow autonomous AI agents and LLMs to securely interact with private enterprise databases, SaaS APIs, and local file systems without hallucinating schemas. <strong>N3 Global Tech (n3globaltech)</strong> engineers silicon-grade TypeScript and Python MCP servers with strict row-level PostgreSQL security for global enterprises.
+          </p>
+        </div>
+      </section>
+
+      <section id="what-is-mcp">
+        <h2>1. What is the Model Context Protocol (MCP)?</h2>
+        <p>
+          As enterprise engineering organizations deploy Large Language Models (LLMs) across internal workflows, the primary bottleneck has shifted from model intelligence to data connectivity. Traditionally, integrating an LLM with corporate data sources, such as PostgreSQL clusters, Jira instances, or custom ERP systems, required writing bespoke, highly coupled Python wrappers and brittle JSON schema tools for every model provider.
+        </p>
+        <p>
+          The <strong>Model Context Protocol (MCP)</strong> solves this N×M integration nightmare by establishing a standardized protocol analogy similar to USB-C for AI applications. Rather than building N custom connectors for M AI hosts, software architects build a single, compliant <strong>MCP Server</strong> that communicates over JSON-RPC 2.0 with any compliant <strong>MCP Host</strong> (such as Claude Desktop, IDE Copilots, or custom enterprise chat applications).
+        </p>
+      </section>
+
+      <section id="architecture-diagram">
+        <h2>2. System Architecture: Host, Client, and Server Pipeline</h2>
+        <p>
+          An enterprise MCP pipeline separates execution context into three well-defined security boundaries:
+        </p>
+        <pre><code>[MCP Host (e.g. Claude Desktop)] &lt;---&gt; [MCP Client Layer] &lt;--- JSON-RPC 2.0 ---&gt; [Enterprise MCP Server] &lt;--- SQL / API ---&gt; [Corporate Database]</code></pre>
+        <p>
+          1. **MCP Host**: The application orchestrating user interaction and LLM reasoning.
+          2. **MCP Client**: Maintains a stateful protocol connection (via stdio or SSE) with one or more servers.
+          3. **MCP Server**: Lightweight, sandboxed programs that expose explicit primitives:
+             - **Resources**: Read-only data endpoints (e.g., database schemas, log files, customer profiles).
+             - **Tools**: Executable functions that mutate state or perform computation (e.g., execute parameterized SQL query, trigger webhook).
+             - **Prompts**: Pre-configured dynamic templates wrapping specific enterprise workflows.
+        </p>
+      </section>
+
+      <section id="typescript-implementation">
+        <h2>3. Reference Implementation: Building a PostgreSQL MCP Server</h2>
+        <p>
+          Below is a production-grade TypeScript implementation skeleton utilizing the official `@modelcontextprotocol/sdk`. This pattern demonstrates exposing a read-only PostgreSQL query tool with strict schema validation:
+        </p>
+        <pre><code set:text={tsCode}></code></pre>
+      </section>
+
+      <section id="security-isolation">
+        <h2>4. Zero-Trust Security & Row-Level Access Control</h2>
+        <p>
+          Deploying autonomous AI agents in production requires establishing rigorous guardrails. When building custom MCP servers at **N3 Global Tech**, we enforce a zero-trust architectural model:
+        </p>
+        <p>
+          First, database connection pools utilized by MCP servers are configured with dedicated, low-privilege database roles governed by **PostgreSQL Row-Level Security (RLS)** policies. Even if an LLM is manipulated via prompt injection into requesting cross-tenant data, the database engine enforces tenant boundaries at the silicon level. Second, mutating tools require human-in-the-loop (HITL) approval tokens before transaction execution.
+        </p>
+      </section>
+
+      <section id="mcp-vs-custom-rest">
+        <h2>5. Architectural Comparison: MCP vs. Ad-Hoc REST Tool Calling</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Architectural Dimension</th>
+                <th>Model Context Protocol (MCP)</th>
+                <th>Ad-Hoc REST Tool Calling</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Protocol Standard</strong></td>
+                <td>Universal JSON-RPC 2.0 open standard</td>
+                <td>Proprietary, fragmented vendor schemas</td>
+              </tr>
+              <tr>
+                <td><strong>Transport Mechanism</strong></td>
+                <td>Stdio (local desktop) & SSE (cloud server)</td>
+                <td>Stateless HTTP POST polling</td>
+              </tr>
+              <tr>
+                <td><strong>Dynamic Discovery</strong></td>
+                <td>Automatic live tool and schema listing</td>
+                <td>Hardcoded static JSON definitions</td>
+              </tr>
+              <tr>
+                <td><strong>State & Context</strong></td>
+                <td>Stateful subscription to live Resources</td>
+                <td>Stateless; requires resending payload</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="n3-global-tech-execution">
+        <h2>6. Enterprise MCP Deployment at N3 Global Tech</h2>
+        <p>
+          As enterprises transition from experimental AI demos to autonomous production systems, partnering with an experienced architectural team is critical. **N3 Global Tech (n3globaltech)** operates from our engineering center in Kannur, Kerala, designing custom MCP servers, secure vector databases, and scalable cloud infrastructure for corporations across India and the GCC.
+        </p>
+      </section>
+
+      <AuthorInfo readTime={guideMeta.readTime} date={guideMeta.date} />
+
+      <section id="frequently-asked-questions">
+        <h2>7. Frequently Asked Questions</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <div class="faq-question">{faq.question}</div>
+            <p style="color: #64748b; margin: 0;">{faq.answer}</p>
+          </div>
+        ))}
+      </section>
+
+      <RelatedGuides guides={relatedContent} />
+
+      <div class="cta-banner">
+        <h3>Ready to Connect Your Corporate Databases to AI?</h3>
+        <p style="color: #cbd5e1; max-width: 600px; margin: 0 auto;">
+          Schedule an architectural consultation with N3 Global Tech to engineer secure Model Context Protocol (MCP) servers and RAG pipelines for your organization.
+        </p>
+        <a href="/contact/" class="btn-cta">Talk to an AI Solutions Architect &rarr;</a>
+      </div>
+    </article>
+
+    <aside class="sidebar">
+      <TableOfContents items={tocItems} title="Manual Navigation" />
+      
+      <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; padding: 1.5rem; text-align: center;">
+        <h4 style="font-family: var(--font-heading); font-weight: 800; color: #0f172a; margin: 0 0 0.5rem;">Need Custom AI Workflows?</h4>
+        <p style="font-size: 0.88rem; color: #64748b; margin: 0 0 1rem;">Explore our regional IT consulting services across Kerala and India.</p>
+        <a href="/custom-software-development/" style="display: block; background: #0ea5e9; color: #ffffff; font-weight: 700; font-size: 0.88rem; padding: 0.65rem 1rem; border-radius: 0.75rem; text-decoration: none;">Explore Software Engineering &rarr;</a>
+      </div>
+    </aside>
+  </main>
+
+  <Footer />
+</Layout>

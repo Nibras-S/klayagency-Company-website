@@ -1,0 +1,129 @@
+---
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+export interface Props {
+  type?: 'WebPage' | 'Article' | 'TechArticle';
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+  faqs?: FAQItem[];
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const {
+  type = 'WebPage',
+  title = 'N3 Global Tech | Software Development Company Kannur & Kerala',
+  description = 'High-performance custom software, SaaS platforms, AI automation, and cloud native engineering solutions by N3 Global Tech.',
+  url = Astro.url.href,
+  image = 'https://www.n3globaltech.com/n3logo.webp',
+  datePublished,
+  dateModified,
+  faqs = [],
+  breadcrumbs = [],
+} = Astro.props;
+
+const orgSchema = {
+  "@type": "Organization",
+  "@id": "https://www.n3globaltech.com/#organization",
+  "name": "N3 Global Tech",
+  "alternateName": [
+    "n3globaltech",
+    "N3GlobalTech",
+    "N3 Global Technology Solutions",
+    "N3 Global Tech Kannur"
+  ],
+  "url": "https://www.n3globaltech.com/",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.n3globaltech.com/n3logo.webp"
+  },
+  "foundingDate": "2024",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kannur",
+    "addressRegion": "Kerala",
+    "addressCountry": "IN"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/n3globaltech",
+    "https://github.com/n3globaltech",
+    "https://twitter.com/n3globaltech"
+  ]
+};
+
+const webSiteSchema = {
+  "@type": "WebSite",
+  "@id": "https://www.n3globaltech.com/#website",
+  "url": "https://www.n3globaltech.com/",
+  "name": "N3 Global Tech",
+  "publisher": { "@id": "https://www.n3globaltech.com/#organization" }
+};
+
+const graph: any[] = [orgSchema, webSiteSchema];
+
+if (type === 'Article' || type === 'TechArticle') {
+  graph.push({
+    "@type": type,
+    "@id": `${url}#article`,
+    "isPartOf": { "@id": url },
+    "headline": title,
+    "description": description,
+    "image": image,
+    "datePublished": datePublished || new Date().toISOString().split('T')[0],
+    "dateModified": dateModified || datePublished || new Date().toISOString().split('T')[0],
+    "author": {
+      "@type": "Organization",
+      "@id": "https://www.n3globaltech.com/#organization",
+      "name": "N3 Global Tech Engineering Leadership"
+    },
+    "publisher": { "@id": "https://www.n3globaltech.com/#organization" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": url }
+  });
+}
+
+if (breadcrumbs && breadcrumbs.length > 0) {
+  graph.push({
+    "@type": "BreadcrumbList",
+    "@id": `${url}#breadcrumb`,
+    "itemListElement": breadcrumbs.map((b, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": b.name,
+      "item": b.item.startsWith('http') ? b.item : `https://www.n3globaltech.com${b.item}`
+    }))
+  });
+}
+
+if (faqs && faqs.length > 0) {
+  graph.push({
+    "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  });
+}
+
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": graph
+});
+---
+
+<script is:inline type="application/ld+json" set:html={jsonLd} />

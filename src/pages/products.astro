@@ -14,7 +14,7 @@ const products = [
     image: "/circleforwork.jpeg",
     imageBg: "#ffffff",
     imageFit: "contain",
-    link: "https://www.circleforwork.com/",
+    link: "/products/circle-for-work/",
   },
   {
     tag: "Vehicle Management",
@@ -72,7 +72,7 @@ const products = [
               <span class="meta-tag">Product</span>
             </div>
             
-            <a href="https://circleforwork.com/" target="_blank" rel="noopener noreferrer" class="btn-pill">Get Early Access</a>
+            <a href="/products/circle-for-work/" class="btn-pill">Get Early Access</a>
           </div>
           
           <div class="featured-right">
@@ -86,16 +86,21 @@ const products = [
         <div class="section-header">
           <h2 class="section-title">Our Products</h2>
           <p class="section-intro">
-            Alongside client projects, we build and operate our own proprietary SaaS platforms and products—serving as a live showcase of what our hybrid <a href="/saas-development-company/">SaaS development company</a> can build for you.
+            Alongside client projects, we build and operate our own proprietary SaaS platforms and products, serving as a live showcase of what our hybrid <a href="/saas-development-company/">SaaS development company</a> can build for you.
           </p>
         </div>
 
         <!-- Product Grid -->
         <section class="product-grid">
           {products.map((product) => {
+            const isExternal = product.link && product.link.startsWith('http');
             const CardElement = product.link ? 'a' : 'div';
             const extraProps = product.link
-              ? { href: product.link, target: "_blank", rel: "noopener noreferrer", class: "product-card product-card--link" }
+              ? { 
+                  href: product.link, 
+                  ...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}), 
+                  class: "product-card product-card--link" 
+                }
               : { class: "product-card" };
 
             return (
@@ -103,7 +108,7 @@ const products = [
                 <div class="card-content">
                   <h2 class="card-title">
                     {product.name}
-                    {product.link && (
+                    {product.link && isExternal && (
                       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="margin-left: 5px; display: inline-block; vertical-align: middle; opacity: 0.8;"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
                     )}
                   </h2>

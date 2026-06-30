@@ -1,0 +1,1615 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const faqs = [
+  {
+    question: "What is Circle for Work?",
+    answer: "Circle for Work is a hyperlocal community trust marketplace connecting individuals, freelancers, and businesses in verified neighborhood circles to buy, sell, rent, and hire local services safely without heavy commission fees."
+  },
+  {
+    question: "How does Circle for Work establish trust?",
+    answer: "Unlike traditional classified networks, Circle for Work verified profiles are anchored in local communities. Earners and providers showcase real portfolios, collect neighborhood-certified reviews, and build verified reputations visible to their neighbors."
+  },
+  {
+    question: "Can I list products, services, and rentals at the same time?",
+    answer: "Yes! Circle for Work is a unified platform. A single profile can list handcrafted products, freelance photography services, or high-value rentals (like cameras or event gear) simultaneously."
+  },
+  {
+    question: "How do buyers and service providers communicate?",
+    answer: "The platform integrates direct communication tools, including WhatsApp integration. Neighbors can chat, agree on terms, coordinate pick-ups, or discuss service requirements directly and securely."
+  },
+  {
+    question: "Who is Circle for Work for?",
+    answer: "It is built for three primary groups: individuals looking to hire or borrow locally, freelancers and creators looking to offer services or sell handmade goods, and local shops/businesses wanting to capture hyperlocal demand."
+  },
+  {
+    question: "Is there a mobile application?",
+    answer: "A native mobile application is currently on our product roadmap for a future release on both iOS and Android. The platform is currently optimized for mobile web access."
+  }
+];
+
+const faqsJson = faqs.map(f => ({
+  question: f.question,
+  answer: f.answer
+}));
+---
+
+<Layout
+  title="Circle for Work | India's Community Marketplace for Products, Services & Rentals"
+  description="Circle for Work is a trust-based community marketplace developed by N3 Global Tech. Discover local services, rent tools and equipment, and buy/sell products within verified circles."
+  keywords="Circle for Work, circleforwork, Circle for Work marketplace, community marketplace India, buy sell rent online, local service providers, freelance platform India, rental marketplace, N3 Global Tech"
+  faqs={faqsJson}
+>
+  <!-- Schema Integration -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://www.n3global.tech/products/circle-for-work/#application",
+          "name": "Circle for Work",
+          "url": "https://www.circleforwork.com/",
+          "applicationCategory": "BusinessApplication, Marketplace",
+          "operatingSystem": "Web, iOS, Android",
+          "developer": {
+            "@type": "Organization",
+            "name": "N3 Global Tech",
+            "url": "https://www.n3global.tech"
+          },
+          "description": "A hyperlocal community trust platform connecting local service providers, rentals, and skilled workers with neighbors for everyday jobs, products, and equipment sharing."
+        },
+        {
+          "@type": "Product",
+          "@id": "https://www.n3global.tech/products/circle-for-work/#product",
+          "name": "Circle for Work Marketplace",
+          "image": "https://www.n3global.tech/products/circle-for-work/MOBCIRCLE.webp",
+          "description": "Hyperlocal community marketplace connecting local service providers, rentals, and sellers with neighbors for everyday jobs, products, and equipment sharing.",
+          "brand": {
+            "@type": "Brand",
+            "name": "Circle for Work"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/PreOrder"
+          }
+        }
+      ]
+    }
+  </script>
+
+  <div class="page-wrapper">
+    <Navbar />
+
+    <main class="main-content">
+      <!-- Premium Hero Section -->
+      <section class="hero-section">
+        <div class="container hero-container">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              India's Community <span class="highlight-text-dark">Marketplace</span> for Products, Services & Rentals
+            </h1>
+            
+            <p class="hero-description">
+              A trust-based community platform by N3 Global Tech connecting local service providers, rentals, and sellers directly with neighbors.
+            </p>
+            
+            <div class="hero-actions">
+              <a href="https://www.circleforwork.com/" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                Visit Official Website
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+              </a>
+              <a href="https://www.circleforwork.com/" target="_blank" rel="noopener noreferrer" class="btn-secondary">Join Early Access</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- The Core Pillars -->
+      <section class="pillars-section">
+        <div class="container">
+          <div class="section-heading text-center">
+            <h2 class="section-title">What can you do inside your Circle?</h2>
+            <p class="section-subtitle">
+              Circle for Work consolidates local commercial activities into three clean, trust-based marketplace structures.
+            </p>
+          </div>
+
+          <div class="pillars-grid">
+            <!-- Products Card -->
+            <div class="pillar-card">
+              <div class="pillar-body">
+                <div class="pillar-icon">
+                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+                </div>
+                <h3>Buy & Sell Products</h3>
+                <p>Discover handcrafted creations, fresh home-cooked food, organic produce, clothing, and custom products crafted by people in your neighborhood.</p>
+                <ul class="pillar-features">
+                  <li><span class="bullet-dot"></span>Direct creator-to-buyer sales</li>
+                  <li><span class="bullet-dot"></span>Zero markup or marketplace commissions</li>
+                  <li><span class="bullet-dot"></span>Support local artisans and home businesses</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Services Card (Highlighted) -->
+            <div class="pillar-card highlight-card">
+              <div class="pillar-body">
+                <div class="pillar-icon">
+                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.67 2.67 0 1113.5 17.25l-5.83-5.83m.92-2.33L3 3m0 0l6.83 6.83M3 3l6.83 6.83m-6.83 0L3 3m0 0h6.83M9.83 9.83l-5.83 5.83M12 3v6.83M12 3L5.17 9.83M12 3l6.83 6.83M21 3l-6.83 6.83M21 3h-6.83M21 3v6.83m0 0l-5.83 5.83"/></svg>
+                </div>
+                <h3>Hire & Offer Services</h3>
+                <p>Find trusted local technicians, makeup artists, event coordinators, tutors, fitness trainers, designers, and handypersons within verified circles.</p>
+                <ul class="pillar-features">
+                  <li><span class="bullet-dot"></span>Browse real portfolios and local works</li>
+                  <li><span class="bullet-dot"></span>Verified local reputation & ratings</li>
+                  <li><span class="bullet-dot"></span>Direct communication with provider</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Rentals Card -->
+            <div class="pillar-card">
+              <div class="pillar-body">
+                <div class="pillar-icon">
+                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1115 0z"/></svg>
+                </div>
+                <h3>Rent Tools & Equipment</h3>
+                <p>Borrow cameras, camping gear, party supplies, wedding vehicles, or sound systems from nearby neighbors when they are not in use.</p>
+                <ul class="pillar-features">
+                  <li><span class="bullet-dot"></span>Monetize idle assets sitting in your home</li>
+                  <li><span class="bullet-dot"></span>Save money by borrowing instead of buying</li>
+                  <li><span class="bullet-dot"></span>Transparent terms & community coordination</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Narrative Section -->
+      <section class="narrative-section">
+        <div class="container narrative-container">
+          <div class="narrative-heading-side">
+            <h2>Why We Built <span class="highlight-text-dark">Circle for Work</span></h2>
+            <p>
+              In our neighborhoods, finding reliable help or borrowing specific tools is often complicated and fragmented. Traditional online marketplaces are plagued by anonymous listings, fake reviews, spam calls, and exploitative middleman cuts that squeeze independent earners.
+            </p>
+          </div>
+          <div class="narrative-content-side">
+            <div class="narrative-quote-card">
+              <p>“It operates like a direct community-owned service hub, putting control back into the hands of local providers and their neighbors.”</p>
+            </div>
+            <p>
+              We designed Circle for Work to establish verified local micro-communities. Within these circles, members trade with high accountability, zero platform commission, and full control over their transaction terms.
+            </p>
+            <p>
+              By validating profiles and centering recommendations around real local connections, safety and fair exchange remain at the core of the neighborhood economy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Platform Features -->
+      <section class="features-section">
+        <div class="container">
+          <div class="section-heading text-center">
+            <h2 class="section-title">Engineered with Modern Marketplace Features</h2>
+            <p class="section-subtitle">A simple interface backed by robust software architecture, designed for maximum safety and conversions.</p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <h3>Trusted Local Profiles</h3>
+              <p>Every profile is linked to a verified identity. We prevent anonymous spam and protect the community through accountability.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              </div>
+              <h3>WhatsApp Chat Integration</h3>
+              <p>Initiate inquiries and finalize deals with a single click. Connect instantly over WhatsApp for quick and natural discussions.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <h3>Hyperlocal Discovery</h3>
+              <p>Find opportunities and listings within a customized radius from your current location, minimizing travel and delivery overheads.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+              </div>
+              <h3>Zero Transaction Commissions</h3>
+              <p>Keep 100% of your earnings. Circle for Work operates on a subscription/listing basis rather than cutting transaction commissions.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              </div>
+              <h3>Rich Portfolio Showcase</h3>
+              <p>Upload high-quality images and descriptions of your products or past services, creating a professional profile that sells itself.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+              </div>
+              <h3>Verified Customer Reviews</h3>
+              <p>Build real customer loyalty. Reviews are verified and linked to transactions, showing exactly who recommended you in the area.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Target Audience / Who is it for -->
+      <section class="audience-section">
+        <div class="container">
+          <div class="section-heading text-center">
+            <h2 class="section-title">Who benefits from Circle for Work?</h2>
+            <p class="section-subtitle">We design specifically to serve the diverse players in local neighborhood commerce.</p>
+          </div>
+
+          <div class="audience-grid">
+            <div class="audience-card">
+              <div class="audience-header">
+                <h3>Individuals & Neighbors</h3>
+              </div>
+              <p>Borrow tools, hire home maintenance, purchase fresh food, or find verified services inside your neighborhood.</p>
+              <ul>
+                <li>Save money by renting rather than buying</li>
+                <li>Find recommended pros near you</li>
+                <li>Chat directly without spam calls</li>
+              </ul>
+            </div>
+
+            <div class="audience-card highlight-audience">
+              <div class="audience-header">
+                <h3>Freelancers & Creators</h3>
+              </div>
+              <p>Establish your local business profile, showcase your portfolios, collect reviews, and land bookings without paying massive commissions.</p>
+              <ul>
+                <li>Receive 100% of agreed local payments</li>
+                <li>Build verified local ratings</li>
+                <li>Easy WhatsApp lead generation</li>
+              </ul>
+            </div>
+
+            <div class="audience-card">
+              <div class="audience-header">
+                <h3>Local Shops & Businesses</h3>
+              </div>
+              <p>Reach customers in your immediate vicinity, offer local rental programs, and drive foot traffic directly to your offline location.</p>
+              <ul>
+                <li>List equipment rental fleets</li>
+                <li>Broadcast daily inventory or sales</li>
+                <li>Gain traction in the local community</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparison Section -->
+      <section class="comparison-section">
+        <div class="container">
+          <div class="section-heading text-center">
+            <h2 class="section-title">A Higher Standard for Local Trade</h2>
+            <p class="section-subtitle">How Circle for Work addresses traditional classified listing drawbacks.</p>
+          </div>
+
+          <div class="table-container">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Traditional Classifieds</th>
+                  <th class="accent-column">Circle for Work</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Trust & Verification</strong></td>
+                  <td>Anonymous listings; high spam and scam risk</td>
+                  <td class="accent-column">Verified local profiles tied to real networks</td>
+                </tr>
+                <tr>
+                  <td><strong>Platform Fees</strong></td>
+                  <td>Cuts of up to 20-30% or heavy listing charges</td>
+                  <td class="accent-column">Zero transaction commissions; keep 100%</td>
+                </tr>
+                <tr>
+                  <td><strong>WhatsApp / Direct Chat</strong></td>
+                  <td>Hidden contact details or automated chat bots</td>
+                  <td class="accent-column">One-click WhatsApp connect for easy negotiations</td>
+                </tr>
+                <tr>
+                  <td><strong>Product Integrations</strong></td>
+                  <td>Isolated classified list; no service/rental combo</td>
+                  <td class="accent-column">Combined products, services, and rentals in one profile</td>
+                </tr>
+                <tr>
+                  <td><strong>Reputation Building</strong></td>
+                  <td>Easily manipulated or non-existent reviews</td>
+                  <td class="accent-column">Transaction-verified, neighborhood-certified reviews</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Part of N3 Ecosystem -->
+      <section class="ecosystem-section">
+        <div class="container ecosystem-container">
+          <div class="ecosystem-content">
+            <h2>Part of the N3 SaaS Suite</h2>
+            <p>
+              Circle for Work is a proud product of <strong>N3 Global Tech</strong>. It integrates with our wider ecosystem of custom tools designed to help local service and fitness providers operate efficiently.
+            </p>
+            <p>
+              For example, local fitness studios using <a href="/products/">N3 FitBook</a> or automotive garages leveraging <a href="/products/">N3 ServiceBook</a> can seamlessly sync their business availability, certifications, and reviews directly to the Circle for Work directory to gain hyperlocal visibility.
+            </p>
+            <a href="/products/" class="btn-text">
+              Learn about other N3 products
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+          <div class="ecosystem-graphics">
+            <div class="ecosystem-visual">
+              <div class="visual-center">
+                <img src="/products/circle-for-work/logo.svg" alt="Circle for Work" class="visual-logo" />
+                <span>Circle for Work</span>
+              </div>
+              <div class="visual-node node-fitbook">
+                <span class="node-tag">Gyms</span>
+                <strong>N3 FitBook</strong>
+              </div>
+              <div class="visual-node node-servicebook">
+                <span class="node-tag">Garages</span>
+                <strong>N3 ServiceBook</strong>
+              </div>
+              <div class="visual-node node-businessbook">
+                <span class="node-tag">Business</span>
+                <strong>N3 BusinessBook</strong>
+              </div>
+              <!-- Connected interactive vector paths -->
+              <svg class="visual-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M 50,50 L 22,28" class="line-path" />
+                <path d="M 50,50 L 78,28" class="line-path" />
+                <path d="M 50,50 L 50,75" class="line-path" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Product Roadmap -->
+      <section class="roadmap-section">
+        <div class="container">
+          <div class="section-heading text-center">
+            <h2 class="section-title">Product Roadmap & Milestones</h2>
+            <p class="section-subtitle">Our structured plan for rolling out the platform across regional hubs.</p>
+          </div>
+
+          <div class="roadmap-timeline">
+            <div class="timeline-step">
+              <div class="timeline-dot current"></div>
+              <div class="timeline-content">
+                <h3>Phase 1: Early Access Registry</h3>
+                <span class="timeline-date">Q1 2026 - Active</span>
+                <p>Onboarding initial creators, rentals, and service providers across Kerala and Bangalore. Early founders registry is now live.</p>
+              </div>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Phase 2: Closed Beta Launch</h3>
+                <span class="timeline-date">Q2 2026 - Upcoming</span>
+                <p>Enabling private circles for select college campuses and regional residential communities to test direct booking pipelines.</p>
+              </div>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Phase 3: Public Rollout</h3>
+                <span class="timeline-date">Q3 2026 - Planned</span>
+                <p>Full web launch for public listing creation across major Tier-1 and Tier-2 cities in South India with Razorpay escrow support.</p>
+              </div>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Phase 4: iOS & Android Applications</h3>
+                <span class="timeline-date">Q4 2026 - Planned</span>
+                <p>Native application release on Apple App Store and Google Play Store with real-time location-based push notifications.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive FAQs -->
+      <section class="faq-section">
+        <div class="container faq-container">
+          <div class="faq-heading-side">
+            <h2 class="section-title">Frequently Asked <span class="highlight-text-dark">Questions</span></h2>
+            <p class="section-subtitle">Get quick answers about Circle for Work features, listing processes, and official operations.</p>
+            <a href="https://www.circleforwork.com/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top: 2rem;">
+              Visit Official Support
+            </a>
+          </div>
+
+          <div class="faq-list-side">
+            {faqs.map((faq, index) => (
+              <div class="faq-accordion-item">
+                <button class="faq-accordion-trigger" aria-expanded="false" aria-controls={`faq-answer-${index}`}>
+                  <span>{faq.question}</span>
+                  <svg class="chevron-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                </button>
+                <div id={`faq-answer-${index}`} class="faq-accordion-panel" hidden>
+                  <div class="panel-content">
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Early Access Section (Redirecting to circleforwork.com) -->
+      <section id="early-access" class="early-access-section">
+        <div class="container narrow-container">
+          <div class="early-access-card">
+            <div class="card-glow"></div>
+            <div class="early-access-inner">
+              <span class="form-tag">Register Your Interest</span>
+              <h2>Join the Circle for Work Early Access Registry</h2>
+              <p>
+                Be among the first to offer services, list rentals, or sell products in your region. Founding members get prioritized local exposure and free premium features upon launch.
+              </p>
+              <a href="https://www.circleforwork.com/" target="_blank" rel="noopener noreferrer" class="btn-submit" style="text-decoration: none;">
+                Join on circleforwork.com
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="margin-left: 0.5rem; display: inline-block; vertical-align: middle;"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>
+
+<script>
+  // FAQ Accordion logic
+  document.querySelectorAll('.faq-accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+
+      // Toggle state
+      trigger.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+      if (panel) {
+        if (!isExpanded) {
+          panel.removeAttribute('hidden');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        } else {
+          panel.style.maxHeight = '0';
+          setTimeout(() => {
+            panel.setAttribute('hidden', '');
+          }, 300);
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Local styles following styling best practices */
+  .page-wrapper {
+    background-color: #ffffff;
+    color: var(--gray-800);
+    min-height: 100vh;
+  }
+
+  .main-content {
+    padding-top: 68px; /* Navbar compensation */
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .text-center { text-align: center; }
+
+  /* Badge styling */
+  .brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(2, 64, 61, 0.08);
+    color: #02403D;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .brand-icon-svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    padding: 7rem 0;
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+
+  .hero-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-content {
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5.5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    color: #02403D;
+  }
+
+  .highlight-text {
+    color: #02403D;
+  }
+
+  .highlight-text-dark {
+    color: #02403D;
+    background: linear-gradient(120deg, rgba(196, 245, 61, 0.3) 0%, rgba(196, 245, 61, 0.3) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.3em;
+    background-position: 0 88%;
+  }
+
+  .hero-description {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--gray-600);
+    margin-bottom: 2.5rem;
+    max-width: 720px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2.2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    transition: var(--transition);
+  }
+
+  .btn-primary {
+    background-color: #02403D;
+    color: #ffffff;
+  }
+
+  :global(.btn-primary)::before {
+    content: none !important;
+  }
+
+  .btn-primary:hover {
+    background-color: #0d514e;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(2, 64, 61, 0.15);
+  }
+
+  .btn-secondary {
+    background-color: #ffffff;
+    color: #02403D;
+    border: 1px solid #02403D;
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(2, 64, 61, 0.04);
+    transform: translateY(-1px);
+  }
+
+  /* Sections general heading */
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: var(--gray-600);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+
+  /* Pillars Grid */
+  .pillars-section {
+    padding: 6rem 0;
+    background-color: var(--gray-50);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .pillar-card {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-200);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .highlight-card {
+    border: 2px solid #02403D;
+    background-color: #f7f9f6;
+  }
+
+  .pillar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background-color: rgba(2, 64, 61, 0.08);
+    color: #02403D;
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight-card .pillar-icon {
+    background-color: #02403D;
+    color: #ffffff;
+  }
+
+  .pillar-body {
+    padding: 2.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pillar-body h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #02403D;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .pillar-body p {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .pillar-features {
+    list-style: none;
+    padding-left: 0;
+    margin: auto 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pillar-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .bullet-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #c4f53d;
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+
+  .highlight-card .bullet-dot {
+    background-color: #02403D;
+  }
+
+  /* Narrative Section */
+  .narrative-section {
+    padding: 6rem 0;
+    background-color: #ffffff;
+  }
+
+  .narrative-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .narrative-heading-side h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--gray-900);
+    margin: 0.5rem 0 1.5rem;
+    line-height: 1.2;
+  }
+
+  .narrative-heading-side p {
+    color: var(--gray-600);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .narrative-content-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .narrative-quote-card {
+    background-color: #f7f9f6;
+    border-left: 4px solid #02403D;
+    padding: 2rem;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .narrative-quote-card p {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #02403D;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  .narrative-content-side p {
+    color: var(--gray-700);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  /* Features Grid */
+  .features-section {
+    padding: 6rem 0;
+    background-color: var(--gray-50);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .feature-item {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-100);
+    transition: var(--transition);
+  }
+
+  .feature-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background-color: rgba(2, 64, 61, 0.08);
+    color: #02403D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-item h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-item p {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Target Audience */
+  .audience-section {
+    padding: 6rem 0;
+    background-color: #ffffff;
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .audience-card {
+    background-color: var(--gray-50);
+    padding: 2.5rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--gray-200);
+    transition: var(--transition);
+  }
+
+  .audience-card:hover {
+    border-color: var(--sky-300);
+    box-shadow: var(--shadow-md);
+  }
+
+  .highlight-audience {
+    background-color: #02403D;
+    color: #ffffff;
+    border: none;
+  }
+
+  .highlight-audience:hover {
+    box-shadow: 0 12px 30px rgba(2, 64, 61, 0.25);
+  }
+
+  .audience-header h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    color: inherit;
+  }
+
+  .audience-card h3 {
+    color: #02403D;
+  }
+
+  .highlight-audience h3 {
+    color: #c4f53d;
+  }
+
+  .audience-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .audience-card ul {
+    padding-left: 0;
+  }
+
+  .audience-card li {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .audience-card li::before {
+    content: "➔";
+    position: absolute;
+    left: 0;
+    color: #02403D;
+  }
+
+  .highlight-audience li::before {
+    color: #c4f53d;
+  }
+
+  /* Comparison Section */
+  .comparison-section {
+    padding: 6rem 0;
+    background-color: var(--gray-50);
+  }
+
+  .table-container {
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-x: auto;
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-200);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  .comparison-table th, .comparison-table td {
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .comparison-table th {
+    background-color: var(--gray-100);
+    color: var(--gray-900);
+    font-weight: 700;
+  }
+
+  .comparison-table td {
+    font-size: 0.95rem;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .comparison-table th.accent-column, .comparison-table td.accent-column {
+    background-color: rgba(2, 64, 61, 0.03);
+    border-left: 1px solid rgba(2, 64, 61, 0.1);
+    border-right: 1px solid rgba(2, 64, 61, 0.1);
+  }
+
+  .comparison-table th.accent-column {
+    background-color: #02403D;
+    color: #c4f53d;
+  }
+
+  .comparison-table td.accent-column {
+    font-weight: 500;
+    color: #02403D;
+  }
+
+  /* Ecosystem Section */
+  .ecosystem-section {
+    padding: 6rem 0;
+    background-color: #ffffff;
+  }
+
+  .ecosystem-container {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  .ecosystem-content {
+    flex: 1;
+  }
+
+  .ecosystem-content h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--gray-900);
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .ecosystem-content p {
+    color: var(--gray-700);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .ecosystem-content p a {
+    color: var(--sky-600);
+    text-decoration: underline;
+  }
+
+  .btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #02403D;
+    font-weight: 700;
+    transition: var(--transition);
+  }
+
+  .btn-text:hover {
+    color: var(--sky-600);
+    transform: translateX(3px);
+  }
+
+  .ecosystem-graphics {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .ecosystem-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.1 / 1;
+    max-width: 440px;
+    background: #f8fafc;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-md);
+    display: block;
+    overflow: hidden;
+  }
+
+  .visual-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    background: #ffffff;
+    border: 2px solid #02403D;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: #02403D;
+    transition: var(--transition);
+  }
+  .visual-center:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: var(--shadow-xl);
+  }
+  .visual-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .visual-node {
+    position: absolute;
+    z-index: 4;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    padding: 0.6rem 0.85rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--transition);
+  }
+  .visual-node:hover {
+    transform: translateY(-2px);
+    border-color: var(--sky-400);
+    box-shadow: var(--shadow-md);
+  }
+  .visual-node .node-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 0.15rem;
+    letter-spacing: 0.05em;
+  }
+  .visual-node strong {
+    font-size: 0.8rem;
+    color: var(--gray-900);
+  }
+
+  .node-fitbook {
+    top: 15%;
+    left: 8%;
+  }
+  .node-servicebook {
+    top: 15%;
+    right: 8%;
+  }
+  .node-businessbook {
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .node-businessbook:hover {
+    transform: translate(-50%, -2px);
+  }
+
+  .visual-lines {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .line-path {
+    stroke: rgba(2, 64, 61, 0.2);
+    stroke-width: 2.5;
+    stroke-dasharray: 6;
+    animation: dash 35s linear infinite;
+  }
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -1000;
+    }
+  }
+
+  /* Roadmap Section */
+  .roadmap-section {
+    padding: 6rem 0;
+    background-color: var(--gray-50);
+  }
+
+  .roadmap-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 2rem;
+    border-left: 2px solid var(--gray-200);
+  }
+
+  .timeline-step {
+    position: relative;
+    margin-bottom: 3.5rem;
+  }
+
+  .timeline-step:last-child {
+    margin-bottom: 0;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: calc(-2rem - 9px);
+    top: 0.25rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--gray-300);
+    border: 2px solid #ffffff;
+  }
+
+  .timeline-dot.current {
+    background-color: #02403D;
+    box-shadow: 0 0 0 4px rgba(2, 64, 61, 0.2);
+  }
+
+  .timeline-content {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+  }
+
+  .timeline-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #02403D;
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-date {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--sky-600);
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-content p {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  /* FAQ Accordion Section */
+  /* FAQ Section */
+  .faq-section {
+    padding: 6rem 0;
+    background-color: #ffffff;
+  }
+
+  .faq-container {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .faq-heading-side {
+    position: sticky;
+    top: 100px;
+  }
+
+  .faq-heading-side .section-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: var(--gray-900);
+    margin: 0.5rem 0 1.5rem;
+    line-height: 1.2;
+  }
+
+  .faq-heading-side .section-subtitle {
+    color: var(--gray-600);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .faq-list-side {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-accordion-item {
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1.5rem 0;
+  }
+
+  .faq-accordion-item:first-child {
+    padding-top: 0;
+  }
+
+  .faq-accordion-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    color: var(--gray-900);
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .faq-accordion-trigger:hover {
+    color: #02403D;
+  }
+
+  .chevron-icon {
+    transition: transform 0.3s ease;
+    color: var(--gray-500);
+  }
+
+  .faq-accordion-trigger[aria-expanded="true"] .chevron-icon {
+    transform: rotate(180deg);
+    color: #02403D;
+  }
+
+  .faq-accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .panel-content {
+    padding-top: 1rem;
+  }
+
+  .panel-content p {
+    color: var(--gray-600);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Early Access Section */
+  .early-access-section {
+    padding: 6rem 0;
+    background-color: var(--gray-50);
+  }
+
+  .narrow-container {
+    max-width: 800px;
+  }
+
+  .early-access-card {
+    position: relative;
+    background-color: #02403D;
+    color: #ffffff;
+    border-radius: var(--radius-xl);
+    padding: 4rem 3rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .card-glow {
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(196, 245, 61, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .early-access-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  .form-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #c4f53d;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .early-access-card h2 {
+    font-size: clamp(1.8rem, 4vw, 2.3rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .early-access-card p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+
+  .early-access-form {
+    max-width: 600px;
+  }
+
+  .form-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    position: relative;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    border-radius: var(--radius-md);
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition);
+  }
+
+  .form-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .form-input:focus {
+    border-color: #c4f53d;
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .select-input {
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .select-input option {
+    background-color: #02403D;
+    color: #ffffff;
+  }
+
+  .hidden-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: #c4f53d;
+    color: #0d3a2e;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .btn-submit:hover:not(:disabled) {
+    background-color: #b8e836;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(196, 245, 61, 0.3);
+  }
+
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .btn-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(13, 58, 46, 0.2);
+    border-top-color: #0d3a2e;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .pillars-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .narrative-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .audience-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .ecosystem-container {
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .faq-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .faq-heading-side {
+      position: static;
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .main-content {
+      padding-top: 56px;
+    }
+
+    .hero-section {
+      padding: 4rem 0;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .early-access-card {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .comparison-table {
+      min-width: 650px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 1rem 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ecosystem-visual {
+      aspect-ratio: 1 / 1.15;
+    }
+    .visual-center {
+      padding: 0.85rem;
+      gap: 0.35rem;
+      width: 120px;
+    }
+    .visual-center span {
+      font-size: 0.8rem;
+    }
+    .visual-logo {
+      width: 32px;
+      height: 32px;
+    }
+    .visual-node {
+      padding: 0.45rem 0.65rem;
+    }
+    .visual-node .node-tag {
+      font-size: 0.55rem;
+    }
+    .visual-node strong {
+      font-size: 0.7rem;
+    }
+    .node-fitbook {
+      top: 12%;
+      left: 4%;
+    }
+    .node-servicebook {
+      top: 12%;
+      right: 4%;
+    }
+    .node-businessbook {
+      bottom: 8%;
+    }
+  }
+</style>

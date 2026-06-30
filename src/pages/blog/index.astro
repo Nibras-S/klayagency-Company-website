@@ -1,0 +1,608 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const rawPosts = import.meta.glob('./**/*.astro', { eager: true });
+
+const staticPosts = [
+  {
+    title: "AI & Custom Software Trends 2026: How Kerala Businesses Are Automating & Scaling Faster",
+    slug: "ai-custom-software-trends-kerala-2026",
+    date: "June 30, 2026",
+    readTime: "16 min read",
+    category: "AI & Automation",
+    image: "/blog/ai-custom-software-trends-kerala-cover.webp",
+    description: "Discover the biggest AI and custom software trends shaping Kerala businesses in 2026. Learn how AI automation, SaaS, cloud-native applications, and custom software are driving digital transformation with insights from N3 Global Tech.",
+    featured: true,
+  },
+  {
+    title: "Website Development Cost in Kerala (2026 Guide)",
+    slug: "website-development-cost-kerala-2026",
+    date: "May 6, 2026",
+    readTime: "11 min read",
+    category: "Pricing & Business Guides",
+    image: "/blog/website-development-cost-kerala-cover.webp",
+    description: "A practical breakdown of website development cost in Kerala. Real INR price ranges for small business sites, e-commerce, custom platforms, and SaaS, plus how Kerala agencies compare to Bangalore and offshore.",
+    featured: false,
+  },
+  {
+    title: "Custom Software & SaaS Development for Kerala Businesses: A Practical Guide",
+    slug: "custom-software-saas-kerala",
+    date: "May 5, 2026",
+    readTime: "10 min read",
+    category: "Engineering & SaaS",
+    image: "/blog/custom-software-saas-kerala-cover.webp",
+    description: "How custom software and SaaS platforms help Kerala businesses automate operations, scale faster, and compete globally, with real-world examples like N3 ServiceBook and FitBook.",
+    featured: false,
+  },
+];
+
+const discoveredPosts: any[] = [];
+for (const path in rawPosts) {
+  if (path.includes('index.astro')) continue;
+  const mod: any = rawPosts[path];
+  if (mod.blogMeta) {
+    discoveredPosts.push({
+      title: mod.blogMeta.title,
+      slug: mod.blogMeta.url.replace('/blog/', '').replace('/', ''),
+      date: mod.blogMeta.date,
+      readTime: mod.blogMeta.readTime,
+      category: mod.blogMeta.category,
+      image: mod.blogMeta.image || "/blog/ai-custom-software-trends-kerala-cover.webp",
+      description: mod.blogMeta.description,
+      featured: false,
+    });
+  }
+}
+
+const posts = [...discoveredPosts, ...staticPosts];
+const featuredPost = posts.find(p => p.featured) || posts[0];
+const gridPosts = posts;
+---
+
+<Layout
+  title="Blog & Insights | N3 Global Tech - Custom Software & SaaS Guides"
+  description="Explore expert guides, engineering notes, and practical business advice on custom software development, SaaS architecture, and technology pricing from N3 Global Tech."
+  keywords="N3 Global Tech blog, custom software guide Kerala, website development cost Kerala 2026, SaaS development insights, software engineering blog India, business automation Kerala"
+>
+  <Navbar />
+
+  <section class="blog-hero">
+    <div class="blog-hero__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="blog-hero__content animate-fade-up">
+        <div class="badge badge-sky">Insights · Engineering · Business</div>
+        <h1>Thought Leadership &amp; Practical Guides</h1>
+        <p class="blog-hero__subtitle">
+          Deep dives into software engineering, SaaS architecture, and digital transformation strategies for growing businesses in Kerala and worldwide.
+        </p>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="filter-bar animate-fade-up" style="animation-delay: 0.15s;">
+        <button class="filter-btn active" data-category="All">All Articles</button>
+        <button class="filter-btn" data-category="AI & Automation">AI &amp; Automation</button>
+        <button class="filter-btn" data-category="Pricing & Business Guides">Pricing &amp; Business Guides</button>
+        <button class="filter-btn" data-category="Engineering & SaaS">Engineering &amp; SaaS</button>
+        <button class="filter-btn" data-category="Kerala Technology">Kerala Technology</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Article Section -->
+  {featuredPost && (
+    <section class="featured-section animate-fade-up" style="animation-delay: 0.25s;" id="featured-article">
+      <div class="container">
+        <div class="featured-header">
+          <span class="featured-label">Featured Guide</span>
+        </div>
+        <a href={`/blog/${featuredPost.slug}/`} class="featured-card" data-category={featuredPost.category}>
+          <div class="featured-card__image-wrapper">
+            <img
+              src={featuredPost.image}
+              alt={featuredPost.title}
+              width="800"
+              height="450"
+              class="featured-card__img"
+              fetchpriority="high"
+            />
+          </div>
+          <div class="featured-card__content">
+            <div class="post-meta">
+              <span class="badge badge-sky">{featuredPost.category}</span>
+              <span class="post-date">{featuredPost.date}</span>
+              <span class="post-dot" aria-hidden="true">·</span>
+              <span class="post-time">{featuredPost.readTime}</span>
+            </div>
+            <h2 class="featured-card__title">{featuredPost.title}</h2>
+            <p class="featured-card__desc">{featuredPost.description}</p>
+            <div class="read-more-btn">
+              Read Complete Guide
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- All Articles Grid -->
+  <section class="articles-section">
+    <div class="container">
+      <div class="section-title-bar">
+        <h2>Latest Articles</h2>
+        <p>Actionable advice directly from our engineering team and product founders.</p>
+      </div>
+
+      <div class="articles-grid" id="articles-grid">
+        {gridPosts.map(post => (
+          <a href={`/blog/${post.slug}/`} class="article-card reveal" data-category={post.category}>
+            <div class="article-card__image">
+              <img src={post.image} alt={post.title} width="600" height="340" loading="lazy" />
+            </div>
+            <div class="article-card__body">
+              <div class="post-meta">
+                <span class="category-tag">{post.category}</span>
+                <span class="post-date">{post.date}</span>
+                <span class="post-dot" aria-hidden="true">·</span>
+                <span class="post-time">{post.readTime}</span>
+              </div>
+              <h3 class="article-card__title">{post.title}</h3>
+              <p class="article-card__excerpt">{post.description}</p>
+              <div class="article-card__footer">
+                <span class="read-link">Read Article &rarr;</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="blog-cta-section reveal">
+    <div class="container">
+      <div class="blog-cta-box">
+        <div class="blog-cta-box__glow" aria-hidden="true"></div>
+        <div class="blog-cta-box__content">
+          <div class="badge badge-sky">Start Your Project</div>
+          <h2>Have a project idea or need custom software?</h2>
+          <p>
+            Whether you need to scale an existing system or build a cloud platform from scratch, our engineering team in Kannur is ready to help. Get an honest estimate within 24 hours.
+          </p>
+          <div class="blog-cta-box__actions">
+            <a href="/contact/" class="btn btn-primary btn-xl">Get in Touch</a>
+            <a href="/work/" class="btn btn-ghost btn-xl" style="color: #fff; border-color: rgba(255,255,255,0.25);">View Case Studies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Hero Section ── */
+  .blog-hero {
+    position: relative;
+    padding: calc(80px + 4rem) 0 3.5rem;
+    background: radial-gradient(circle at 50% 0%, var(--sky-50) 0%, var(--white) 75%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .blog-hero__glow {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .blog-hero__content {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .blog-hero h1 {
+    font-size: clamp(2.2rem, 4.8vw, 3.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 1rem 0 1.25rem;
+    color: var(--gray-900);
+  }
+
+  .blog-hero__subtitle {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--gray-600);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* ── Filter Bar ── */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .filter-btn {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    color: var(--gray-600);
+    padding: 0.55rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+
+  .filter-btn:hover {
+    border-color: var(--sky-400);
+    color: var(--sky-700);
+    transform: translateY(-1px);
+  }
+
+  .filter-btn.active {
+    background: var(--gray-900);
+    color: var(--white);
+    border-color: var(--gray-900);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+  }
+
+  /* ── Featured Section ── */
+  .featured-section {
+    padding: 2rem 0 3.5rem;
+  }
+
+  .featured-header {
+    margin-bottom: 1rem;
+  }
+
+  .featured-label {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sky-600);
+  }
+
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 2.5rem;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 1.75rem;
+    overflow: hidden;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+  }
+
+  .featured-card:hover {
+    border-color: var(--sky-300);
+    box-shadow: 0 20px 45px rgba(14, 165, 233, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .featured-card__image-wrapper {
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background: var(--gray-100);
+    aspect-ratio: 16 / 9;
+  }
+
+  .featured-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .featured-card:hover .featured-card__img {
+    transform: scale(1.04);
+  }
+
+  .featured-card__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.84rem;
+    color: var(--gray-500);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .post-dot {
+    color: var(--gray-300);
+  }
+
+  .featured-card__title {
+    font-size: clamp(1.6rem, 2.8vw, 2.15rem);
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+    transition: color 0.2s;
+  }
+
+  .featured-card:hover .featured-card__title {
+    color: var(--sky-700);
+  }
+
+  .featured-card__desc {
+    font-size: 1.02rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 1.75rem;
+  }
+
+  .read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--sky-600);
+    transition: gap 0.25s ease;
+  }
+
+  .featured-card:hover .read-more-btn {
+    gap: 0.75rem;
+    color: var(--sky-700);
+  }
+
+  /* ── Articles Grid Section ── */
+  .articles-section {
+    padding: 3rem 0 5rem;
+  }
+
+  .section-title-bar {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title-bar h2 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-title-bar p {
+    color: var(--gray-500);
+    font-size: 1.02rem;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 2rem;
+  }
+
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  }
+
+  .article-card:hover {
+    border-color: var(--sky-300);
+    box-shadow: 0 16px 36px rgba(14, 165, 233, 0.1);
+    transform: translateY(-5px);
+  }
+
+  .article-card__image {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--gray-100);
+  }
+
+  .article-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .article-card:hover .article-card__image img {
+    transform: scale(1.05);
+  }
+
+  .article-card__body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .category-tag {
+    font-weight: 700;
+    color: var(--sky-600);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .article-card__title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.35;
+    color: var(--gray-900);
+    margin: 0.75rem 0 0.85rem;
+    transition: color 0.2s;
+  }
+
+  .article-card:hover .article-card__title {
+    color: var(--sky-700);
+  }
+
+  .article-card__excerpt {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  .article-card__footer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .read-link {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--gray-900);
+    transition: color 0.2s;
+  }
+
+  .article-card:hover .read-link {
+    color: var(--sky-600);
+  }
+
+  /* ── Bottom CTA ── */
+  .blog-cta-section {
+    padding: 2rem 0 6rem;
+  }
+
+  .blog-cta-box {
+    position: relative;
+    background: linear-gradient(135deg, var(--gray-900), #073855);
+    border-radius: 2rem;
+    padding: 4rem 2.5rem;
+    text-align: center;
+    color: var(--white);
+    overflow: hidden;
+  }
+
+  .blog-cta-box__glow {
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .blog-cta-box__content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .blog-cta-box h2 {
+    color: var(--white);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    margin: 1.25rem 0 1rem;
+  }
+
+  .blog-cta-box p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2.25rem;
+  }
+
+  .blog-cta-box__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Hidden items during filtering */
+  .is-filtered-out {
+    display: none !important;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 960px) {
+    .featured-card {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+    .blog-cta-box {
+      padding: 3rem 1.5rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var featuredArticle = document.getElementById('featured-article');
+    var articleCards = document.querySelectorAll('#articles-grid .article-card');
+
+    if (!filterBtns.length) return;
+
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var selectedCat = btn.getAttribute('data-category');
+
+        // Update active class
+        filterBtns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        // Filter featured article
+        if (featuredArticle) {
+          var featCat = featuredArticle.querySelector('.featured-card')?.getAttribute('data-category');
+          if (selectedCat === 'All' || featCat === selectedCat) {
+            featuredArticle.classList.remove('is-filtered-out');
+          } else {
+            featuredArticle.classList.add('is-filtered-out');
+          }
+        }
+
+        // Filter grid articles
+        articleCards.forEach(function(card) {
+          var cardCat = card.getAttribute('data-category');
+          if (selectedCat === 'All' || cardCat === selectedCat) {
+            card.classList.remove('is-filtered-out');
+          } else {
+            card.classList.add('is-filtered-out');
+          }
+        });
+      });
+    });
+  })();
+</script>
