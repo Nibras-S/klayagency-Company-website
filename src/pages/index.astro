@@ -1643,12 +1643,12 @@ export default function <span class="code-func">Product</span>() &#123;
     border-radius: 24px;
   }
   
-  .bg-blue { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
-  .bg-orange { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
-  .bg-sky { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
-  .bg-purple { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); }
-  .bg-pink { background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); }
-  .bg-teal { background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%); }
+  .bg-blue { background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%); }
+  .bg-orange { background: linear-gradient(135deg, #ff9a44 0%, #fc6076 100%); }
+  .bg-sky { background: linear-gradient(135deg, #02aab0 0%, #00cdac 100%); }
+  .bg-purple { background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%); } /* Matching mockup */
+  .bg-pink { background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%); }
+  .bg-teal { background: linear-gradient(135deg, #48b1bf 0%, #06beb6 100%); }
 
   .svc-pane-inner {
     position: relative;
@@ -1703,8 +1703,8 @@ export default function <span class="code-func">Product</span>() &#123;
   .svc-client-list li a::before {
     content: '»';
     margin-right: 0.5rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.3em;
+    color: #ff6b35; /* Orange arrows to match design */
+    font-size: 1.5em;
     font-weight: 800;
   }
 
@@ -1744,6 +1744,8 @@ export default function <span class="code-func">Product</span>() &#123;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   }
 
   .svc-img:hover img {
@@ -1788,36 +1790,56 @@ export default function <span class="code-func">Product</span>() &#123;
   @media (max-width: 900px) {
     .services-interactive-container {
       flex-direction: column;
-      padding: 1rem;
+      padding: 1rem 0 5rem 0; /* Add bottom padding so cards are not covered by sticky CTA */
+      background: transparent;
+      box-shadow: none;
     }
-    .services-sidebar-col {
-      width: 100%;
-      flex-direction: row;
-      gap: 0.5rem;
-    }
-    .svc-nav-btn { display: none; }
-    .services-sidebar-window { height: auto; overflow: visible; }
-    .services-sidebar-track {
-      flex-direction: row;
+    .services-sidebar-col { display: none !important; }
+    
+    .services-content-wrapper {
+      display: flex;
       overflow-x: auto;
+      scroll-snap-type: x mandatory;
       scrollbar-width: none;
-    }
-    .services-sidebar-track::-webkit-scrollbar { display: none; }
-    .svc-tab {
-      width: auto;
-      height: 50px;
-      margin: 0 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      gap: 1rem;
       padding: 0 1.5rem;
-      border-radius: 24px;
-      white-space: nowrap;
     }
+    .services-content-wrapper::-webkit-scrollbar { display: none; }
+    
+    .svc-pane {
+      position: relative !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      flex: 0 0 85% !important;
+      scroll-snap-align: center;
+      transition: none !important;
+    }
+    
     .svc-pane-inner {
       grid-template-columns: 1fr;
       padding: 2rem;
     }
+    
     .svc-pane-right {
-      min-height: 280px;
+      min-height: auto;
       margin-top: 1.5rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+    
+    .svc-pane-right .svc-img {
+      position: relative !important;
+      top: auto !important;
+      bottom: auto !important;
+      left: auto !important;
+      right: auto !important;
+      width: 32% !important;
+      height: auto !important;
+      aspect-ratio: 1;
     }
   }
 
@@ -3160,6 +3182,25 @@ export default function <span class="code-func">Product</span>() &#123;
     .wcu__visual { min-height: 0; }
     .wcu__orb { display: none; }
     .wcu__steps { display: none; }
+    /* backdrop-filter makes the compositor re-sample everything beneath the card
+       every frame — one of the costliest things to leave in a mobile scroll
+       path. Opaque background instead. */
+    .wcu__stat {
+      background: #ffffff;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-color: var(--gray-100);
+    }
+  }
+
+  /* Hero glows are two ~620px conic gradients sitting over a playing video.
+     Blur cost scales hard with radius, so halve it on phones instead of
+     dropping them, and release the promoted layers since nothing moves them
+     there (the parallax is pointer:fine only). */
+  @media (max-width: 860px) {
+    .hero__glow--1 { filter: blur(28px); }
+    .hero__glow--2 { filter: blur(24px); }
+    .hero__glow { will-change: auto; }
   }
 
   /* Same resolved layout as phone: everything visible, nothing moving. */
@@ -4504,6 +4545,9 @@ export default function <span class="code-func">Product</span>() &#123;
       const lineSvg = flow.querySelector('.flow__line');
       const blobEls = Array.from(document.getElementById('flow-blobs').children);
 
+      // Liquid warp is desktop-only: see the note at its call site.
+      const canWarp = window.matchMedia('(pointer: fine)').matches;
+
       const lineLen = linePath.getTotalLength();
       linePath.style.strokeDasharray = String(lineLen);
       linePath.style.strokeDashoffset = String(lineLen);
@@ -4597,8 +4641,14 @@ export default function <span class="code-func">Product</span>() &#123;
           el.style.transform = `translate3d(0, ${(centered * rate * -vh).toFixed(2)}px, 0)`;
         }
 
-        const bow = Math.max(-0.05, Math.min(0.05, velocity * 0.0018));
-        setWarp(bow);
+        // Rewriting the clipPath `d` re-rasterises the clip every frame, which is
+        // the single most expensive thing in this loop. Worth it on desktop; on a
+        // phone it's a major source of scroll jank, so skip it there and keep only
+        // the compositor-only skew.
+        if (canWarp) {
+          const bow = Math.max(-0.05, Math.min(0.05, velocity * 0.0018));
+          setWarp(bow);
+        }
         card.style.transform = `translateZ(0) skewY(${(velocity * 0.011).toFixed(3)}deg)`;
 
         // --- liquid droplets ---
@@ -4709,6 +4759,11 @@ export default function <span class="code-func">Product</span>() &#123;
       const steps = Array.from(wcu.querySelectorAll('.wcu__steps li'));
       const COUNT = stages.length;
 
+      // At <=860px the CSS collapses this to plain stacked cards — the sticky
+      // track, the wheel and the stage swapping are all inert. Kept live as a
+      // MediaQueryList so a rotate or resize re-enables it without a reload.
+      const wide = window.matchMedia('(min-width: 861px)');
+
       // Each stage reshapes the orb slightly so the visual isn't static.
       const ORB_SHAPES = [
         '42% 58% 54% 46% / 48% 42% 58% 52%',
@@ -4741,6 +4796,9 @@ export default function <span class="code-func">Product</span>() &#123;
       }
 
       function measure() {
+        // Narrow: everything is stacked and visible, so there is nothing to
+        // compute. Bail before touching layout.
+        if (!wide.matches) return;
         const rect = wcu.getBoundingClientRect();
         // Distance scrolled through the track, over the distance the sticky
         // child can travel inside it.
