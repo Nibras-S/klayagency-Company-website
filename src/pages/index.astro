@@ -80,6 +80,8 @@ const faqs = [
       <!-- poster matters more than it looks: with no `autoplay` and the scrub
            script gated to fine pointers, a touch device would otherwise render
            an empty box because nothing ever paints a frame. -->
+      <!-- No src attribute on purpose: the inline script below picks the file so
+           only one is ever fetched. Poster covers the no-JS case. -->
       <video
         id="hero-video"
         class="hero-video-full"
@@ -88,8 +90,20 @@ const faqs = [
         loop
         preload="auto"
         poster="/land-vid-poster.webp"
-        src="/land-vid.mp4"
       ></video>
+      <script is:inline>
+        (function () {
+          var v = document.getElementById('hero-video');
+          if (!v) return;
+          // Touch gets a 0.14MB 960px ping-pong encode (forward + reversed, so a
+          // plain `loop` rewinds seamlessly) — HTML5 video cannot play backwards,
+          // so the reverse is baked into the file rather than seeked in JS.
+          // Fine pointers get the 3.3MB all-intra file the scrub needs.
+          v.src = window.matchMedia('(pointer: fine)').matches
+            ? '/land-vid.mp4'
+            : '/land-vid-mobile.mp4';
+        })();
+      </script>
     </div>
 
     <div class="hero__glow hero__glow--1" style="z-index: 1; opacity: 0.5;"></div>
@@ -311,9 +325,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=11" loading="lazy" /></div>
-                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=12" loading="lazy" /></div>
-                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=13" loading="lazy" /></div>
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=11" loading="lazy" width="400" height="500" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=12" loading="lazy" width="400" height="300" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=13" loading="lazy" width="300" height="300" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -331,9 +345,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=21" loading="lazy" /></div>
-                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=22" loading="lazy" /></div>
-                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=23" loading="lazy" /></div>
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=21" loading="lazy" width="400" height="500" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=22" loading="lazy" width="400" height="300" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=23" loading="lazy" width="300" height="300" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -351,9 +365,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=31" loading="lazy" /></div>
-                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=32" loading="lazy" /></div>
-                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=33" loading="lazy" /></div>
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=31" loading="lazy" width="400" height="500" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=32" loading="lazy" width="400" height="300" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=33" loading="lazy" width="300" height="300" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -371,9 +385,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=41" loading="lazy" /></div>
-                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=42" loading="lazy" /></div>
-                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=43" loading="lazy" /></div>
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=41" loading="lazy" width="400" height="500" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=42" loading="lazy" width="400" height="300" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=43" loading="lazy" width="300" height="300" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -391,9 +405,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=51" loading="lazy" /></div>
-                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=52" loading="lazy" /></div>
-                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=53" loading="lazy" /></div>
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=51" loading="lazy" width="400" height="500" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=52" loading="lazy" width="400" height="300" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=53" loading="lazy" width="300" height="300" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -411,9 +425,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=61" loading="lazy" /></div>
-                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=62" loading="lazy" /></div>
-                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=63" loading="lazy" /></div>
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=61" loading="lazy" width="400" height="500" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=62" loading="lazy" width="400" height="300" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=63" loading="lazy" width="300" height="300" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -3222,6 +3236,31 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
 
+  /* ===== Touch-device paint budget =====
+     Keyed on (hover: none) rather than a width breakpoint: what matters is that
+     these effects are driven by a cursor that doesn't exist, so a large tablet
+     should shed them too. Everything here is inert on touch anyway — this only
+     stops the browser paying for it. */
+  @media (hover: none) {
+    /* Each will-change pins a GPU layer for the life of the page. On desktop
+       that's the point; on touch nothing animates these, so the layers are pure
+       memory pressure — and layer count is a common cause of mobile scroll jank. */
+    .flow__parallax,
+    .flow__card,
+    .flow__grow,
+    .principles__blob,
+    .wcu__wheel,
+    .wcu__orb { will-change: auto; }
+
+    /* backdrop-filter makes the compositor re-sample everything beneath the
+       element every frame. Never worth it in a scroll path on touch. */
+    .wcu__stat {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: #ffffff;
+    }
+  }
+
   /* Hero glows are two ~620px conic gradients sitting over a playing video.
      Blur cost scales hard with radius, so halve it on phones instead of
      dropping them, and release the promoted layers since nothing moves them
@@ -3292,7 +3331,7 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   @media (max-width: 640px) {
-    .hero { padding-bottom: 0; min-height: 85svh; }
+    .hero { padding-bottom: 0; min-height: 100svh; }
     /* svh to match the hero's own unit — mixing vh here meant the fade was sized
        against the chrome-hidden viewport while the hero used the chrome-visible
        one, so the solid part could land below the fold and leave a sliver of
@@ -3308,7 +3347,10 @@ export default function <span class="code-func">Product</span>() &#123;
         #ffffff 100%
       );
     }
-    .hero-video-full { object-position: 70% 0%; }
+    .hero-video-full { 
+      object-position: 70% 0%; 
+      transform: scale(2.5); /* Scale up video even more */
+    }
     .hero__inner {
       margin-top: auto;
       text-align: left;
