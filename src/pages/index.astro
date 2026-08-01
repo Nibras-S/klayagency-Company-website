@@ -95,13 +95,28 @@ const faqs = [
         (function () {
           var v = document.getElementById('hero-video');
           if (!v) return;
+          var fine = window.matchMedia('(pointer: fine)').matches;
+
+          if (!fine) {
+            // iOS (and therefore every iPhone browser, Chrome included — they are
+            // all WebKit) only permits inline autoplay when muted/playsinline are
+            // set as PROPERTIES before the source is assigned. The HTML attributes
+            // alone are unreliable here. defaultMuted is the one that reflects
+            // back to the attribute, which is what WebKit actually checks.
+            v.defaultMuted = true;
+            v.muted = true;
+            v.playsInline = true;
+            v.setAttribute('playsinline', '');
+            v.setAttribute('webkit-playsinline', '');
+            // Native autoplay is far more reliable on iOS than a deferred play().
+            v.autoplay = true;
+          }
+
           // Touch gets a 0.14MB 960px ping-pong encode (forward + reversed, so a
           // plain `loop` rewinds seamlessly) — HTML5 video cannot play backwards,
           // so the reverse is baked into the file rather than seeked in JS.
           // Fine pointers get the 3.3MB all-intra file the scrub needs.
-          v.src = window.matchMedia('(pointer: fine)').matches
-            ? '/land-vid.mp4'
-            : '/land-vid-mobile.mp4';
+          v.src = fine ? '/land-vid.mp4' : '/land-vid-mobile.mp4';
         })();
       </script>
     </div>
@@ -3259,6 +3274,28 @@ export default function <span class="code-func">Product</span>() &#123;
       -webkit-backdrop-filter: none;
       background: #ffffff;
     }
+
+    /* The glows stacked conic-gradient + filter:blur + mask-image on one element.
+       WebKit (i.e. every iPhone browser) forces an offscreen composite for each
+       of those, and they sit over a decoding video — three of the most expensive
+       things it can be asked to do, layered. A plain radial-gradient reads almost
+       identically at this blur and opacity, with none of the cost. */
+    .hero__glow--1 {
+      background: radial-gradient(circle at 42% 40%, rgba(56,189,248,0.30) 0%, rgba(139,92,246,0.16) 45%, rgba(255,255,255,0) 72%);
+      filter: none;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .hero__glow--2 {
+      background: radial-gradient(circle at 55% 50%, rgba(167,139,250,0.26) 0%, rgba(34,211,238,0.14) 48%, rgba(255,255,255,0) 74%);
+      filter: none;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    /* contain:paint on a full-bleed playing video gives WebKit an extra layer to
+       manage for no benefit once the scrub is gone. */
+    .hero-video-full { contain: none; }
   }
 
   /* Hero glows are two ~620px conic gradients sitting over a playing video.
@@ -3349,7 +3386,7 @@ export default function <span class="code-func">Product</span>() &#123;
     }
     .hero-video-full { 
       object-position: 70% 0%; 
-      transform: scale(2.5); /* Scale up video even more */
+      transform: scale(1.5); /* Scale up video even more */
     }
     .hero__inner {
       margin-top: auto;
