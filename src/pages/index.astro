@@ -77,12 +77,17 @@ const faqs = [
   <!-- ========== HERO ========== -->
   <section class="hero hero--fullscreen-video" data-cursor-hidden>
     <div class="hero__video-bg">
+      <!-- poster matters more than it looks: with no `autoplay` and the scrub
+           script gated to fine pointers, a touch device would otherwise render
+           an empty box because nothing ever paints a frame. -->
       <video
         id="hero-video"
         class="hero-video-full"
         muted
         playsinline
+        loop
         preload="auto"
+        poster="/land-vid-poster.webp"
         src="/land-vid.mp4"
       ></video>
     </div>
@@ -1032,7 +1037,13 @@ export default function <span class="code-func">Product</span>() &#123;
     padding-top: 72px;
     background: var(--white);
     position: relative;
+    /* `overflow-x: hidden` + `overflow-y: visible` is not a legal pair: per spec
+       the `visible` axis computes to `auto`, which turns the hero into a scroll
+       container and produces a second scrollbar. `clip` is the fix — it contains
+       the axis without coercing the other one. `hidden` first as a fallback for
+       browsers predating `clip` (Safari < 16). */
     overflow-x: hidden;
+    overflow-x: clip;
     overflow-y: visible;
   }
 
@@ -1238,11 +1249,11 @@ export default function <span class="code-func">Product</span>() &#123;
   .hero__video-bg::after {
     content: '';
     position: absolute;
-    bottom: -2px; /* prevents subpixel gaps */
+    bottom: 0;
     left: 0;
     right: 0;
     height: 18vh;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 90%, #ffffff 100%);
     z-index: 1;
     pointer-events: none;
   }
@@ -3212,7 +3223,21 @@ export default function <span class="code-func">Product</span>() &#123;
 
   @media (max-width: 640px) {
     .hero { padding-bottom: 0; }
-    .hero__video-bg::after { height: 40vh; }
+    /* svh to match the hero's own unit — mixing vh here meant the fade was sized
+       against the chrome-hidden viewport while the hero used the chrome-visible
+       one, so the solid part could land below the fold and leave a sliver of
+       video showing. Reaching full white at 72% guarantees an opaque band at the
+       seam regardless of how the address bar is behaving. */
+    .hero__video-bg::after {
+      height: 42svh;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.9) 52%,
+        #ffffff 72%,
+        #ffffff 100%
+      );
+    }
     .hero-video-full { object-position: 70% 50%; }
     .hero__inner {
       margin-top: auto;
@@ -4358,6 +4383,27 @@ export default function <span class="code-func">Product</span>() &#123;
           else heroVid.currentTime = easedTime;
         }
       }
+    }
+
+    // Touch devices have no cursor to scrub with, so the scrub block above never
+    // runs and nothing would ever paint a frame. Play it as a plain background
+    // loop instead. muted + playsinline is what makes a programmatic play()
+    // permissible under mobile autoplay policy; if it's still refused the poster
+    // simply stays put, which is a valid resting state.
+    if (heroVid && !finePointer && !reducedMotion) {
+      const startLoop = () => {
+        const p = heroVid.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      };
+
+      if (heroVid.readyState >= 2) startLoop();
+      else heroVid.addEventListener('loadeddata', startLoop, { once: true });
+
+      // Chrome on Android often downgrades preload="auto" under Data Saver, and
+      // pauses media on tab switch — retry when the page becomes visible again.
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && heroVid.paused) startLoop();
+      });
     }
 
     // ===== Hero: pointer parallax on the decorative glows =====
