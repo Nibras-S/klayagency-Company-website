@@ -9,6 +9,39 @@ const teamPreview = [
   { name: "Farseen", initials: "F", color: "amber",  image: "/team/farseen.webp" },
 ];
 
+// "Why Choose Us" scroll stages. One statistic is paired with each reason so the
+// old 2x2 metric grid still surfaces all four numbers, one at a time.
+const WCU = [
+  {
+    title: "Agile & Transparent",
+    desc: "We iterate fast with full visibility into progress, timelines, and deliverables.",
+    tags: ["Clear Timelines", "Fast Iterations", "Full Visibility"],
+    stat: "50+",
+    statLabel: "Projects Delivered",
+  },
+  {
+    title: "Expert Team",
+    desc: "Our engineers and designers bring proven expertise from Fortune 500 companies to fast-growing startups.",
+    tags: ["Skilled Engineers", "Product Designers", "Proven Expertise"],
+    stat: "40+",
+    statLabel: "Expert Team Members",
+  },
+  {
+    title: "Future-Proof Tech",
+    desc: "We build for the long run, using scalable architectures and modern best practices.",
+    tags: ["Scalable Systems", "Modern Stack", "Secure Architecture"],
+    stat: "98%",
+    statLabel: "Client Satisfaction",
+  },
+  {
+    title: "End-to-End Ownership",
+    desc: "From strategy to launch and beyond, we take responsibility for every stage.",
+    tags: ["Strategy", "Development", "Launch & Support"],
+    stat: "3+",
+    statLabel: "Years Experience",
+  },
+];
+
 const faqs = [
   {
     question: "What services does N3 Global Tech offer?",
@@ -42,27 +75,41 @@ const faqs = [
   <Navbar />
 
   <!-- ========== HERO ========== -->
-  <section class="hero">
-    <div class="hero__bg-dots"></div>
-    <div class="hero__glow hero__glow--1"></div>
-    <div class="hero__glow hero__glow--2"></div>
+  <section class="hero hero--fullscreen-video" data-cursor-hidden>
+    <div class="hero__video-bg">
+      <video
+        id="hero-video"
+        class="hero-video-full"
+        muted
+        playsinline
+        preload="auto"
+        src="/land-vid.mp4"
+      ></video>
+    </div>
 
-    <div class="container hero__inner">
+    <div class="hero__glow hero__glow--1" style="z-index: 1; opacity: 0.5;"></div>
+    <div class="hero__glow hero__glow--2" style="z-index: 1; opacity: 0.5;"></div>
+
+    <div class="container hero__inner" style="z-index: 2; position: relative;">
       <div class="hero__content">
-
         <h1 class="hero__title animate-fade-up" style="animation-delay:0.1s">
-          Build the Future<br />
-          <span class="text-gradient">with Technology</span>
+          Build the Future 
+          with <span style="color: #0284c7;">Technology</span>
         </h1>
-
-        <p class="hero__desc animate-fade-up" style="animation-delay:0.2s">
+        <p class="hero__desc animate-fade-up" style="animation-delay:0.2s; display: none;">
           We design and build high-performance <a href="/custom-software-development/" class="text-link">custom software</a>, <a href="/saas-development-company/" class="text-link">SaaS platforms</a>, and mobile apps. Engineered for scale, built to last.
         </p>
-
         <div class="hero__cta animate-fade-up" style="animation-delay:0.3s">
-          <a href="/work" class="btn btn-primary btn-lg">View Our Work</a>
+          <a href="/work" class="hero__pill-link">
+            <span class="hero__pill-text">Explore Our Projects</span>
+            <span class="hero__pill-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </a>
         </div>
-
         <div class="hero__stats animate-fade-up" style="animation-delay:0.4s">
           <div class="stat">
             <span class="stat__num">50+</span>
@@ -80,52 +127,16 @@ const faqs = [
           </div>
         </div>
       </div>
-
-      <div class="hero__visual animate-fade-up" style="animation-delay:0.2s">
-        <div class="hero__card-cluster">
-          <div class="hero__card hero__card--main animate-float">
-            <div class="hcard__icon">
-              <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="var(--sky-500)" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            </div>
-            <div>
-              <div class="hcard__title">Full-Stack Development</div>
-              <div class="hcard__sub">React, Node, NextJS & more</div>
-            </div>
-          </div>
-
-          <div class="hero__card hero__card--secondary animate-float" style="animation-delay:0.6s">
-            <div class="hcard__icon hcard__icon--purple">
-              <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#8b5cf6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
-            </div>
-            <div>
-              <div class="hcard__title">Cloud & DevOps</div>
-              <div class="hcard__sub">AWS, GCP, Azure</div>
-            </div>
-          </div>
-
-          <div class="hero__card hero__card--tertiary animate-float" style="animation-delay:1.2s">
-            <div class="hcard__icon hcard__icon--green">
-              <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#10b981" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-            </div>
-            <div>
-              <div class="hcard__title">AI & Automation</div>
-              <div class="hcard__sub">Intelligent workflows</div>
-            </div>
-          </div>
-
-          <!-- Decorative circles -->
-          <div class="hero__orbit hero__orbit--1"></div>
-          <div class="hero__orbit hero__orbit--2"></div>
-          <div class="hero__logo-center">
-            <img src="/n3logo.webp" alt="N3" class="hero__center-logo animate-float" width="256" height="256" fetchpriority="high" />
-          </div>
-        </div>
-      </div>
+      <!-- Placeholder to keep the grid layout balanced -->
+      <div class="hero__visual-placeholder" style="pointer-events: none;"></div>
     </div>
   </section>
 
+  <!-- All content below hero needs a white bg to cover the fixed video -->
+  <div style="position: relative; z-index: 2; background: #ffffff;">
+
   <!-- Client Logos Marquee (outside hero to avoid overflow clipping) -->
-  <div class="clients-marquee container">
+  <div class="clients-marquee container" style="display: none;">
     <div style="text-align:center; margin-bottom:1.5rem;">
       <span style="display:inline-block; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#0284c7; background-color:rgba(14,165,233,0.1); border:1.5px solid rgba(14,165,233,0.3); padding:0.35rem 1.1rem; border-radius:9999px;">Trusted by Leading Brands</span>
     </div>
@@ -141,130 +152,352 @@ const faqs = [
     </div>
   </div>
 
-  <!-- ========== SERVICES PREVIEW ========== -->
-  <section class="section services-preview reveal">
-    <div class="container">
-      <div class="section-header">
-        <div class="badge badge-sky">What We Do</div>
-        <h2>End-to-End Technology<br /><span class="text-gradient">Services</span></h2>
-        <p>From idea to deployment, we deliver robust digital solutions tailored to your unique business challenges.</p>
-      </div>
+  <!-- ========== FLOW — SCROLL-DRAWN PATH + LIQUID WARP ========== -->
+  <section class="flow" id="flow" aria-labelledby="flow-title">
+    <!-- Decorative line; draws itself as the section passes the viewport -->
+    <svg class="flow__line" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <!-- userSpaceOnUse so the line and the droplets share one continuous ramp -->
+        <linearGradient id="flowGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1440" y2="900">
+          <stop offset="0%" stop-color="#38bdf8" />
+          <stop offset="55%" stop-color="#0ea5e9" />
+          <stop offset="100%" stop-color="#4f46e5" />
+        </linearGradient>
 
-      <!-- Services: three-column premium list layout -->
-      <div class="svc-layout">
+        <!-- Metaball filter: blur everything together, then use a steep alpha ramp
+             to snap the soft edges back to hard ones. Shapes that overlap while
+             blurred fuse into a single surface. -->
+        <filter id="flowGoo" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="blur" />
+          <feColorMatrix
+            in="blur"
+            type="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 26 -12"
+          />
+        </filter>
+      </defs>
 
-        <!-- Column 1: Design -->
-        <div class="svc-col">
-          <p class="svc-col__label">Design</p>
-          <a href="/services#uiux" class="svc-row">
-            <div class="svc-row__icon">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
-            </div>
-            <div class="svc-row__body">
-              <span class="svc-row__title">UI/UX Design</span>
-              <span class="svc-row__desc">Wireframes, prototypes, design systems</span>
-            </div>
-            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/services#brand" class="svc-row">
-            <div class="svc-row__icon">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M12 8v3m-4.5 5l4.5-2 4.5 2"/></svg>
-            </div>
-            <div class="svc-row__body">
-              <span class="svc-row__title">Brand Identity</span>
-              <span class="svc-row__desc">Logo, Typography, Color</span>
-            </div>
-            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/services#graphic" class="svc-row">
-            <div class="svc-row__icon">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
-            </div>
-            <div class="svc-row__body">
-              <span class="svc-row__title">Graphic Design</span>
-              <span class="svc-row__desc">Brochures, Social media</span>
-            </div>
-            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+      <g filter="url(#flowGoo)">
+        <path
+          id="flow-line-path"
+          d="M -60,150 C 240,95 420,220 430,380 C 440,560 240,640 300,752 C 360,864 700,840 900,758 C 1080,688 1180,862 1520,806"
+          fill="none"
+          stroke="url(#flowGrad)"
+          stroke-width="26"
+          stroke-linecap="round"
+        />
+        <!-- Cursor-trailing droplets; radii are driven from JS -->
+        <g id="flow-blobs" fill="url(#flowGrad)">
+          {[0, 1, 2, 3, 4, 5, 6].map(() => <circle cx="-999" cy="-999" r="0" />)}
+        </g>
+      </g>
+    </svg>
+
+    <!-- objectBoundingBox units keep the warp resolution-independent -->
+    <svg class="flow__defs" aria-hidden="true" focusable="false">
+      <defs>
+        <clipPath id="flowClip" clipPathUnits="objectBoundingBox">
+          <path id="flow-clip-path" d="M 0,0.05 C 0.33,0.05 0.67,0.05 1,0.05 L 1,0.95 C 0.67,0.95 0.33,0.95 0,0.95 Z" />
+        </clipPath>
+
+      </defs>
+    </svg>
+
+    <div class="container flow__inner">
+      <!-- Words are split at build time so there's no flash of unsplit text -->
+      <h2 class="flow__title" id="flow-title">
+        <span class="flow__parallax" data-rate="0.055">
+          <span class="flow__row">
+            {["See", "How", "We"].map((w, i) => (
+              <span class="word" style={`--i:${i}`}>{w}</span>
+            ))}
+          </span>
+          <span class="flow__row">
+            {["Make", "It", "Happen"].map((w, i) => (
+              <span class="word" style={`--i:${i + 3}`}>{w}</span>
+            ))}
+          </span>
+        </span>
+      </h2>
+
+      <div class="flow__body">
+        <figure class="flow__card" id="flow-card">
+          <img
+            id="flow-img"
+            src="/products/ecom.webp"
+            alt="A recent product build by N3 Global Tech"
+            width="900"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+          <!-- Stays empty and hidden unless WebGL2 initialises; the <img> above
+               is the real content and the only thing screen readers see. -->
+          <canvas id="flow-fluid" aria-hidden="true"></canvas>
+        </figure>
+
+        <div class="flow__copy">
+          <p class="flow__desc flow__parallax" data-rate="0.082">
+            {"We combine design, engineering, and cloud infrastructure to build software that feels effortless and scales without drama. From first MVP to enterprise platform, we ship products people actually want to use.".split(" ").map((w, i) => (
+              <span class="word" style={`--i:${i}`}>{w}</span>
+            ))}
+          </p>
+
+          <div class="flow__parallax" data-rate="0.068">
+            <a href="/about/" class="flow__cta hero__pill-link">
+              <span class="hero__pill-text">Our Approach</span>
+              <span class="hero__pill-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </a>
+          </div>
         </div>
-
-        <!-- Column 2: Development -->
-        <div class="svc-col">
-          <p class="svc-col__label">Development</p>
-          <a href="/services#web" class="svc-row">
-            <div class="svc-row__icon">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
-            </div>
-            <div class="svc-row__body">
-              <span class="svc-row__title">Web Development</span>
-              <span class="svc-row__desc">Custom websites & landing pages</span>
-            </div>
-            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/services#mobile" class="svc-row">
-            <div class="svc-row__icon">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01M8 2h8"/></svg>
-            </div>
-            <div class="svc-row__body">
-              <span class="svc-row__title">Mobile Development</span>
-              <span class="svc-row__desc">iOS, Android, Cross Platform</span>
-            </div>
-            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/services#mvp" class="svc-row">
-            <div class="svc-row__icon">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-            </div>
-            <div class="svc-row__body">
-              <span class="svc-row__title">MVP Development</span>
-              <span class="svc-row__desc">Validate ideas fast</span>
-            </div>
-            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <!-- Column 3: Solutions -->
-        <div class="svc-col">
-          <p class="svc-col__label">Solutions</p>
-          <a href="/services#redesign" class="svc-row">
-            <div class="svc-row__icon">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-            </div>
-            <div class="svc-row__body">
-              <span class="svc-row__title">Product Redesign</span>
-              <span class="svc-row__desc">Modernize existing products</span>
-            </div>
-            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/services#marketing" class="svc-row">
-            <div class="svc-row__icon">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <div class="svc-row__body">
-              <span class="svc-row__title">Digital Marketing</span>
-              <span class="svc-row__desc">Grow your online presence</span>
-            </div>
-            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/services#automation" class="svc-row">
-            <div class="svc-row__icon">
-              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.07 7.07l4.24 4.24M1 12h6m10 0h6M4.22 19.78l4.24-4.24m7.07-7.07l4.24-4.24"/></svg>
-            </div>
-            <div class="svc-row__body">
-              <span class="svc-row__title">Business Automation</span>
-              <span class="svc-row__desc">Automate workflows & integrations</span>
-            </div>
-            <svg class="svc-row__arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-
-      </div>
-
-      <div class="services-cta">
-        <a href="/services" class="btn btn-outline btn-lg">View All Services</a>
       </div>
     </div>
   </section>
+
+  <!-- ========== SERVICES PREVIEW ========== -->
+  <section class="section services-preview reveal" id="services">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 3rem;">
+        <h2><span style="color: var(--gray-900); font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em;">What we do ?</span></h2>
+      </div>
+
+      <div class="services-interactive-container">
+        <div class="services-sidebar-col">
+          <button class="svc-nav-btn up" id="svc-nav-up">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg>
+          </button>
+          
+          <div class="services-sidebar-window">
+            <div class="services-sidebar-track" id="svc-track">
+              <button class="svc-tab active" data-tab="tab-web">Web Development</button>
+              <button class="svc-tab" data-tab="tab-mobile">Mobile App</button>
+              <button class="svc-tab" data-tab="tab-uiux">Logo</button>
+              <button class="svc-tab" data-tab="tab-brand">Branding</button>
+              <button class="svc-tab" data-tab="tab-marketing">Digital Marketing</button>
+              <button class="svc-tab" data-tab="tab-automation">Business Automation</button>
+            </div>
+          </div>
+
+          <button class="svc-nav-btn down" id="svc-nav-down">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+        </div>
+
+        <div class="services-content-wrapper">
+          <!-- Web Dev -->
+          <div class="svc-pane active" id="tab-web">
+            <div class="svc-pane-bg bg-blue"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Website Development Company in Kannur</h3>
+                <p>N3 Global Tech is one of the pioneers in offering modern Web Development Solutions. We take pride in providing our clients with a pocket-friendly responsive website that is search engine friendly, and robustly built for scale.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/work">Viera Natural Flooring</a></li>
+                  <li><a href="/work">Enjoyful Life</a></li>
+                  <li><a href="/work">Flyger Aviation</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=11" loading="lazy" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=12" loading="lazy" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=13" loading="lazy" /></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile App -->
+          <div class="svc-pane" id="tab-mobile">
+            <div class="svc-pane-bg bg-orange"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Mobile App Development Company</h3>
+                <p>We build high-performance mobile applications for iOS and Android using modern cross-platform technologies. From ideation to app store launch, we deliver seamless user experiences.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/work">E-Commerce Apps</a></li>
+                  <li><a href="/work">Business Utilities</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=21" loading="lazy" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=22" loading="lazy" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=23" loading="lazy" /></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logo -->
+          <div class="svc-pane" id="tab-uiux">
+            <div class="svc-pane-bg bg-sky"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Custom Logo Design</h3>
+                <p>Our design team creates intuitive, user-centric interfaces. We focus on wireframing, prototyping, and building comprehensive design systems that align with your brand's vision.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/services#uiux">Design Systems</a></li>
+                  <li><a href="/services#uiux">Prototyping</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=31" loading="lazy" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=32" loading="lazy" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=33" loading="lazy" /></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Brand -->
+          <div class="svc-pane" id="tab-brand">
+            <div class="svc-pane-bg bg-purple"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Brand Identity & Strategy</h3>
+                <p>We craft compelling brand identities, from logo design to typography and color palettes, ensuring your business stands out in a crowded market.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/services#brand">Brand Guidelines</a></li>
+                  <li><a href="/services#brand">Visual Identity</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=41" loading="lazy" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=42" loading="lazy" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=43" loading="lazy" /></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Marketing -->
+          <div class="svc-pane" id="tab-marketing">
+            <div class="svc-pane-bg bg-pink"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Digital Marketing & SEO</h3>
+                <p>Grow your online presence with targeted digital marketing strategies. We optimize your visibility through SEO, social media, and data-driven campaigns.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/services#marketing">Search Engine Optimization</a></li>
+                  <li><a href="/services#marketing">Social Media Marketing</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=51" loading="lazy" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=52" loading="lazy" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=53" loading="lazy" /></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Automation -->
+          <div class="svc-pane" id="tab-automation">
+            <div class="svc-pane-bg bg-teal"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Business Automation</h3>
+                <p>Streamline your operations with custom business automation solutions. We integrate CRM, ERP, and API workflows to save time and reduce errors.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/services#automation">Workflow Automation</a></li>
+                  <li><a href="/services#automation">API Integrations</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=61" loading="lazy" /></div>
+                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=62" loading="lazy" /></div>
+                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=63" loading="lazy" /></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabs = document.querySelectorAll('.svc-tab');
+      const panes = document.querySelectorAll('.svc-pane');
+      const track = document.getElementById('svc-track');
+      const btnUp = document.getElementById('svc-nav-up');
+      const btnDown = document.getElementById('svc-nav-down');
+
+      const colors = {
+        'tab-web': '#0284c7',
+        'tab-mobile': '#f97316',
+        'tab-uiux': '#0ea5e9',
+        'tab-brand': '#8b5cf6',
+        'tab-marketing': '#ec4899',
+        'tab-automation': '#14b8a6'
+      };
+
+      let currentIndex = 0; // Active tab index
+      const totalTabs = tabs.length;
+      const tabsVisible = 4;
+      let scrollIndex = 0; // Topmost visible tab index
+
+      function updateTabs() {
+        tabs.forEach((t) => {
+          t.classList.remove('active');
+          t.style.background = 'transparent';
+          t.style.color = 'var(--gray-600)';
+        });
+        panes.forEach(p => p.classList.remove('active'));
+
+        const activeTab = tabs[currentIndex];
+        const targetId = activeTab.getAttribute('data-tab');
+        
+        activeTab.classList.add('active');
+        activeTab.style.background = colors[targetId];
+        activeTab.style.color = '#ffffff';
+        
+        document.getElementById(targetId).classList.add('active');
+
+        // Scroll track if active tab goes out of bounds
+        if (currentIndex < scrollIndex) {
+          scrollIndex = currentIndex;
+        } else if (currentIndex >= scrollIndex + tabsVisible) {
+          scrollIndex = currentIndex - tabsVisible + 1;
+        }
+        
+        updateTrackPosition();
+      }
+
+      function updateTrackPosition() {
+        const tabHeight = 70; // Must match CSS
+        track.style.transform = `translateY(-${scrollIndex * tabHeight}px)`;
+        btnUp.disabled = scrollIndex === 0;
+        btnDown.disabled = scrollIndex >= totalTabs - tabsVisible;
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          currentIndex = index;
+          updateTabs();
+        });
+      });
+
+      btnUp.addEventListener('click', () => {
+        if (scrollIndex > 0) {
+          scrollIndex--;
+          updateTrackPosition();
+        }
+      });
+
+      btnDown.addEventListener('click', () => {
+        if (scrollIndex < totalTabs - tabsVisible) {
+          scrollIndex++;
+          updateTrackPosition();
+        }
+      });
+
+      // Initialize
+      updateTabs();
+    });
+  </script>
 
   <!-- ========== WORK SHOWCASE — STICKY SCROLL ANIMATION ========== -->
   <div class="ws-scroll-track" id="ws-scroll-track">
@@ -353,12 +586,45 @@ const faqs = [
   </div>
 
   <!-- ========== WHAT N3 STANDS FOR ========== -->
-  <section class="section principles-section reveal">
-    <div class="container">
-      <div class="section-header">
-        <div class="badge badge-sky">Our Brand Philosophy</div>
-        <h2>What <span class="text-gradient">N3</span> Stands For</h2>
-        <p>N3 is built on three simple ideas that shape how we work and what we create.</p>
+  <section class="section principles-section reveal" id="principles">
+    <!-- Weaves down the section so the three cards sit along it: the stroke
+         passes right of Next, left of Network, right of Navigate. -->
+    <svg class="principles__line" viewBox="0 0 1440 1200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="prinGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1440" y2="1200">
+          <stop offset="0%" stop-color="#5eead4" />
+          <stop offset="50%" stop-color="#22d3ee" />
+          <stop offset="100%" stop-color="#67e8f9" />
+        </linearGradient>
+      </defs>
+      <path
+        id="principles-line-path"
+        d="M -40,110 C 380,88 560,250 700,382 C 848,522 1322,540 1332,720 C 1342,902 500,878 380,1000 C 290,1092 480,1182 900,1158"
+        fill="none"
+        stroke="url(#prinGrad)"
+        stroke-width="30"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+
+    <div class="container principles__inner">
+      <div class="principles__head">
+        <h2 class="principles__title">
+          <span class="principles__row">
+            {["Three", "Ideas", "Behind"].map((w, i) => (
+              <span class="word" style={`--i:${i}`}>{w}</span>
+            ))}
+          </span>
+          <span class="principles__row">
+            {["Everything", "We", "Build"].map((w, i) => (
+              <span class="word" style={`--i:${i + 3}`}>{w}</span>
+            ))}
+          </span>
+        </h2>
+        <p class="principles__lede">
+          N3 is built on three simple ideas that shape how we work and what we create.
+        </p>
       </div>
 
       <div class="principles-grid">
@@ -404,6 +670,7 @@ const faqs = [
 
 
 
+  {/*
   <section class="section how-it-works reveal" id="how-it-works">
     <div class="container">
       <div class="section-header">
@@ -566,61 +833,82 @@ export default function <span class="code-func">Product</span>() &#123;
       </div>
     </div>
   </section>
-  <section class="section why-section reveal">
-    <div class="why-section__bg"></div>
-    <div class="container">
-      <div class="why-grid">
-        <div class="why-content">
-          <div class="badge badge-sky">Why Choose Us</div>
-          <h2>We Don't Just Build. We <span class="text-gradient">Solve</span></h2>
-          <p class="why-desc">
-            At N3 Global Tech, we combine technical expertise with a deep understanding of your business to deliver solutions that truly matter. We're not just a vendor. We're your long-term technology partner.
+  */}
+  <section class="wcu" id="wcu" aria-labelledby="wcu-title">
+    <div class="wcu__sticky">
+      <!-- Radial wheel; its centre sits outside the left edge so only the right
+           arc is on screen. Decorative — the real navigation is the scroll. -->
+      <div class="wcu__radial" aria-hidden="true">
+        <div class="wcu__ring"></div>
+        <div class="wcu__wheel" id="wcu-wheel">
+          {WCU.map((s, i) => (
+            <span class="wcu__num" data-i={i} style={`--a:${i * 90}`}>
+              <span class="wcu__num-inner">
+                <i class="wcu__dot"></i>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div class="container wcu__inner">
+        <!-- Header spans the full container so the title can run at hero scale,
+             and it clears the wheel entirely — the numbers only ever sit beside
+             the body row below. -->
+        <header class="wcu__head">
+          <h2 id="wcu-title">We Don't Just Build. We <span class="text-gradient">Solve</span></h2>
+          <p class="wcu__lede">
+            At N3 Global Tech, we combine technical expertise with a deep understanding of your
+            business to deliver solutions that truly matter. We're not just a vendor. We're your
+            long-term technology partner.
           </p>
+        </header>
 
-          <ul class="why-list">
-            {[
-              { title: "Agile & Transparent", desc: "We iterate fast with full visibility into progress, timelines, and deliverables." },
-              { title: "Expert Team", desc: "Our engineers and designers bring proven expertise from Fortune 500 to fast-growth startups." },
-              { title: "Future-Proof Tech", desc: "We build for the long run, using scalable architectures and modern best practices." },
-              { title: "End-to-End Ownership", desc: "From strategy to launch and beyond, we take responsibility for every stage." },
-            ].map(item => (
-              <li class="why-item">
-                <div class="why-item__check">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                </div>
-                <div>
-                  <strong>{item.title}</strong>
-                  <p>{item.desc}</p>
-                </div>
-              </li>
+        <div class="wcu__body">
+        <div class="wcu__content">
+          <!-- All four stay in the DOM and in the a11y tree; only one is visible. -->
+          <div class="wcu__stages">
+            {WCU.map((s, i) => (
+              <article class="wcu__stage" data-i={i}>
+                <h3 class="wcu__stage-title">{s.title}</h3>
+                <p class="wcu__stage-desc">{s.desc}</p>
+                <ul class="wcu__tags">
+                  {s.tags.map(t => <li>{t}</li>)}
+                </ul>
+              </article>
             ))}
-          </ul>
+          </div>
 
-          <a href="/contact" class="btn btn-primary btn-lg" style="margin-top:0.5rem">
-            Let's Talk
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          <a href="/contact" class="wcu__cta hero__pill-link">
+            <span class="hero__pill-text">Let's Talk</span>
+            <span class="hero__pill-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
           </a>
         </div>
 
-        <div class="why-visual">
-          <div class="metric-card metric-card--1">
-            <div class="metric-card__num">50+</div>
-            <div class="metric-card__label">Projects Delivered</div>
-          </div>
-          <div class="metric-card metric-card--2">
-            <div class="metric-card__num">98%</div>
-            <div class="metric-card__label">Client Satisfaction</div>
-          </div>
-          <div class="metric-card metric-card--3">
-            <div class="metric-card__num">3+</div>
-            <div class="metric-card__label">Years Experience</div>
-          </div>
-          <div class="metric-card metric-card--4">
-            <div class="metric-card__num">40+</div>
-            <div class="metric-card__label">Expert Team Members</div>
+        <div class="wcu__visual">
+          <div class="wcu__orb" id="wcu-orb" aria-hidden="true"></div>
+          <div class="wcu__stats">
+            {WCU.map((s, i) => (
+              <div class="wcu__stat" data-i={i}>
+                <div class="wcu__stat-num">{s.stat}</div>
+                <div class="wcu__stat-label">{s.statLabel}</div>
+              </div>
+            ))}
           </div>
         </div>
+        </div>
       </div>
+
+      <!-- Compact indicator; the only wayfinding on small screens. -->
+      <ol class="wcu__steps" aria-hidden="true">
+        {WCU.map((s, i) => <li data-i={i}>{String(i + 1).padStart(2, '0')}</li>)}
+      </ol>
     </div>
   </section>
 
@@ -731,6 +1019,7 @@ export default function <span class="code-func">Product</span>() &#123;
       </div>
     </div>
   </div>
+  </div> <!-- close white bg wrapper -->
 </Layout>
 
 <style>
@@ -759,27 +1048,55 @@ export default function <span class="code-func">Product</span>() &#123;
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
+    /* Parallax writes transform directly from JS; hint the compositor so the
+       glows get their own layer instead of repainting the hero each frame. */
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
+  /* Iridescent film: a conic sweep through the spectrum, masked to a soft disc
+     and heavily blurred so it reads as light on water rather than a colour wheel.
+     The blur never changes, so it rasterises once and only transform animates. */
   .hero__glow--1 {
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%);
-    top: -100px;
-    right: -80px;
+    width: 620px;
+    height: 620px;
+    top: -120px;
+    right: -100px;
+    background: conic-gradient(
+      from 200deg at 50% 50%,
+      rgba(56, 189, 248, 0.22),
+      rgba(139, 92, 246, 0.20),
+      rgba(236, 72, 153, 0.15),
+      rgba(250, 204, 21, 0.13),
+      rgba(45, 212, 191, 0.20),
+      rgba(56, 189, 248, 0.22)
+    );
+    filter: blur(56px);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 12%, rgba(0,0,0,0.55) 45%, transparent 72%);
+    mask-image: radial-gradient(circle at 50% 50%, #000 12%, rgba(0,0,0,0.55) 45%, transparent 72%);
   }
 
   .hero__glow--2 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%);
-    bottom: 0;
-    left: -50px;
+    width: 440px;
+    height: 440px;
+    bottom: -40px;
+    left: -70px;
+    background: conic-gradient(
+      from 20deg at 50% 50%,
+      rgba(167, 139, 250, 0.20),
+      rgba(34, 211, 238, 0.18),
+      rgba(244, 114, 182, 0.14),
+      rgba(163, 230, 53, 0.10),
+      rgba(167, 139, 250, 0.20)
+    );
+    filter: blur(48px);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 10%, rgba(0,0,0,0.5) 42%, transparent 70%);
+    mask-image: radial-gradient(circle at 50% 50%, #000 10%, rgba(0,0,0,0.5) 42%, transparent 70%);
   }
 
   .hero__inner {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: clamp(2rem, 4vw, 5rem);
     align-items: center;
     padding-top: 4rem;
@@ -788,6 +1105,12 @@ export default function <span class="code-func">Product</span>() &#123;
     margin-left: auto;
     margin-right: auto;
   }
+  
+  @media (min-width: 900px) {
+    .hero__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 
   .hero__content {
     position: relative;
@@ -795,13 +1118,13 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   .hero__title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.85rem, 5vw, 4rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin: 1rem 0;
-    letter-spacing: -0.03em;
-    color: var(--gray-900);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(3rem, 7.5vw, 6.5rem);
+    font-weight: 500;
+    line-height: 0.9;
+    margin: 1.5rem 0 3rem 0;
+    letter-spacing: -0.06em;
+    color: #000000;
   }
 
   .hero__desc {
@@ -810,6 +1133,49 @@ export default function <span class="code-func">Product</span>() &#123;
     line-height: 1.75;
     margin-bottom: 2rem;
     max-width: 480px;
+  }
+
+  .hero__pill-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.25rem 0.25rem 0.25rem 1.25rem;
+    border: none;
+    border-radius: 9999px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    background: #000000;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+  
+  .hero__pill-link:hover {
+    background: #111111;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  }
+  
+  .hero__pill-text {
+    font-family: var(--font-heading), "Helvetica Neue", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  
+  .hero__pill-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #ffffff;
+    color: #0284c7;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  .hero__pill-link:hover .hero__pill-icon {
+    transform: rotate(45deg);
   }
 
   .hero__cta {
@@ -821,15 +1187,6 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   .btn-lg { padding: 0.875rem 2rem !important; font-size: 1rem !important; }
-  .btn-xl { padding: 1rem 2.25rem !important; font-size: 1.05rem !important; }
-
-  .badge-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--sky-500);
-    animation: pulse-ring 2s ease-in-out infinite;
-  }
 
   /* Stats */
   .hero__stats {
@@ -864,177 +1221,196 @@ export default function <span class="code-func">Product</span>() &#123;
     background: var(--gray-200);
   }
 
-  /* Hero visual */
-  .hero__visual {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* Fullscreen Video Background */
+  .hero--fullscreen-video {
   }
-
-  .hero__card-cluster {
-    position: relative;
-    width: 460px;
-    height: 460px;
-    overflow: visible;
-  }
-
-  .hero__card {
+  
+  .hero__video-bg {
     position: absolute;
-    background: var(--white);
-    border: 1px solid var(--gray-100);
-    border-radius: var(--radius-xl);
-    padding: 1.1rem 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.875rem;
-    box-shadow: var(--shadow-lg);
-    width: fit-content;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
   }
 
-  .hero__card--main {
-    top: 20px;
+  /* Fade out bottom of the video to blend seamlessly with the white section below */
+  .hero__video-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* prevents subpixel gaps */
     left: 0;
-    z-index: 3;
-    border-color: var(--sky-100);
+    right: 0;
+    height: 18vh;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+    z-index: 1;
+    pointer-events: none;
   }
 
-  .hero__card--secondary {
-    top: 170px;
-    right: -20px;
-    z-index: 3;
+  .hero-video-full {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    /* Keep the video on its own compositor layer so repainting a scrubbed
+       frame never invalidates the hero text/glows stacked above it. */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: paint;
   }
 
-  .hero__card--tertiary {
-    bottom: 20px;
-    left: 20px;
-    z-index: 3;
-  }
 
-  .hcard__icon {
-    width: 52px;
-    height: 52px;
-    min-width: 52px;
-    border-radius: var(--radius-md);
-    background: var(--sky-50);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
-  .hcard__icon--purple { background: #f5f3ff; }
-  .hcard__icon--green { background: #f0fdf4; }
-
-  .hcard__title {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--gray-900);
-    font-family: var(--font-heading);
-    margin-bottom: 0.15rem;
-    white-space: nowrap;
-  }
-
-  .hcard__sub {
-    font-size: 0.75rem;
-    color: var(--gray-400);
-  }
-
-  /* Orbit circles */
-  .hero__orbit {
-    position: absolute;
-    border-radius: 50%;
-    border: 1.5px dashed var(--sky-200);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.8;
-    animation: spin 20s linear infinite;
-  }
-
-  .hero__orbit--1 {
-    width: 280px;
-    height: 280px;
-  }
-
-  .hero__orbit--2 {
-    width: 180px;
-    height: 180px;
-    border-style: solid;
-    border-color: var(--sky-100);
-    animation-direction: reverse;
-    animation-duration: 12s;
-    opacity: 0.5;
-  }
-
-  @keyframes spin {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-  }
-
-  .hero__logo-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    background: var(--white);
-    border-radius: 18px;
-    box-shadow: var(--shadow-xl);
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--sky-100);
-  }
-
-  .hero__center-logo {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    border-radius: 12px;
-  }
-
-  /* Trusted */
-  .hero__trusted {
-    padding: 2.5rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
+  /* ===== FLOW — SCROLL-DRAWN PATH + LIQUID WARP ===== */
+  .flow {
     position: relative;
-    z-index: 2;
-    border-top: 1px solid var(--gray-100);
-    margin-top: 1rem;
-    flex-wrap: wrap;
+    padding: clamp(4rem, 10vw, 9rem) 0 clamp(5rem, 12vw, 11rem);
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient(180deg, #ffffff 0%, #f2f5fd 20%, #f2f5fd 80%, #ffffff 100%);
   }
 
-  .trusted__label {
-    font-size: 0.78rem;
-    color: var(--gray-400);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    white-space: nowrap;
+  .flow__line {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
   }
 
-  .trusted__logos {
-    display: flex;
-    gap: 2.5rem;
+  .flow__defs { position: absolute; width: 0; height: 0; }
+
+  .flow__inner { position: relative; z-index: 1; }
+
+  /* Each parallax layer is offset at its own rate — that spread is what reads as depth. */
+  .flow__parallax {
+    display: block;
+    will-change: transform;
+  }
+
+  /* Matches .hero__title exactly — same face, size, weight and tracking. */
+  .flow__title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(3rem, 7.5vw, 6.5rem);
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+    color: #000000;
+    margin-bottom: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  /* Mask: words start below the line box and rise into it.
+     line-height 0.9 makes the line box shorter than the glyphs, so descenders
+     (the "g" in Brought) would be cut off by the mask. Pad, then pull back so
+     the extra room costs nothing in layout. */
+  .flow__row {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.18em;
+    margin-bottom: -0.18em;
+  }
+
+  .word {
+    display: inline-block;
+    margin-right: 0.26em;
+  }
+
+  /* Reveal is pure CSS transition, triggered once by a class — no per-frame JS. */
+  .flow__title .word {
+    transform: translate3d(0, 110%, 0);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i) * 60ms);
+  }
+
+  .flow__desc .word {
+    opacity: 0;
+    transform: translate3d(0, 60%, 0);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i) * 16ms);
+  }
+
+  .flow__cta {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+    transition: opacity 0.6s ease 0.35s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s,
+                box-shadow 0.25s ease;
+  }
+
+  .flow.is-visible .flow__title .word { transform: translate3d(0, 0, 0); }
+  .flow.is-visible .flow__desc .word { opacity: 1; transform: translate3d(0, 0, 0); }
+  .flow.is-visible .flow__cta { opacity: 1; transform: translate3d(0, 0, 0); }
+
+  .flow__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
     align-items: center;
-    flex-wrap: wrap;
   }
 
-  .trusted__logo-item {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--gray-300);
-    letter-spacing: -0.01em;
-    transition: color 0.2s;
+  .flow__card {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 3 / 2;
+    clip-path: url(#flowClip);
+    display: grid;
+    will-change: transform;
+    transform: translateZ(0);
   }
 
-  .trusted__logo-item:hover { color: var(--gray-400); }
+  /* Stacked in one cell so the canvas sits exactly over the image it distorts. */
+  .flow__card > img,
+  .flow__card > canvas {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* cover, so the warp crops into the photo instead of exposing a gap where a
+     background used to be. */
+  .flow__card > img {
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+
+  .flow__card > canvas {
+    display: block;
+    opacity: 0;
+    /* Never intercepts clicks, hover or scroll — the effect is decoration only. */
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  /* WebGL took over: the canvas paints, the <img> goes transparent but stays in
+     the layout and the a11y tree so its alt text is still exposed. */
+  .flow__card.is-fluid > canvas { opacity: 1; }
+  .flow__card.is-fluid > img { opacity: 0; }
+
+  .flow__desc {
+    font-size: clamp(1rem, 1.5vw, 1.35rem);
+    line-height: 1.6;
+    color: var(--gray-700);
+    margin-bottom: 2rem;
+  }
+
+
+
+  @media (max-width: 860px) {
+    .flow__body { grid-template-columns: 1fr; }
+  }
+
+  /* Everything resolves to its final state; nothing moves. */
+  @media (prefers-reduced-motion: reduce) {
+    .flow__card { clip-path: none; }
+    .flow__card img { transform: none; }
+    .flow__title .word,
+    .flow__desc .word,
+    .flow__cta {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 
   /* ===== SERVICES GRID ===== */
   .services-grid {
@@ -1139,16 +1515,387 @@ export default function <span class="code-func">Product</span>() &#123;
     margin-top: 3rem;
   }
 
-  /* ===== WHAT N3 STANDS FOR / PRINCIPLES ===== */
-  .principles-section {
-    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  /* ===== CUSTOM SERVICES INTERACTIVE ===== */
+  .services-interactive-container {
+    display: flex;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    padding: 4rem 2rem 2rem 0;
+    padding-left: 0;
+    max-width: 1250px;
+    margin: 0 auto;
+    min-height: 560px;
   }
 
-  .principles-grid {
+  .services-sidebar-col {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2; /* Important: above the right pane */
+  }
+
+  .svc-nav-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-400);
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .svc-nav-btn:hover {
+    color: var(--gray-900);
+  }
+  .svc-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .services-sidebar-window {
+    height: 280px; /* 4 tabs * 70px */
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .services-sidebar-track {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .svc-tab {
+    height: 70px;
+    width: calc(100% - 1.5rem);
+    margin-left: 1.5rem;
+    margin-right: -1.5rem; /* This pulls it perfectly over the right pane margin! */
+    padding: 0;
+    padding-right: 1.5rem; /* Center the text visually */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-600);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 24px 0 0 24px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .svc-tab:hover {
+    color: var(--gray-900);
+  }
+
+  .svc-tab.active {
+    color: #ffffff;
+    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.05); /* Slight shadow to pop off the white bg */
+  }
+
+  .services-content-wrapper {
+    flex: 1;
+    position: relative;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    z-index: 1;
+  }
+
+  .svc-pane {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+    display: flex;
+  }
+
+  .svc-pane.active {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+  }
+
+  .svc-pane-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: 24px;
+  }
+  
+  .bg-blue { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
+  .bg-orange { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+  .bg-sky { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
+  .bg-purple { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); }
+  .bg-pink { background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); }
+  .bg-teal { background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%); }
+
+  .svc-pane-inner {
+    position: relative;
+    z-index: 1;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    margin-top: 2.5rem;
+    padding: 3rem;
+    width: 100%;
+    color: #ffffff;
+  }
+
+  .svc-pane-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .svc-pane-left h3 {
+    color: #ffffff;
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+
+  .svc-pane-left p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .svc-client-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .svc-client-list li a {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 0.2s;
+  }
+
+  .svc-client-list li a::before {
+    content: '»';
+    margin-right: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.3em;
+    font-weight: 800;
+  }
+
+  .svc-client-list li a:hover {
+    opacity: 0.8;
+  }
+
+  .svc-pane-right {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+  }
+
+  .svc-img {
+    position: absolute;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* Parallax-like slight move when hovering the entire pane */
+  .svc-pane:hover .img-1 { transform: translate(-6px, 6px); }
+  .svc-pane:hover .img-2 { transform: translate(-4px, -6px); }
+  .svc-pane:hover .img-3 { transform: translate(6px, -4px); }
+
+  /* Direct hover over the image */
+  .svc-pane:hover .svc-img:hover {
+    transform: scale(1.05) translateY(-8px) !important;
+    z-index: 10;
+  }
+
+  .svc-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .svc-img:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Default fallback positions */
+  .img-1 { width: 40%; height: 45%; top: 5%; right: 5%; z-index: 3; }
+  .img-2 { width: 38%; height: 40%; top: 20%; left: 5%; z-index: 2; }
+  .img-3 { width: 40%; height: 45%; bottom: 5%; right: 25%; z-index: 4; }
+
+  /* 1: Web Dev (1 image half out top-center/right) */
+  #tab-web .img-1 { top: -18%; right: 15%; width: 45%; height: 42%; }
+  #tab-web .img-2 { top: auto; bottom: 5%; left: 5%; width: 42%; height: 38%; }
+  #tab-web .img-3 { bottom: 5%; right: 5%; width: 38%; height: 40%; }
+
+  /* 2: Mobile App (2 images half out) */
+  #tab-mobile .img-1 { top: -15%; right: 0%; width: 40%; height: 45%; }
+  #tab-mobile .img-2 { top: -10%; left: 5%; width: 36%; height: 40%; }
+  #tab-mobile .img-3 { bottom: 0%; right: 30%; width: 45%; height: 42%; }
+
+  /* 3: Logo (1 image half out top-right) */
+  #tab-uiux .img-1 { top: -18%; right: 0%; width: 38%; height: 45%; }
+  #tab-uiux .img-2 { top: 10%; left: 10%; width: 35%; height: 38%; }
+  #tab-uiux .img-3 { bottom: 0%; right: 20%; width: 42%; height: 42%; }
+
+  /* 4: Branding (2 images half out) */
+  #tab-brand .img-1 { top: -12%; right: 5%; width: 40%; height: 45%; }
+  #tab-brand .img-2 { top: -16%; left: 10%; width: 35%; height: 40%; }
+  #tab-brand .img-3 { bottom: -5%; right: 25%; width: 45%; height: 45%; }
+
+  /* 5: Marketing (1 image half out) */
+  #tab-marketing .img-1 { top: -20%; right: 10%; width: 42%; height: 40%; }
+  #tab-marketing .img-2 { top: auto; bottom: 10%; left: 8%; width: 35%; height: 38%; }
+  #tab-marketing .img-3 { bottom: 5%; right: 10%; width: 40%; height: 40%; }
+
+  /* 6: Automation (2 images half out) */
+  #tab-automation .img-1 { top: -14%; right: -5%; width: 38%; height: 44%; }
+  #tab-automation .img-2 { top: -10%; left: 5%; width: 36%; height: 40%; }
+  #tab-automation .img-3 { bottom: 5%; right: 35%; width: 42%; height: 42%; }
+
+  @media (max-width: 900px) {
+    .services-interactive-container {
+      flex-direction: column;
+      padding: 1rem;
+    }
+    .services-sidebar-col {
+      width: 100%;
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+    .svc-nav-btn { display: none; }
+    .services-sidebar-window { height: auto; overflow: visible; }
+    .services-sidebar-track {
+      flex-direction: row;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .services-sidebar-track::-webkit-scrollbar { display: none; }
+    .svc-tab {
+      width: auto;
+      height: 50px;
+      margin: 0 0.5rem;
+      padding: 0 1.5rem;
+      border-radius: 24px;
+      white-space: nowrap;
+    }
+    .svc-pane-inner {
+      grid-template-columns: 1fr;
+      padding: 2rem;
+    }
+    .svc-pane-right {
+      min-height: 280px;
+      margin-top: 1.5rem;
+    }
+  }
+
+  /* ===== WHAT N3 STANDS FOR / PRINCIPLES ===== */
+  .principles-section {
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .principles__line {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .principles__inner { position: relative; z-index: 1; }
+
+  .principles__head {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .principles__head .badge { margin-bottom: 1.25rem; }
+
+  /* Same type spec as the hero and flow titles. */
+  .principles__title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    color: #000000;
+    margin-bottom: 1.5rem;
+  }
+
+  .principles__row {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.16em;
+    margin-bottom: -0.16em;
+  }
+
+  .principles__title .word {
+    transform: translate3d(0, 110%, 0);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i) * 60ms);
+  }
+  .principles-section.is-visible .principles__title .word {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .principles__lede {
+    color: var(--gray-500);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .principles__title .word { transform: none; transition: none; }
+  }
+
+  /* Staggered left / right / left so the stroke weaves between the three N's
+     instead of running behind a flat row of them. */
+  .principles-grid {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 6vw, 4.5rem);
+    max-width: 1040px;
+    margin: clamp(2.5rem, 6vw, 5rem) auto 0;
+  }
+
+  .principles-grid .principle-card {
+    width: min(100%, 430px);
+  }
+  .principles-grid .principle-card:nth-child(1) { align-self: flex-start; }
+  .principles-grid .principle-card:nth-child(2) { align-self: flex-end; }
+  .principles-grid .principle-card:nth-child(3) { align-self: flex-start; }
+
+  @media (max-width: 720px) {
+    .principles-grid .principle-card,
+    .principles-grid .principle-card:nth-child(n) {
+      width: 100%;
+      align-self: stretch;
+    }
   }
 
   .principle-card {
@@ -2084,143 +2831,349 @@ export default function <span class="code-func">Product</span>() &#123;
     animation: pulse-ring 2s ease-in-out infinite;
   }
 
-  /* ===== WHY SECTION ===== */
-  .why-section {
+  /* ===== WHY CHOOSE US — SCROLL-DRIVEN RADIAL SHOWCASE ===== */
+  .wcu {
     position: relative;
-    background: var(--gray-50);
+    /* One viewport of scroll per stage, plus one so the last stage gets dwell time. */
+    height: 400vh;
+    background: linear-gradient(180deg, #ffffff 0%, #f2f7fe 10%, #eaf2fd 50%, #f3f8ff 90%, #ffffff 100%);
+  }
+
+  .wcu__sticky {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     overflow: hidden;
+    /* The navbar is position:fixed (68px + wrapper padding), so without this the
+       title scrolls underneath it. box-sizing:border-box keeps 100vh honest. */
+    padding-top: 6rem;
   }
 
-  .why-section__bg {
+  /* --- radial wheel: centre sits off-canvas so only the right arc shows --- */
+  /* Centre pushed further off-canvas than the ring, so the numbers still land at
+     ~6.5vw from the viewport edge — inside the gutter .wcu__body clears, never on
+     top of the copy. Biased below centre to sit against the body row rather than
+     the header above it. */
+  .wcu__radial {
     position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 80% 20%, rgba(14,165,233,0.07) 0%, transparent 60%);
+    top: 62%;
+    left: 0;
+    width: 0;
+    height: 0;
+    transform: translate(-23vw, -50%);
+    pointer-events: none;
+    z-index: 0;
   }
 
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(3rem, 4vw, 5rem);
+  .wcu__ring {
+    position: absolute;
+    width: 52vw;
+    height: 52vw;
+    left: -26vw;
+    top: -26vw;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    border-radius: 50%;
+  }
+
+  /* Wheel container stays so JS doesn't break, but no longer rotates */
+  .wcu__wheel {
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  .wcu__num {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Fixed position exactly on the right edge of the ring */
+    transform: translate(26vw, -50%);
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    font-weight: 500;
+    color: var(--gray-300);
+    opacity: 0; /* Hide inactive numbers */
+    pointer-events: none;
+    white-space: nowrap;
+    transition: opacity 0.5s ease, color 0.5s ease, transform 0.5s ease;
+  }
+
+  .wcu__num-inner {
+    display: inline-flex;
     align-items: center;
+    gap: 0.85rem;
+  }
+
+  .wcu__num.is-active {
+    color: var(--primary);
+    opacity: 1;
+    transform: translate(26vw, -50%) scale(1.05); /* Slight pop effect */
+  }
+
+  .wcu__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.45s ease;
+  }
+  .wcu__num.is-active .wcu__dot {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.16), 0 0 14px 2px rgba(14, 165, 233, 0.5);
+  }
+
+  /* --- centre content --- */
+  .wcu__inner {
     position: relative;
     z-index: 1;
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .why-content .badge { margin-bottom: 1rem; }
+  .wcu__head {
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+  }
 
-  .why-content h2 {
-    font-size: clamp(1.75rem, 3vw, 2.4rem);
+  /* The body is the only part the wheel sits beside, so the left padding here
+     is what keeps the numbers off the text. Numbers land at ~6vw from the
+     viewport edge; this starts the content well right of that. */
+  .wcu__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+    padding-left: clamp(0rem, 12vw, 13rem);
+  }
+
+  .wcu__content .badge { margin-bottom: 1rem; }
+
+  /* Identical spec to .flow__title / .hero__title — now that the header spans
+     the container, it can carry the full size. */
+  .wcu__head h2 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    color: #000000;
+    margin-bottom: 1.5rem;
+  }
+
+  .wcu__lede {
+    color: var(--gray-500);
+    line-height: 1.75;
+    max-width: 52ch;
+    margin-bottom: 0;
+  }
+
+  /* All four share one grid cell, so switching stages never reflows the page. */
+  .wcu__stages {
+    display: grid;
+    min-height: 14rem;
+    margin-bottom: 2rem;
+  }
+
+  .wcu__stage {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+    pointer-events: none;
+    transition: opacity 0.55s ease,
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.55s ease;
+  }
+  .wcu__stage.is-active {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    pointer-events: auto;
+  }
+
+  .wcu__stage-title {
+    font-size: clamp(1.3rem, 2.2vw, 1.85rem);
     font-weight: 800;
     letter-spacing: -0.02em;
+    margin-bottom: 0.7rem;
+  }
+
+  .wcu__stage-desc {
+    color: var(--gray-600);
+    line-height: 1.75;
+    max-width: 44ch;
     margin-bottom: 1.25rem;
   }
 
-  .why-desc {
-    color: var(--gray-500);
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
-
-  .why-list {
+  .wcu__tags {
     display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    list-style: none;
   }
-
-  .why-item {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .why-item__check {
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    border-radius: 50%;
-    background: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0.1rem;
-  }
-
-  .why-item strong {
-    display: block;
-    font-weight: 700;
-    color: var(--gray-800);
-    font-size: 0.95rem;
-    margin-bottom: 0.2rem;
-  }
-
-  .why-item p {
-    font-size: 0.875rem;
-    color: var(--gray-500);
-    line-height: 1.6;
-  }
-
-  /* Metrics */
-  .why-visual {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-  }
-
-  .metric-card {
-    background: var(--white);
-    border-radius: var(--radius-xl);
-    padding: 1.75rem;
-    border: 1.5px solid var(--gray-100);
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-  }
-
-  .metric-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-sky);
-    border-color: var(--sky-100);
-  }
-
-  .metric-card__num {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--gray-900);
-    letter-spacing: -0.03em;
-    margin-bottom: 0.25rem;
-  }
-
-  .metric-card__label {
-    font-size: 0.78rem;
-    color: var(--gray-400);
+  .wcu__tags li {
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-full);
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    font-size: 0.85rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    color: var(--gray-700);
   }
 
-  .metric-card__bar {
-    height: 4px;
-    background: var(--gray-100);
-    border-radius: 4px;
-    overflow: hidden;
+  /* Visuals come from .hero__pill-link (same black pill as "Our Approach");
+     this only owns spacing. */
+  .wcu__cta { margin-top: 0.25rem; }
+
+  /* --- right visual --- */
+  .wcu__visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 26rem;
   }
 
-  .metric-card__fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--sky-500), var(--sky-400));
-    border-radius: 4px;
-    transition: width 1s ease;
+  /* Abstract object built from gradients only — no image payload, and it can be
+     reshaped per stage by swapping the border-radius. */
+  .wcu__orb {
+    position: absolute;
+    width: min(22vw, 18rem);
+    margin-top: -3rem;
+    aspect-ratio: 1;
+    border-radius: 42% 58% 54% 46% / 48% 42% 58% 52%;
+    background: radial-gradient(circle at 32% 28%, #ffffff 0%, #f4f9ff 40%, #dbeafe 72%, #c3dafc 100%);
+    box-shadow:
+      inset -18px -22px 48px rgba(37, 99, 235, 0.14),
+      inset 14px 16px 40px rgba(255, 255, 255, 0.95),
+      0 40px 80px -30px rgba(14, 165, 233, 0.4);
+    transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), border-radius 1.1s ease;
+    will-change: transform;
   }
 
-  .metric-card__fill--teal {
-    background: linear-gradient(90deg, #0d9488, #14b8a6);
+  .wcu__stats {
+    position: relative;
+    z-index: 1;
+    display: grid;
   }
 
-  .metric-card__fill--violet {
-    background: linear-gradient(90deg, #7c3aed, #8b5cf6);
+  .wcu__stat {
+    grid-area: 1 / 1;
+    text-align: center;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transform: scale(0.94) translateX(14px) rotate(-1.5deg);
+    pointer-events: none;
+    /* Overshooting curve gives the spring feel without a physics library. */
+    transition: opacity 0.6s ease, transform 0.75s cubic-bezier(0.34, 1.4, 0.5, 1);
+  }
+  .wcu__stat.is-active {
+    opacity: 1;
+    transform: scale(1) translateX(0) rotate(0deg);
+    pointer-events: auto;
+  }
+
+  .wcu__stat-num {
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--sky-500), var(--sky-700));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .wcu__stat-label {
+    margin-top: 0.5rem;
+    color: var(--gray-500);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* --- step indicator: only shown where the wheel isn't --- */
+  .wcu__steps {
+    position: relative;
+    z-index: 1;
+    display: none;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 2.25rem;
+    list-style: none;
+  }
+  .wcu__steps li {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--gray-300);
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    transition: color 0.35s ease, background-color 0.35s ease;
+  }
+  .wcu__steps li.is-active {
+    color: var(--primary);
+    background-color: rgba(14, 165, 233, 0.1);
+  }
+
+  /* Tablet: drop the wheel, keep the scroll stages, add the step indicator. */
+  @media (max-width: 1024px) {
+    .wcu__radial { display: none; }
+    .wcu__body { padding-left: 0; }
+    .wcu__steps { display: flex; }
+    .wcu__orb { width: min(46vw, 20rem); }
+  }
+
+  /* Phone: no sticky track at all — the stages just become stacked cards. */
+  @media (max-width: 860px) {
+    .wcu { height: auto; }
+    .wcu__sticky {
+      position: static;
+      min-height: 0;
+      padding: 3.5rem 0;
+      overflow: visible;
+    }
+    .wcu__body { grid-template-columns: 1fr; }
+    .wcu__stages { min-height: 0; gap: 2.25rem; margin-bottom: 2rem; }
+    .wcu__stage,
+    .wcu__stat {
+      grid-area: auto;
+      opacity: 1;
+      transform: none;
+      filter: none;
+      pointer-events: auto;
+    }
+    .wcu__stats { gap: 1rem; }
+    .wcu__visual { min-height: 0; }
+    .wcu__orb { display: none; }
+    .wcu__steps { display: none; }
+  }
+
+  /* Same resolved layout as phone: everything visible, nothing moving. */
+  @media (prefers-reduced-motion: reduce) {
+    .wcu { height: auto; }
+    .wcu__sticky {
+      position: static;
+      min-height: 0;
+      padding: 3.5rem 0;
+      overflow: visible;
+    }
+    .wcu__stages { min-height: 0; gap: 2.25rem; }
+    .wcu__stage,
+    .wcu__stat {
+      grid-area: auto;
+      opacity: 1;
+      transform: none;
+      filter: none;
+      pointer-events: auto;
+      transition: none;
+    }
+    .wcu__stats { gap: 1rem; }
+    .wcu__radial,
+    .wcu__steps { display: none; }
+    .wcu__orb { transition: none; }
   }
 
   /* ===== RESPONSIVE ===== */
@@ -2230,9 +3183,6 @@ export default function <span class="code-func">Product</span>() &#123;
     .hero__inner {
       max-width: 1200px;
     }
-    .why-grid {
-      max-width: 1100px;
-    }
     .process-grid {
       max-width: 1100px;
     }
@@ -2240,9 +3190,9 @@ export default function <span class="code-func">Product</span>() &#123;
 
   @media (max-width: 1024px) {
     .hero {
-      min-height: auto;
+      min-height: 100svh;
       padding-top: 80px;
-      padding-bottom: 0.5rem;
+      padding-bottom: 2rem;
     }
     .hero__inner {
       grid-template-columns: 1fr;
@@ -2257,15 +3207,31 @@ export default function <span class="code-func">Product</span>() &#123;
     .hero__stats { justify-content: center; }
     .hero__visual { display: none; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .why-grid { grid-template-columns: 1fr; gap: 3rem; max-width: 100%; }
-    .why-visual { grid-template-columns: repeat(2, 1fr); }
     .process-grid { grid-template-columns: 1fr; max-width: 100%; }
   }
 
   @media (max-width: 640px) {
+    .hero { padding-bottom: 0; }
+    .hero__video-bg::after { height: 40vh; }
+    .hero-video-full { object-position: 70% 50%; }
+    .hero__inner {
+      margin-top: auto;
+      text-align: left;
+      padding-bottom: 0;
+      gap: 0.75rem;
+    }
+    .hero__title { font-size: 3.2rem; line-height: 1.1; margin-bottom: 0.5rem; }
+    .hero__desc { display: none; } /* Hide description entirely on mobile if it takes up too much space? Or just let it be. Let's keep it. */
+    .hero__desc, .hero__cta { justify-content: flex-start; margin-left: 0; text-align: left; }
+    
+    .hero__pill-link { font-size: 0.85rem; padding: 0.2rem 0.2rem 0.2rem 1rem; gap: 0.6rem; }
+    .hero__pill-icon { width: 1.8rem; height: 1.8rem; }
+    .hero__pill-icon svg { width: 12px; height: 12px; }
+    
     .services-grid { grid-template-columns: 1fr; }
-    .why-visual { grid-template-columns: 1fr 1fr; }
-    .hero__stats { flex-direction: row; gap: 1rem; align-items: center; justify-content: center; }
+    
+    .hero__stats { display: none; }
+    
     .clients-marquee { padding: 1.25rem 0; margin-top: 0; }
     .services-preview { padding-top: 2rem !important; }
   }
@@ -2423,8 +3389,6 @@ export default function <span class="code-func">Product</span>() &#123;
     padding: 2.5rem 0;
     position: relative;
     z-index: 2;
-    border-top: 1px solid var(--gray-100);
-    margin-top: 1rem;
     text-align: center;
   }
 
@@ -3332,6 +4296,748 @@ export default function <span class="code-func">Product</span>() &#123;
 
       processSteps.forEach(step => processObserver.observe(step));
     }
+
+    // Hero video scrub logic — pointer-driven seeking.
+    // Seeking a compressed video is only cheap when the target is buffered, so we
+    // gate on buffered ranges and ease toward the target instead of chasing the
+    // raw pointer position (a fast flick would otherwise demand a long seek every frame).
+    const heroVid = document.getElementById('hero-video');
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (heroVid && finePointer && !reducedMotion) {
+      let isLoaded = false;
+      let targetTime = 0;   // where the pointer wants us
+      let easedTime = 0;    // where we actually are, lerped
+      let rafId = null;
+
+      const markLoaded = () => { isLoaded = true; };
+      heroVid.addEventListener('loadedmetadata', markLoaded);
+      if (heroVid.readyState >= 1) markLoaded();
+
+      // fastSeek snaps to the nearest keyframe without the exactness guarantee,
+      // which is significantly cheaper. Firefox has it; Chrome/Safari fall back.
+      const canFastSeek = typeof heroVid.fastSeek === 'function';
+
+      const isBuffered = (t) => {
+        const ranges = heroVid.buffered;
+        for (let i = 0; i < ranges.length; i++) {
+          if (t >= ranges.start(i) && t <= ranges.end(i)) return true;
+        }
+        return false;
+      };
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isLoaded || !heroVid.duration) return;
+        const percent = Math.max(0, Math.min(1, e.clientX / window.innerWidth));
+        targetTime = percent * heroVid.duration;
+        if (rafId === null) rafId = requestAnimationFrame(updateVideoScrub);
+      }, { passive: true });
+
+      function updateVideoScrub() {
+        rafId = null;
+        if (!isLoaded) return;
+
+        const delta = targetTime - easedTime;
+
+        if (Math.abs(delta) < 0.004) {
+          easedTime = targetTime;
+        } else {
+          // Source is all-intra, so a seek costs one frame decode. We can track
+          // the pointer closely; the easing here is for feel, not for throttling.
+          easedTime += delta * 0.28;
+          rafId = requestAnimationFrame(updateVideoScrub);
+        }
+
+        // Seeking into an unbuffered region issues a range request and stalls
+        // the decoder — skip it and let the next frame retry.
+        if (!isBuffered(easedTime)) return;
+
+        if (Math.abs(heroVid.currentTime - easedTime) > 0.02) {
+          if (canFastSeek) heroVid.fastSeek(easedTime);
+          else heroVid.currentTime = easedTime;
+        }
+      }
+    }
+
+    // ===== Hero: pointer parallax on the decorative glows =====
+    // Text, buttons and layout are untouched — only the two glow divs move, and
+    // they're already pointer-events:none so nothing becomes harder to click.
+    const heroEl = document.querySelector('.hero--fullscreen-video');
+
+    if (
+      heroEl &&
+      !heroEl.dataset.parallaxBound &&              // never bind twice
+      window.matchMedia('(pointer: fine)').matches &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+      (navigator.hardwareConcurrency || 4) >= 4 &&
+      !(navigator.deviceMemory && navigator.deviceMemory < 4)
+    ) {
+      heroEl.dataset.parallaxBound = '1';
+      // Opposite signs and different amplitudes, so the two drift apart rather
+      // than sliding as one flat plane.
+      // Three depth planes. Amplitudes rise front-to-back and the middle layer
+      // runs against the cursor, which is what sells the separation — matched
+      // directions would read as one sheet sliding.
+      //   scale: overscan, so a translated layer can't expose an edge.
+      //   r:     1-2 degrees only; more than that reads as tilt, not depth.
+      const layers = [
+        // background — the video fill
+        { el: heroEl.querySelector('.hero-video-full'), x: 6, y: 5, r: 0, scale: 1.02 },
+        // middle — smaller violet disc, opposed
+        { el: heroEl.querySelector('.hero__glow--2'), x: -15, y: -12, r: 1.5, scale: 1 },
+        // foreground — larger sky disc
+        { el: heroEl.querySelector('.hero__glow--1'), x: 26, y: 20, r: -1.2, scale: 1 },
+      ].filter((l) => l.el);
+
+      if (layers.length) {
+        let tx = 0, ty = 0;   // target, -1..1 across the hero
+        let cx = 0, cy = 0;   // eased current
+        let pRaf = null;
+
+        const pWake = () => {
+          if (pRaf === null) pRaf = requestAnimationFrame(pTick);
+        };
+
+        // Listeners live on the hero, so they cost nothing elsewhere on the page.
+        const onMove = (e) => {
+          const r = heroEl.getBoundingClientRect();
+          if (!r.width || !r.height) return;
+          tx = ((e.clientX - r.left) / r.width) * 2 - 1;
+          ty = ((e.clientY - r.top) / r.height) * 2 - 1;
+          pWake();
+        };
+
+        // Drift back to centre when the cursor leaves rather than freezing.
+        const onLeave = () => {
+          tx = 0; ty = 0;
+          pWake();
+        };
+
+        heroEl.addEventListener('pointermove', onMove, { passive: true });
+        heroEl.addEventListener('pointerleave', onLeave, { passive: true });
+
+        // Astro ships static pages so there's no unmount, but tear down on
+        // pagehide so a bfcache restore starts from a clean slate.
+        window.addEventListener('pagehide', () => {
+          heroEl.removeEventListener('pointermove', onMove);
+          heroEl.removeEventListener('pointerleave', onLeave);
+          if (pRaf !== null) { cancelAnimationFrame(pRaf); pRaf = null; }
+          delete heroEl.dataset.parallaxBound;
+        }, { once: true });
+
+        function pTick() {
+          pRaf = null;
+          // Low factor = long, soft trail behind the cursor.
+          cx += (tx - cx) * 0.06;
+          cy += (ty - cy) * 0.06;
+
+          for (const l of layers) {
+            l.el.style.transform =
+              `translate3d(${(cx * l.x).toFixed(2)}px, ${(cy * l.y).toFixed(2)}px, 0)` +
+              (l.r ? ` rotate(${(cx * l.r).toFixed(3)}deg)` : '') +
+              (l.scale !== 1 ? ` scale(${l.scale})` : '');
+          }
+
+          // Sleep once settled; the next pointer move wakes it.
+          if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) {
+            pRaf = requestAnimationFrame(pTick);
+          }
+        }
+      }
+    }
+
+    // ===== Flow section: line draw + per-layer parallax + velocity-driven warp =====
+    const flow = document.getElementById('flow');
+
+    if (flow && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const linePath = document.getElementById('flow-line-path');
+      const clipPath = document.getElementById('flow-clip-path');
+      const card = document.getElementById('flow-card');
+      const layers = Array.from(flow.querySelectorAll('.flow__parallax'));
+      const lineSvg = flow.querySelector('.flow__line');
+      const blobEls = Array.from(document.getElementById('flow-blobs').children);
+
+      const lineLen = linePath.getTotalLength();
+      linePath.style.strokeDasharray = String(lineLen);
+      linePath.style.strokeDashoffset = String(lineLen);
+
+      let lastScroll = window.scrollY;
+      let velocity = 0;
+      let inView = false;
+      let rafId = null;
+
+      // Droplets trailing the cursor. The goo filter fuses them into each other
+      // and into the line wherever they overlap.
+      const BLOB_R = 34;
+      const trail = blobEls.map(() => ({ x: -999, y: -999 }));
+      let pointerX = 0;
+      let pointerY = 0;
+      let pointerLive = false;
+      let activity = 0;   // eased 0->1 so droplets swell in and drain out
+      let seeded = false;
+
+      const TOP = 0.05;
+      const BOTTOM = 0.95;
+
+      // Bow the top and bottom edges by the same amount so the card reads as a
+      // sheet bending, rather than a barrel bulging.
+      const setWarp = (bow) => {
+        const t = (TOP + bow).toFixed(4);
+        const b = (BOTTOM + bow).toFixed(4);
+        clipPath.setAttribute(
+          'd',
+          `M 0,${TOP} C 0.33,${t} 0.67,${t} 1,${TOP} L 1,${BOTTOM} C 0.67,${b} 0.33,${b} 0,${BOTTOM} Z`
+        );
+      };
+
+      const wake = () => {
+        if (inView && rafId === null) rafId = requestAnimationFrame(tickFlow);
+      };
+
+      // Reveal fires once; the CSS transitions handle the stagger from here.
+      const revealIO = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          flow.classList.add('is-visible');
+          revealIO.disconnect();
+        }
+      }, { threshold: 0.15 });
+      revealIO.observe(flow);
+
+      // Scroll-linked work only runs while the section is near the viewport.
+      const activeIO = new IntersectionObserver((entries) => {
+        inView = entries[0].isIntersecting;
+        wake();
+      }, { rootMargin: '200px 0px' });
+      activeIO.observe(flow);
+
+      window.addEventListener('scroll', wake, { passive: true });
+
+      // Coarse pointers get no droplets — there's no hover state to drive them.
+      if (window.matchMedia('(pointer: fine)').matches) {
+        flow.addEventListener('pointermove', (e) => {
+          pointerX = e.clientX;
+          pointerY = e.clientY;
+          pointerLive = true;
+          wake();
+        }, { passive: true });
+
+        flow.addEventListener('pointerleave', () => {
+          pointerLive = false;
+          wake();
+        }, { passive: true });
+      }
+
+      function tickFlow() {
+        rafId = null;
+
+        const y = window.scrollY;
+        const raw = y - lastScroll;
+        lastScroll = y;
+        velocity += (raw - velocity) * 0.12;
+
+        const rect = flow.getBoundingClientRect();
+        const vh = window.innerHeight;
+
+        // 0 -> 1 as the section travels from just below to just above the viewport
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+
+        linePath.style.strokeDashoffset = String(lineLen * (1 - progress));
+
+        // Centered so each layer drifts through zero at mid-scroll, not from the top.
+        const centered = (progress - 0.5) * 2;
+        for (const el of layers) {
+          const rate = parseFloat(el.dataset.rate) || 0;
+          el.style.transform = `translate3d(0, ${(centered * rate * -vh).toFixed(2)}px, 0)`;
+        }
+
+        const bow = Math.max(-0.05, Math.min(0.05, velocity * 0.0018));
+        setWarp(bow);
+        card.style.transform = `translateZ(0) skewY(${(velocity * 0.011).toFixed(3)}deg)`;
+
+        // --- liquid droplets ---
+        activity += ((pointerLive ? 1 : 0) - activity) * 0.09;
+        let trailMoving = false;
+
+        if (activity > 0.002) {
+          // getScreenCTM handles the viewBox + preserveAspectRatio="slice" mapping
+          // for us, which hand-rolled math would get wrong on off-ratio viewports.
+          const ctm = lineSvg.getScreenCTM();
+          if (ctm) {
+            const p = new DOMPoint(pointerX, pointerY).matrixTransform(ctm.inverse());
+
+            // Drop the whole chain onto the cursor on entry, so it doesn't whip
+            // across the section from its last resting place.
+            if (!seeded) {
+              for (const t of trail) { t.x = p.x; t.y = p.y; }
+              seeded = true;
+            }
+
+            trail[0].x += (p.x - trail[0].x) * 0.34;
+            trail[0].y += (p.y - trail[0].y) * 0.34;
+            for (let i = 1; i < trail.length; i++) {
+              trail[i].x += (trail[i - 1].x - trail[i].x) * 0.3;
+              trail[i].y += (trail[i - 1].y - trail[i].y) * 0.3;
+            }
+
+            for (let i = 0; i < blobEls.length; i++) {
+              const taper = 1 - i / (blobEls.length + 1);
+              blobEls[i].setAttribute('cx', trail[i].x.toFixed(1));
+              blobEls[i].setAttribute('cy', trail[i].y.toFixed(1));
+              blobEls[i].setAttribute('r', (BLOB_R * taper * activity).toFixed(1));
+            }
+
+            const tail = trail[trail.length - 1];
+            trailMoving = Math.hypot(tail.x - p.x, tail.y - p.y) > 0.6;
+          }
+        } else if (seeded) {
+          for (const el of blobEls) el.setAttribute('r', '0');
+          seeded = false;
+        }
+
+        // Sleep once scrolling stops, the warp has sprung back, and the
+        // droplets have either caught up or fully drained.
+        const settling = pointerLive ? activity < 0.998 : activity > 0.002;
+        const idle =
+          Math.abs(raw) < 0.05 &&
+          Math.abs(velocity) < 0.05 &&
+          !trailMoving &&
+          !settling;
+
+        if (!idle) rafId = requestAnimationFrame(tickFlow);
+      }
+
+      // Run one pass synchronously rather than via wake(): wake() is gated on
+      // inView, which is still false until the observer first fires, so the
+      // parallax layers would sit un-offset and jump on the first scroll.
+      tickFlow();
+    }
+
+    // ===== Principles: draw the 3 of N3 as the section scrolls past =====
+    const prin = document.getElementById('principles');
+
+    if (prin && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const prinPath = document.getElementById('principles-line-path');
+
+      const prinLen = prinPath.getTotalLength();
+      prinPath.style.strokeDasharray = String(prinLen);
+      prinPath.style.strokeDashoffset = String(prinLen);
+
+      let prinIn = false;
+      let prinRaf = null;
+
+      const prinWake = () => {
+        if (prinIn && prinRaf === null) prinRaf = requestAnimationFrame(tickPrin);
+      };
+
+      new IntersectionObserver((entries) => {
+        prinIn = entries[0].isIntersecting;
+        prinWake();
+      }, { rootMargin: '200px 0px' }).observe(prin);
+
+      window.addEventListener('scroll', prinWake, { passive: true });
+
+      function tickPrin() {
+        prinRaf = null;
+        const r = prin.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const p = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
+        prinPath.style.strokeDashoffset = String(prinLen * (1 - p));
+        // Purely scroll-driven, so one pass per scroll event is enough.
+      }
+
+      tickPrin();
+    }
+
+    // ===== Why Choose Us: scroll position -> active stage =====
+    // No scroll hijacking: we only read scrollTop and toggle classes. The page
+    // scrolls normally; position:sticky does all the pinning.
+    const wcu = document.getElementById('wcu');
+
+    if (wcu && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const wheel = document.getElementById('wcu-wheel');
+      const orb = document.getElementById('wcu-orb');
+      const nums = Array.from(wcu.querySelectorAll('.wcu__num'));
+      const stages = Array.from(wcu.querySelectorAll('.wcu__stage'));
+      const stats = Array.from(wcu.querySelectorAll('.wcu__stat'));
+      const steps = Array.from(wcu.querySelectorAll('.wcu__steps li'));
+      const COUNT = stages.length;
+
+      // Each stage reshapes the orb slightly so the visual isn't static.
+      const ORB_SHAPES = [
+        '42% 58% 54% 46% / 48% 42% 58% 52%',
+        '58% 42% 44% 56% / 42% 56% 44% 58%',
+        '48% 52% 62% 38% / 56% 44% 56% 44%',
+        '52% 48% 40% 60% / 44% 58% 42% 56%',
+      ];
+
+      let current = -1;
+      let ticking = false;
+
+      function apply(stage) {
+        if (stage === current) return;
+        current = stage;
+
+        // Unitless: the CSS multiplies it by 1deg. ~90 degrees per stage.
+        wheel.style.setProperty('--wheel', String(-stage * 90));
+
+        for (let i = 0; i < COUNT; i++) {
+          nums[i] && nums[i].classList.toggle('is-active', i === stage);
+          stages[i].classList.toggle('is-active', i === stage);
+          stats[i] && stats[i].classList.toggle('is-active', i === stage);
+          steps[i] && steps[i].classList.toggle('is-active', i === stage);
+        }
+
+        if (orb) {
+          orb.style.borderRadius = ORB_SHAPES[stage];
+          orb.style.transform = `rotate(${stage * 24}deg) scale(${1 + stage * 0.015})`;
+        }
+      }
+
+      function measure() {
+        const rect = wcu.getBoundingClientRect();
+        // Distance scrolled through the track, over the distance the sticky
+        // child can travel inside it.
+        const travel = rect.height - window.innerHeight;
+        if (travel <= 0) { apply(0); return; }
+        const p = Math.min(Math.max(-rect.top / travel, 0), 1);
+        // 0.999 keeps p === 1 from indexing past the last stage.
+        apply(Math.min(Math.floor(p * COUNT * 0.999), COUNT - 1));
+      }
+
+      // rAF-coalesced: many scroll events collapse into one read per frame.
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { ticking = false; measure(); });
+      }
+
+      // Only listen while the section is anywhere near the viewport.
+      let bound = false;
+      new IntersectionObserver((entries) => {
+        const vis = entries[0].isIntersecting;
+        if (vis && !bound) {
+          window.addEventListener('scroll', onScroll, { passive: true });
+          bound = true;
+          measure();
+        } else if (!vis && bound) {
+          window.removeEventListener('scroll', onScroll);
+          bound = false;
+        }
+      }, { rootMargin: '10% 0px' }).observe(wcu);
+
+      window.addEventListener('resize', measure, { passive: true });
+      measure();
+    }
   });
+</script>
+
+<!-- ===================================================================
+     Mouse-driven fluid distortion on the flow card (raw WebGL2).
+
+     Two passes per frame:
+       1. Flow map  — a low-res ping-pong buffer. The cursor injects velocity
+                      into it; each frame the previous buffer is faded and fed
+                      back, which is what leaves a trail behind the pointer.
+       2. Display   — samples the photo with UVs pushed by the flow map, and
+                      splits R/B further apart where the flow is strongest.
+
+     Deliberately no three.js: this needs two FBOs and a fullscreen triangle,
+     not a scene graph. ~4KB here versus ~150KB gzipped for the library.
+     ================================================================== -->
+<script is:inline>
+  (function () {
+    const card = document.getElementById('flow-card');
+    const canvas = document.getElementById('flow-fluid');
+    const img = document.getElementById('flow-img');
+    if (!card || !canvas || !img) return;
+
+    // ---- bail-out conditions: leave the plain <img> in place ----
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+    // Weak hardware: a 2-pass GPU effect isn't worth the battery.
+    if ((navigator.hardwareConcurrency || 4) < 4) return;
+    if (navigator.deviceMemory && navigator.deviceMemory < 4) return;
+
+    const gl = canvas.getContext('webgl2', {
+      alpha: true,
+      antialias: false,
+      depth: false,
+      stencil: false,
+      premultipliedAlpha: false,
+      powerPreference: 'low-power',
+    });
+    if (!gl) return;
+
+    // Flow simulation runs far below display res — it's a smooth vector field,
+    // so extra resolution buys nothing but fill rate.
+    const SIM = 128;
+    const MAX_DPR = 1.75;
+    const DECAY = 0.955;      // per-frame trail persistence
+    const RADIUS = 0.16;      // cursor injection falloff
+    const STRENGTH = 0.055;   // max UV displacement
+    const CHROMA = 0.45;      // RGB separation, scaled by local flow
+    const EASE = 0.14;        // pointer smoothing
+
+    const VERT = `#version 300 es
+      const vec2 P[3] = vec2[3](vec2(-1.0,-1.0), vec2(3.0,-1.0), vec2(-1.0,3.0));
+      out vec2 vUv;
+      void main() {
+        vec2 p = P[gl_VertexID];
+        vUv = p * 0.5 + 0.5;
+        gl_Position = vec4(p, 0.0, 1.0);
+      }`;
+
+    // Flow is signed but stored in RGBA8 (encoded to 0..1) rather than a float
+    // target — avoids depending on EXT_color_buffer_float for renderability.
+    const SIM_FRAG = `#version 300 es
+      precision highp float;
+      in vec2 vUv;
+      out vec4 outColor;
+      uniform sampler2D uPrev;
+      uniform vec2 uCursor;
+      uniform vec2 uVel;
+      uniform float uAspect;
+      uniform float uDecay;
+      uniform float uRadius;
+      void main() {
+        vec2 prev = texture(uPrev, vUv).xy * 2.0 - 1.0;
+        vec2 d = vUv - uCursor;
+        d.x *= uAspect;
+        float fall = exp(-dot(d, d) / (uRadius * uRadius));
+        vec2 flow = prev * uDecay + uVel * fall;
+        flow = clamp(flow, -1.0, 1.0);
+        outColor = vec4(flow * 0.5 + 0.5, 0.0, 1.0);
+      }`;
+
+    const DRAW_FRAG = `#version 300 es
+      precision highp float;
+      in vec2 vUv;
+      out vec4 outColor;
+      uniform sampler2D uImage;
+      uniform sampler2D uFlow;
+      uniform float uCanvasAspect;
+      uniform float uImageAspect;
+      uniform float uStrength;
+      uniform float uChroma;
+      void main() {
+        // object-fit: cover, matching the CSS on the <img> it replaces. Crops
+        // rather than letterboxes, so there's never a transparent gap.
+        vec2 s = vec2(1.0);
+        if (uCanvasAspect > uImageAspect) s.y = uImageAspect / uCanvasAspect;
+        else s.x = uCanvasAspect / uImageAspect;
+        vec2 uv = (vUv - 0.5) * s + 0.5;
+
+        vec2 flow = texture(uFlow, vUv).xy * 2.0 - 1.0;
+        float mag = min(length(flow), 1.0);
+        vec2 off = flow * uStrength;
+
+        // Chromatic split widens only where the fluid is actually moving.
+        float ca = uChroma * mag;
+        vec2 rUv = uv + off * (1.0 + ca);
+        vec2 gUv = uv + off;
+        vec2 bUv = uv + off * (1.0 - ca);
+
+        // cover always fills, so no transparency mask is needed.
+        outColor = vec4(
+          texture(uImage, clamp(rUv, 0.0, 1.0)).r,
+          texture(uImage, clamp(gUv, 0.0, 1.0)).g,
+          texture(uImage, clamp(bUv, 0.0, 1.0)).b,
+          1.0
+        );
+      }`;
+
+    function compile(type, src) {
+      const sh = gl.createShader(type);
+      gl.shaderSource(sh, src);
+      gl.compileShader(sh);
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+        console.warn('[fluid] shader:', gl.getShaderInfoLog(sh));
+        return null;
+      }
+      return sh;
+    }
+
+    function program(fragSrc) {
+      const vs = compile(gl.VERTEX_SHADER, VERT);
+      const fs = compile(gl.FRAGMENT_SHADER, fragSrc);
+      if (!vs || !fs) return null;
+      const p = gl.createProgram();
+      gl.attachShader(p, vs);
+      gl.attachShader(p, fs);
+      gl.linkProgram(p);
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
+      if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+        console.warn('[fluid] link:', gl.getProgramInfoLog(p));
+        return null;
+      }
+      return p;
+    }
+
+    const simProg = program(SIM_FRAG);
+    const drawProg = program(DRAW_FRAG);
+    if (!simProg || !drawProg) return;
+
+    const U = (p, names) => {
+      const o = {};
+      for (const n of names) o[n] = gl.getUniformLocation(p, n);
+      return o;
+    };
+    const simU = U(simProg, ['uPrev', 'uCursor', 'uVel', 'uAspect', 'uDecay', 'uRadius']);
+    const drawU = U(drawProg, ['uImage', 'uFlow', 'uCanvasAspect', 'uImageAspect', 'uStrength', 'uChroma']);
+
+    // gl_VertexID drives the fullscreen triangle, so no buffers are needed —
+    // but a VAO must still be bound for the draw call to be valid.
+    gl.bindVertexArray(gl.createVertexArray());
+
+    function makeTarget() {
+      const tex = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, SIM, SIM, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      const fbo = gl.createFramebuffer();
+      gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+      // Neutral flow = 0.5 once decoded back to signed.
+      gl.clearColor(0.5, 0.5, 0.0, 1.0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      return { tex, fbo };
+    }
+
+    let a = makeTarget();
+    let b = makeTarget();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
+    const imgTex = gl.createTexture();
+    let imageAspect = 1.5;
+    let ready = false;
+
+    function uploadImage() {
+      if (!img.naturalWidth) return;
+      imageAspect = img.naturalWidth / img.naturalHeight;
+      gl.bindTexture(gl.TEXTURE_2D, imgTex);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      ready = true;
+      card.classList.add('is-fluid');
+      kick();
+    }
+
+    let cw = 1;
+    let ch = 1;
+    function resize() {
+      const r = canvas.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+      const w = Math.max(1, Math.round(r.width * dpr));
+      const h = Math.max(1, Math.round(r.height * dpr));
+      if (w === cw && h === ch) return;
+      cw = w; ch = h;
+      canvas.width = w;
+      canvas.height = h;
+    }
+
+    // Pointer state, in canvas-normalised coords.
+    let px = 0.5, py = 0.5;      // eased position
+    let tx = 0.5, ty = 0.5;      // raw target
+    let vx = 0, vy = 0;
+    let energy = 0;              // proxy for "is the field still alive"
+    let rafId = null;
+    let inView = false;
+
+    function kick() {
+      if (ready && inView && rafId === null) rafId = requestAnimationFrame(frame);
+    }
+
+    // Listener sits on the card, not the window — no cost anywhere else on the page.
+    card.addEventListener('pointermove', (e) => {
+      const r = canvas.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      tx = (e.clientX - r.left) / r.width;
+      ty = (e.clientY - r.top) / r.height;
+      energy = 1;
+      kick();
+    }, { passive: true });
+
+    new IntersectionObserver((entries) => {
+      inView = entries[0].isIntersecting;
+      kick();
+    }, { rootMargin: '120px' }).observe(card);
+
+    window.addEventListener('resize', () => { resize(); kick(); }, { passive: true });
+
+    function frame() {
+      rafId = null;
+      resize();
+
+      // Ease toward the pointer rather than snapping — the velocity we derive
+      // from this is what the shader injects, so smoothing it here is what makes
+      // the fluid feel weighty instead of twitchy.
+      const nx = px + (tx - px) * EASE;
+      const ny = py + (ty - py) * EASE;
+      vx = nx - px;
+      vy = ny - py;
+      px = nx; py = ny;
+
+      const aspect = cw / ch;
+
+      // --- pass 1: advance the flow field ---
+      gl.bindFramebuffer(gl.FRAMEBUFFER, b.fbo);
+      gl.viewport(0, 0, SIM, SIM);
+      gl.useProgram(simProg);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, a.tex);
+      gl.uniform1i(simU.uPrev, 0);
+      gl.uniform2f(simU.uCursor, px, 1.0 - py);   // GL origin is bottom-left
+      gl.uniform2f(simU.uVel, vx * 9.0, -vy * 9.0);
+      gl.uniform1f(simU.uAspect, aspect);
+      gl.uniform1f(simU.uDecay, DECAY);
+      gl.uniform1f(simU.uRadius, RADIUS);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+      const t = a; a = b; b = t;   // ping-pong
+
+      // --- pass 2: draw the distorted image ---
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      gl.viewport(0, 0, cw, ch);
+      gl.useProgram(drawProg);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, imgTex);
+      gl.uniform1i(drawU.uImage, 0);
+      gl.activeTexture(gl.TEXTURE1);
+      gl.bindTexture(gl.TEXTURE_2D, a.tex);
+      gl.uniform1i(drawU.uFlow, 1);
+      gl.uniform1f(drawU.uCanvasAspect, aspect);
+      gl.uniform1f(drawU.uImageAspect, imageAspect);
+      gl.uniform1f(drawU.uStrength, STRENGTH);
+      gl.uniform1f(drawU.uChroma, CHROMA);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+      // Keep going while the trail is still visibly decaying, then stop dead.
+      energy *= DECAY;
+      const moving = Math.abs(tx - px) > 0.0006 || Math.abs(ty - py) > 0.0006;
+      if (inView && (moving || energy > 0.012)) rafId = requestAnimationFrame(frame);
+    }
+
+    // Drop the GPU work entirely if the tab is backgrounded.
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      } else kick();
+    });
+
+    resize();
+    if (img.complete && img.naturalWidth) uploadImage();
+    else img.addEventListener('load', uploadImage, { once: true });
+  })();
 </script>
 

@@ -279,6 +279,9 @@ const websiteSchema = {
       <slot />
     </main>
 
+    <!-- Custom Mouse Follower -->
+    <div id="mouse-follower" class="mouse-follower" aria-hidden="true"></div>
+
     {/* Floating WhatsApp button hidden for now. Uncomment to re-enable. */}
     {false && (
       <a
@@ -320,6 +323,73 @@ const websiteSchema = {
         document.querySelectorAll('.reveal').forEach(function (el) {
           io.observe(el);
         });
+
+        // Mouse Follower — fine pointers only, and never when motion is reduced.
+        const follower = document.getElementById('mouse-follower');
+        const finePointer = window.matchMedia('(pointer: fine)').matches;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (follower && finePointer && !reducedMotion) {
+          let mouseX = 0, mouseY = 0;
+          let x = 0, y = 0;
+          let rafId = null;
+          let seen = false;
+
+          document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Sections can opt out of the ring (e.g. the hero, which has its own
+            // pointer treatment) by setting data-cursor-hidden.
+            if (e.target && e.target.closest) {
+              follower.classList.toggle('is-hidden', !!e.target.closest('[data-cursor-hidden]'));
+            }
+
+            // Park it under the cursor on first sight so it doesn't fly in from 0,0.
+            if (!seen) {
+              seen = true;
+              x = mouseX;
+              y = mouseY;
+              follower.classList.add('is-ready');
+            }
+            if (rafId === null) rafId = requestAnimationFrame(tick);
+          }, { passive: true });
+
+          // Idles instead of spinning a rAF loop forever.
+          function tick() {
+            rafId = null;
+            const dx = mouseX - x;
+            const dy = mouseY - y;
+
+            if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) {
+              x = mouseX;
+              y = mouseY;
+            } else {
+              x += dx * 0.15;
+              y += dy * 0.15;
+              rafId = requestAnimationFrame(tick);
+            }
+            follower.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+          }
+
+          // Delegated hover: two listeners total, and it covers elements added later
+          // for free. (Binding per-element meant re-running it double-bound everything.)
+          const INTERACTIVE = 'a, button, input, textarea, select, [role="button"], .service-tab-btn';
+
+          document.addEventListener('mouseover', (e) => {
+            if (e.target.closest(INTERACTIVE)) follower.classList.add('active');
+          }, { passive: true });
+
+          document.addEventListener('mouseout', (e) => {
+            const left = e.target.closest(INTERACTIVE);
+            // Ignore moves between children of the same control, else it flickers.
+            if (left && !left.contains(e.relatedTarget)) follower.classList.remove('active');
+          }, { passive: true });
+
+          // Don't leave a stray ring floating when the cursor exits the window.
+          document.addEventListener('mouseleave', () => follower.classList.remove('is-ready'), { passive: true });
+          document.addEventListener('mouseenter', () => { if (seen) follower.classList.add('is-ready'); }, { passive: true });
+        }
       })();
     </script>
   </body>
@@ -691,4 +761,48 @@ const websiteSchema = {
       max-width: 1400px;
     }
   }
+
+  /* Custom Mouse Follower */
+  .mouse-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    display: none;
+    opacity: 0;
+    /* Own compositor layer — the ring repaints on every frame and must not
+       drag the hero video or page content into its paint. */
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform;
+    backface-visibility: hidden;
+    /* transform is deliberately absent: it's driven per-frame from JS. */
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease,
+                border-color 0.2s ease, opacity 0.2s ease;
+  }
+
+  @media (pointer: fine) {
+    .mouse-follower { display: block; }
+  }
+
+  .mouse-follower.is-ready { opacity: 1; }
+
+  .mouse-follower.active {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(14, 165, 233, 0.15);
+    border-color: rgba(14, 165, 233, 0.5);
+  }
+
+  /* Declared after .is-ready so it wins on equal specificity. */
+  .mouse-follower.is-hidden { opacity: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mouse-follower { display: none; }
+  }
+
 </style>
