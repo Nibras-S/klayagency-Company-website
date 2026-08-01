@@ -3292,7 +3292,7 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   @media (max-width: 640px) {
-    .hero { padding-bottom: 0; }
+    .hero { padding-bottom: 0; min-height: 85svh; }
     /* svh to match the hero's own unit — mixing vh here meant the fade was sized
        against the chrome-hidden viewport while the hero used the chrome-visible
        one, so the solid part could land below the fold and leave a sliver of
@@ -3308,7 +3308,7 @@ export default function <span class="code-func">Product</span>() &#123;
         #ffffff 100%
       );
     }
-    .hero-video-full { object-position: 70% 50%; }
+    .hero-video-full { object-position: 70% 0%; }
     .hero__inner {
       margin-top: auto;
       text-align: left;
