@@ -1802,24 +1802,52 @@ export default function <span class="code-func">Product</span>() &#123;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
       gap: 1rem;
-      padding: 0 1.5rem;
+      /* No side padding: that inset was what left the neighbouring cards
+         visible as strips at both edges. */
+      padding: 0;
     }
     .services-content-wrapper::-webkit-scrollbar { display: none; }
-    
+
     .svc-pane {
       position: relative !important;
       opacity: 1 !important;
       pointer-events: auto !important;
-      flex: 0 0 85% !important;
-      scroll-snap-align: center;
+      /* Full width so exactly one card is on screen — no cropped neighbour.
+         `start` lands it flush, and `stop: always` halts at every snap point so
+         one swipe advances one card instead of flinging past several. */
+      flex: 0 0 100% !important;
+      max-width: 100%;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
       transition: none !important;
     }
-    
+
+    /* Longest title sets the height for the whole deck, so keep type compact. */
+    /* Extra bottom padding: the image row is the last child, and without it the
+       thumbnails sit hard against the card's lower edge. */
     .svc-pane-inner {
       grid-template-columns: 1fr;
-      padding: 2rem;
+      padding: 1.75rem 1.4rem 2.75rem;
     }
+    .svc-pane-left h3 {
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+    .svc-pane-left p {
+      font-size: 0.875rem;
+      line-height: 1.55;
+      margin-bottom: 1.1rem;
+    }
+    .svc-client-list { gap: 0.45rem; }
+    .svc-client-list li a { font-size: 0.85rem; }
+
+    /* :hover sticks after a tap on touch and would leave images offset. */
+    .svc-pane:hover .img-1,
+    .svc-pane:hover .img-2,
+    .svc-pane:hover .img-3 { transform: none; }
     
     .svc-pane-right {
       min-height: auto;
@@ -3193,121 +3221,6 @@ export default function <span class="code-func">Product</span>() &#123;
     }
   }
 
-  /* ===== "What we do" — swipeable card deck on mobile =====
-     Native CSS scroll-snap rather than a JS drag handler: momentum, rubber-band
-     and accessibility all come free, and nothing runs on the scroll path. */
-  @media (max-width: 860px) {
-    /* Swipe replaces the tab rail. */
-    .services-sidebar-col { display: none; }
-
-    .services-interactive-container {
-      display: block;
-      padding: 0;
-      background: transparent;
-      box-shadow: none;
-      border-radius: 0;
-      overflow: visible;
-    }
-
-    .services-content-wrapper {
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-x: contain;
-      padding: 0 1rem 0.5rem;
-      border-radius: 0;
-      box-shadow: none;
-      scrollbar-width: none;
-    }
-    .services-content-wrapper::-webkit-scrollbar { display: none; }
-
-    /* Every pane is laid out and visible; scroll position decides which you see,
-       so the .active opacity toggle becomes inert here. 88% leaves the next card
-       peeking, which is the affordance that says "swipe me". */
-    .svc-pane,
-    .svc-pane.active {
-      position: relative;
-      inset: auto;
-      opacity: 1;
-      pointer-events: auto;
-      transition: none;
-      /* 92%: enough edge to read as "there's another card" without exposing a
-         wide strip of the neighbour's wrapped text. */
-      flex: 0 0 92%;
-      scroll-snap-align: center;
-      border-radius: 24px;
-      overflow: hidden;
-    }
-
-    .svc-pane-inner {
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-      padding: 1.75rem 1.4rem;
-    }
-
-    /* Cards stretch to the tallest in the deck, so the longest title sets the
-       height for all six. 1.7rem wrapped "Website Development Company in Kannur"
-       onto four lines and pushed the images off-screen. */
-    .svc-pane-left h3 {
-      font-size: 1.25rem;
-      line-height: 1.3;
-      margin-bottom: 0.75rem;
-    }
-    .svc-pane-left p {
-      font-size: 0.875rem;
-      line-height: 1.55;
-      margin-bottom: 1.1rem;
-    }
-    .svc-client-list { gap: 0.45rem; }
-    .svc-client-list li a { font-size: 0.85rem; }
-
-    .svc-pane-right {
-      min-height: 0;
-      height: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.7rem;
-    }
-
-    /* Matches the per-tab #id rules' specificity and wins on source order —
-       raising these to !important would be the only alternative. */
-    #tab-web .svc-img,
-    #tab-mobile .svc-img,
-    #tab-uiux .svc-img,
-    #tab-brand .svc-img,
-    #tab-marketing .svc-img,
-    #tab-automation .svc-img {
-      position: relative;
-      top: auto;
-      right: auto;
-      bottom: auto;
-      left: auto;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1;
-      border-radius: 14px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
-      transform: none;
-    }
-    #tab-web .svc-img img,
-    #tab-mobile .svc-img img,
-    #tab-uiux .svc-img img,
-    #tab-brand .svc-img img,
-    #tab-marketing .svc-img img,
-    #tab-automation .svc-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Hover parallax is meaningless on touch and would stick after a tap. */
-    .svc-pane:hover .img-1,
-    .svc-pane:hover .img-2,
-    .svc-pane:hover .img-3 { transform: none; }
-  }
 
   /* Hero glows are two ~620px conic gradients sitting over a playing video.
      Blur cost scales hard with radius, so halve it on phones instead of
