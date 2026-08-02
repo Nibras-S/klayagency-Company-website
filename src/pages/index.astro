@@ -77,14 +77,15 @@ const faqs = [
   <!-- ========== HERO ========== -->
   <section class="hero hero--fullscreen-video" data-cursor-hidden>
     <div class="hero__video-bg">
-      <!-- poster matters more than it looks: with no `autoplay` and the scrub
-           script gated to fine pointers, a touch device would otherwise render
-           an empty box because nothing ever paints a frame. -->
+      <!-- Keep autoplay in the initial markup for mobile Safari. Adding it only
+           from JavaScript can leave iOS showing its native play overlay. The
+           inline setup below removes it on fine pointers before assigning src. -->
       <!-- No src attribute on purpose: the inline script below picks the file so
            only one is ever fetched. Poster covers the no-JS case. -->
       <video
         id="hero-video"
         class="hero-video-full"
+        autoplay
         muted
         playsinline
         loop
@@ -110,6 +111,11 @@ const faqs = [
             v.setAttribute('webkit-playsinline', '');
             // Native autoplay is far more reliable on iOS than a deferred play().
             v.autoplay = true;
+          } else {
+            // Desktop uses pointer-driven scrubbing, so keep that video paused.
+            // This runs before src is assigned, preventing an autoplay request.
+            v.autoplay = false;
+            v.removeAttribute('autoplay');
           }
 
           // Touch gets a 0.14MB 960px ping-pong encode (forward + reversed, so a
@@ -5252,4 +5258,3 @@ export default function <span class="code-func">Product</span>() &#123;
     else img.addEventListener('load', uploadImage, { once: true });
   })();
 </script>
-
