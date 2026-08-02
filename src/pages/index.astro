@@ -4604,13 +4604,77 @@ export default function <span class="code-func">Product</span>() &#123;
     // permissible under mobile autoplay policy; if it's still refused the poster
     // simply stays put, which is a valid resting state.
     if (heroVid && !finePointer && !reducedMotion) {
+      let gyroActive = false;
+      let gyroTarget = 0;
+      let gyroTime = 0;
+      let gyroRaf = null;
+      let neutralTilt = null;
+
       const startLoop = () => {
+        // Once tilt control begins, the phone position owns the playhead.
+        if (gyroActive) return;
         const p = heroVid.play();
         if (p && typeof p.catch === 'function') p.catch(() => {});
       };
 
+      const isBuffered = (time) => {
+        for (let i = 0; i < heroVid.buffered.length; i++) {
+          if (time >= heroVid.buffered.start(i) && time <= heroVid.buffered.end(i)) return true;
+        }
+        return false;
+      };
+
+      const scrubWithTilt = () => {
+        gyroRaf = null;
+        if (!gyroActive || !heroVid.duration) return;
+
+        gyroTime += (gyroTarget - gyroTime) * 0.16;
+        if (Math.abs(gyroTarget - gyroTime) < 0.01) gyroTime = gyroTarget;
+
+        // Avoid a seek into an unbuffered range on bandwidth-constrained phones.
+        if (isBuffered(gyroTime) && Math.abs(heroVid.currentTime - gyroTime) > 0.035) {
+          heroVid.currentTime = gyroTime;
+        }
+        if (Math.abs(gyroTarget - gyroTime) >= 0.01) {
+          gyroRaf = requestAnimationFrame(scrubWithTilt);
+        }
+      };
+
+      const onDeviceTilt = (event) => {
+        // gamma is the left/right roll of the phone. Its neutral position is
+        // calibrated at first use, so the user can hold the device naturally.
+        if (typeof event.gamma !== 'number' || !heroVid.duration) return;
+        if (neutralTilt === null) neutralTilt = event.gamma;
+
+        const progress = Math.max(0, Math.min(1, 0.5 + (event.gamma - neutralTilt) / 36));
+        gyroTarget = progress * heroVid.duration;
+        if (!gyroActive) {
+          gyroActive = true;
+          gyroTime = heroVid.currentTime;
+          heroVid.pause();
+        }
+        if (gyroRaf === null) gyroRaf = requestAnimationFrame(scrubWithTilt);
+      };
+
       if (heroVid.readyState >= 2) startLoop();
       else heroVid.addEventListener('loadeddata', startLoop, { once: true });
+
+      // Android browsers usually expose this directly. Safari only sends the
+      // event after the visitor has granted Motion & Orientation access. Ask only
+      // when they tap the non-interactive hero background, never while a CTA is
+      // being pressed; if they decline, the seamless background loop remains.
+      window.addEventListener('deviceorientation', onDeviceTilt, { passive: true });
+      const motionPermission =
+        typeof DeviceOrientationEvent !== 'undefined' &&
+        (DeviceOrientationEvent as typeof DeviceOrientationEvent & {
+          requestPermission?: () => Promise<'granted' | 'denied'>;
+        }).requestPermission;
+      if (motionPermission) {
+        heroVid.closest('.hero--fullscreen-video')?.addEventListener('pointerdown', (event) => {
+          if ((event.target as Element).closest('a, button')) return;
+          motionPermission.call(DeviceOrientationEvent).catch(() => {});
+        }, { once: true, passive: true });
+      }
 
       // Chrome on Android often downgrades preload="auto" under Data Saver, and
       // pauses media on tab switch — retry when the page becomes visible again.
