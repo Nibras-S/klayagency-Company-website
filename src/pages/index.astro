@@ -4632,6 +4632,17 @@ export default function <span class="code-func">Product</span>() &#123;
       let gyroTime = 0;
       let gyroRaf = null;
       let neutralTilt = null;
+      // Low-pass filtered gamma. Phone gyros are noisy enough that the raw value
+      // jitters by a degree or two even on a still hand; filtering at the source
+      // is what removes the shimmer, before it ever reaches the playhead.
+      let smoothGamma = null;
+
+      // Degrees of roll that span the whole clip. Larger = less sensitive.
+      // 110 gives about +/-55 deg, so a natural wrist turn moves it gently
+      // instead of racing the whole video across ~18 deg.
+      const TILT_RANGE_DEG = 110;
+      const TILT_SMOOTH = 0.12;   // gamma filter: lower = calmer
+      const SEEK_EASE = 0.075;    // playhead follow: lower = longer glide
 
       const startLoop = () => {
         // Once tilt control begins, the phone position owns the playhead.
@@ -4651,14 +4662,16 @@ export default function <span class="code-func">Product</span>() &#123;
         gyroRaf = null;
         if (!gyroActive || !heroVid.duration) return;
 
-        gyroTime += (gyroTarget - gyroTime) * 0.16;
-        if (Math.abs(gyroTarget - gyroTime) < 0.01) gyroTime = gyroTarget;
+        gyroTime += (gyroTarget - gyroTime) * SEEK_EASE;
+        if (Math.abs(gyroTarget - gyroTime) < 0.004) gyroTime = gyroTarget;
 
         // Avoid a seek into an unbuffered range on bandwidth-constrained phones.
-        if (isBuffered(gyroTime) && Math.abs(heroVid.currentTime - gyroTime) > 0.035) {
+        // The threshold is tight because the source is all-intra now — a seek
+        // costs one frame, so finer steps are affordable and look smoother.
+        if (isBuffered(gyroTime) && Math.abs(heroVid.currentTime - gyroTime) > 0.015) {
           heroVid.currentTime = gyroTime;
         }
-        if (Math.abs(gyroTarget - gyroTime) >= 0.01) {
+        if (Math.abs(gyroTarget - gyroTime) >= 0.004) {
           gyroRaf = requestAnimationFrame(scrubWithTilt);
         }
       };
@@ -4669,7 +4682,14 @@ export default function <span class="code-func">Product</span>() &#123;
         if (typeof event.gamma !== 'number' || !heroVid.duration) return;
         if (neutralTilt === null) neutralTilt = event.gamma;
 
-        const progress = Math.max(0, Math.min(1, 0.5 + (event.gamma - neutralTilt) / 36));
+        // Filter the sensor before using it, so tremor never reaches the video.
+        if (smoothGamma === null) smoothGamma = event.gamma;
+        else smoothGamma += (event.gamma - smoothGamma) * TILT_SMOOTH;
+
+        const progress = Math.max(
+          0,
+          Math.min(1, 0.5 + (smoothGamma - neutralTilt) / TILT_RANGE_DEG)
+        );
         gyroTarget = progress * heroVid.duration;
         if (!gyroActive) {
           gyroActive = true;
