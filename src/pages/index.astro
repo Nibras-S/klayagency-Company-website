@@ -149,9 +149,6 @@ const faqs = [
               </svg>
             </span>
           </a>
-          <button id="hero-enable-tilt" class="hero__tilt-button" type="button">
-            Enable tilt control
-          </button>
         </div>
         <div class="hero__stats animate-fade-up" style="animation-delay:0.4s">
           <div class="stat">
@@ -1241,21 +1238,6 @@ export default function <span class="code-func">Product</span>() &#123;
   /* Shown only on touch devices that may need a deliberate motion-permission
      prompt (notably iPhone browsers). JavaScript removes it where permission
      is not required. */
-  .hero__tilt-button {
-    display: none;
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: 9999px;
-    padding: 0.7rem 1rem;
-    background: rgba(4, 7, 18, 0.5);
-    color: #ffffff;
-    font: 600 0.82rem/1 var(--font-body);
-    cursor: pointer;
-  }
-  .hero__tilt-button:disabled { opacity: 0.75; cursor: default; }
-
-  @media (hover: none) {
-    .hero__tilt-button { display: inline-flex; align-items: center; }
-  }
 
   .btn-lg { padding: 0.875rem 2rem !important; font-size: 1rem !important; }
 
@@ -4627,128 +4609,14 @@ export default function <span class="code-func">Product</span>() &#123;
     // permissible under mobile autoplay policy; if it's still refused the poster
     // simply stays put, which is a valid resting state.
     if (heroVid && !finePointer && !reducedMotion) {
-      let gyroActive = false;
-      let gyroTarget = 0;
-      let gyroTime = 0;
-      let gyroRaf = null;
-      let neutralTilt = null;
-      // Low-pass filtered gamma. Phone gyros are noisy enough that the raw value
-      // jitters by a degree or two even on a still hand; filtering at the source
-      // is what removes the shimmer, before it ever reaches the playhead.
-      let smoothGamma = null;
+        const startLoop = () => {
+          const p = heroVid.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+        };
 
-      // Degrees of roll that span the whole clip. Larger = less sensitive.
-      // 110 gives about +/-55 deg, so a natural wrist turn moves it gently
-      // instead of racing the whole video across ~18 deg.
-      const TILT_RANGE_DEG = 110;
-      const TILT_SMOOTH = 0.12;   // gamma filter: lower = calmer
-      const SEEK_EASE = 0.075;    // playhead follow: lower = longer glide
+        if (heroVid.readyState >= 2) startLoop();
+        else heroVid.addEventListener('loadeddata', startLoop, { once: true });
 
-      const startLoop = () => {
-        // Once tilt control begins, the phone position owns the playhead.
-        if (gyroActive) return;
-        const p = heroVid.play();
-        if (p && typeof p.catch === 'function') p.catch(() => {});
-      };
-
-      const isBuffered = (time) => {
-        for (let i = 0; i < heroVid.buffered.length; i++) {
-          if (time >= heroVid.buffered.start(i) && time <= heroVid.buffered.end(i)) return true;
-        }
-        return false;
-      };
-
-      const scrubWithTilt = () => {
-        gyroRaf = null;
-        if (!gyroActive || !heroVid.duration) return;
-
-        gyroTime += (gyroTarget - gyroTime) * SEEK_EASE;
-        if (Math.abs(gyroTarget - gyroTime) < 0.004) gyroTime = gyroTarget;
-
-        // Avoid a seek into an unbuffered range on bandwidth-constrained phones.
-        // The threshold is tight because the source is all-intra now — a seek
-        // costs one frame, so finer steps are affordable and look smoother.
-        if (isBuffered(gyroTime) && Math.abs(heroVid.currentTime - gyroTime) > 0.015) {
-          heroVid.currentTime = gyroTime;
-        }
-        if (Math.abs(gyroTarget - gyroTime) >= 0.004) {
-          gyroRaf = requestAnimationFrame(scrubWithTilt);
-        }
-      };
-
-      const onDeviceTilt = (event) => {
-        // gamma is the left/right roll of the phone. Its neutral position is
-        // calibrated at first use, so the user can hold the device naturally.
-        if (typeof event.gamma !== 'number' || !heroVid.duration) return;
-        if (neutralTilt === null) neutralTilt = event.gamma;
-
-        // Filter the sensor before using it, so tremor never reaches the video.
-        if (smoothGamma === null) smoothGamma = event.gamma;
-        else smoothGamma += (event.gamma - smoothGamma) * TILT_SMOOTH;
-
-        const progress = Math.max(
-          0,
-          Math.min(1, 0.5 + (smoothGamma - neutralTilt) / TILT_RANGE_DEG)
-        );
-        gyroTarget = progress * heroVid.duration;
-        if (!gyroActive) {
-          gyroActive = true;
-          gyroTime = heroVid.currentTime;
-          heroVid.pause();
-        }
-        if (gyroRaf === null) gyroRaf = requestAnimationFrame(scrubWithTilt);
-      };
-
-      if (heroVid.readyState >= 2) startLoop();
-      else heroVid.addEventListener('loadeddata', startLoop, { once: true });
-
-      // Android browsers usually expose this directly. Safari only sends the
-      // event after the visitor has granted Motion & Orientation access.
-      window.addEventListener('deviceorientation', onDeviceTilt, { passive: true });
-      const tiltButton = document.getElementById('hero-enable-tilt');
-      // NOTE: this script is `is:inline`, so Astro does NOT compile it — every
-      // byte reaches the browser verbatim. TypeScript syntax here (a type
-      // assertion, an annotation, a non-null `!`) is a parse error that kills
-      // the ENTIRE script, not just this line. Plain JS only.
-      const orientationApi =
-        typeof DeviceOrientationEvent !== 'undefined' ? DeviceOrientationEvent : null;
-
-      // Motion sensors are gated behind a secure context. Over plain http on a
-      // LAN address (the usual way of testing a dev server from a phone) the
-      // event simply never fires and requestPermission is absent — with no error.
-      // Say so rather than leaving a button that appears broken.
-      if (!window.isSecureContext) {
-        if (tiltButton) {
-          tiltButton.textContent = 'Tilt needs HTTPS';
-          tiltButton.setAttribute('disabled', '');
-          tiltButton.title =
-            'Device orientation is only available over HTTPS (or on localhost).';
-        }
-        console.warn(
-          '[hero] tilt disabled: not a secure context. Device orientation requires ' +
-          'HTTPS — on a phone use an https tunnel or `astro dev --host` behind TLS.'
-        );
-      } else if (!orientationApi || typeof orientationApi.requestPermission !== 'function') {
-        // Android exposes the event directly and needs no prompt, so the button
-        // has nothing to do there.
-        tiltButton?.remove();
-      } else {
-        tiltButton?.addEventListener('click', () => {
-          // This has to be a direct call inside the click handler on iOS. Calling
-          // an extracted method can lose the browser's user-activation context.
-          tiltButton.textContent = 'Allow motion in the prompt…';
-          orientationApi.requestPermission().then((state) => {
-            if (state === 'granted') {
-              tiltButton.textContent = 'Tilt control enabled';
-              tiltButton.setAttribute('disabled', '');
-            } else {
-              tiltButton.textContent = 'Tilt control unavailable';
-            }
-          }).catch(() => {
-            tiltButton.textContent = 'Tilt control unavailable';
-          });
-        });
-      }
 
       // Chrome on Android often downgrades preload="auto" under Data Saver, and
       // pauses media on tab switch — retry when the page becomes visible again.
