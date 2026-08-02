@@ -4353,6 +4353,7 @@ export default function <span class="code-func">Product</span>() &#123;
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
+      try {
     const cards = document.querySelectorAll('.ws-card');
     const modal = document.getElementById('project-modal');
     const backdrop = document.getElementById('modal-backdrop');
@@ -4685,12 +4686,13 @@ export default function <span class="code-func">Product</span>() &#123;
       // event after the visitor has granted Motion & Orientation access.
       window.addEventListener('deviceorientation', onDeviceTilt, { passive: true });
       const tiltButton = document.getElementById('hero-enable-tilt');
-      const orientationApi = typeof DeviceOrientationEvent !== 'undefined'
-        ? (DeviceOrientationEvent as typeof DeviceOrientationEvent & {
-            requestPermission?: () => Promise<'granted' | 'denied'>;
-          })
-        : null;
-      if (!orientationApi?.requestPermission) {
+      // NOTE: this script is `is:inline`, so Astro does NOT compile it — every
+      // byte reaches the browser verbatim. TypeScript syntax here (a type
+      // assertion, an annotation, a non-null `!`) is a parse error that kills
+      // the ENTIRE script, not just this line. Plain JS only.
+      const orientationApi =
+        typeof DeviceOrientationEvent !== 'undefined' ? DeviceOrientationEvent : null;
+      if (!orientationApi || typeof orientationApi.requestPermission !== 'function') {
         // Android does not require a prompt and starts tilt control as soon as
         // orientation data arrives, so no extra control is needed there.
         tiltButton?.remove();
@@ -4699,7 +4701,7 @@ export default function <span class="code-func">Product</span>() &#123;
           // This has to be a direct call inside the click handler on iOS. Calling
           // an extracted method can lose the browser's user-activation context.
           tiltButton.textContent = 'Allow motion in the prompt…';
-          orientationApi.requestPermission!().then((state) => {
+          orientationApi.requestPermission().then((state) => {
             if (state === 'granted') {
               tiltButton.textContent = 'Tilt control enabled';
               tiltButton.setAttribute('disabled', '');
@@ -4719,6 +4721,12 @@ export default function <span class="code-func">Product</span>() &#123;
       });
     }
 
+      } catch (err) { console.error('[init:project-modal]', err); }
+    });
+
+    // Independent listener: a throw here cannot stop the blocks below.
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
     // ===== Hero: pointer parallax on the decorative glows =====
     // Text, buttons and layout are untouched — only the two glow divs move, and
     // they're already pointer-events:none so nothing becomes harder to click.
@@ -4806,6 +4814,12 @@ export default function <span class="code-func">Product</span>() &#123;
       }
     }
 
+      } catch (err) { console.error('[init:hero-parallax]', err); }
+    });
+
+    // Independent listener: a throw here cannot stop the blocks below.
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
     // ===== Flow section: line draw + per-layer parallax + velocity-driven warp =====
     const flow = document.getElementById('flow');
 
@@ -4981,6 +4995,12 @@ export default function <span class="code-func">Product</span>() &#123;
       tickFlow();
     }
 
+      } catch (err) { console.error('[init:flow]', err); }
+    });
+
+    // Independent listener: a throw here cannot stop the blocks below.
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
     // ===== Principles: draw the 3 of N3 as the section scrolls past =====
     const prin = document.getElementById('principles');
 
@@ -5017,6 +5037,12 @@ export default function <span class="code-func">Product</span>() &#123;
       tickPrin();
     }
 
+      } catch (err) { console.error('[init:principles]', err); }
+    });
+
+    // Independent listener: a throw here cannot stop the blocks below.
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
     // ===== Why Choose Us: scroll position -> active stage =====
     // No scroll hijacking: we only read scrollTop and toggle classes. The page
     // scrolls normally; position:sticky does all the pinning.
@@ -5101,6 +5127,7 @@ export default function <span class="code-func">Product</span>() &#123;
       window.addEventListener('resize', measure, { passive: true });
       measure();
     }
+      } catch (err) { console.error('[init:wcu]', err); }
   });
 </script>
 
