@@ -80,14 +80,17 @@ const faqs = [
       <!-- Keep autoplay in the initial markup for mobile Safari. Adding it only
            from JavaScript can leave iOS showing its native play overlay. The
            inline setup below removes it on fine pointers before assigning src. -->
-      <!-- No src attribute on purpose: the inline script below picks the file so
-           only one is ever fetched. Poster covers the no-JS case. -->
+      <!-- Keep the mobile source in the parsed markup too. WebKit can evaluate
+           the complete muted/autoplay/playsinline request as soon as it discovers
+           the element; fine-pointer devices swap to the scrub source below. -->
       <video
         id="hero-video"
         class="hero-video-full"
+        src="/land-vid-mobile.mp4"
         autoplay
         muted
         playsinline
+        webkit-playsinline
         loop
         preload="auto"
         poster="/land-vid-poster.webp"
@@ -99,11 +102,8 @@ const faqs = [
           var fine = window.matchMedia('(pointer: fine)').matches;
 
           if (!fine) {
-            // iOS (and therefore every iPhone browser, Chrome included — they are
-            // all WebKit) only permits inline autoplay when muted/playsinline are
-            // set as PROPERTIES before the source is assigned. The HTML attributes
-            // alone are unreliable here. defaultMuted is the one that reflects
-            // back to the attribute, which is what WebKit actually checks.
+            // Mirror the parsed attributes as properties for older WebKit builds
+            // as well. defaultMuted reflects the video's initial muted state.
             v.defaultMuted = true;
             v.muted = true;
             v.playsInline = true;
@@ -113,16 +113,15 @@ const faqs = [
             v.autoplay = true;
           } else {
             // Desktop uses pointer-driven scrubbing, so keep that video paused.
-            // This runs before src is assigned, preventing an autoplay request.
+            // The inline script runs before playback begins and swaps its source.
             v.autoplay = false;
             v.removeAttribute('autoplay');
           }
 
-          // Touch gets a 0.14MB 960px ping-pong encode (forward + reversed, so a
-          // plain `loop` rewinds seamlessly) — HTML5 video cannot play backwards,
-          // so the reverse is baked into the file rather than seeked in JS.
-          // Fine pointers get the 3.3MB all-intra file the scrub needs.
-          v.src = fine ? '/land-vid.mp4' : '/land-vid-mobile.mp4';
+          // Touch gets the full-resolution high-quality ping-pong encode (forward
+          // + reversed, so a plain `loop` rewinds seamlessly). Fine pointers swap
+          // to the shorter all-intra file used by the desktop scrub interaction.
+          if (fine) v.src = '/land-vid.mp4';
         })();
       </script>
     </div>
