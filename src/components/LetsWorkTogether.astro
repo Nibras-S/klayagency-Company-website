@@ -1,0 +1,341 @@
+---
+// "Let's work together" — sits after About Us, before the footer.
+//
+// Scroll choreography:
+//   1. Enters as an inset rounded card, video paused on its poster.
+//   2. As you scroll, the card opens out to full-bleed (clip-path inset, so the
+//      video never reflows or rescales — only the reveal window changes).
+//   3. Once mostly open, video 1 plays through once.
+//   4. On its `ended`, video 2 takes over on loop and the copy fades in.
+//
+// Sources are VP9 WebM first with an H.264 MP4 fallback. Both were re-encoded
+// from the 1920p originals: 27.8 MB -> 2.43 MB.
+---
+
+<section class="lwt" id="lwt" aria-labelledby="lwt-title">
+  <div class="lwt__sticky">
+    <div class="lwt__stage" id="lwt-stage">
+      <!-- Video 1: plays once. preload=metadata so it can start promptly
+           without pulling the whole file before the section is reached. -->
+      <video
+        id="lwt-v1"
+        class="lwt__video lwt__video--is-active"
+        muted
+        playsinline
+        preload="metadata"
+        poster="/video/lwt/lwt-poster.webp"
+        aria-hidden="true"
+      >
+        <source src="/video/lwt/lwt-1.webm" type="video/webm" />
+        <source src="/video/lwt/lwt-1.mp4" type="video/mp4" />
+      </video>
+
+      <!-- Video 2: loops after the first finishes. preload=none until needed. -->
+      <video
+        id="lwt-v2"
+        class="lwt__video"
+        muted
+        playsinline
+        loop
+        preload="none"
+        aria-hidden="true"
+      >
+        <source src="/video/lwt/bie.webm" type="video/webm" />
+        <source src="/video/lwt/bie.mp4" type="video/mp4" />
+      </video>
+
+    </div>
+
+    <div class="container lwt__content" id="lwt-content">
+      <p class="lwt__label">Is your big idea ready?</p>
+      <h2 class="lwt__title" id="lwt-title">Let's work together</h2>
+      <div class="lwt__actions">
+        <a href="/contact" class="lwt__btn lwt__btn--primary">
+          <span>Start a Project</span>
+          <span class="lwt__btn-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </span>
+        </a>
+        <a href="/contact" class="lwt__btn lwt__btn--ghost">Let's Talk</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Track gives the sticky child room to run the open-out sequence. */
+  .lwt {
+    position: relative;
+    height: 220vh;
+    background: #04050c;
+  }
+
+  .lwt__sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* clip-path rather than width/height: the video keeps its size and layout, so
+     opening out costs no reflow and never rescales the picture. */
+  .lwt__stage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    clip-path: inset(var(--lwt-inset-y, 20%) var(--lwt-inset-x, 13%) round var(--lwt-radius, 28px));
+    background: #04050c;
+  }
+
+  .lwt__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .lwt__video--is-active { opacity: 1; }
+
+  /* Copy sits above the stage; only the buttons take pointer events. */
+  .lwt__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #ffffff;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    filter: blur(8px);
+    transition:
+      opacity 0.9s ease,
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.9s ease;
+  }
+  .lwt.is-revealed .lwt__content {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .lwt__label {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sky-400);
+    margin-bottom: 1.25rem;
+  }
+
+  /* Same display voice as the hero / flow / services titles. */
+  .lwt__title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(2.6rem, 8vw, 6.5rem);
+    font-weight: 500;
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+    color: #ffffff;
+    margin-bottom: 2.25rem;
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  .lwt__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .lwt__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    pointer-events: auto;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  }
+  .lwt__btn:hover { transform: translateY(-2px); }
+
+  .lwt__btn--primary {
+    padding: 0.3rem 0.3rem 0.3rem 1.5rem;
+    background: #ffffff;
+    color: #05070f;
+    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.28);
+  }
+  .lwt__btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 50%;
+    background: var(--sky-500);
+    color: #ffffff;
+    transition: transform 0.25s ease;
+  }
+  .lwt__btn--primary:hover .lwt__btn-icon { transform: rotate(45deg); }
+
+  .lwt__btn--ghost {
+    padding: 0.95rem 1.9rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+  }
+  .lwt__btn--ghost:hover { background: rgba(255, 255, 255, 0.16); }
+
+  .lwt__btn:focus-visible {
+    outline: 3px solid var(--sky-400);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 860px) {
+    .lwt { height: 200vh; }
+    .lwt__actions { flex-direction: column; align-items: stretch; }
+    .lwt__btn { justify-content: center; }
+  }
+
+  /* No scroll choreography: one screen, open, copy visible, video still loops
+     only if the user's setting allows it (the script keeps it paused). */
+  @media (prefers-reduced-motion: reduce) {
+    .lwt { height: auto; }
+    .lwt__sticky { position: static; height: 100svh; }
+    .lwt__stage { clip-path: none; }
+    .lwt__content {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition: none;
+    }
+    .lwt__btn:hover { transform: none; }
+  }
+</style>
+
+<script>
+  function initLwt() {
+    const section = document.getElementById('lwt');
+    const stage = document.getElementById('lwt-stage');
+    const v1 = document.getElementById('lwt-v1') as HTMLVideoElement | null;
+    const v2 = document.getElementById('lwt-v2') as HTMLVideoElement | null;
+    if (!section || !stage || !v1 || !v2) return;
+
+    // Astro view transitions re-run scripts; don't double-bind.
+    if (section.dataset.lwtBound === '1') return;
+    section.dataset.lwtBound = '1';
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduced) {
+      // Everything resolved by CSS; leave both videos paused on the poster.
+      section.classList.add('is-revealed');
+      return;
+    }
+
+    // Opening geometry, driven by scroll progress.
+    const INSET_Y = 20;    // % at rest
+    const INSET_X = 13;
+    const RADIUS = 28;     // px at rest
+    const OPEN_AT = 0.55;  // progress by which the card is fully open
+    const PLAY_AT = 0.42;  // start video 1 a touch before it finishes opening
+
+    let inView = false;
+    let raf: number | null = null;
+    let started = false;
+    let swapped = false;
+
+    function wake() {
+      if (inView && raf === null) raf = requestAnimationFrame(tick);
+    }
+
+    function tick() {
+      raf = null;
+      const r = section!.getBoundingClientRect();
+      const travel = r.height - window.innerHeight;
+      const p = travel > 0 ? Math.min(Math.max(-r.top / travel, 0), 1) : 1;
+
+      // Remap so the card is fully open by OPEN_AT, then holds.
+      const o = Math.min(p / OPEN_AT, 1);
+      const eased = o * o * (3 - 2 * o);   // smoothstep
+
+      stage!.style.setProperty('--lwt-inset-y', `${(INSET_Y * (1 - eased)).toFixed(2)}%`);
+      stage!.style.setProperty('--lwt-inset-x', `${(INSET_X * (1 - eased)).toFixed(2)}%`);
+      stage!.style.setProperty('--lwt-radius', `${(RADIUS * (1 - eased)).toFixed(1)}px`);
+
+      // Video 1 starts only once the section is genuinely open.
+      if (!started && p >= PLAY_AT) {
+        started = true;
+        v1!.play().catch(() => {});
+        // Pull video 2 now so the handover has no gap.
+        v2!.preload = 'auto';
+        v2!.load();
+      }
+    }
+
+    // --- handover: v1 finishes -> v2 loops, copy appears
+    v1.addEventListener('ended', () => {
+      if (swapped) return;
+      swapped = true;
+      v2.classList.add('lwt__video--is-active');
+      v1.classList.remove('lwt__video--is-active');
+      v2.play().catch(() => {});
+      section.classList.add('is-revealed');
+    });
+
+    // Guard: if `ended` never fires (some mobile browsers on a stalled load),
+    // reveal the copy anyway rather than leaving the section wordless.
+    v1.addEventListener('timeupdate', () => {
+      if (!swapped && v1.duration && v1.currentTime >= v1.duration - 0.25) {
+        v1.dispatchEvent(new Event('ended'));
+      }
+    });
+
+    // --- visibility: nothing decodes while the section is off-screen
+    const io = new IntersectionObserver(
+      (entries) => {
+        inView = entries[0].isIntersecting;
+        if (inView) {
+          wake();
+          if (started && !swapped) v1.play().catch(() => {});
+          if (swapped) v2.play().catch(() => {});
+        } else {
+          v1.pause();
+          v2.pause();
+          if (raf !== null) { cancelAnimationFrame(raf); raf = null; }
+        }
+      },
+      { rootMargin: '200px 0px' }
+    );
+    io.observe(section);
+
+    window.addEventListener('scroll', wake, { passive: true });
+    window.addEventListener('resize', wake, { passive: true });
+    tick();
+
+    function destroy() {
+      io.disconnect();
+      window.removeEventListener('scroll', wake);
+      window.removeEventListener('resize', wake);
+      if (raf !== null) cancelAnimationFrame(raf);
+      v1!.pause();
+      v2!.pause();
+      section!.dataset.lwtBound = '';
+    }
+    window.addEventListener('pagehide', destroy, { once: true });
+    document.addEventListener('astro:before-swap', destroy, { once: true });
+  }
+
+  initLwt();
+  document.addEventListener('astro:page-load', initLwt);
+</script>
