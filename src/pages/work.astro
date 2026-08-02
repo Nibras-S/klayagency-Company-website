@@ -5,6 +5,27 @@ import Footer from '../components/Footer.astro';
 
 const projects = [
   {
+    category: "Renewable Energy & EPC",
+    name: "Empereal",
+    desc: "A premium corporate platform for a renewable-energy design and EPC company. The experience presents solar PV, architectural BIPV, energy storage, green hydrogen, and water desalination capabilities through a project-led interface built to establish technical credibility across global markets.",
+    technologies: "Astro, Tailwind CSS, Vercel",
+    client: "Empereal Energy Solutions",
+    status: "Live",
+    link: "https://empereal-website.vercel.app/",
+    image: "/products/empereal.webp",
+  },
+  {
+    category: "Automotive E-Commerce",
+    name: "SM Auto Spare Parts",
+    desc: "A commerce platform for genuine and OEM-quality luxury auto parts across the UAE and GCC. It combines catalogue and category discovery with fitment guidance, cart-based ordering, live order tracking, WhatsApp sales, and an integrated parts assistant for drivers, workshops, and fleet buyers.",
+    technologies: "Next.js, Tailwind CSS, E-Commerce",
+    client: "SM Auto Spare Parts (SpareMec)",
+    status: "Live",
+    link: "https://www.smautospareparts.com/",
+    image: "/products/sm-auto-spare-parts.webp",
+    noIframe: true,
+  },
+  {
     category: "Digital Transformation & CRM",
     name: "Viera Natural Wooden Flooring",
     desc: "A digital transformation featuring an immersive 3D website and custom CRM. It elegantly showcases the brand's portfolio while the CRM manages staff operations, site progress, and task automation.",
@@ -97,8 +118,8 @@ const projects = [
 
 <Layout
   title="Portfolio & Case Studies"
-  description="Real client success stories: e-commerce, AI talent ecosystems, 3D websites, custom CRMs, aviation portals and digital transformations built end-to-end."
-  keywords="software development portfolio, web development case studies, custom CRM examples, e-commerce development portfolio, 3D website portfolio, digital transformation case studies, aviation website, AI talent platform"
+  description="Real client success stories spanning renewable energy, automotive e-commerce, AI talent ecosystems, 3D websites, custom CRMs, aviation portals and digital transformation."
+  keywords="software development portfolio, web development case studies, renewable energy website, automotive e-commerce, custom CRM examples, 3D website portfolio, digital transformation case studies, aviation website, AI talent platform"
 >
   <div class="page-wrapper">
     <Navbar />
