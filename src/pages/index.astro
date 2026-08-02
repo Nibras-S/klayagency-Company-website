@@ -4692,9 +4692,25 @@ export default function <span class="code-func">Product</span>() &#123;
       // the ENTIRE script, not just this line. Plain JS only.
       const orientationApi =
         typeof DeviceOrientationEvent !== 'undefined' ? DeviceOrientationEvent : null;
-      if (!orientationApi || typeof orientationApi.requestPermission !== 'function') {
-        // Android does not require a prompt and starts tilt control as soon as
-        // orientation data arrives, so no extra control is needed there.
+
+      // Motion sensors are gated behind a secure context. Over plain http on a
+      // LAN address (the usual way of testing a dev server from a phone) the
+      // event simply never fires and requestPermission is absent — with no error.
+      // Say so rather than leaving a button that appears broken.
+      if (!window.isSecureContext) {
+        if (tiltButton) {
+          tiltButton.textContent = 'Tilt needs HTTPS';
+          tiltButton.setAttribute('disabled', '');
+          tiltButton.title =
+            'Device orientation is only available over HTTPS (or on localhost).';
+        }
+        console.warn(
+          '[hero] tilt disabled: not a secure context. Device orientation requires ' +
+          'HTTPS — on a phone use an https tunnel or `astro dev --host` behind TLS.'
+        );
+      } else if (!orientationApi || typeof orientationApi.requestPermission !== 'function') {
+        // Android exposes the event directly and needs no prompt, so the button
+        // has nothing to do there.
         tiltButton?.remove();
       } else {
         tiltButton?.addEventListener('click', () => {
