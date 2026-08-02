@@ -353,12 +353,17 @@ const pathname = Astro.url.pathname;
     text-decoration: none;
     border-radius: 9999px;
     box-shadow: 0 12px 28px rgba(14, 165, 233, 0.35), 0 4px 10px rgba(0, 0, 0, 0.18);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, background 0.2s ease;
     pointer-events: none;
   }
   .mobile-cta-sticky.is-visible {
     transform: translate(-50%, 0);
     pointer-events: auto;
+  }
+  .mobile-cta-sticky.is-context-hidden {
+    opacity: 0;
+    transform: translate(-50%, 120%);
+    pointer-events: none;
   }
   .mobile-cta-sticky:hover {
     background: var(--sky-600);

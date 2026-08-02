@@ -3222,37 +3222,92 @@ export default function <span class="code-func">Product</span>() &#123;
     .wcu__orb { width: min(46vw, 20rem); }
   }
 
-  /* Phone: no sticky track at all — the stages just become stacked cards. */
+  /* Phone: keep the desktop's pinned, one-stage-at-a-time interaction, but
+     compress the composition so the active copy and its metric share one view. */
   @media (max-width: 860px) {
-    .wcu { height: auto; }
+    .wcu { height: 400svh; }
     .wcu__sticky {
-      position: static;
-      min-height: 0;
-      padding: 3.5rem 0;
-      overflow: visible;
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      min-height: 100svh;
+      box-sizing: border-box;
+      justify-content: center;
+      padding:
+        max(5rem, calc(env(safe-area-inset-top) + 4.25rem))
+        0
+        max(3rem, calc(env(safe-area-inset-bottom) + 2.5rem));
+      overflow: hidden;
     }
-    .wcu__body { grid-template-columns: 1fr; }
-    .wcu__stages { min-height: 0; gap: 2.25rem; margin-bottom: 2rem; }
-    .wcu__stage,
-    .wcu__stat {
-      grid-area: auto;
-      opacity: 1;
-      transform: none;
-      filter: none;
-      pointer-events: auto;
+    .wcu__inner { width: 100%; }
+    .wcu__head {
+      margin-bottom: clamp(1.25rem, 3.5svh, 2rem);
     }
-    .wcu__stats { gap: 1rem; }
-    .wcu__visual { min-height: 0; }
-    .wcu__orb { display: none; }
-    .wcu__steps { display: none; }
-    /* backdrop-filter makes the compositor re-sample everything beneath the card
-       every frame — one of the costliest things to leave in a mobile scroll
-       path. Opaque background instead. */
-    .wcu__stat {
-      background: #ffffff;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border-color: var(--gray-100);
+    .wcu__head h2 {
+      font-size: clamp(2rem, 9.5vw, 2.75rem);
+      line-height: 1.02;
+      margin-bottom: 0.85rem;
+    }
+    .wcu__lede {
+      max-width: 40rem;
+      font-size: clamp(0.84rem, 3.5vw, 0.95rem);
+      line-height: 1.55;
+    }
+    .wcu__body {
+      grid-template-columns: minmax(0, 1fr) minmax(6.75rem, 29vw);
+      gap: clamp(0.65rem, 3vw, 1.25rem);
+      align-items: center;
+    }
+    .wcu__stages {
+      min-height: 13.25rem;
+      margin-bottom: 0.85rem;
+    }
+    .wcu__stage-title {
+      font-size: clamp(1.25rem, 5.6vw, 1.55rem);
+      margin-bottom: 0.55rem;
+    }
+    .wcu__stage-desc {
+      font-size: clamp(0.82rem, 3.45vw, 0.95rem);
+      line-height: 1.55;
+      margin-bottom: 0.85rem;
+    }
+    .wcu__tags {
+      gap: 0.4rem;
+    }
+    .wcu__tags li {
+      padding: 0.35rem 0.65rem;
+      font-size: clamp(0.68rem, 2.85vw, 0.78rem);
+    }
+    .wcu__cta {
+      margin-top: 0;
+    }
+    .wcu__visual {
+      min-height: 10rem;
+    }
+    .wcu__orb {
+      display: block;
+      width: min(29vw, 8rem);
+      margin-top: 0;
+    }
+    .wcu__stat-num {
+      font-size: clamp(2.15rem, 10vw, 3rem);
+    }
+    .wcu__stat-label {
+      max-width: 7.5rem;
+      margin: 0.4rem auto 0;
+      font-size: clamp(0.68rem, 2.8vw, 0.8rem);
+      line-height: 1.25;
+    }
+    .wcu__steps {
+      position: absolute;
+      right: 0;
+      bottom: max(0.65rem, env(safe-area-inset-bottom));
+      left: 0;
+      display: flex;
+      margin-top: 0;
+    }
+    .wcu__steps li {
+      padding: 0.25rem 0.65rem;
     }
   }
 
@@ -3273,12 +3328,12 @@ export default function <span class="code-func">Product</span>() &#123;
     .wcu__wheel,
     .wcu__orb { will-change: auto; }
 
-    /* backdrop-filter makes the compositor re-sample everything beneath the
-       element every frame. Never worth it in a scroll path on touch. */
+    /* These stats sit over the gradient orb on touch, so keep their layer
+       transparent and avoid any backdrop resampling. */
     .wcu__stat {
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
-      background: #ffffff;
+      background: transparent;
     }
 
     /* The glows stacked conic-gradient + filter:blur + mask-image on one element.
@@ -4871,12 +4926,8 @@ export default function <span class="code-func">Product</span>() &#123;
       const stages = Array.from(wcu.querySelectorAll('.wcu__stage'));
       const stats = Array.from(wcu.querySelectorAll('.wcu__stat'));
       const steps = Array.from(wcu.querySelectorAll('.wcu__steps li'));
+      const mobileStickyCta = document.getElementById('mobile-cta-sticky');
       const COUNT = stages.length;
-
-      // At <=860px the CSS collapses this to plain stacked cards — the sticky
-      // track, the wheel and the stage swapping are all inert. Kept live as a
-      // MediaQueryList so a rotate or resize re-enables it without a reload.
-      const wide = window.matchMedia('(min-width: 861px)');
 
       // Each stage reshapes the orb slightly so the visual isn't static.
       const ORB_SHAPES = [
@@ -4910,9 +4961,6 @@ export default function <span class="code-func">Product</span>() &#123;
       }
 
       function measure() {
-        // Narrow: everything is stacked and visible, so there is nothing to
-        // compute. Bail before touching layout.
-        if (!wide.matches) return;
         const rect = wcu.getBoundingClientRect();
         // Distance scrolled through the track, over the distance the sticky
         // child can travel inside it.
@@ -4934,6 +4982,9 @@ export default function <span class="code-func">Product</span>() &#123;
       let bound = false;
       new IntersectionObserver((entries) => {
         const vis = entries[0].isIntersecting;
+        // The showcase already has its own CTA; keep the global mobile pill from
+        // covering its compact progress indicator while the section is active.
+        mobileStickyCta?.classList.toggle('is-context-hidden', vis);
         if (vis && !bound) {
           window.addEventListener('scroll', onScroll, { passive: true });
           bound = true;
