@@ -149,6 +149,9 @@ const faqs = [
               </svg>
             </span>
           </a>
+          <button id="hero-enable-tilt" class="hero__tilt-button" type="button">
+            Enable tilt control
+          </button>
         </div>
         <div class="hero__stats animate-fade-up" style="animation-delay:0.4s">
           <div class="stat">
@@ -1233,6 +1236,25 @@ export default function <span class="code-func">Product</span>() &#123;
     flex-wrap: wrap;
     align-items: center;
     margin-bottom: 2.5rem;
+  }
+
+  /* Shown only on touch devices that may need a deliberate motion-permission
+     prompt (notably iPhone browsers). JavaScript removes it where permission
+     is not required. */
+  .hero__tilt-button {
+    display: none;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 9999px;
+    padding: 0.7rem 1rem;
+    background: rgba(4, 7, 18, 0.5);
+    color: #ffffff;
+    font: 600 0.82rem/1 var(--font-body);
+    cursor: pointer;
+  }
+  .hero__tilt-button:disabled { opacity: 0.75; cursor: default; }
+
+  @media (hover: none) {
+    .hero__tilt-button { display: inline-flex; align-items: center; }
   }
 
   .btn-lg { padding: 0.875rem 2rem !important; font-size: 1rem !important; }
@@ -4660,20 +4682,31 @@ export default function <span class="code-func">Product</span>() &#123;
       else heroVid.addEventListener('loadeddata', startLoop, { once: true });
 
       // Android browsers usually expose this directly. Safari only sends the
-      // event after the visitor has granted Motion & Orientation access. Ask only
-      // when they tap the non-interactive hero background, never while a CTA is
-      // being pressed; if they decline, the seamless background loop remains.
+      // event after the visitor has granted Motion & Orientation access.
       window.addEventListener('deviceorientation', onDeviceTilt, { passive: true });
+      const tiltButton = document.getElementById('hero-enable-tilt');
       const motionPermission =
         typeof DeviceOrientationEvent !== 'undefined' &&
         (DeviceOrientationEvent as typeof DeviceOrientationEvent & {
           requestPermission?: () => Promise<'granted' | 'denied'>;
         }).requestPermission;
-      if (motionPermission) {
-        heroVid.closest('.hero--fullscreen-video')?.addEventListener('pointerdown', (event) => {
-          if ((event.target as Element).closest('a, button')) return;
-          motionPermission.call(DeviceOrientationEvent).catch(() => {});
-        }, { once: true, passive: true });
+      if (!motionPermission) {
+        // Android does not require a prompt and starts tilt control as soon as
+        // orientation data arrives, so no extra control is needed there.
+        tiltButton?.remove();
+      } else {
+        tiltButton?.addEventListener('click', () => {
+          motionPermission.call(DeviceOrientationEvent).then((state) => {
+            if (state === 'granted') {
+              tiltButton.textContent = 'Tilt control enabled';
+              tiltButton.setAttribute('disabled', '');
+            } else {
+              tiltButton.textContent = 'Tilt control unavailable';
+            }
+          }).catch(() => {
+            tiltButton.textContent = 'Tilt control unavailable';
+          });
+        }, { once: true });
       }
 
       // Chrome on Android often downgrades preload="auto" under Data Saver, and
