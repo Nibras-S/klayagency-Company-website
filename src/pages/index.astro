@@ -4685,18 +4685,21 @@ export default function <span class="code-func">Product</span>() &#123;
       // event after the visitor has granted Motion & Orientation access.
       window.addEventListener('deviceorientation', onDeviceTilt, { passive: true });
       const tiltButton = document.getElementById('hero-enable-tilt');
-      const motionPermission =
-        typeof DeviceOrientationEvent !== 'undefined' &&
-        (DeviceOrientationEvent as typeof DeviceOrientationEvent & {
-          requestPermission?: () => Promise<'granted' | 'denied'>;
-        }).requestPermission;
-      if (!motionPermission) {
+      const orientationApi = typeof DeviceOrientationEvent !== 'undefined'
+        ? (DeviceOrientationEvent as typeof DeviceOrientationEvent & {
+            requestPermission?: () => Promise<'granted' | 'denied'>;
+          })
+        : null;
+      if (!orientationApi?.requestPermission) {
         // Android does not require a prompt and starts tilt control as soon as
         // orientation data arrives, so no extra control is needed there.
         tiltButton?.remove();
       } else {
         tiltButton?.addEventListener('click', () => {
-          motionPermission.call(DeviceOrientationEvent).then((state) => {
+          // This has to be a direct call inside the click handler on iOS. Calling
+          // an extracted method can lose the browser's user-activation context.
+          tiltButton.textContent = 'Allow motion in the prompt…';
+          orientationApi.requestPermission!().then((state) => {
             if (state === 'granted') {
               tiltButton.textContent = 'Tilt control enabled';
               tiltButton.setAttribute('disabled', '');
@@ -4706,7 +4709,7 @@ export default function <span class="code-func">Product</span>() &#123;
           }).catch(() => {
             tiltButton.textContent = 'Tilt control unavailable';
           });
-        }, { once: true });
+        });
       }
 
       // Chrome on Android often downgrades preload="auto" under Data Saver, and
