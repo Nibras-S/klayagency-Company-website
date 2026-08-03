@@ -2321,6 +2321,13 @@ export default function <span class="code-func">Product</span>() &#123;
     .ws-card__meta { padding: 0.7rem 0.85rem 0.75rem; }
     .ws-card__name { font-size: 0.85rem; }
     .ws-card__desc { font-size: 0.72rem; }
+    .ws-sticky-inner,
+    .ws-card,
+    .ws-card__img img {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .ws-card { touch-action: pan-y; }
   }
 
 
@@ -4263,11 +4270,11 @@ export default function <span class="code-func">Product</span>() &#123;
     return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
   }
   function clamp(v,lo,hi) { return Math.max(lo,Math.min(hi,v)); }
-  const isMobile = () => window.innerWidth <= 760;
+  const MOBILE_BREAKPOINT = 760;
+  const isMobile = () => window.innerWidth <= MOBILE_BREAKPOINT;
 
   // Returns card dimensions + stacked/final position configs
-  function getConfig() {
-    const m   = isMobile();
+  function getConfig(m = isMobile()) {
     const cW  = m ? 280 : 390;   // mobile: full-ish width; desktop: 3-col
     const cH  = m ? 250 : 345;   // taller cards to fit image + meta text panel
     const gap = m ? 16  : 28;
@@ -4307,77 +4314,116 @@ export default function <span class="code-func">Product</span>() &#123;
     };
   }
 
+  let cfg;
+  let cards = [];
+  let mobile = isMobile();
+
   function applyCards(progress) {
-    const cfg = getConfig();
+    if (!cfg) return;
     // Mobile follows the finger directly; the desktop deal keeps its cinematic easing.
-    const p   = isMobile() ? clamp(progress, 0, 1) : easeInOutCubic(clamp(progress, 0, 1));
+    const p = mobile ? clamp(progress, 0, 1) : easeInOutCubic(clamp(progress, 0, 1));
     for (let i = 0; i < cfg.n; i++) {
-      const el = document.getElementById('ws-card-'+i);
+      const el = cards[i];
       if (!el) continue;
       const s = cfg.stacked[i], f = cfg.final[i];
       const x  = lerp(s.x, f.x, p);
       const y  = lerp(s.y, f.y, p);
       const r  = lerp(s.r, f.r, p);
       const sc = lerp(s.s, f.s, p);
-      el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${r}deg) scale(${sc})`;
-      el.style.zIndex = String(Math.round(lerp(s.z, f.z, p)));
+      el.style.transform = `translate3d(calc(-50% + ${x.toFixed(2)}px), calc(-50% + ${y.toFixed(2)}px), 0) rotate(${r.toFixed(2)}deg) scale(${sc.toFixed(4)})`;
+
+      // Stacking only changes a handful of times. Avoid invalidating it on every
+      // momentum-scroll frame, which is particularly costly in mobile Safari.
+      const nextZ = String(Math.round(lerp(s.z, f.z, p)));
+      if (el.style.zIndex !== nextZ) el.style.zIndex = nextZ;
     }
   }
 
   function setSizes() {
-    const cfg = getConfig();
+    cfg = getConfig(mobile);
     for (let i = 0; i < cfg.n; i++) {
-      const el = document.getElementById('ws-card-'+i);
+      const el = cards[i];
       if (el) { el.style.width = cfg.cW+'px'; el.style.height = cfg.cH+'px'; }
     }
-    const stage = document.getElementById('ws-stage');
     if (stage) {
-      const m = isMobile();
-      const stageH = m
+      const stageH = mobile
         ? cfg.cH * 3 + cfg.gap * 2 + 48
         : cfg.cH + 48;
       stage.style.height = stageH + 'px';
     }
   }
 
-  let track, cta, inner, lastP = -1;
+  let track, sticky, stage, cta, inner, lastP = -1, lastRaw = -1;
   let scrollRaf = null;
+  let resizeRaf = null;
   let showcaseActive = false;
+  let mobileVisitStarted = false;
+  let mobileAnimationLocked = false;
+  let mobileProgress = 0;
+  let ctaVisible = null;
+  let lastViewportWidth = Math.round(window.innerWidth);
+  let trackTop = 0;
+  let scrollable = 1;
+  let viewportH = window.innerHeight;
+  let panAmount = 0;
+
+  // Read layout only when the section enters the viewport or its real width
+  // changes. Reading these values inside every scroll frame caused the browser
+  // to repeatedly flush layout while the mobile address bar was animating.
+  function refreshGeometry() {
+    if (!track) return;
+    const scrollY = window.scrollY || window.pageYOffset;
+    const rect = track.getBoundingClientRect();
+    viewportH = mobile && sticky ? sticky.clientHeight : window.innerHeight;
+    trackTop = rect.top + scrollY;
+    scrollable = Math.max(1, track.offsetHeight - viewportH);
+
+    // Preserve the existing mobile camera travel, but calculate it once rather
+    // than once per animation frame.
+    panAmount = mobile ? Math.max(0, 1200 - viewportH) : 0;
+  }
 
   function renderScroll() {
     scrollRaf = null;
-    track = track || document.getElementById('ws-scroll-track');
-    cta   = cta   || document.getElementById('ws-cta');
-    inner = inner || document.getElementById('ws-sticky-inner');
     if (!track) return;
 
-    const scrollY    = window.scrollY || window.pageYOffset;
-    const winH       = window.innerHeight;
-    const trackTop   = track.getBoundingClientRect().top + scrollY;
-    const scrollable = track.offsetHeight - winH;
+    const scrollY = window.scrollY || window.pageYOffset;
     const raw        = scrollable > 0 ? clamp((scrollY - trackTop) / scrollable, 0, 1) : 1;
-    if (Math.abs(raw - lastP) < 0.0005) return;
-    lastP = raw;
 
-    applyCards(raw);
+    // On mobile the deal is a one-time, forward-only reveal. Scrolling back up
+    // cannot rewind it, and after the first visit the aligned state is retained.
+    // Desktop deliberately keeps the original reversible scroll choreography.
+    if (mobile) {
+      mobileProgress = mobileAnimationLocked ? 1 : Math.max(mobileProgress, raw);
+      if (mobileProgress >= 0.999) {
+        mobileProgress = 1;
+        mobileAnimationLocked = true;
+      }
+    }
+    const progress = mobile ? mobileProgress : raw;
+    const cardsChanged = Math.abs(progress - lastP) >= 0.0005;
+    const scrollChanged = Math.abs(raw - lastRaw) >= 0.0005;
+    if (!cardsChanged && !scrollChanged) return;
+    lastRaw = raw;
 
-    const m = isMobile();
-    if (m && inner) {
-      // Calculate panAmount to bring the bottom card and CTA completely into view.
-      // Total content height including heading (~110px), stage (830px), CTA (~60px), and bottom safety spacing (~160px) is ~1200px.
-      const contentH = 1200;
-      const panAmount = Math.max(0, contentH - winH);
-      const p = raw;
-      const currentPan = lerp(0, -panAmount, p);
-      inner.style.transform = `translateY(${currentPan}px)`;
+    if (cardsChanged) {
+      lastP = progress;
+      applyCards(progress);
+    }
+
+    if (mobile && inner) {
+      // Card dealing is one-time, but this camera travel must continue to
+      // follow scroll so the heading and first card remain reachable on return.
+      const currentPan = lerp(0, -panAmount, raw);
+      inner.style.transform = `translate3d(0, ${currentPan.toFixed(2)}px, 0)`;
     } else if (inner) {
       inner.style.transform = '';
     }
 
-    if (raw > (m ? 0.70 : 0.80)) {
-      cta && cta.classList.add('ws-visible');
-    } else {
-      cta && cta.classList.remove('ws-visible');
+    const nextCtaVisible = raw > (mobile ? 0.70 : 0.80);
+    if (nextCtaVisible !== ctaVisible) {
+      ctaVisible = nextCtaVisible;
+      cta && cta.classList.toggle('ws-visible', ctaVisible);
     }
   }
 
@@ -4388,30 +4434,71 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   function init() {
-    const cfg = getConfig();
+    track = document.getElementById('ws-scroll-track');
+    sticky = document.getElementById('ws-sticky');
+    stage = document.getElementById('ws-stage');
+    cta = document.getElementById('ws-cta');
+    inner = document.getElementById('ws-sticky-inner');
+    cards = [0, 1, 2].map((i) => document.getElementById('ws-card-'+i));
+    mobile = isMobile();
+    cfg = getConfig(mobile);
+
     // Position all 3 cards from center of stage
     for (let i = 0; i < cfg.n; i++) {
-      const el = document.getElementById('ws-card-'+i);
+      const el = cards[i];
       if (el) { el.style.top = '50%'; el.style.left = '50%'; el.style.position = 'absolute'; }
     }
     setSizes();
     applyCards(0); // set initial stacked state
-    track = document.getElementById('ws-scroll-track');
+    refreshGeometry();
     if (track) {
       new IntersectionObserver((entries) => {
+        const wasActive = showcaseActive;
         showcaseActive = entries[0].isIntersecting;
         if (showcaseActive) {
+          if (mobile) mobileVisitStarted = true;
+          refreshGeometry();
           lastP = -1;
+          lastRaw = -1;
           onScroll();
+        } else if (wasActive && mobile && mobileVisitStarted) {
+          // If the user leaves before reaching the end, show the completed
+          // arrangement the next time they return instead of replaying it.
+          mobileProgress = 1;
+          mobileAnimationLocked = true;
+          lastP = -1;
+          lastRaw = -1;
         }
       }, { rootMargin: '120px 0px' }).observe(track);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', () => {
-      setSizes();
+      const nextWidth = Math.round(window.innerWidth);
+      const widthChanged = Math.abs(nextWidth - lastViewportWidth) > 1;
+
+      // Mobile browsers emit resize events while their URL bar opens/closes.
+      // The CSS uses stable svh units, so a height-only resize needs no work.
+      if (!widthChanged && (mobile || isMobile())) return;
+      if (resizeRaf !== null) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(() => {
+        resizeRaf = null;
+        lastViewportWidth = nextWidth;
+        mobile = isMobile();
+        setSizes();
+        refreshGeometry();
+        lastP = -1;
+        lastRaw = -1;
+        if (showcaseActive) onScroll();
+      });
+    }, { passive: true });
+
+    // Late font/image layout changes happen outside the scroll loop.
+    window.addEventListener('load', () => {
+      refreshGeometry();
       lastP = -1;
+      lastRaw = -1;
       if (showcaseActive) onScroll();
-    });
+    }, { once: true });
     renderScroll();
   }
 
@@ -5046,7 +5133,6 @@ export default function <span class="code-func">Product</span>() &#123;
       const stages = Array.from(wcu.querySelectorAll('.wcu__stage'));
       const stats = Array.from(wcu.querySelectorAll('.wcu__stat'));
       const steps = Array.from(wcu.querySelectorAll('.wcu__steps li'));
-      const mobileStickyCta = document.getElementById('mobile-cta-sticky');
       const COUNT = stages.length;
 
       // Each stage reshapes the orb slightly so the visual isn't static.
@@ -5102,9 +5188,6 @@ export default function <span class="code-func">Product</span>() &#123;
       let bound = false;
       new IntersectionObserver((entries) => {
         const vis = entries[0].isIntersecting;
-        // The showcase already has its own CTA; keep the global mobile pill from
-        // covering its compact progress indicator while the section is active.
-        mobileStickyCta?.classList.toggle('is-context-hidden', vis);
         if (vis && !bound) {
           window.addEventListener('scroll', onScroll, { passive: true });
           bound = true;
