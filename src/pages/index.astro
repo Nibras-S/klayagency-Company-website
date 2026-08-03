@@ -2333,31 +2333,70 @@ export default function <span class="code-func">Product</span>() &#123;
   /* Mobile */
   @media (max-width: 760px) {
     .ws-scroll-track {
-      /* Matches the 1200px content travel used by the mobile camera. With
-         220svh, the section consumed ~3px of finger scroll for ~1px of visual
-         movement, which felt like a freeze despite frames rendering normally. */
-      height: 1200px;
+      height: auto !important;
+      padding: 3.5rem 0 4rem;
+      background: #ffffff;
     }
     .ws-sticky {
-      height: 100svh;
+      position: relative !important;
+      top: auto !important;
+      height: auto !important;
       justify-content: flex-start;
-      padding-top: 2.5rem;
+      padding: 0 1.25rem !important;
+      overflow: visible !important;
     }
-    .ws-heading { margin-bottom: 1.25rem; flex-shrink: 0; }
-    .ws-stage { height: 830px; }          /* 3 × 250px + 16px gaps × 2 + buffer */
-    .ws-card { width: 280px; height: 250px; border-radius: 14px; }
-    .ws-labels { grid-template-columns: 1fr; gap: 0.6rem; margin-top: 1.25rem; }
-    .ws-card__meta { padding: 0.7rem 0.85rem 0.75rem; }
-    .ws-card__name { font-size: 0.85rem; }
-    .ws-card__desc { font-size: 0.72rem; }
-    .ws-sticky-inner,
-    .ws-card,
-    .ws-card__img img {
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+    .ws-sticky-inner {
+      transform: none !important;
+      will-change: auto !important;
     }
-    .ws-card { touch-action: pan-y; }
-    .ws-scroll-track.ws-dealt .ws-card { will-change: auto; }
+    .ws-heading {
+      margin-bottom: 2rem;
+      flex-shrink: 0;
+    }
+    .ws-stage {
+      position: relative !important;
+      width: 100% !important;
+      max-width: 480px !important;
+      height: auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1.5rem !important;
+      margin: 0 auto !important;
+    }
+    .ws-card {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      transform: none !important;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 280px !important;
+      border-radius: 16px !important;
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.06),
+        0 12px 28px rgba(0,0,0,0.08) !important;
+      will-change: auto !important;
+    }
+    .ws-card__img {
+      height: 200px !important;
+      flex: none !important;
+    }
+    .ws-card__meta {
+      padding: 1rem 1.15rem !important;
+    }
+    .ws-card__name {
+      font-size: 1.05rem !important;
+      white-space: normal !important;
+    }
+    .ws-card__desc {
+      font-size: 0.85rem !important;
+      white-space: normal !important;
+    }
+    .ws-cta {
+      opacity: 1 !important;
+      transform: none !important;
+      margin-top: 2.25rem !important;
+    }
   }
 
 
@@ -4291,8 +4330,9 @@ export default function <span class="code-func">Product</span>() &#123;
 (function () {
   /* ============================================================
      Work Showcase — Sticky scroll-linked card animation
-     Cards animate from stacked/rotated → side-by-side
+     Desktop: Cards animate from stacked/rotated → side-by-side
      as the user scrolls through the 230vh .ws-scroll-track.
+     Mobile: Pure CSS native layout for 120fps smooth scrolling.
   ============================================================ */
 
   function lerp(a, b, t) { return a + (b - a) * t; }
@@ -4303,31 +4343,12 @@ export default function <span class="code-func">Product</span>() &#123;
   const MOBILE_BREAKPOINT = 760;
   const isMobile = () => window.innerWidth <= MOBILE_BREAKPOINT;
 
-  // Returns card dimensions + stacked/final position configs
-  function getConfig(m = isMobile()) {
-    const cW  = m ? 280 : 390;   // mobile: full-ish width; desktop: 3-col
-    const cH  = m ? 250 : 345;   // taller cards to fit image + meta text panel
-    const gap = m ? 16  : 28;
+  // Returns card dimensions + stacked/final position configs for desktop
+  function getConfig() {
+    const cW  = 390;
+    const cH  = 345;
+    const gap = 28;
 
-    if (m) {
-      // Mobile: cards deal out VERTICALLY (top → center → bottom)
-      const vspan = cH + gap;
-      return {
-        cW, cH, gap, n: 3,
-        stacked: [
-          { x: -cW*0.04, y: -vspan,      r: -5, z: 4, s: 1.00 },
-          { x:  cW*0.04, y: -vspan + 60,  r:  7, z: 3, s: 0.94 },
-          { x:  cW*0.08, y: -vspan + 120, r:  15, z: 2, s: 0.86 },
-        ],
-        final: [
-          { x: 0, y: -vspan, r: 0, z: 2, s: 1.00 },  // TOP
-          { x: 0, y:      0, r: 0, z: 1, s: 1.00 },  // MIDDLE
-          { x: 0, y: +vspan, r: 0, z: 0, s: 1.00 },  // BOTTOM
-        ],
-      };
-    }
-
-    // Desktop: cards deal out HORIZONTALLY (left → center → right)
     const span = cW + gap;
     return {
       cW, cH, gap, n: 3,
@@ -4349,9 +4370,8 @@ export default function <span class="code-func">Product</span>() &#123;
   let mobile = isMobile();
 
   function applyCards(progress) {
-    if (!cfg) return;
-    // Mobile follows the finger directly; the desktop deal keeps its cinematic easing.
-    const p = mobile ? clamp(progress, 0, 1) : easeInOutCubic(clamp(progress, 0, 1));
+    if (!cfg || mobile) return;
+    const p = easeInOutCubic(clamp(progress, 0, 1));
     for (let i = 0; i < cfg.n; i++) {
       const el = cards[i];
       if (!el) continue;
@@ -4362,108 +4382,81 @@ export default function <span class="code-func">Product</span>() &#123;
       const sc = lerp(s.s, f.s, p);
       el.style.transform = `translate3d(calc(-50% + ${x.toFixed(2)}px), calc(-50% + ${y.toFixed(2)}px), 0) rotate(${r.toFixed(2)}deg) scale(${sc.toFixed(4)})`;
 
-      // Stacking only changes a handful of times. Avoid invalidating it on every
-      // momentum-scroll frame, which is particularly costly in mobile Safari.
       const nextZ = String(Math.round(lerp(s.z, f.z, p)));
       if (el.style.zIndex !== nextZ) el.style.zIndex = nextZ;
     }
   }
 
   function setSizes() {
-    cfg = getConfig(mobile);
+    mobile = isMobile();
+    if (mobile) {
+      // Clear any desktop inline styles when on mobile
+      for (let i = 0; i < cards.length; i++) {
+        if (cards[i]) {
+          cards[i].style.width = '';
+          cards[i].style.height = '';
+          cards[i].style.transform = '';
+          cards[i].style.top = '';
+          cards[i].style.left = '';
+          cards[i].style.position = '';
+          cards[i].style.zIndex = '';
+        }
+      }
+      if (stage) stage.style.height = '';
+      if (inner) inner.style.transform = '';
+      return;
+    }
+
+    cfg = getConfig();
     for (let i = 0; i < cfg.n; i++) {
       const el = cards[i];
-      if (el) { el.style.width = cfg.cW+'px'; el.style.height = cfg.cH+'px'; }
+      if (el) {
+        el.style.width = cfg.cW + 'px';
+        el.style.height = cfg.cH + 'px';
+        el.style.top = '50%';
+        el.style.left = '50%';
+        el.style.position = 'absolute';
+      }
     }
     if (stage) {
-      const stageH = mobile
-        ? cfg.cH * 3 + cfg.gap * 2 + 48
-        : cfg.cH + 48;
-      stage.style.height = stageH + 'px';
+      stage.style.height = (cfg.cH + 48) + 'px';
     }
   }
 
-  let track, sticky, stage, cta, inner, lastP = -1, lastRaw = -1;
+  let track, sticky, stage, cta, inner, lastP = -1;
   let scrollRaf = null;
   let resizeRaf = null;
   let showcaseActive = false;
-  let mobileVisitStarted = false;
-  let mobileAnimationLocked = false;
-  let mobileProgress = 0;
-  let layerReleaseTimer = null;
   let ctaVisible = null;
   let lastViewportWidth = Math.round(window.innerWidth);
   let trackTop = 0;
   let scrollable = 1;
-  let viewportH = window.innerHeight;
-  let panAmount = 0;
 
-  function lockMobileAnimation() {
-    mobileProgress = 1;
-    if (mobileAnimationLocked) return;
-    mobileAnimationLocked = true;
-
-    // Keep the three card layers only for the deal itself. Once settled, the
-    // moving parent can be composited as one surface with much less GPU memory.
-    layerReleaseTimer = window.setTimeout(() => {
-      layerReleaseTimer = null;
-      track && track.classList.add('ws-dealt');
-    }, 120);
-  }
-
-  // Read layout only when the section enters the viewport or its real width
-  // changes. Reading these values inside every scroll frame caused the browser
-  // to repeatedly flush layout while the mobile address bar was animating.
   function refreshGeometry() {
-    if (!track) return;
+    if (!track || mobile) return;
     const scrollY = window.scrollY || window.pageYOffset;
     const rect = track.getBoundingClientRect();
-    viewportH = mobile && sticky ? sticky.clientHeight : window.innerHeight;
+    const viewportH = window.innerHeight;
     trackTop = rect.top + scrollY;
     scrollable = Math.max(1, track.offsetHeight - viewportH);
-
-    // Preserve the existing mobile camera travel, but calculate it once rather
-    // than once per animation frame.
-    panAmount = mobile ? Math.max(0, 1200 - viewportH) : 0;
   }
 
   function renderScroll() {
     scrollRaf = null;
-    if (!track) return;
+    if (!track || mobile) return;
 
     const scrollY = window.scrollY || window.pageYOffset;
-    const raw        = scrollable > 0 ? clamp((scrollY - trackTop) / scrollable, 0, 1) : 1;
-
-    // On mobile the deal is a one-time, forward-only reveal. Scrolling back up
-    // cannot rewind it, and after the first visit the aligned state is retained.
-    // Desktop deliberately keeps the original reversible scroll choreography.
-    if (mobile) {
-      mobileProgress = mobileAnimationLocked ? 1 : Math.max(mobileProgress, raw);
-      if (mobileProgress >= 0.999) {
-        lockMobileAnimation();
-      }
-    }
-    const progress = mobile ? mobileProgress : raw;
+    const raw     = scrollable > 0 ? clamp((scrollY - trackTop) / scrollable, 0, 1) : 1;
+    const progress = raw;
     const cardsChanged = Math.abs(progress - lastP) >= 0.0005;
-    const scrollChanged = Math.abs(raw - lastRaw) >= 0.0005;
-    if (!cardsChanged && !scrollChanged) return;
-    lastRaw = raw;
+    if (!cardsChanged) return;
+    lastP = progress;
 
-    if (cardsChanged) {
-      lastP = progress;
-      applyCards(progress);
-    }
+    applyCards(progress);
 
-    if (mobile && inner) {
-      // Card dealing is one-time, but this camera travel must continue to
-      // follow scroll so the heading and first card remain reachable on return.
-      const currentPan = lerp(0, -panAmount, raw);
-      inner.style.transform = `translate3d(0, ${currentPan.toFixed(2)}px, 0)`;
-    } else if (inner) {
-      inner.style.transform = '';
-    }
+    if (inner) inner.style.transform = '';
 
-    const nextCtaVisible = raw > (mobile ? 0.70 : 0.80);
+    const nextCtaVisible = raw > 0.80;
     if (nextCtaVisible !== ctaVisible) {
       ctaVisible = nextCtaVisible;
       cta && cta.classList.toggle('ws-visible', ctaVisible);
@@ -4471,7 +4464,7 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   function onScroll() {
-    if (showcaseActive && scrollRaf === null) {
+    if (!mobile && showcaseActive && scrollRaf === null) {
       scrollRaf = requestAnimationFrame(renderScroll);
     }
   }
@@ -4484,64 +4477,55 @@ export default function <span class="code-func">Product</span>() &#123;
     inner = document.getElementById('ws-sticky-inner');
     cards = [0, 1, 2].map((i) => document.getElementById('ws-card-'+i));
     mobile = isMobile();
-    cfg = getConfig(mobile);
 
-    // Position all 3 cards from center of stage
-    for (let i = 0; i < cfg.n; i++) {
-      const el = cards[i];
-      if (el) { el.style.top = '50%'; el.style.left = '50%'; el.style.position = 'absolute'; }
-    }
     setSizes();
-    applyCards(0); // set initial stacked state
-    refreshGeometry();
+    if (!mobile) {
+      applyCards(0);
+      refreshGeometry();
+    }
+
     if (track) {
       new IntersectionObserver((entries) => {
-        const wasActive = showcaseActive;
         showcaseActive = entries[0].isIntersecting;
-        if (showcaseActive) {
-          if (mobile) mobileVisitStarted = true;
+        if (showcaseActive && !mobile) {
           refreshGeometry();
           lastP = -1;
-          lastRaw = -1;
           onScroll();
-        } else if (wasActive && mobile && mobileVisitStarted) {
-          // If the user leaves before reaching the end, show the completed
-          // arrangement the next time they return instead of replaying it.
-          lockMobileAnimation();
-          lastP = -1;
-          lastRaw = -1;
         }
       }, { rootMargin: '120px 0px' }).observe(track);
     }
+
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', () => {
       const nextWidth = Math.round(window.innerWidth);
       const widthChanged = Math.abs(nextWidth - lastViewportWidth) > 1;
 
-      // Mobile browsers emit resize events while their URL bar opens/closes.
-      // The CSS uses stable svh units, so a height-only resize needs no work.
-      if (!widthChanged && (mobile || isMobile())) return;
+      if (!widthChanged) return;
       if (resizeRaf !== null) cancelAnimationFrame(resizeRaf);
       resizeRaf = requestAnimationFrame(() => {
         resizeRaf = null;
         lastViewportWidth = nextWidth;
         mobile = isMobile();
         setSizes();
-        refreshGeometry();
-        lastP = -1;
-        lastRaw = -1;
-        if (showcaseActive) onScroll();
+        if (!mobile) {
+          refreshGeometry();
+          lastP = -1;
+          onScroll();
+        }
       });
     }, { passive: true });
 
-    // Late font/image layout changes happen outside the scroll loop.
     window.addEventListener('load', () => {
-      refreshGeometry();
-      lastP = -1;
-      lastRaw = -1;
-      if (showcaseActive) onScroll();
+      if (!mobile) {
+        refreshGeometry();
+        lastP = -1;
+        onScroll();
+      }
     }, { once: true });
-    renderScroll();
+
+    if (!mobile) {
+      renderScroll();
+    }
   }
 
   if (document.readyState === 'loading') {
