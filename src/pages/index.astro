@@ -271,7 +271,7 @@ const faqs = [
             alt="A recent product build by N3 Global Tech"
             width="900"
             height="600"
-            loading="lazy"
+            loading="eager"
             decoding="async"
           />
           <!-- Stays empty and hidden unless WebGL2 initialises; the <img> above
@@ -389,9 +389,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=31" loading="lazy" width="400" height="500" decoding="async" /></div>
-                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=32" loading="lazy" width="400" height="300" decoding="async" /></div>
-                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=33" loading="lazy" width="300" height="300" decoding="async" /></div>
+                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -409,9 +409,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=41" loading="lazy" width="400" height="500" decoding="async" /></div>
-                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=42" loading="lazy" width="400" height="300" decoding="async" /></div>
-                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=43" loading="lazy" width="300" height="300" decoding="async" /></div>
+                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -429,9 +429,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=51" loading="lazy" width="400" height="500" decoding="async" /></div>
-                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=52" loading="lazy" width="400" height="300" decoding="async" /></div>
-                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=53" loading="lazy" width="300" height="300" decoding="async" /></div>
+                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -449,9 +449,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="https://picsum.photos/400/500?random=61" loading="lazy" width="400" height="500" decoding="async" /></div>
-                <div class="svc-img img-2"><img src="https://picsum.photos/400/300?random=62" loading="lazy" width="400" height="300" decoding="async" /></div>
-                <div class="svc-img img-3"><img src="https://picsum.photos/300/300?random=63" loading="lazy" width="300" height="300" decoding="async" /></div>
+                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -1500,6 +1500,23 @@ export default function <span class="code-func">Product</span>() &#123;
 
   @media (max-width: 860px) {
     .flow__body { grid-template-columns: 1fr; }
+
+    /* Mobile gets a quicker reveal and a static decorative path. The desktop
+       scroll-linked parallax remains unchanged. */
+    .flow__line > g { filter: none; }
+    .flow__title .word {
+      transition-duration: 0.5s;
+      transition-delay: calc(var(--i) * 30ms);
+    }
+    .flow__desc .word {
+      transition-duration: 0.35s;
+      transition-delay: calc(var(--i) * 7ms);
+    }
+    .flow__cta {
+      transition: opacity 0.4s ease 0.12s,
+                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.12s,
+                  box-shadow 0.25s ease;
+    }
   }
 
   /* Everything resolves to its final state; nothing moves. */
@@ -2288,8 +2305,15 @@ export default function <span class="code-func">Product</span>() &#123;
 
   /* Mobile */
   @media (max-width: 760px) {
-    .ws-scroll-track { height: 300vh; }   /* more room for vertical card deal & camera pan */
-    .ws-sticky { justify-content: flex-start; padding-top: 2.5rem; }
+    .ws-scroll-track {
+      height: 220vh;
+      height: 220svh;
+    }
+    .ws-sticky {
+      height: 100svh;
+      justify-content: flex-start;
+      padding-top: 2.5rem;
+    }
     .ws-heading { margin-bottom: 1.25rem; flex-shrink: 0; }
     .ws-stage { height: 830px; }          /* 3 × 250px + 16px gaps × 2 + buffer */
     .ws-card { width: 280px; height: 250px; border-radius: 14px; }
@@ -4285,7 +4309,8 @@ export default function <span class="code-func">Product</span>() &#123;
 
   function applyCards(progress) {
     const cfg = getConfig();
-    const p   = easeInOutCubic(clamp(progress, 0, 1));
+    // Mobile follows the finger directly; the desktop deal keeps its cinematic easing.
+    const p   = isMobile() ? clamp(progress, 0, 1) : easeInOutCubic(clamp(progress, 0, 1));
     for (let i = 0; i < cfg.n; i++) {
       const el = document.getElementById('ws-card-'+i);
       if (!el) continue;
@@ -4316,8 +4341,11 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   let track, cta, inner, lastP = -1;
+  let scrollRaf = null;
+  let showcaseActive = false;
 
-  function onScroll() {
+  function renderScroll() {
+    scrollRaf = null;
     track = track || document.getElementById('ws-scroll-track');
     cta   = cta   || document.getElementById('ws-cta');
     inner = inner || document.getElementById('ws-sticky-inner');
@@ -4339,17 +4367,23 @@ export default function <span class="code-func">Product</span>() &#123;
       // Total content height including heading (~110px), stage (830px), CTA (~60px), and bottom safety spacing (~160px) is ~1200px.
       const contentH = 1200;
       const panAmount = Math.max(0, contentH - winH);
-      const p = easeInOutCubic(raw);
+      const p = raw;
       const currentPan = lerp(0, -panAmount, p);
       inner.style.transform = `translateY(${currentPan}px)`;
     } else if (inner) {
       inner.style.transform = '';
     }
 
-    if (raw > 0.80) {
+    if (raw > (m ? 0.70 : 0.80)) {
       cta && cta.classList.add('ws-visible');
     } else {
       cta && cta.classList.remove('ws-visible');
+    }
+  }
+
+  function onScroll() {
+    if (showcaseActive && scrollRaf === null) {
+      scrollRaf = requestAnimationFrame(renderScroll);
     }
   }
 
@@ -4362,9 +4396,23 @@ export default function <span class="code-func">Product</span>() &#123;
     }
     setSizes();
     applyCards(0); // set initial stacked state
+    track = document.getElementById('ws-scroll-track');
+    if (track) {
+      new IntersectionObserver((entries) => {
+        showcaseActive = entries[0].isIntersecting;
+        if (showcaseActive) {
+          lastP = -1;
+          onScroll();
+        }
+      }, { rootMargin: '120px 0px' }).observe(track);
+    }
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', () => { setSizes(); onScroll(); });
-    onScroll();
+    window.addEventListener('resize', () => {
+      setSizes();
+      lastP = -1;
+      if (showcaseActive) onScroll();
+    });
+    renderScroll();
   }
 
   if (document.readyState === 'loading') {
@@ -4739,6 +4787,7 @@ export default function <span class="code-func">Product</span>() &#123;
       const layers = Array.from(flow.querySelectorAll('.flow__parallax'));
       const lineSvg = flow.querySelector('.flow__line');
       const blobEls = Array.from(document.getElementById('flow-blobs').children);
+      const mobileFlow = window.innerWidth <= 860 || window.matchMedia('(pointer: coarse)').matches;
 
       // Liquid warp is desktop-only: see the note at its call site.
       const canWarp = window.matchMedia('(pointer: fine)').matches;
@@ -4786,8 +4835,41 @@ export default function <span class="code-func">Product</span>() &#123;
           flow.classList.add('is-visible');
           revealIO.disconnect();
         }
-      }, { threshold: 0.15 });
+      }, mobileFlow
+        ? { threshold: 0.01, rootMargin: '160px 0px' }
+        : { threshold: 0.15 });
       revealIO.observe(flow);
+
+      // Touch devices keep the lightweight blue line-draw effect, but skip the
+      // parallax, card skew, cursor droplets and clip-path rewriting that caused
+      // delayed updates during momentum scrolling.
+      if (mobileFlow) {
+        let mobileLineInView = false;
+        let mobileLineRaf = null;
+
+        const drawMobileLine = () => {
+          mobileLineRaf = null;
+          const rect = flow.getBoundingClientRect();
+          const vh = window.innerHeight;
+          const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+          linePath.style.strokeDashoffset = String(lineLen * (1 - progress));
+        };
+
+        const queueMobileLine = () => {
+          if (mobileLineInView && mobileLineRaf === null) {
+            mobileLineRaf = requestAnimationFrame(drawMobileLine);
+          }
+        };
+
+        new IntersectionObserver((entries) => {
+          mobileLineInView = entries[0].isIntersecting;
+          queueMobileLine();
+        }, { rootMargin: '160px 0px' }).observe(flow);
+
+        window.addEventListener('scroll', queueMobileLine, { passive: true });
+        drawMobileLine();
+        return;
+      }
 
       // Scroll-linked work only runs while the section is near the viewport.
       const activeIO = new IntersectionObserver((entries) => {
