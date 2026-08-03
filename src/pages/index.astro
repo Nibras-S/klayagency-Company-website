@@ -2481,12 +2481,20 @@ export default function <span class="code-func">Product</span>() &#123;
   .about-preview__statement {
     max-width: 880px;
     margin: 0;
-    color: #0f172a;
     font-family: var(--font-heading, "Helvetica Neue", Helvetica, Arial, sans-serif);
     font-size: clamp(1.4rem, 1.85vw, 2rem);
     font-weight: 600;
-    line-height: 1.28;
+    line-height: 1.32;
     letter-spacing: -0.03em;
+  }
+
+  .about-preview__statement :global(.about-word) {
+    color: #9ca3af;
+    transition: color 0.18s ease;
+  }
+
+  .about-preview__statement :global(.about-word.is-active) {
+    color: #0f172a;
   }
 
   .about-preview__statement > span {
@@ -5698,5 +5706,49 @@ export default function <span class="code-func">Product</span>() &#123;
     resize();
     if (img.complete && img.naturalWidth) uploadImage();
     else img.addEventListener('load', uploadImage, { once: true });
+  })();
+</script>
+
+<script is:inline>
+  (function () {
+    var statement = document.getElementById('about-preview-title');
+    if (!statement) return;
+
+    var text = statement.textContent.trim();
+    var words = text.split(/\s+/);
+    statement.innerHTML = words.map(function (w) {
+      return '<span class="about-word">' + w + '</span>';
+    }).join(' ');
+
+    var wordSpans = statement.querySelectorAll('.about-word');
+    var total = wordSpans.length;
+
+    function updateWordHighlight() {
+      var section = statement.closest('.about-preview');
+      if (!section) return;
+
+      var rect = section.getBoundingClientRect();
+      var vh = window.innerHeight;
+
+      // Start highlighting when top of section comes up to 80% viewport height
+      // Finish highlighting when top reaches 20% viewport height
+      var startY = vh * 0.8;
+      var endY = vh * 0.2;
+      var progress = (startY - rect.top) / (startY - endY);
+      progress = Math.max(0, Math.min(1, progress));
+
+      var activeCount = Math.floor(progress * (total + 1));
+      for (var i = 0; i < total; i++) {
+        if (i < activeCount) {
+          wordSpans[i].classList.add('is-active');
+        } else {
+          wordSpans[i].classList.remove('is-active');
+        }
+      }
+    }
+
+    window.addEventListener('scroll', updateWordHighlight, { passive: true });
+    window.addEventListener('resize', updateWordHighlight, { passive: true });
+    updateWordHighlight();
   })();
 </script>
