@@ -1,0 +1,303 @@
+---
+const cards = [
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
+    titleLine1: "Strategy &",
+    titleLine2: "Consulting",
+    desc: "Digital transformation audits, roadmaps, and competitive benchmarking. We map where you are, where you need to be, and the exact steps to get there — no fluff, no filler."
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
+    titleLine1: "Brand &",
+    titleLine2: "Design",
+    desc: "Identity systems, UI/UX, and product design. Visual languages that are distinctive, consistent, and built to scale across every touchpoint — from business cards to ERP dashboards."
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
+    titleLine1: "Technology &",
+    titleLine2: "Engineering",
+    desc: "Custom software, SaaS platforms, mobile apps, cloud infrastructure, and AI. Built around your workflows, deployed on AWS, and designed to handle real load from day one."
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
+    titleLine1: "Marketing &",
+    titleLine2: "Growth",
+    desc: "SEO, digital marketing, and content that sounds like your brand — not generic marketing filler. We write and build for humans first, algorithms second."
+  }
+];
+---
+
+<section class="wwd-section reveal" id="what-we-do-cards">
+  <div class="container wwd-container">
+    <!-- Header -->
+    <div class="wwd-header">
+      <div class="wwd-header__left">
+        <h2 class="wwd-title">What We Do</h2>
+      </div>
+      <div class="wwd-header__right">
+        <p class="wwd-subtitle">
+          End-to-end partners for companies building something that lasts.
+        </p>
+        <a href="/contact" class="btn btn-primary wwd-cta">
+          <span>Get Started</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Cards Stack Container -->
+    <div class="wwd-cards-stack">
+      {cards.map((card, idx) => (
+        <article class={`wwd-card wwd-card--${idx + 1}`} data-index={idx + 1}>
+          <div class="wwd-card__top">
+            <div class="wwd-card__icon" set:html={card.icon} />
+            <h3 class="wwd-card__title">
+              <span>{card.titleLine1}</span>
+              <span>{card.titleLine2}</span>
+            </h3>
+          </div>
+          <div class="wwd-card__bottom">
+            <p class="wwd-card__desc">{card.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .wwd-section {
+    padding: 6rem 0;
+    background: #ffffff;
+    position: relative;
+    z-index: 5;
+  }
+
+  .wwd-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  /* Header Layout */
+  .wwd-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+  }
+
+  .wwd-header__left {
+    max-width: 580px;
+  }
+
+  .wwd-title {
+    font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    color: var(--gray-900);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .wwd-header__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    max-width: 280px;
+  }
+
+  .wwd-subtitle {
+    font-size: 0.88rem;
+    color: var(--gray-500);
+    line-height: 1.5;
+    font-weight: 450;
+  }
+
+  .wwd-cta {
+    padding: 0.65rem 1.35rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+  }
+
+  /* Cards Grid */
+  .wwd-cards-stack {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .wwd-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 2.25rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 420px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    transition: background-color 0.3s ease, 
+                border-color 0.3s ease, 
+                transform 0.3s ease, 
+                box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wwd-card__top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.75rem;
+  }
+
+  .wwd-card__icon {
+    color: var(--gray-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+  }
+
+  .wwd-card__title {
+    font-size: clamp(1.4rem, 1.8vw, 1.65rem);
+    font-weight: 700;
+    color: var(--gray-900);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    display: flex;
+    flex-direction: column;
+    transition: color 0.3s ease;
+  }
+
+  .wwd-card__bottom {
+    margin-top: auto;
+  }
+
+  .wwd-card__desc {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    line-height: 1.5;
+    transition: color 0.3s ease;
+  }
+
+  /* Hover State: Smooth Color Shift to Blue */
+  .wwd-card:hover {
+    background: #0284c7;
+    border-color: #0284c7;
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.22);
+  }
+
+  .wwd-card:hover .wwd-card__icon {
+    color: #ffffff;
+  }
+
+  .wwd-card:hover .wwd-card__title {
+    color: #ffffff;
+  }
+
+  .wwd-card:hover .wwd-card__desc {
+    color: #e0f2fe;
+  }
+
+  /* Responsive Layout (Tablet) */
+  @media (max-width: 1024px) {
+    .wwd-cards-stack {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .wwd-card {
+      height: 380px;
+    }
+  }
+
+  /* Mobile Layout: Clean Flow + Lag-Free Card Stacking Scroll */
+  @media (max-width: 768px) {
+    .wwd-section {
+      padding: 3rem 0 2.5rem 0;
+    }
+
+    .wwd-container {
+      gap: 2rem;
+    }
+
+    .wwd-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      position: relative;
+      top: auto;
+      z-index: 1;
+      background: transparent;
+      padding: 0;
+      margin-bottom: 0.5rem;
+      border-bottom: none;
+    }
+
+    .wwd-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .wwd-header__right {
+      max-width: 100%;
+      gap: 1rem;
+    }
+
+    .wwd-subtitle {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+    }
+
+    /* Stack Cards on Mobile: Pins cleanly below mobile navbar without overlap */
+    .wwd-cards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding-bottom: 2rem;
+      position: relative;
+    }
+
+    .wwd-card {
+      position: sticky;
+      top: 84px; /* Pins cleanly right under sticky navbar */
+      margin-bottom: 3.5rem; /* Generous scroll spacing so cards stack smoothly */
+      border-radius: 20px;
+      padding: 1.75rem 1.5rem;
+      height: 340px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.08);
+      background: #ffffff;
+      border: 1px solid var(--gray-200);
+    }
+
+    .wwd-card--1 {
+      top: 84px;
+      z-index: 1;
+    }
+
+    .wwd-card--2 {
+      top: 96px;
+      z-index: 2;
+    }
+
+    .wwd-card--3 {
+      top: 108px;
+      z-index: 3;
+    }
+
+    .wwd-card--4 {
+      top: 120px;
+      z-index: 4;
+    }
+  }
+</style>
