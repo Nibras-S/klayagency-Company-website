@@ -3,12 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import LetsWorkTogether from '../components/LetsWorkTogether.astro';
-const teamPreview = [
-  { name: "Nibras",  initials: "N", color: "sky",    image: "/team/nibras.webp"  },
-  { name: "Nabeel",  initials: "N", color: "violet", image: "/team/nabeel.webp"  },
-  { name: "Nafi",    initials: "N", color: "teal",   image: "/team/nafi.webp"    },
-  { name: "Farseen", initials: "F", color: "amber",  image: "/team/farseen.webp" },
-];
 
 const clientLogoIds = [1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15];
 
@@ -135,15 +129,25 @@ const faqs = [
     <div class="container hero__inner" style="z-index: 2; position: relative;">
       <div class="hero__content">
         <h1 class="hero__title animate-fade-up" style="animation-delay:0.1s">
-          Build the Future 
-          with <span style="color: #0284c7;">Technology</span>
+          <span class="hero__title-lines hero__title-lines--desktop">
+            <span>The Technology and</span>
+            <span>Design agency behind</span>
+            <span class="hero__title-accent">ambitious businesses.</span>
+          </span>
+          <span class="hero__title-lines hero__title-lines--mobile">
+            <span>The Technology and</span>
+            <span>Design agency behind</span>
+            <span class="hero__title-accent">ambitious businesses.</span>
+          </span>
         </h1>
-        <p class="hero__desc animate-fade-up" style="animation-delay:0.2s; display: none;">
-          We design and build high-performance <a href="/custom-software-development/" class="text-link">custom software</a>, <a href="/saas-development-company/" class="text-link">SaaS platforms</a>, and mobile apps. Engineered for scale, built to last.
+        <p class="hero__desc animate-fade-up" style="animation-delay:0.2s;">
+          <span class="hero__desc-line">We combine strategy, brand, and engineering under one team</span>
+          <span class="hero__desc-line">building the platforms, products, and digital systems that let</span>
+          <span class="hero__desc-line">businesses across India and the GCC operate at scale.</span>
         </p>
         <div class="hero__cta animate-fade-up" style="animation-delay:0.3s">
           <a href="/work" class="hero__pill-link">
-            <span class="hero__pill-text">Explore Our Projects</span>
+            <span class="hero__pill-text">Explore Our Works</span>
             <span class="hero__pill-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -997,36 +1001,47 @@ export default function <span class="code-func">Product</span>() &#123;
   </section>
 
   <!-- ========== ABOUT PREVIEW ========== -->
-  <section class="section about-preview reveal">
-    <div class="container">
-      <div class="about-preview__inner">
-        <div class="about-preview__content">
-          <div class="badge badge-sky">About Us</div>
-          <h2 class="about-preview__title">Built by Engineers, From <span class="text-gradient">Kannur to the World</span></h2>
-          <p class="about-preview__desc">
-            N3 Global Tech (n3globaltech) was founded by four engineers who started together as classmates at Thalassery Engineering College. Today, we build <a href="/custom-software-development/" class="text-link">custom software</a>, <a href="/saas-development-company/" class="text-link">SaaS platforms</a>, and digital products for businesses across India and beyond. Check out some of our <a href="/work/" class="text-link">client success stories</a> to see how we combine hands-on industry experience with a strong sense of where we come from.
-          </p>
-          <a href="/about/" class="btn btn-primary btn-lg about-story__button cta-dark-pill">
-            <span>Read Our Story</span>
-            <span class="cta-dark-pill__icon" aria-hidden="true"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0H7m10 0v10"/></svg></span>
-          </a>
-        </div>
+  <section class="section about-preview reveal" aria-labelledby="about-preview-title">
+    <div class="container about-preview__shell">
+      <div class="about-preview__intro">
+        <p class="about-preview__eyebrow">About N3 Global Tech</p>
+        <h2 class="about-preview__statement" id="about-preview-title">
+          We combine strategy, design, engineering, and cloud infrastructure to build software that feels effortless and scales without drama.
+          <span>From first MVP to enterprise platform, every engagement is led by senior staff, start to finish.</span>
+        </h2>
+      </div>
 
-        <div class="about-preview__visual">
-          <div class="founders-stack">
-            {teamPreview.map(f => (
-              f.image ? (
-                <div class={`founder-mini founder-mini--${f.color}`} title={f.name}>
-                  <img src={f.image} alt={f.name} width="72" height="72" loading="lazy" />
-                </div>
-              ) : (
-                <div class={`founder-mini founder-mini--${f.color} founder-mini--initial`} title={f.name} aria-label={f.name}>
-                  <span>{f.initials}</span>
-                </div>
-              )
-            ))}
-          </div>
-          <p class="founders-stack__caption">Founders: Nibras · Nabeel · Nafi · Farseen</p>
+      <div class="about-preview__gallery">
+        <figure class="about-preview__image">
+          <img
+            src="/images/about/about-1-1200.webp"
+            srcset="/images/about/about-1-720.webp 720w, /images/about/about-1-1200.webp 1200w"
+            sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 900px) 46vw, 38vw"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            alt="Senior team discussing product strategy with a technology specialist"
+          />
+        </figure>
+        <figure class="about-preview__image">
+          <img
+            src="/images/about/about-2-1200.webp"
+            srcset="/images/about/about-2-720.webp 720w, /images/about/about-2-1200.webp 1200w"
+            sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 900px) 46vw, 38vw"
+            width="1200"
+            height="971"
+            loading="lazy"
+            decoding="async"
+            alt="Senior-led technical consultation in progress"
+          />
+        </figure>
+        <div class="about-preview__action">
+          <p>Senior-led,<br />start to finish.</p>
+          <a href="/about/" class="about-preview__button">
+            <span>Our Approach</span>
+            <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -1210,20 +1225,38 @@ export default function <span class="code-func">Product</span>() &#123;
 
   .hero__title {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: clamp(3rem, 7.5vw, 6.5rem);
+    font-size: clamp(2.15rem, 4vw, 3.8rem);
     font-weight: 500;
-    line-height: 0.9;
-    margin: 1.5rem 0 3rem 0;
+    line-height: 0.98;
+    margin: 1.5rem 0 1.25rem 0;
     letter-spacing: -0.06em;
     color: #000000;
   }
 
+  .hero__title-lines,
+  .hero__title-lines > span {
+    display: block;
+  }
+
+  .hero__title-lines > span {
+    white-space: nowrap;
+  }
+
+  .hero__title-lines--mobile { display: none; }
+  .hero__title-accent { color: #0284c7; }
+
   .hero__desc {
     color: var(--gray-500);
-    font-size: 1.1rem;
-    line-height: 1.75;
+    font-size: clamp(0.84rem, 1vw, 0.95rem);
+    line-height: 1.7;
+    letter-spacing: -0.015em;
     margin-bottom: 2rem;
-    max-width: 480px;
+    max-width: none;
+  }
+
+  .hero__desc-line {
+    display: block;
+    white-space: nowrap;
   }
 
   .hero__pill-link {
@@ -1297,17 +1330,6 @@ export default function <span class="code-func">Product</span>() &#123;
     box-shadow: none;
   }
 
-  .about-story__button {
-    min-width: 16.25rem;
-    justify-content: center;
-    gap: 0.85rem;
-    padding: 1rem 2rem !important;
-    background: #15a9e6;
-    font-weight: 700;
-    box-shadow: 0 10px 28px rgba(21, 169, 230, 0.24);
-  }
-  .about-story__button:hover { background: #078fc9; }
-
   .cta-dark-pill {
     min-width: 0;
     gap: 1.25rem;
@@ -1321,7 +1343,7 @@ export default function <span class="code-func">Product</span>() &#123;
     font-weight: 400;
   }
   .cta-dark-pill:hover,
-  .about-story__button.cta-dark-pill:hover { background: #171717; border-color: #171717; color: #ffffff; }
+  .cta-dark-pill:focus-visible { background: #171717; border-color: #171717; color: #ffffff; }
   .cta-dark-pill__icon {
     display: inline-flex;
     align-items: center;
@@ -2419,115 +2441,177 @@ export default function <span class="code-func">Product</span>() &#123;
 
   /* ===== ABOUT PREVIEW ===== */
   .about-preview {
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    padding: 5rem 0;
+    background: #ffffff;
+    padding: clamp(4rem, 4.5vw, 4.75rem) 0;
   }
 
-  .about-preview__inner {
+  .about-preview__shell {
+    max-width: 1400px;
+  }
+
+  .about-preview__intro {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    max-width: 1080px;
-    margin: 0 auto;
+    grid-template-columns: minmax(180px, 0.34fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 7rem);
+    align-items: start;
   }
 
-  .about-preview__title {
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    margin: 1rem 0 1.25rem;
-    color: var(--gray-900);
+  .about-preview__eyebrow {
+    margin: 0.35rem 0 0;
+    color: var(--gray-500);
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 
-  .about-preview__desc {
-    color: var(--gray-600);
-    font-size: 1.02rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    max-width: 560px;
+  .about-preview__statement {
+    max-width: 1050px;
+    margin: 0;
+    color: #090b0c;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(2.1rem, 2.45vw, 2.85rem);
+    font-weight: 500;
+    line-height: 1.03;
+    letter-spacing: -0.055em;
   }
 
-  .about-preview__visual {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
+  .about-preview__statement > span {
+    color: #b4b4b4;
   }
 
-  .founders-stack {
-    display: flex;
-    align-items: center;
+  .about-preview__gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 470px) minmax(0, 470px) minmax(180px, 1fr);
+    gap: 1rem;
+    align-items: end;
+    max-width: 1180px;
+    margin-top: clamp(2.75rem, 3.5vw, 3.5rem);
   }
 
-  .founder-mini {
-    width: 78px;
-    height: 78px;
-    border-radius: 50%;
-    padding: 3px;
-    background: linear-gradient(135deg, #38bdf8, #0284c7);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  .about-preview__image {
+    aspect-ratio: 1.22 / 1;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background: var(--gray-100);
   }
-  .founder-mini:not(:first-child) {
-    margin-left: -18px;
-  }
-  .founder-mini:hover {
-    transform: translateY(-4px) scale(1.05);
-    z-index: 2;
-  }
-  .founder-mini--violet { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
-  .founder-mini--teal   { background: linear-gradient(135deg, #2dd4bf, #0d9488); }
-  .founder-mini--amber  { background: linear-gradient(135deg, #fbbf24, #d97706); }
 
-  .founder-mini img {
+  .about-preview__image img {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
     display: block;
-    background: #ffffff;
-  }
-  .founder-mini--initial {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .founder-mini--initial span {
-    width: calc(100% - 6px);
-    height: calc(100% - 6px);
-    border-radius: 50%;
-    background: inherit;
-    color: #ffffff;
-    font-family: var(--font-heading);
-    font-size: 1.65rem;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: cover;
+    transition: transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 
-  .founders-stack__caption {
-    font-size: 0.85rem;
-    color: var(--gray-500);
-    font-weight: 500;
-    text-align: center;
+  .about-preview__image:first-child img {
+    object-position: 50% 50%;
+  }
+
+  .about-preview__image:nth-child(2) img {
+    object-position: 54% 50%;
+  }
+
+  .about-preview__image:hover img {
+    transform: scale(1.025);
+  }
+
+  .about-preview__action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 1.25rem;
+    min-height: 100%;
+    padding: 0 0 0.15rem 0.25rem;
+  }
+
+  .about-preview__action p {
+    max-width: 12rem;
     margin: 0;
+    color: #090b0c;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(1.25rem, 1.45vw, 1.55rem);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.025em;
   }
 
-  @media (max-width: 900px) {
-    .about-preview__inner {
+  .about-preview__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    min-width: 10.5rem;
+    padding: 0.95rem 1.1rem;
+    border-radius: 0.7rem;
+    background: #b8ef35;
+    color: #070907;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .about-preview__button:hover {
+    transform: translateY(-2px);
+    background: #aee52c;
+    box-shadow: 0 12px 28px rgba(150, 202, 32, 0.22);
+  }
+
+  @media (max-width: 1000px) {
+    .about-preview__intro {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
-      text-align: center;
+      gap: 1.25rem;
     }
-    .about-preview__desc {
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+    .about-preview__eyebrow { margin-top: 0; }
+    .about-preview__gallery {
+      grid-template-columns: 1fr 1fr;
     }
-    .about-preview { padding: 3.5rem 0; }
+    .about-preview__action {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 0;
+      padding: 0.75rem 0 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .about-preview {
+      padding: 4rem 0;
+    }
+    .about-preview__statement {
+      font-size: clamp(2rem, 9vw, 2.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+    .about-preview__gallery {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+      margin-top: 2.75rem;
+    }
+    .about-preview__image {
+      aspect-ratio: 1.15 / 1;
+      border-radius: 1rem;
+    }
+    .about-preview__action {
+      grid-column: auto;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 0.65rem;
+    }
+    .about-preview__button {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-preview__image img,
+    .about-preview__button {
+      transition: none;
+    }
   }
 
   /* ===== HOW IT WORKS ===== */
@@ -3592,6 +3676,7 @@ export default function <span class="code-func">Product</span>() &#123;
       padding-top: 1rem;
       padding-bottom: 1rem;
     }
+    .hero__desc { display: none; }
     .hero__desc, .hero__cta, .hero__stats { justify-content: center; margin-left: auto; margin-right: auto; }
     .hero__cta { justify-content: center; }
     .hero__stats { justify-content: center; }
@@ -3641,7 +3726,16 @@ export default function <span class="code-func">Product</span>() &#123;
       height: 100%;
     }
     .hero__visual-placeholder { display: none; }
-    .hero__title { font-size: 3.2rem; line-height: 1.1; margin-top: 0; margin-bottom: 0.5rem; }
+    .hero__title {
+      font-size: clamp(2.05rem, 9.4vw, 2.7rem);
+      line-height: 1.12;
+      letter-spacing: -0.055em;
+      margin-top: -0.3rem;
+      margin-left: -0.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero__title-lines--desktop { display: none; }
+    .hero__title-lines--mobile { display: block; }
     .hero__desc { display: none; } /* Hide description entirely on mobile if it takes up too much space? Or just let it be. Let's keep it. */
     .hero__desc, .hero__cta { justify-content: flex-start; margin-left: 0; text-align: left; }
     .hero__cta { margin-top: auto; margin-right: 0; }
