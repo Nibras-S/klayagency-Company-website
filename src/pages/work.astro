@@ -23,7 +23,6 @@ const projects = [
     status: "Live",
     link: "https://www.smautospareparts.com/",
     image: "/products/circle-for-work/svg/sparemeccover.webp",
-    noIframe: true,
   },
   {
     category: "Digital Transformation & CRM",
@@ -43,7 +42,6 @@ const projects = [
     status: "Development Ongoing",
     link: "https://www.enjoyfullife.com/",
     image: "/products/circle-for-work/svg/enjoyfullifecover.webp",
-    noIframe: true,
   },
   {
     category: "EdTech & Talent Tech",
@@ -147,7 +145,6 @@ const projects = [
                    data-status={project.status || ""}
                    data-link={project.link || ""}
                    data-pdf={project.pdfLink || ""}
-                   data-noiframe={project.noIframe ? "true" : ""}
                    data-image={project.image}>
                 <div class="card-visual">
                   <div class="card-img-wrapper">
@@ -189,7 +186,7 @@ const projects = [
   <div class="project-modal" id="project-modal">
     <div class="modal-backdrop" id="modal-backdrop"></div>
     <div class="modal-window">
-      <div class="modal-iframe-container">
+      <div class="modal-visual-container">
         <div class="browser-mockup">
           <div class="browser-chrome">
             <div class="chrome-dots">
@@ -200,13 +197,8 @@ const projects = [
             <div class="chrome-url" id="modal-chrome-url">n3global.tech</div>
           </div>
           <div class="browser-content">
-            <div class="iframe-loading-indicator">
-              <div class="spinner"></div>
-              <span>Loading preview...</span>
-            </div>
-            <iframe id="modal-iframe" src="" frameborder="0"></iframe>
-            <div id="modal-image-fallback" class="image-fallback">
-              <img id="modal-fallback-img" src="" alt="" />
+            <div class="project-cover">
+              <img id="modal-cover-img" src="" alt="" />
             </div>
           </div>
         </div>
@@ -219,12 +211,15 @@ const projects = [
         <div class="sidebar-header">
           <h2 id="modal-title" class="sidebar-title">Project Title</h2>
           <div class="sidebar-avatar-row">
-            <div class="sidebar-avatar" id="modal-avatar">N</div>
+            <div class="sidebar-avatar">N</div>
             <div class="sidebar-author-info">
-              <span class="sidebar-author-label">by <span class="sidebar-client">Client Name</span></span>
-              <span class="sidebar-verified" title="Verified Project">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="#3b82f6" stroke="#ffffff" stroke-width="2.5" style="margin-left: 2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0110 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0114 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.745 3.745 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
-              </span>
+              <div class="sidebar-credit-row">
+                <span class="sidebar-author-label">Designed &amp; Developed by <strong>N3 Global Tech</strong></span>
+                <span class="sidebar-verified" title="Verified N3 Global Tech project">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#3b82f6" stroke="#ffffff" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0110 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0114 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.745 3.745 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+                </span>
+              </div>
+              <span class="sidebar-client-label">Client: <span class="sidebar-client">Client Name</span></span>
             </div>
           </div>
         </div>
@@ -529,7 +524,7 @@ const projects = [
     }
   }
 
-  .modal-iframe-container {
+  .modal-visual-container {
     flex: 1;
     height: 100%;
     position: relative;
@@ -605,52 +600,19 @@ const projects = [
     justify-content: center;
   }
 
-  .browser-content iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    background: #ffffff;
-  }
-
-  .iframe-loading-indicator {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    color: #64748b;
-    font-size: 0.95rem;
-    font-weight: 600;
-    pointer-events: none; /* prevent click interception */
-    z-index: 15;
-  }
-
-  .spinner {
-    width: 36px;
-    height: 36px;
-    border: 3.5px solid #e2e8f0;
-    border-top-color: #3b82f6;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  .image-fallback {
+  .project-cover {
     position: absolute;
     inset: 0;
     background: #f8fafc;
     display: block;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
     padding: 0;
   }
 
-  .image-fallback img {
+  .project-cover img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
 
@@ -723,9 +685,18 @@ const projects = [
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
+    flex-shrink: 0;
   }
 
   .sidebar-author-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  .sidebar-credit-row {
     display: flex;
     align-items: center;
     gap: 0.25rem;
@@ -733,6 +704,22 @@ const projects = [
 
   .sidebar-author-label {
     font-size: 0.85rem;
+    color: #475569;
+    font-weight: 600;
+  }
+
+  .sidebar-author-label strong {
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  .sidebar-client-label {
+    font-size: 0.78rem;
+    color: #64748b;
+    line-height: 1.35;
+  }
+
+  .sidebar-client {
     color: #475569;
     font-weight: 600;
   }
@@ -948,7 +935,7 @@ const projects = [
       gap: 0.75rem;
       padding: 0.75rem;
     }
-    .modal-iframe-container {
+    .modal-visual-container {
       height: 52%;
       min-height: 250px;
       padding: 0;
@@ -987,13 +974,10 @@ const projects = [
     const modal = document.getElementById('project-modal');
     const backdrop = document.getElementById('modal-backdrop');
     const closeBtn = document.getElementById('modal-close');
-    const iframe = document.getElementById('modal-iframe');
     const chromeUrl = document.getElementById('modal-chrome-url');
-    const fallbackContainer = document.getElementById('modal-image-fallback');
-    const fallbackImg = document.getElementById('modal-fallback-img');
+    const coverImg = document.getElementById('modal-cover-img');
     
     const mTitle = document.getElementById('modal-title');
-    const mAvatar = document.getElementById('modal-avatar');
     const mClient = document.querySelector('.sidebar-client');
     const mDesc = document.getElementById('modal-desc');
     const mTech = document.getElementById('modal-tech');
@@ -1001,7 +985,6 @@ const projects = [
     const mTags = document.getElementById('modal-tags');
     const btnLive = document.getElementById('modal-btn-live');
     const btnUI = document.getElementById('modal-btn-ui');
-    const loadingIndicator = document.querySelector('.iframe-loading-indicator');
      cards.forEach(card => {
       card.addEventListener('click', (e) => {
         // If clicking on actual buttons/links on the card, let them act normally
@@ -1036,13 +1019,6 @@ const projects = [
         mTech.textContent = tech || 'Modern Web Stack';
         mStatus.textContent = status || 'Live';
         
-        // Set avatar letter
-        if (client) {
-          mAvatar.textContent = client.trim().charAt(0).toUpperCase();
-        } else {
-          mAvatar.textContent = 'N';
-        }
-        
         // Tags
         mTags.innerHTML = '';
         if (category) {
@@ -1069,40 +1045,19 @@ const projects = [
           btnUI.style.display = 'none';
         }
         
-        // Device check and fallback determination
-        // To allow seamless touch scrolling and avoid heavy iframe loads on mobile/tablet,
-        // we use the static mockup image for mobile devices, or when no live link is configured.
-        const isMobileDevice = window.innerWidth <= 1024;
-        const noIframe = card.getAttribute('data-noiframe') === 'true';
-        const interactiveUrl = link || pdf;
-        const useImageFallback = !interactiveUrl || isMobileDevice || noIframe;
-        
-        if (!useImageFallback) {
-          iframe.style.display = 'block';
-          fallbackContainer.style.display = 'none';
-          loadingIndicator.style.display = 'flex';
-          iframe.src = interactiveUrl;
-          
+        // Always use the card's cover image in Quick View.
+        coverImg.src = image;
+        coverImg.alt = `${name} cover`;
+
+        const displayUrl = link || pdf;
+        if (displayUrl) {
           try {
-            chromeUrl.textContent = new URL(interactiveUrl).hostname;
+            chromeUrl.textContent = new URL(displayUrl).hostname;
           } catch (_) {
-            if (interactiveUrl.endsWith('.pdf')) {
-              chromeUrl.textContent = interactiveUrl.substring(interactiveUrl.lastIndexOf('/') + 1);
-            } else {
-              chromeUrl.textContent = interactiveUrl;
-            }
+            chromeUrl.textContent = displayUrl.substring(displayUrl.lastIndexOf('/') + 1);
           }
         } else {
-          iframe.style.display = 'none';
-          loadingIndicator.style.display = 'none';
-          fallbackContainer.style.display = 'block';
-          fallbackImg.src = image;
-          
-          if (pdf) {
-            chromeUrl.textContent = pdf.substring(pdf.lastIndexOf('/') + 1);
-          } else {
-            chromeUrl.textContent = name;
-          }
+          chromeUrl.textContent = name;
         }
         // Open modal
         modal.classList.add('modal-active');
@@ -1110,15 +1065,9 @@ const projects = [
       });
     });
 
-    // Handle iframe load complete to hide loading spinner
-    iframe.addEventListener('load', () => {
-      loadingIndicator.style.display = 'none';
-    });
-
     function closeModal() {
       modal.classList.remove('modal-active');
       document.body.style.overflow = '';
-      iframe.src = '';
     }
 
     closeBtn.addEventListener('click', closeModal);
