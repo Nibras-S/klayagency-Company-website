@@ -327,6 +327,155 @@ const faqs = [
   <!-- ========== WHAT WE DO CARDS ========== -->
   <WhatWeDoCards />
 
+  <!-- ========== ORIGINAL INTERACTIVE SERVICES PREVIEW ========== -->
+  <section class="section services-preview reveal" id="services">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 3rem;">
+        <h2><span style="color: var(--gray-900); font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em;">What we do ?</span></h2>
+      </div>
+
+      <div class="services-interactive-container">
+        <div class="services-sidebar-col">
+          <button class="svc-nav-btn up" id="svc-nav-up" type="button" aria-label="Show previous services">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>
+          </button>
+
+          <div class="services-sidebar-window">
+            <div class="services-sidebar-track" id="svc-track">
+              <button class="svc-tab active" type="button" data-tab="tab-web">Web Development</button>
+              <button class="svc-tab" type="button" data-tab="tab-mobile">Mobile App</button>
+              <button class="svc-tab" type="button" data-tab="tab-uiux">Logo</button>
+              <button class="svc-tab" type="button" data-tab="tab-brand">Branding</button>
+              <button class="svc-tab" type="button" data-tab="tab-marketing">Digital Marketing</button>
+              <button class="svc-tab" type="button" data-tab="tab-automation">Business Automation</button>
+            </div>
+          </div>
+
+          <button class="svc-nav-btn down" id="svc-nav-down" type="button" aria-label="Show more services">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+        </div>
+
+        <div class="services-content-wrapper">
+          <div class="svc-pane active" id="tab-web">
+            <div class="svc-pane-bg bg-blue"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Website Development Company in Kannur</h3>
+                <p>N3 Global Tech is one of the pioneers in offering modern Web Development Solutions. We take pride in providing our clients with a pocket-friendly responsive website that is search engine friendly, and robustly built for scale.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/work">Viera Natural Flooring</a></li>
+                  <li><a href="/work">Enjoyful Life</a></li>
+                  <li><a href="/work">Flyger Aviation</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website — responsive pages for a wooden flooring brand" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/webdevelopment/enjoyful-life.webp" alt="Enjoyful Life e-commerce store — skincare product catalogue and shop" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/webdevelopment/flyger-aviation.webp" alt="Flyger Aviation website — flight operations and trip support platform" loading="lazy" width="1200" height="800" decoding="async" /></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="svc-pane" id="tab-mobile">
+            <div class="svc-pane-bg bg-orange"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Mobile App Development Company</h3>
+                <p>We build high-performance mobile applications for iOS and Android using modern cross-platform technologies. From ideation to app store launch, we deliver seamless user experiences.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/work">E-Commerce Apps</a></li>
+                  <li><a href="/work">Business Utilities</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="/mobileapp/sparemec-ecommerce-app.webp" alt="SpareMec mobile app — auto parts e-commerce storefront" loading="lazy" width="1200" height="1036" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/mobileapp/servicebook-business-app.webp" alt="Business management app — dashboard, storefront analytics and product inventory" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/mobileapp/social-commerce-app.webp" alt="Social commerce app — profiles, onboarding and product discovery" loading="lazy" width="1200" height="676" decoding="async" /></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="svc-pane" id="tab-uiux">
+            <div class="svc-pane-bg bg-sky"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Custom Logo Design</h3>
+                <p>Our design team creates intuitive, user-centric interfaces. We focus on wireframing, prototyping, and building comprehensive design systems that align with your brand's vision.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/services#uiux">Design Systems</a></li>
+                  <li><a href="/services#uiux">Prototyping</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="svc-pane" id="tab-brand">
+            <div class="svc-pane-bg bg-purple"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Brand Identity &amp; Strategy</h3>
+                <p>We craft compelling brand identities, from logo design to typography and color palettes, ensuring your business stands out in a crowded market.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/services#brand">Brand Guidelines</a></li>
+                  <li><a href="/services#brand">Visual Identity</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="svc-pane" id="tab-marketing">
+            <div class="svc-pane-bg bg-pink"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Digital Marketing &amp; SEO</h3>
+                <p>Grow your online presence with targeted digital marketing strategies. We optimize your visibility through SEO, social media, and data-driven campaigns.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/services#marketing">Search Engine Optimization</a></li>
+                  <li><a href="/services#marketing">Social Media Marketing</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="svc-pane" id="tab-automation">
+            <div class="svc-pane-bg bg-teal"></div>
+            <div class="svc-pane-inner">
+              <div class="svc-pane-left">
+                <h3>Business Automation</h3>
+                <p>Streamline your operations with custom business automation solutions. We integrate CRM, ERP, and API workflows to save time and reduce errors.</p>
+                <ul class="svc-client-list">
+                  <li><a href="/services#automation">Workflow Automation</a></li>
+                  <li><a href="/services#automation">API Integrations</a></li>
+                </ul>
+              </div>
+              <div class="svc-pane-right">
+                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
       const tabs = document.querySelectorAll('.svc-tab');
