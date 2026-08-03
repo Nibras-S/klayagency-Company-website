@@ -1,9 +1,9 @@
 ---
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/work", label: "Work" },
   { href: "/services", label: "Services" },
   { href: "/products", label: "Our Products" },
-  { href: "/work", label: "Our Work" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -35,7 +35,7 @@ const pathname = Astro.url.pathname;
 
     <!-- CTA -->
     <div class="navbar__cta">
-      <a href="/contact" class="btn-nav-cta">Get Started</a>
+      <a href="/contact" class="btn-nav-cta">Start a Project</a>
     </div>
 
     <!-- Hamburger (mobile) -->
@@ -60,7 +60,7 @@ const pathname = Astro.url.pathname;
         </li>
       ))}
       <li>
-        <a href="/contact" class="mobile-cta-btn">Get Started →</a>
+        <a href="/contact" class="mobile-cta-btn">Start a Project →</a>
       </li>
     </ul>
   </div>

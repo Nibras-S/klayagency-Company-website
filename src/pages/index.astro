@@ -10,6 +10,8 @@ const teamPreview = [
   { name: "Farseen", initials: "F", color: "amber",  image: "/team/farseen.webp" },
 ];
 
+const clientLogoIds = [1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15];
+
 // "Why Choose Us" scroll stages. One statistic is paired with each reason so the
 // old 2x2 metric grid still surfaces all four numbers, one at a time.
 const WCU = [
@@ -176,21 +178,34 @@ const faqs = [
   <div style="position: relative; z-index: 2; background: #ffffff;">
 
   <!-- Client Logos Marquee (outside hero to avoid overflow clipping) -->
-  <div class="clients-marquee container" style="display: none;">
+  <div class="clients-marquee container" id="clients-marquee">
     <div style="text-align:center; margin-bottom:1.5rem;">
       <span style="display:inline-block; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#0284c7; background-color:rgba(14,165,233,0.1); border:1.5px solid rgba(14,165,233,0.3); padding:0.35rem 1.1rem; border-radius:9999px;">Trusted by Leading Brands</span>
     </div>
     <div class="clients-marquee__track-wrapper">
       <div class="clients-marquee__track">
-        {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(n => (
-          <img src={`/clientlogo/clientlogo${n}.webp`} alt={`Client ${n}`} class="clients-marquee__logo" loading="lazy" width="160" height="80" />
+        {clientLogoIds.map(n => (
+          <img src={`/clientlogo/clientlogo${n}.webp`} alt={`Client ${n}`} class="clients-marquee__logo" loading="lazy" decoding="async" width="160" height="80" />
         ))}
-        {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(n => (
-          <img src={`/clientlogo/clientlogo${n}.webp`} alt={`Client ${n}`} class="clients-marquee__logo" loading="lazy" width="160" height="80" />
+        {clientLogoIds.map(n => (
+          <img src={`/clientlogo/clientlogo${n}.webp`} alt="" aria-hidden="true" class="clients-marquee__logo" loading="lazy" decoding="async" width="160" height="80" />
         ))}
       </div>
     </div>
   </div>
+  <script is:inline>
+    (function () {
+      var marquee = document.getElementById('clients-marquee');
+      if (!marquee) return;
+      if (!('IntersectionObserver' in window)) {
+        marquee.classList.add('is-visible');
+        return;
+      }
+      new IntersectionObserver(function (entries) {
+        marquee.classList.toggle('is-visible', entries[0].isIntersecting);
+      }, { rootMargin: '80px 0px' }).observe(marquee);
+    })();
+  </script>
 
   <!-- ========== FLOW — SCROLL-DRAWN PATH + LIQUID WARP ========== -->
   <section class="flow" id="flow" aria-labelledby="flow-title">
@@ -3586,7 +3601,12 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   @media (max-width: 640px) {
-    .hero { padding-bottom: 0; min-height: 100svh; }
+    .hero {
+      min-height: 100svh;
+      justify-content: flex-start;
+      padding-top: 68px;
+      padding-bottom: 0;
+    }
     /* svh to match the hero's own unit — mixing vh here meant the fade was sized
        against the chrome-hidden viewport while the hero used the chrome-visible
        one, so the solid part could land below the fold and leave a sliver of
@@ -3607,14 +3627,24 @@ export default function <span class="code-func">Product</span>() &#123;
       transform: scale(1); /* Scale up video even more */
     }
     .hero__inner {
-      margin-top: auto;
+      height: calc(100svh - 68px);
+      margin-top: 0;
+      align-items: stretch;
       text-align: left;
-      padding-bottom: 0;
+      padding-top: 0.75rem;
+      padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
       gap: 0.75rem;
     }
-    .hero__title { font-size: 3.2rem; line-height: 1.1; margin-bottom: 0.5rem; }
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .hero__visual-placeholder { display: none; }
+    .hero__title { font-size: 3.2rem; line-height: 1.1; margin-top: 0; margin-bottom: 0.5rem; }
     .hero__desc { display: none; } /* Hide description entirely on mobile if it takes up too much space? Or just let it be. Let's keep it. */
     .hero__desc, .hero__cta { justify-content: flex-start; margin-left: 0; text-align: left; }
+    .hero__cta { margin-top: auto; margin-right: 0; }
     
     .hero__pill-link { font-size: 0.85rem; padding: 0.2rem 0.2rem 0.2rem 1rem; gap: 0.6rem; }
     .hero__pill-icon { width: 1.8rem; height: 1.8rem; }
@@ -3801,6 +3831,13 @@ export default function <span class="code-func">Product</span>() &#123;
     align-items: center;
     width: max-content;
     animation: marquee-scroll 40s linear infinite;
+    animation-play-state: paused;
+    will-change: auto;
+  }
+
+  .clients-marquee.is-visible .clients-marquee__track {
+    animation-play-state: running;
+    will-change: transform;
   }
 
   .clients-marquee__track:hover {
@@ -3828,6 +3865,27 @@ export default function <span class="code-func">Product</span>() &#123;
   @keyframes marquee-scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 640px) {
+    .clients-marquee__logo {
+      height: 32px;
+      max-width: 145px;
+      margin-right: 2.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .clients-marquee__track-wrapper {
+      overflow-x: auto;
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+    .clients-marquee__track {
+      animation: none;
+      transform: none;
+      will-change: auto;
+    }
   }
 
   /* Project Modal Overlay */
