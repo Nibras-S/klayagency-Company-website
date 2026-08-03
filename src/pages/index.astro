@@ -2333,8 +2333,10 @@ export default function <span class="code-func">Product</span>() &#123;
   /* Mobile */
   @media (max-width: 760px) {
     .ws-scroll-track {
-      height: 220vh;
-      height: 220svh;
+      /* Matches the 1200px content travel used by the mobile camera. With
+         220svh, the section consumed ~3px of finger scroll for ~1px of visual
+         movement, which felt like a freeze despite frames rendering normally. */
+      height: 1200px;
     }
     .ws-sticky {
       height: 100svh;
