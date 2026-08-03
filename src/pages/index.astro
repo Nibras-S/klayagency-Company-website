@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import LetsWorkTogether from '../components/LetsWorkTogether.astro';
 import WhatWeDoCards from '../components/WhatWeDoCards.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import FaqSection from '../components/FaqSection.astro';
 
 const clientLogoIds = [1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15];
 
@@ -324,8 +326,6 @@ const faqs = [
 
   <!-- ========== WHAT WE DO CARDS ========== -->
   <WhatWeDoCards />
-
-  <!-- Old Services Preview section removed to eliminate duplication -->
 
   <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
@@ -899,7 +899,13 @@ export default function <span class="code-func">Product</span>() &#123;
     </div>
   </section>
 
-  <!-- ========== LET'S WORK TOGETHER (after About Us, before footer) ========== -->
+  <!-- ========== TESTIMONIALS SECTION ========== -->
+  <TestimonialsSection />
+
+  <!-- ========== FAQ SECTION ========== -->
+  <FaqSection />
+
+  <!-- ========== LET'S WORK TOGETHER (after About Us & FAQs, before footer) ========== -->
   <LetsWorkTogether />
 
   <Footer />

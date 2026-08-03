@@ -21,6 +21,7 @@ const META: Record<string, { priority: number; changefreq: string }> = {
   '/blog/custom-software-saas-kerala/':           { priority: 0.7,  changefreq: 'weekly'  },
   '/blog/website-development-cost-kerala-2026/':  { priority: 0.7,  changefreq: 'weekly'  },
   '/contact/':                                    { priority: 0.7,  changefreq: 'yearly'  },
+  '/faq/':                                        { priority: 0.6,  changefreq: 'yearly'  },
   '/privacy-policy/':                             { priority: 0.3,  changefreq: 'yearly'  },
   '/terms-of-service/':                           { priority: 0.3,  changefreq: 'yearly'  },
   '/cookie-policy/':                              { priority: 0.3,  changefreq: 'yearly'  },

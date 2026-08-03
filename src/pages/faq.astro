@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import FaqSection from '../components/FaqSection.astro';
+
+const faqs = [
+  {
+    question: "What services does N3 Global Tech offer?",
+    answer: "We offer end-to-end software development including custom web development, mobile app development, cloud solutions, AI/ML integration, UI/UX design, brand identity, MVP development, and digital marketing.",
+  },
+  {
+    question: "Do you work with startups or only enterprises?",
+    answer: "Both. We build MVPs for early-stage startups validating ideas, and ship full-scale platforms for growing companies and enterprises. We adapt our process to match the stage your business is in.",
+  },
+  {
+    question: "How long does a typical software project take?",
+    answer: "Landing pages take 1–2 weeks, MVPs typically 6–12 weeks, and full custom platforms 3–6 months depending on scope. We share a detailed timeline with every proposal.",
+  },
+  {
+    question: "What technologies do you specialize in?",
+    answer: "Our core stack includes React, Next.js, Astro, Node.js, React Native, PostgreSQL, MongoDB, Firebase, AWS and modern AI/ML frameworks. We choose the right stack per project, not a one-size-fits-all template.",
+  },
+  {
+    question: "How can I get a quote for my project?",
+    answer: "Use our Contact page to share your idea or requirements. You'll receive a tailored proposal with scope, timeline and cost within 24 hours.",
+  },
+  {
+    question: "Do you provide support after launch?",
+    answer: "Yes. We offer ongoing maintenance, monitoring, updates, and feature development. We can structure a retainer agreement to ensure your product stays healthy and evolving.",
+  },
+];
+---
+
+<Layout
+  title="Frequently Asked Questions | N3 Global Tech"
+  description="Answers to common questions about N3 Global Tech services, project timelines, technology, pricing, clients, and ongoing software support."
+  keywords="N3 Global Tech FAQ, software development questions, project timeline, software development quote, technology stack, post-launch support"
+  faqs={faqs}
+>
+  <Navbar />
+
+  <main style="padding-top: 5rem;">
+    <FaqSection />
+  </main>
+
+  <Footer />
+</Layout>
