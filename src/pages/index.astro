@@ -5148,6 +5148,8 @@ export default function <span class="code-func">Product</span>() &#123;
 
       let prinIn = false;
       let prinRaf = null;
+      let prinBound = false;
+      const mobilePrinciples = window.innerWidth <= 760 || window.matchMedia('(pointer: coarse)').matches;
 
       const prinWake = () => {
         if (prinIn && prinRaf === null) prinRaf = requestAnimationFrame(tickPrin);
@@ -5155,10 +5157,18 @@ export default function <span class="code-func">Product</span>() &#123;
 
       new IntersectionObserver((entries) => {
         prinIn = entries[0].isIntersecting;
+        if (prinIn && !prinBound) {
+          window.addEventListener('scroll', prinWake, { passive: true });
+          prinBound = true;
+        } else if (!prinIn && prinBound) {
+          window.removeEventListener('scroll', prinWake);
+          prinBound = false;
+        }
         prinWake();
-      }, { rootMargin: '200px 0px' }).observe(prin);
-
-      window.addEventListener('scroll', prinWake, { passive: true });
+      }, mobilePrinciples
+        ? { rootMargin: '0px 0px -8% 0px' }
+        : { rootMargin: '200px 0px' }
+      ).observe(prin);
 
       function tickPrin() {
         prinRaf = null;
