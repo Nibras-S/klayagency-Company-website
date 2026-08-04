@@ -18,10 +18,10 @@ import Footer from '../components/Footer.astro';
     <div class="container page-hero__inner">
       <div class="badge badge-sky">Contact Us</div>
       <h1 class="page-hero__title">
-        Let's Build Something <span class="text-gradient">Great Together</span>
+        Tell us what you're building.
       </h1>
       <p class="page-hero__desc">
-        Whether you need <a href="/custom-software-development/">custom software</a>, a <a href="/saas-development-company/">SaaS platform</a>, or a mobile app, we're ready to listen. Share your idea or workflow problem and we'll respond within 24 hours with a tailored proposal.
+        Based in India, working across GCC time zones.
       </p>
     </div>
   </section>
@@ -94,16 +94,14 @@ import Footer from '../components/Footer.astro';
             </div>
           </div>
 
-          <!-- Why contact us -->
+          <!-- What happens next -->
           <div class="contact-reasons">
-            <h3>Why Work With Us?</h3>
+            <h3>What happens next:</h3>
             <ul>
               {[
-                "Free initial consultation",
-                "Transparent project scoping",
-                "Dedicated project manager",
-                "Flexible engagement models",
-                "NDA available on request",
+                "We respond within 24 hours.",
+                "A short call to scope the work.",
+                "A proposal or statement of work."
               ].map(r => (
                 <li>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--sky-500)" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -117,64 +115,39 @@ import Footer from '../components/Footer.astro';
         <!-- Form side -->
         <div class="contact-form-wrap">
           <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required />
+            </div>
+
             <div class="form-row">
               <div class="form-group">
-                <label for="first-name">First Name <span class="req">*</span></label>
-                <input type="text" id="first-name" name="first_name" placeholder="John" required />
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" placeholder="Acme Corp" />
               </div>
               <div class="form-group">
-                <label for="last-name">Last Name <span class="req">*</span></label>
-                <input type="text" id="last-name" name="last_name" placeholder="Doe" required />
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" placeholder="john@company.com" required />
               </div>
             </div>
 
             <div class="form-group">
-              <label for="email">Email Address <span class="req">*</span></label>
-              <input type="email" id="email" name="email" placeholder="john@company.com" required />
-            </div>
-
-            <div class="form-group">
-              <label for="company">Company / Organization</label>
-              <input type="text" id="company" name="company" placeholder="Acme Corp" />
-            </div>
-
-            <div class="form-group">
-              <label for="service">Service Interested In <span class="req">*</span></label>
+              <label for="service">Project Type <span class="req">*</span></label>
               <select id="service" name="service" required>
-                <option value="" disabled selected>Select a service...</option>
-                <option value="web">Web Development</option>
-                <option value="mobile">Mobile App Development</option>
-                <option value="cloud">Cloud Solutions & DevOps</option>
-                <option value="ai">AI & Automation</option>
-                <option value="security">Cybersecurity</option>
-                <option value="consulting">IT Consulting</option>
-                <option value="other">Other / Not Sure</option>
+                <option value="" disabled selected>Select a project type...</option>
+                <option value="custom_software">Custom Software</option>
+                <option value="saas">SaaS</option>
+                <option value="web">Web</option>
+                <option value="mobile">Mobile</option>
+                <option value="ai_automation">AI / Automation</option>
+                <option value="branding">Branding</option>
+                <option value="other">Other</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="budget">Estimated Budget</label>
-              <select id="budget" name="budget">
-                <option value="" disabled selected>Select a range...</option>
-                <option value="under10k">Under ₹10,000</option>
-                <option value="10k-20k">₹10,000 – ₹20,000</option>
-                <option value="20k-50k">₹20,000 – ₹50,000</option>
-                <option value="50k-1L">₹50,000 – ₹1 Lakh</option>
-                <option value="1L-2L">₹1 Lakh – ₹2 Lakhs</option>
-                <option value="2L+">₹2 Lakhs+</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="message">Tell Us About Your Project <span class="req">*</span></label>
+              <label for="message">Message <span class="req">*</span></label>
               <textarea id="message" name="message" rows="5" placeholder="Describe your project, goals, timeline, or any questions you have..." required></textarea>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label class="checkbox-label">
-                <input type="checkbox" id="nda" name="nda" />
-                <span>I'd like to sign an NDA before discussing project details</span>
-              </label>
             </div>
 
             <!-- Honeypot: invisible to humans, bots tend to fill every field -->
@@ -691,13 +664,12 @@ import Footer from '../components/Footer.astro';
       if (hp && hp.value) return;
 
       var data = new FormData(form);
-      var firstName = (data.get('first_name') || '').toString().trim();
-      var lastName = (data.get('last_name') || '').toString().trim();
+      var name = (data.get('name') || '').toString().trim();
       var email = (data.get('email') || '').toString().trim();
       var message = (data.get('message') || '').toString().trim();
       var service = (data.get('service') || '').toString();
 
-      if (!firstName || !lastName) {
+      if (!name) {
         showError('Please enter your name.');
         return;
       }
@@ -723,15 +695,12 @@ import Footer from '../components/Footer.astro';
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            first_name: firstName,
-            last_name: lastName,
+            name: (data.get('name') || '').toString().trim(),
             email: email,
             phone: null,
             company: (data.get('company') || '').toString().trim() || null,
-            service_interest: service,
-            budget_range: (data.get('budget') || '').toString() || null,
+            project_type: service,
             message: message,
-            nda_requested: data.get('nda') === 'on',
             metadata: {
               referrer: document.referrer || null,
             },
