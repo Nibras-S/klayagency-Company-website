@@ -1,24 +1,28 @@
 ---
 const cards = [
   {
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
-    titleLine1: "Strategy &",
-    titleLine2: "Consulting",
-    desc: "Digital transformation audits, roadmaps, and competitive benchmarking. We map where you are, where you need to be, and the exact steps to get there — no fluff, no filler."
-  },
-  {
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
-    titleLine1: "Brand &",
-    titleLine2: "Design",
-    desc: "Identity systems, UI/UX, and product design. Visual languages that are distinctive, consistent, and built to scale across every touchpoint — from business cards to ERP dashboards."
-  },
-  {
+    link: "/services#tech",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
     titleLine1: "Technology &",
     titleLine2: "Engineering",
     desc: "Custom software, SaaS platforms, mobile apps, cloud infrastructure, and AI. Built around your workflows, deployed on AWS, and designed to handle real load from day one."
   },
   {
+    link: "/services#strategy",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
+    titleLine1: "Strategy &",
+    titleLine2: "Consulting",
+    desc: "Digital transformation audits, roadmaps, and competitive benchmarking. We map where you are, where you need to be, and the exact steps to get there — no fluff, no filler."
+  },
+  {
+    link: "/services#brand",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
+    titleLine1: "Brand &",
+    titleLine2: "Design",
+    desc: "Identity systems, UI/UX, and product design. Visual languages that are distinctive, consistent, and built to scale across every touchpoint — from business cards to ERP dashboards."
+  },
+  {
+    link: "/services#marketing",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
     titleLine1: "Marketing &",
     titleLine2: "Growth",
@@ -38,8 +42,8 @@ const cards = [
         <p class="wwd-subtitle">
           End-to-end partners for companies building something that lasts.
         </p>
-        <a href="/contact" class="btn btn-primary wwd-cta">
-          <span>Get Started</span>
+        <a href="/services" class="btn btn-primary wwd-cta">
+          <span>Explore All Services</span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
@@ -51,7 +55,7 @@ const cards = [
     <!-- Cards Stack Container -->
     <div class="wwd-cards-stack">
       {cards.map((card, idx) => (
-        <article class={`wwd-card wwd-card--${idx + 1}`} data-index={idx + 1}>
+        <a href={card.link} class={`wwd-card wwd-card--${idx + 1}`} data-index={idx + 1}>
           <div class="wwd-card__top">
             <div class="wwd-card__icon" set:html={card.icon} />
             <h3 class="wwd-card__title">
@@ -62,7 +66,7 @@ const cards = [
           <div class="wwd-card__bottom">
             <p class="wwd-card__desc">{card.desc}</p>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </div>
@@ -141,6 +145,8 @@ const cards = [
     justify-content: space-between;
     height: 420px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    text-decoration: none;
+    cursor: pointer;
     transition: background-color 0.3s ease, 
                 border-color 0.3s ease, 
                 transform 0.3s ease, 
