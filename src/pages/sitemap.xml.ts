@@ -5,6 +5,7 @@ export const prerender = true;
 const META: Record<string, { priority: number; changefreq: string }> = {
   '/':                                            { priority: 1.0,  changefreq: 'weekly'  },
   '/services/':                                   { priority: 0.9,  changefreq: 'monthly' },
+  '/process/':                                    { priority: 0.85, changefreq: 'monthly' },
   '/products/':                                   { priority: 0.9,  changefreq: 'monthly' },
   '/products/circle-for-work/':                   { priority: 0.9,  changefreq: 'weekly'  },
   '/software-development-company-kannur/':        { priority: 0.9,  changefreq: 'monthly' },

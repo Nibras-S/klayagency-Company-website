@@ -3,6 +3,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/work", label: "Work" },
   { href: "/services", label: "Services" },
+  { href: "/process", label: "Process" },
   { href: "/products", label: "Our Products" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -15,22 +16,30 @@ const pathname = Astro.url.pathname;
   <nav class="navbar" id="navbar" aria-label="Primary">
     <!-- Logo -->
     <a href="/" class="navbar__logo" aria-label="N3GlobalTech Home">
-      <img src="/n3logo.webp" alt="N3GlobalTech Logo" class="logo-img" width="36" height="36" />
+      <img
+        src="/n3logo.webp"
+        alt="N3GlobalTech Logo"
+        class="logo-img"
+        width="36"
+        height="36"
+      />
       <span class="logo-text">N3 Global Tech</span>
     </a>
 
     <!-- Desktop Nav -->
     <ul class="nav-list">
-      {navLinks.map(link => (
-        <li>
-          <a
-            href={link.href}
-            class={`nav-link ${pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)) ? 'active' : ''}`}
-          >
-            {link.label}
-          </a>
-        </li>
-      ))}
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class={`nav-link ${pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)) ? "active" : ""}`}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
     <!-- CTA -->
@@ -39,7 +48,12 @@ const pathname = Astro.url.pathname;
     </div>
 
     <!-- Hamburger (mobile) -->
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -49,16 +63,18 @@ const pathname = Astro.url.pathname;
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
     <ul class="mobile-nav-list">
-      {navLinks.map(link => (
-        <li>
-          <a
-            href={link.href}
-            class={`mobile-nav-link ${pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)) ? 'active' : ''}`}
-          >
-            {link.label}
-          </a>
-        </li>
-      ))}
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class={`mobile-nav-link ${pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)) ? "active" : ""}`}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
       <li>
         <a href="/contact" class="mobile-cta-btn">Start a Project →</a>
       </li>
@@ -94,7 +110,7 @@ const pathname = Astro.url.pathname;
     gap: 1.5rem;
 
     /* Initial state: flat, full-width, transparent bg */
-    background: rgba(255, 255, 255, 0.0);
+    background: rgba(255, 255, 255, 0);
     border-radius: 0;
     border: 1px solid transparent;
     box-shadow: none;
@@ -148,7 +164,9 @@ const pathname = Astro.url.pathname;
     height: 36px;
     object-fit: contain;
     border-radius: 9px;
-    transition: width 0.4s ease, height 0.4s ease;
+    transition:
+      width 0.4s ease,
+      height 0.4s ease;
   }
 
   .navbar-wrapper.scrolled .logo-img {
@@ -185,7 +203,9 @@ const pathname = Astro.url.pathname;
     font-weight: 600;
     color: var(--gray-600);
     text-decoration: none;
-    transition: color 0.2s, background 0.2s;
+    transition:
+      color 0.2s,
+      background 0.2s;
     white-space: nowrap;
   }
 
@@ -216,14 +236,17 @@ const pathname = Astro.url.pathname;
     font-family: var(--font-body);
     text-decoration: none;
     white-space: nowrap;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+    transition:
+      background 0.2s,
+      transform 0.2s,
+      box-shadow 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
   }
 
   .btn-nav-cta:hover {
     background: var(--sky-600);
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(14,165,233,0.35);
+    box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
   }
 
   /* ── Hamburger ── */
@@ -247,9 +270,15 @@ const pathname = Astro.url.pathname;
     transition: all 0.25s;
   }
 
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 
   /* ── Mobile menu ── */
   .mobile-menu {
@@ -260,20 +289,28 @@ const pathname = Astro.url.pathname;
     background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 1.25rem;
     margin-top: 0.5rem;
     padding: 1rem 1.25rem 1.25rem;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     animation: dropDown 0.2s ease;
   }
 
   @keyframes dropDown {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .mobile-menu.open { display: block; }
+  .mobile-menu.open {
+    display: block;
+  }
 
   .mobile-nav-list {
     display: flex;
@@ -292,7 +329,9 @@ const pathname = Astro.url.pathname;
     font-weight: 600;
     color: var(--gray-700);
     text-decoration: none;
-    transition: background 0.2s, color 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s;
   }
 
   .mobile-nav-link:hover,
@@ -315,51 +354,58 @@ const pathname = Astro.url.pathname;
     transition: background 0.2s;
   }
 
-  .mobile-cta-btn:hover { background: var(--sky-600); }
+  .mobile-cta-btn:hover {
+    background: var(--sky-600);
+  }
 
   /* ── Responsive ── */
   @media (max-width: 860px) {
     .nav-list,
-    .navbar__cta { display: none; }
-    .hamburger { display: flex; }
+    .navbar__cta {
+      display: none;
+    }
+    .hamburger {
+      display: flex;
+    }
   }
 
   @media (max-width: 480px) {
-    .logo-text { display: none; }
+    .logo-text {
+      display: none;
+    }
   }
-
 </style>
 
 <script is:inline>
   (function () {
-    var wrapper = document.getElementById('navbar-wrapper');
-    var hamburger = document.getElementById('hamburger');
-    var mobileMenu = document.getElementById('mobile-menu');
+    var wrapper = document.getElementById("navbar-wrapper");
+    var hamburger = document.getElementById("hamburger");
+    var mobileMenu = document.getElementById("mobile-menu");
     if (!wrapper || !hamburger || !mobileMenu) return;
 
     function onScroll() {
       var y = window.scrollY;
       if (y > 40) {
-        wrapper.classList.add('scrolled');
+        wrapper.classList.add("scrolled");
       } else {
-        wrapper.classList.remove('scrolled');
+        wrapper.classList.remove("scrolled");
       }
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    hamburger.addEventListener('click', function () {
-      var isOpen = hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open', isOpen);
-      hamburger.setAttribute('aria-expanded', String(isOpen));
-      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    hamburger.addEventListener("click", function () {
+      var isOpen = hamburger.classList.toggle("open");
+      mobileMenu.classList.toggle("open", isOpen);
+      hamburger.setAttribute("aria-expanded", String(isOpen));
+      mobileMenu.setAttribute("aria-hidden", String(!isOpen));
     });
 
-    mobileMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
+    mobileMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
       });
     });
   })();

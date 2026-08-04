@@ -1,0 +1,530 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import HowWeWork from "../components/HowWeWork.astro";
+import Footer from "../components/Footer.astro";
+
+const stages = [
+  {
+    title: "Agile & Transparent",
+    desc: "We iterate fast with full visibility into progress, timelines, and deliverables.",
+    tags: ["Clear Timelines", "Fast Iterations", "Full Visibility"],
+    stat: "50+",
+    statLabel: "Projects Delivered",
+  },
+  {
+    title: "Expert Team",
+    desc: "Our engineers and designers bring proven expertise from Fortune 500 companies to fast-growing startups.",
+    tags: ["Skilled Engineers", "Product Designers", "Proven Expertise"],
+    stat: "40+",
+    statLabel: "Expert Team Members",
+  },
+  {
+    title: "Future-Proof Tech",
+    desc: "We build for the long run, using scalable architectures and modern best practices.",
+    tags: ["Scalable Systems", "Modern Stack", "Secure Architecture"],
+    stat: "98%",
+    statLabel: "Client Satisfaction",
+  },
+  {
+    title: "End-to-End Ownership",
+    desc: "From strategy to launch and beyond, we take responsibility for every stage.",
+    tags: ["Strategy", "Development", "Launch & Support"],
+    stat: "3+",
+    statLabel: "Years Experience",
+  },
+];
+---
+
+<Layout
+  title="Our Process | How N3 Global Tech Works"
+  description="See how N3 Global Tech combines an agile, transparent process, an expert team, future-proof technology, and end-to-end ownership to deliver digital products."
+  keywords="N3 Global Tech process, software development process, agile software development, transparent product development, end-to-end software delivery"
+>
+  <Navbar />
+
+  <section class="process" id="process-showcase" aria-labelledby="process-title">
+    <div class="process__sticky">
+      <div class="process__radial" aria-hidden="true">
+        <div class="process__ring"></div>
+        <div class="process__wheel" id="process-wheel">
+          {stages.map((_, i) => (
+            <span class={`process__num ${i === 0 ? "is-active" : ""}`} data-i={i}>
+              <span class="process__num-inner">
+                <i class="process__dot"></i>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div class="container process__inner">
+        <header class="process__head">
+          <p class="process__eyebrow">Our Process</p>
+          <h1 id="process-title">
+            We Don't Just Build. We <span class="text-gradient">Solve</span>
+          </h1>
+          <p class="process__lede">
+            At N3 Global Tech, we combine technical expertise with a deep
+            understanding of your business to deliver solutions that truly
+            matter. We're not just a vendor. We're your long-term technology
+            partner.
+          </p>
+        </header>
+
+        <div class="process__body">
+          <div class="process__content">
+            <div class="process__stages" aria-live="polite">
+              {stages.map((stage, i) => (
+                <article class={`process__stage ${i === 0 ? "is-active" : ""}`} data-i={i}>
+                  <h2 class="process__stage-title">{stage.title}</h2>
+                  <p class="process__stage-desc">{stage.desc}</p>
+                  <ul class="process__tags">
+                    {stage.tags.map((tag) => <li>{tag}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+
+            <a href="/contact" class="process__cta">
+              <span>Let's Talk</span>
+              <span class="process__cta-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <div class="process__visual">
+            <div class="process__orb" id="process-orb" aria-hidden="true"></div>
+            <div class="process__stats">
+              {stages.map((stage, i) => (
+                <div class={`process__stat ${i === 0 ? "is-active" : ""}`} data-i={i}>
+                  <div class="process__stat-num">{stage.stat}</div>
+                  <div class="process__stat-label">{stage.statLabel}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ol class="process__steps" aria-hidden="true">
+        {stages.map((_, i) => (
+          <li class={i === 0 ? "is-active" : ""} data-i={i}>
+            {String(i + 1).padStart(2, "0")}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <HowWeWork />
+
+  <Footer />
+</Layout>
+
+<style>
+  .process {
+    position: relative;
+    height: 400vh;
+    background: linear-gradient(180deg, #f8fbff 0%, #f2f7fe 10%, #eaf2fd 50%, #f3f8ff 90%, #ffffff 100%);
+  }
+
+  .process__sticky {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 6rem;
+  }
+
+  .process__radial {
+    position: absolute;
+    top: 62%;
+    left: 0;
+    width: 0;
+    height: 0;
+    transform: translate(-23vw, -50%);
+    pointer-events: none;
+  }
+
+  .process__ring {
+    position: absolute;
+    width: 52vw;
+    height: 52vw;
+    left: -26vw;
+    top: -26vw;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    border-radius: 50%;
+  }
+
+  .process__wheel {
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  .process__num {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(26vw, -50%);
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    font-weight: 500;
+    color: var(--gray-300);
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.5s ease, color 0.5s ease, transform 0.5s ease;
+  }
+
+  .process__num-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .process__num.is-active {
+    color: var(--primary);
+    opacity: 1;
+    transform: translate(26vw, -50%) scale(1.05);
+  }
+
+  .process__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.45s ease;
+  }
+
+  .process__num.is-active .process__dot {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.16), 0 0 14px 2px rgba(14, 165, 233, 0.5);
+  }
+
+  .process__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .process__head {
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+  }
+
+  .process__eyebrow {
+    margin: 0 0 0.8rem;
+    color: var(--sky-700);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .process__head h1 {
+    margin: 0 0 1.5rem;
+    color: #000;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  .process__lede {
+    max-width: 52ch;
+    margin: 0;
+    color: var(--gray-500);
+    line-height: 1.75;
+  }
+
+  .process__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+    padding-left: clamp(0rem, 12vw, 13rem);
+  }
+
+  .process__stages {
+    display: grid;
+    min-height: 14rem;
+    margin-bottom: 2rem;
+  }
+
+  .process__stage {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+    pointer-events: none;
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s ease;
+  }
+
+  .process__stage.is-active {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    pointer-events: auto;
+  }
+
+  .process__stage-title {
+    margin: 0 0 0.7rem;
+    font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .process__stage-desc {
+    max-width: 44ch;
+    margin: 0 0 1.25rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+  }
+
+  .process__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .process__tags li {
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-full);
+    background: #fff;
+    color: var(--gray-700);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .process__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 0.25rem;
+    padding: 0.25rem 0.25rem 0.25rem 1.25rem;
+    border-radius: var(--radius-full);
+    background: #000;
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .process__cta:hover {
+    transform: translateY(-2px);
+    background: #111;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .process__cta-icon {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    place-items: center;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--sky-600);
+    transition: transform 0.3s ease;
+  }
+
+  .process__cta:hover .process__cta-icon {
+    transform: rotate(45deg);
+  }
+
+  .process__visual {
+    position: relative;
+    display: grid;
+    min-height: 26rem;
+    place-items: center;
+  }
+
+  .process__orb {
+    position: absolute;
+    width: min(22vw, 18rem);
+    margin-top: -3rem;
+    aspect-ratio: 1;
+    border-radius: 42% 58% 54% 46% / 48% 42% 58% 52%;
+    background: radial-gradient(circle at 32% 28%, #fff 0%, #f4f9ff 40%, #dbeafe 72%, #c3dafc 100%);
+    box-shadow: inset -18px -22px 48px rgba(37, 99, 235, 0.14), inset 14px 16px 40px rgba(255, 255, 255, 0.95), 0 40px 80px -30px rgba(14, 165, 233, 0.4);
+    transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), border-radius 1.1s ease;
+    will-change: transform;
+  }
+
+  .process__stats {
+    position: relative;
+    z-index: 1;
+    display: grid;
+  }
+
+  .process__stat {
+    grid-area: 1 / 1;
+    text-align: center;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transform: scale(0.94) translateX(14px) rotate(-1.5deg);
+    pointer-events: none;
+    transition: opacity 0.6s ease, transform 0.75s cubic-bezier(0.34, 1.4, 0.5, 1);
+  }
+
+  .process__stat.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .process__stat-num {
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--sky-500), var(--sky-700));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .process__stat-label {
+    margin-top: 0.5rem;
+    color: var(--gray-500);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .process__steps {
+    position: relative;
+    z-index: 1;
+    display: none;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 2.25rem;
+  }
+
+  .process__steps li {
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    color: var(--gray-300);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    transition: color 0.35s ease, background-color 0.35s ease;
+  }
+
+  .process__steps li.is-active {
+    color: var(--primary);
+    background: rgba(14, 165, 233, 0.1);
+  }
+
+  @media (max-width: 1024px) {
+    .process__radial { display: none; }
+    .process__body { padding-left: 0; }
+    .process__steps { display: flex; }
+    .process__orb { width: min(46vw, 20rem); }
+  }
+
+  @media (max-width: 860px) {
+    .process { height: 400svh; }
+    .process__sticky {
+      height: 100svh;
+      min-height: 100svh;
+      box-sizing: border-box;
+      padding: max(5rem, calc(env(safe-area-inset-top) + 4.25rem)) 0 max(3rem, calc(env(safe-area-inset-bottom) + 2.5rem));
+    }
+    .process__head { margin-bottom: clamp(1.25rem, 3.5svh, 2rem); }
+    .process__eyebrow { margin-bottom: 0.45rem; }
+    .process__head h1 { margin-bottom: 0.85rem; font-size: clamp(2rem, 9.5vw, 2.75rem); line-height: 1.02; }
+    .process__lede { max-width: 40rem; font-size: clamp(0.84rem, 3.5vw, 0.95rem); line-height: 1.55; }
+    .process__body { grid-template-columns: minmax(0, 1fr) minmax(6.75rem, 29vw); gap: clamp(0.65rem, 3vw, 1.25rem); }
+    .process__stages { min-height: 13.25rem; margin-bottom: 0.85rem; }
+    .process__stage-title { margin-bottom: 0.55rem; font-size: clamp(1.25rem, 5.6vw, 1.55rem); }
+    .process__stage-desc { margin-bottom: 0.85rem; font-size: clamp(0.82rem, 3.45vw, 0.95rem); line-height: 1.55; }
+    .process__tags { gap: 0.4rem; }
+    .process__tags li { padding: 0.35rem 0.65rem; font-size: clamp(0.68rem, 2.85vw, 0.78rem); }
+    .process__cta { margin-top: 0; }
+    .process__visual { min-height: 10rem; }
+    .process__orb { width: min(29vw, 8rem); margin-top: 0; }
+    .process__stat-num { font-size: clamp(2.15rem, 10vw, 3rem); }
+    .process__stat-label { max-width: 7.5rem; margin: 0.4rem auto 0; font-size: clamp(0.68rem, 2.8vw, 0.8rem); line-height: 1.25; }
+    .process__steps { position: absolute; right: 0; bottom: max(0.65rem, env(safe-area-inset-bottom)); left: 0; margin-top: 0; }
+    .process__steps li { padding: 0.25rem 0.65rem; }
+  }
+
+  @media (hover: none) {
+    .process__orb { will-change: auto; }
+    .process__stat { background: transparent; backdrop-filter: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process { height: auto; }
+    .process__sticky { position: static; min-height: 0; padding: 8rem 0 4rem; overflow: visible; }
+    .process__body { grid-template-columns: 1fr; }
+    .process__stages { min-height: 0; gap: 2.25rem; }
+    .process__stage { grid-area: auto; opacity: 1; transform: none; filter: none; pointer-events: auto; transition: none; }
+    .process__visual, .process__radial, .process__steps { display: none; }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const section = document.getElementById("process-showcase");
+    if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const orb = document.getElementById("process-orb");
+    const nums = Array.from(section.querySelectorAll(".process__num"));
+    const stages = Array.from(section.querySelectorAll(".process__stage"));
+    const stats = Array.from(section.querySelectorAll(".process__stat"));
+    const steps = Array.from(section.querySelectorAll(".process__steps li"));
+    const shapes = [
+      "42% 58% 54% 46% / 48% 42% 58% 52%",
+      "58% 42% 44% 56% / 42% 56% 44% 58%",
+      "48% 52% 62% 38% / 56% 44% 56% 44%",
+      "52% 48% 40% 60% / 44% 58% 42% 56%",
+    ];
+    let current = 0;
+    let ticking = false;
+
+    const activate = (index) => {
+      if (index === current) return;
+      current = index;
+      nums.forEach((item, i) => item.classList.toggle("is-active", i === index));
+      stages.forEach((item, i) => item.classList.toggle("is-active", i === index));
+      stats.forEach((item, i) => item.classList.toggle("is-active", i === index));
+      steps.forEach((item, i) => item.classList.toggle("is-active", i === index));
+      if (orb) {
+        orb.style.borderRadius = shapes[index];
+        orb.style.transform = `rotate(${index * 24}deg) scale(${1 + index * 0.015})`;
+      }
+    };
+
+    const measure = () => {
+      const rect = section.getBoundingClientRect();
+      const travel = rect.height - window.innerHeight;
+      const progress = travel > 0 ? Math.min(Math.max(-rect.top / travel, 0), 1) : 0;
+      activate(Math.min(Math.floor(progress * stages.length * 0.999), stages.length - 1));
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        measure();
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", measure, { passive: true });
+    measure();
+  })();
+</script>
