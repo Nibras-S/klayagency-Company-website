@@ -405,9 +405,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
-                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
-                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-1"><img src="/products/ecom.webp" alt="E-Commerce Interface preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/products/empereal.webp" alt="Empereal design preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/products/viera.webp" alt="Viera design preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -424,9 +424,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
-                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
-                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-1"><img src="/products/anabb.webp" alt="Brand identity showcase" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/products/impulseloop.webp" alt="Visual identity preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/products/happiness-address.webp" alt="Brand strategy showcase" loading="lazy" width="1200" height="800" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -443,9 +443,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
-                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
-                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-1"><img src="/services/it-consulting.webp" alt="Digital marketing analytics" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/services/cloud-solutions.webp" alt="SEO performance dashboard" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/services/web-development.webp" alt="Marketing campaign preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -462,9 +462,9 @@ const faqs = [
                 </ul>
               </div>
               <div class="svc-pane-right">
-                <div class="svc-img img-1"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
-                <div class="svc-img img-2"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
-                <div class="svc-img img-3"><img src="/webdevelopment/viera-natural-flooring.webp" alt="Viera Natural Flooring website preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-1"><img src="/services/ai-automation.webp" alt="AI workflow automation preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-2"><img src="/products/sm-auto-spare-parts.webp" alt="ERP inventory integration preview" loading="lazy" width="1200" height="800" decoding="async" /></div>
+                <div class="svc-img img-3"><img src="/products/flyger.webp" alt="Custom API integration workflow" loading="lazy" width="1200" height="800" decoding="async" /></div>
               </div>
             </div>
           </div>
@@ -533,6 +533,13 @@ const faqs = [
         tab.addEventListener('click', () => {
           currentIndex = index;
           updateTabs();
+          if (window.innerWidth <= 900) {
+            const targetId = tab.getAttribute('data-tab');
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }
         });
       });
 
@@ -1967,84 +1974,136 @@ export default function <span class="code-func">Product</span>() &#123;
   @media (max-width: 900px) {
     .services-interactive-container {
       flex-direction: column;
-      padding: 1rem 0 5rem 0; /* Add bottom padding so cards are not covered by sticky CTA */
+      padding: 1rem 0 3rem 0;
       background: transparent;
       box-shadow: none;
     }
     .services-sidebar-col { display: none !important; }
     
     .services-content-wrapper {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-x: contain;
-      gap: 1rem;
-      /* No side padding: that inset was what left the neighbouring cards
-         visible as strips at both edges. */
-      padding: 0;
-    }
-    .services-content-wrapper::-webkit-scrollbar { display: none; }
-
-    .svc-pane {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0 !important;
+      padding-bottom: 2rem !important;
       position: relative !important;
+      overflow: visible !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .svc-pane,
+    .svc-pane.active,
+    .svc-pane:not(.active) {
+      position: sticky !important;
+      inset: auto !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      top: 84px !important;
       opacity: 1 !important;
       pointer-events: auto !important;
-      /* Full width so exactly one card is on screen — no cropped neighbour.
-         `start` lands it flush, and `stop: always` halts at every snap point so
-         one swipe advances one card instead of flinging past several. */
-      flex: 0 0 100% !important;
-      max-width: 100%;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      flex: none !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 400px !important;
+      margin-bottom: 3.5rem !important;
+      border-radius: 20px !important;
+      overflow: hidden !important;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.08) !important;
       transition: none !important;
     }
 
-    /* Longest title sets the height for the whole deck, so keep type compact. */
-    /* Extra bottom padding: the image row is the last child, and without it the
-       thumbnails sit hard against the card's lower edge. */
-    .svc-pane-inner {
-      grid-template-columns: 1fr;
-      padding: 1.75rem 1.4rem 2.75rem;
-    }
-    .svc-pane-left h3 {
-      font-size: 1.25rem;
-      line-height: 1.3;
-      margin-bottom: 0.75rem;
-    }
-    .svc-pane-left p {
-      font-size: 0.875rem;
-      line-height: 1.55;
-      margin-bottom: 1.1rem;
-    }
-    .svc-client-list { gap: 0.45rem; }
-    .svc-client-list li a { font-size: 0.85rem; }
+    #tab-web { top: 84px !important; z-index: 1 !important; }
+    #tab-mobile { top: 96px !important; z-index: 2 !important; }
+    #tab-uiux { top: 108px !important; z-index: 3 !important; }
+    #tab-brand { top: 120px !important; z-index: 4 !important; }
+    #tab-marketing { top: 132px !important; z-index: 5 !important; }
+    #tab-automation { top: 144px !important; z-index: 6 !important; margin-bottom: 0 !important; }
 
-    /* :hover sticks after a tap on touch and would leave images offset. */
+    .svc-pane-inner {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      padding: 1.5rem 1.35rem 1.5rem !important;
+      height: 100% !important;
+      box-sizing: border-box !important;
+      grid-template-columns: none !important;
+    }
+
+    .svc-pane-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .svc-pane-left h3 {
+      font-size: 1.25rem !important;
+      line-height: 1.25 !important;
+      margin-bottom: 0.35rem !important;
+    }
+
+    .svc-pane-left p {
+      font-size: 0.84rem !important;
+      line-height: 1.45 !important;
+      margin-bottom: 0.65rem !important;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .svc-client-list {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      gap: 0.4rem 0.8rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+
+    .svc-client-list li a {
+      font-size: 0.8rem !important;
+    }
+
     .svc-pane:hover .img-1,
     .svc-pane:hover .img-2,
     .svc-pane:hover .img-3 { transform: none; }
     
     .svc-pane-right {
-      min-height: auto;
-      margin-top: 1.5rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 0.5rem;
+      min-height: auto !important;
+      margin-top: 0.5rem !important;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      gap: 0.75rem !important;
+      height: 110px !important;
     }
     
+    .svc-pane-right .svc-img.img-3 {
+      display: none !important;
+    }
+
     .svc-pane-right .svc-img {
       position: relative !important;
       top: auto !important;
       bottom: auto !important;
       left: auto !important;
       right: auto !important;
-      width: 32% !important;
-      height: auto !important;
-      aspect-ratio: 1;
+      width: 48.5% !important;
+      height: 110px !important;
+      aspect-ratio: auto !important;
+      border-radius: 14px !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .svc-pane-right .svc-img img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      border-radius: 14px !important;
     }
   }
 
