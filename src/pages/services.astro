@@ -1,14 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import FaqSection from '../components/FaqSection.astro';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import FaqSection from "../components/FaqSection.astro";
 
 const serviceCategories = [
   {
     categoryId: "tech",
     categoryTitle: "Technology & Engineering",
-    categoryDesc: "Full-cycle web development, native & cross-platform mobile apps, cloud infrastructure, and AI automation.",
+    categoryDesc:
+      "Full-cycle web development, native & cross-platform mobile apps, cloud infrastructure, and AI automation.",
     color: "teal",
     items: [
       {
@@ -20,7 +21,14 @@ const serviceCategories = [
         color: "teal",
         title: "Web Development",
         desc: "We craft modern, performant, and beautiful web experiences that convert visitors into customers. From high-speed marketing landing pages to complex enterprise platforms.",
-        features: ["React / Next.js / Astro", "Progressive Web Apps", "E-Commerce Solutions", "CMS Integration", "Performance Optimization", "SEO-First Architecture"],
+        features: [
+          "React / Next.js / Astro",
+          "Progressive Web Apps",
+          "E-Commerce Solutions",
+          "CMS Integration",
+          "Performance Optimization",
+          "SEO-First Architecture",
+        ],
       },
       {
         id: "mobile",
@@ -31,7 +39,14 @@ const serviceCategories = [
         color: "teal",
         title: "Mobile App Development",
         desc: "Native iOS/Android and cross-platform mobile apps built with Flutter and React Native. Seamless user experience with offline capability and real-time syncing.",
-        features: ["React Native / Flutter", "iOS & Android Native", "Offline-First Design", "Push Notifications", "App Store Publishing", "Real-Time Features"],
+        features: [
+          "React Native / Flutter",
+          "iOS & Android Native",
+          "Offline-First Design",
+          "Push Notifications",
+          "App Store Publishing",
+          "Real-Time Features",
+        ],
       },
       {
         id: "cloud",
@@ -42,7 +57,14 @@ const serviceCategories = [
         color: "teal",
         title: "Cloud Solutions & Infrastructure",
         desc: "Architecting, migrating, and managing cloud environments across AWS, GCP, and Azure. High-availability CI/CD pipelines, container orchestration, and serverless backends.",
-        features: ["Cloud Migration", "Kubernetes & Docker", "CI/CD Pipelines", "Serverless Architecture", "Cost Optimization", "Multi-Cloud Security"],
+        features: [
+          "Cloud Migration",
+          "Kubernetes & Docker",
+          "CI/CD Pipelines",
+          "Serverless Architecture",
+          "Cost Optimization",
+          "Multi-Cloud Security",
+        ],
       },
       {
         id: "ai",
@@ -53,14 +75,22 @@ const serviceCategories = [
         color: "teal",
         title: "Business & AI Automation",
         desc: "Leverage AI models, automated LLM integrations, and custom workflow bots to eliminate repetitive operational bottlenecks and scale output effortlessly.",
-        features: ["Machine Learning Models", "LLM / ChatGPT Integration", "RPA Automation", "Predictive Analytics", "Workflow Bots", "Custom AI Agents"],
-      }
-    ]
+        features: [
+          "Machine Learning Models",
+          "LLM / ChatGPT Integration",
+          "RPA Automation",
+          "Predictive Analytics",
+          "Workflow Bots",
+          "Custom AI Agents",
+        ],
+      },
+    ],
   },
   {
     categoryId: "strategy",
     categoryTitle: "Strategy & Consulting",
-    categoryDesc: "Roadmaps, architecture planning, and digital transformation audits to align your software with long-term business goals.",
+    categoryDesc:
+      "Roadmaps, architecture planning, and digital transformation audits to align your software with long-term business goals.",
     color: "sky",
     items: [
       {
@@ -72,14 +102,22 @@ const serviceCategories = [
         color: "sky",
         title: "IT Consulting & Digital Strategy",
         desc: "Strategic technology consulting that aligns your digital infrastructure with your business vision. We map where you are, where you need to be, and the exact steps to get there.",
-        features: ["Digital Audits", "Tech Stack Review", "Architecture Design", "Vendor Selection", "Team Augmentation", "Technology Roadmaps"],
-      }
-    ]
+        features: [
+          "Digital Audits",
+          "Tech Stack Review",
+          "Architecture Design",
+          "Vendor Selection",
+          "Team Augmentation",
+          "Technology Roadmaps",
+        ],
+      },
+    ],
   },
   {
     categoryId: "brand",
     categoryTitle: "Brand & Design",
-    categoryDesc: "Distinctive brand identities, visual design systems, and intuitive user interfaces built for scale.",
+    categoryDesc:
+      "Distinctive brand identities, visual design systems, and intuitive user interfaces built for scale.",
     color: "violet",
     items: [
       {
@@ -91,7 +129,14 @@ const serviceCategories = [
         color: "violet",
         title: "Brand Identity & Logo Design",
         desc: "Custom logo design, full brand identity guidelines, and visual collateral. We craft memorable visual identities that stand out in crowded markets.",
-        features: ["Custom Logo Design", "Brand Guidelines", "Typography & Color Systems", "Visual Assets", "Collateral Design", "Brand Re-positioning"],
+        features: [
+          "Custom Logo Design",
+          "Brand Guidelines",
+          "Typography & Color Systems",
+          "Visual Assets",
+          "Collateral Design",
+          "Brand Re-positioning",
+        ],
       },
       {
         id: "uiux",
@@ -102,47 +147,68 @@ const serviceCategories = [
         color: "violet",
         title: "UI/UX & Product Design",
         desc: "User-centric wireframing, high-fidelity UI design, and interactive prototyping. We turn complex business logic into intuitive, pleasant digital experiences.",
-        features: ["User Research & Personas", "Wireframing & Workflows", "High-Fidelity UI Design", "Interactive Prototypes", "Design Systems", "Usability Testing"],
-      }
-    ]
+        features: [
+          "User Research & Personas",
+          "Wireframing & Workflows",
+          "High-Fidelity UI Design",
+          "Interactive Prototypes",
+          "Design Systems",
+          "Usability Testing",
+        ],
+      },
+    ],
   },
   {
     categoryId: "marketing",
     categoryTitle: "Marketing & Growth",
-    categoryDesc: "Data-backed search engine optimization, content strategy, and digital campaigns that drive qualified traffic and revenue.",
+    categoryDesc:
+      "Data-backed search engine optimization, content strategy, and digital campaigns that drive qualified traffic and revenue.",
     color: "amber",
     items: [
       {
         id: "marketing",
         anchorIds: ["seo", "digital-marketing", "growth"],
         image: "/services/digital-marketing-seo.webp",
-        imageAlt: "Digital marketing strategies, SEO performance and growth analytics",
+        imageAlt:
+          "Digital marketing strategies, SEO performance and growth analytics",
         icon: `<svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>`,
         color: "amber",
         title: "Digital Marketing & SEO",
         desc: "Targeted digital marketing, Search Engine Optimization (SEO), performance ad management, and conversion rate optimization engineered for high ROI.",
-        features: ["Search Engine Optimization (SEO)", "Digital Marketing Strategy", "Social Media Campaigns", "Content & Growth Marketing", "Conversion Optimization", "Performance Analytics"],
-      }
-    ]
-  }
+        features: [
+          "Search Engine Optimization (SEO)",
+          "Digital Marketing Strategy",
+          "Social Media Campaigns",
+          "Content & Growth Marketing",
+          "Conversion Optimization",
+          "Performance Analytics",
+        ],
+      },
+    ],
+  },
 ];
 const faqs = [
   {
-    question: "Do you only provide services, or do you build your own products?",
-    answer: "We are a hybrid company. While we build custom software and SaaS platforms for our clients, we also engineer and operate our own proprietary SaaS products like N3 ServiceBook and N3 FitBook. This dual approach ensures we stay sharp on production-level operations, security, and scalability.",
+    question:
+      "Do you only provide services, or do you build your own products?",
+    answer:
+      "We are a hybrid company. While we build custom software and SaaS platforms for our clients, we also engineer and operate our own proprietary SaaS products like N3 ServiceBook and N3 FitBook. This dual approach ensures we stay sharp on production-level operations, security, and scalability.",
   },
   {
     question: "What is your primary technology stack?",
-    answer: "We are framework-agnostic but heavily favor modern, battle-tested technologies. For the frontend, we use React, Next.js, and Astro. For backend APIs, we rely on Node.js and scalable databases like PostgreSQL and MongoDB. For mobile, we build native-feeling apps using React Native and Flutter.",
+    answer:
+      "We are framework-agnostic but heavily favor modern, battle-tested technologies. For the frontend, we use React, Next.js, and Astro. For backend APIs, we rely on Node.js and scalable databases like PostgreSQL and MongoDB. For mobile, we build native-feeling apps using React Native and Flutter.",
   },
   {
     question: "Do you work with startups or established enterprises?",
-    answer: "Both. We help founders build scalable MVPs from scratch, and we assist established enterprises in modernizing legacy systems, migrating to the cloud, and implementing digital transformation strategies.",
+    answer:
+      "Both. We help founders build scalable MVPs from scratch, and we assist established enterprises in modernizing legacy systems, migrating to the cloud, and implementing digital transformation strategies.",
   },
   {
     question: "How do you handle project pricing and scoping?",
-    answer: "We offer multiple engagement models. For well-defined scopes, we provide fixed-price contracts with clear milestones. For ongoing development or scaling SaaS platforms, we offer dedicated team retainers. We usually start with a paid discovery phase to map out the exact requirements and select the best model.",
-  }
+    answer:
+      "We offer multiple engagement models. For well-defined scopes, we provide fixed-price contracts with clear milestones. For ongoing development or scaling SaaS platforms, we offer dedicated team retainers. We usually start with a paid discovery phase to map out the exact requirements and select the best model.",
+  },
 ];
 ---
 
@@ -169,14 +235,13 @@ const faqs = [
   <!-- Interactive What We Do Overview (Stacked Cards Deck) -->
   <section class="section services-stacked-section" id="services">
     <div class="container">
-      <div class="section-header" style="margin-bottom: 3.5rem;">
-        <h2>
-          <span style="color: var(--gray-900); font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em;">What we do ?</span>
+      <div class="stacked-section-header">
+        <h2 class="stacked-section-title">
+          Our <span class="highlight-blue">Services</span>
         </h2>
       </div>
 
       <div class="stacked-cards-container">
-        
         <!-- CARD 1: Technology & Engineering -->
         <article class="stacked-card card-purple-magenta" id="card-tech">
           <div class="stacked-card__inner">
@@ -193,7 +258,7 @@ const faqs = [
 
             <div class="stacked-card__content">
               <h3 class="stacked-card__title">Technology &amp; Engineering</h3>
-              
+
               <div class="stacked-card__chips">
                 <span class="tech-chip">Web Development</span>
                 <span class="tech-chip">Mobile Development</span>
@@ -202,15 +267,30 @@ const faqs = [
               </div>
 
               <p class="stacked-card__desc">
-                We develop custom software and web/mobile platforms that stand out to international standards, ensuring peak quality and performance. Using cutting-edge technologies, we create platforms that are visually striking and highly functional.
+                We develop custom software and web/mobile platforms that stand
+                out to international standards, ensuring peak quality and
+                performance. Using cutting-edge technologies, we create
+                platforms that are visually striking and highly functional.
               </p>
 
               <div class="stacked-card__footer">
-                <a href="/services#tech" class="circular-badge-cta" aria-label="Explore Service">
+                <a
+                  href="/services#tech"
+                  class="circular-badge-cta"
+                  aria-label="Explore Service"
+                >
                   <div class="badge-text-ring">
-                    <svg viewBox="0 0 100 100" width="90" height="90">
-                      <path id="circlePath-1" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
-                      <text font-size="11.2" font-weight="700" letter-spacing="1.4" fill="#334155">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                      <path
+                        id="circlePath-1"
+                        d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                        fill="none"></path>
+                      <text
+                        font-size="11.2"
+                        font-weight="700"
+                        letter-spacing="1.4"
+                        fill="#334155"
+                      >
                         <textPath href="#circlePath-1" startOffset="0%">
                           EXPLORE OUR SERVICES • EXPLORE •
                         </textPath>
@@ -218,8 +298,18 @@ const faqs = [
                     </svg>
                   </div>
                   <div class="badge-arrow-icon icon-magenta">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                    >
+                      <path
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
                     </svg>
                   </div>
                 </a>
@@ -233,7 +323,7 @@ const faqs = [
           <div class="stacked-card__inner layout-reverse">
             <div class="stacked-card__content">
               <h3 class="stacked-card__title">Strategy &amp; Consulting</h3>
-              
+
               <div class="stacked-card__chips">
                 <span class="tech-chip">Digital Audits</span>
                 <span class="tech-chip">Tech Roadmaps</span>
@@ -243,15 +333,30 @@ const faqs = [
               </div>
 
               <p class="stacked-card__desc">
-                Digital transformation audits, technical roadmaps, and competitive benchmarking. We map where your business is, where you need to be, and the exact steps to get there — with complete clarity.
+                Digital transformation audits, technical roadmaps, and
+                competitive benchmarking. We map where your business is, where
+                you need to be, and the exact steps to get there — with complete
+                clarity.
               </p>
 
               <div class="stacked-card__footer">
-                <a href="/services#strategy" class="circular-badge-cta" aria-label="Explore Service">
+                <a
+                  href="/services#strategy"
+                  class="circular-badge-cta"
+                  aria-label="Explore Service"
+                >
                   <div class="badge-text-ring">
-                    <svg viewBox="0 0 100 100" width="90" height="90">
-                      <path id="circlePath-2" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
-                      <text font-size="11.2" font-weight="700" letter-spacing="1.4" fill="#334155">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                      <path
+                        id="circlePath-2"
+                        d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                        fill="none"></path>
+                      <text
+                        font-size="11.2"
+                        font-weight="700"
+                        letter-spacing="1.4"
+                        fill="#334155"
+                      >
                         <textPath href="#circlePath-2" startOffset="0%">
                           EXPLORE OUR SERVICES • EXPLORE •
                         </textPath>
@@ -259,8 +364,18 @@ const faqs = [
                     </svg>
                   </div>
                   <div class="badge-arrow-icon icon-blue">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                    >
+                      <path
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
                     </svg>
                   </div>
                 </a>
@@ -296,7 +411,7 @@ const faqs = [
 
             <div class="stacked-card__content">
               <h3 class="stacked-card__title">Branding &amp; Design</h3>
-              
+
               <div class="stacked-card__chips">
                 <span class="tech-chip">Figma</span>
                 <span class="tech-chip">UI/UX Design</span>
@@ -307,15 +422,29 @@ const faqs = [
               </div>
 
               <p class="stacked-card__desc">
-                Identity systems, UI/UX, custom logo design, and product design. Visual languages that are distinctive, consistent, and built to scale effortlessly across every digital touchpoint.
+                Identity systems, UI/UX, custom logo design, and product design.
+                Visual languages that are distinctive, consistent, and built to
+                scale effortlessly across every digital touchpoint.
               </p>
 
               <div class="stacked-card__footer">
-                <a href="/services#brand" class="circular-badge-cta" aria-label="Explore Service">
+                <a
+                  href="/services#brand"
+                  class="circular-badge-cta"
+                  aria-label="Explore Service"
+                >
                   <div class="badge-text-ring">
-                    <svg viewBox="0 0 100 100" width="90" height="90">
-                      <path id="circlePath-3" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
-                      <text font-size="11.2" font-weight="700" letter-spacing="1.4" fill="#334155">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                      <path
+                        id="circlePath-3"
+                        d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                        fill="none"></path>
+                      <text
+                        font-size="11.2"
+                        font-weight="700"
+                        letter-spacing="1.4"
+                        fill="#334155"
+                      >
                         <textPath href="#circlePath-3" startOffset="0%">
                           EXPLORE OUR SERVICES • EXPLORE •
                         </textPath>
@@ -323,8 +452,18 @@ const faqs = [
                     </svg>
                   </div>
                   <div class="badge-arrow-icon icon-purple">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                    >
+                      <path
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
                     </svg>
                   </div>
                 </a>
@@ -338,7 +477,7 @@ const faqs = [
           <div class="stacked-card__inner layout-reverse">
             <div class="stacked-card__content">
               <h3 class="stacked-card__title">Marketing &amp; Growth</h3>
-              
+
               <div class="stacked-card__chips">
                 <span class="tech-chip">SEO &amp; SEM</span>
                 <span class="tech-chip">Digital Marketing</span>
@@ -348,15 +487,29 @@ const faqs = [
               </div>
 
               <p class="stacked-card__desc">
-                Grow your digital presence with targeted marketing campaigns, search engine optimization (SEO), performance marketing, and data-driven insights engineered for real ROI.
+                Grow your digital presence with targeted marketing campaigns,
+                search engine optimization (SEO), performance marketing, and
+                data-driven insights engineered for real ROI.
               </p>
 
               <div class="stacked-card__footer">
-                <a href="/services#marketing" class="circular-badge-cta" aria-label="Explore Service">
+                <a
+                  href="/services#marketing"
+                  class="circular-badge-cta"
+                  aria-label="Explore Service"
+                >
                   <div class="badge-text-ring">
-                    <svg viewBox="0 0 100 100" width="90" height="90">
-                      <path id="circlePath-4" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
-                      <text font-size="11.2" font-weight="700" letter-spacing="1.4" fill="#334155">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                      <path
+                        id="circlePath-4"
+                        d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                        fill="none"></path>
+                      <text
+                        font-size="11.2"
+                        font-weight="700"
+                        letter-spacing="1.4"
+                        fill="#334155"
+                      >
                         <textPath href="#circlePath-4" startOffset="0%">
                           EXPLORE OUR SERVICES • EXPLORE •
                         </textPath>
@@ -364,8 +517,18 @@ const faqs = [
                     </svg>
                   </div>
                   <div class="badge-arrow-icon icon-coral">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                    >
+                      <path
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
                     </svg>
                   </div>
                 </a>
@@ -384,19 +547,31 @@ const faqs = [
             </div>
           </div>
         </article>
-
       </div>
     </div>
   </section>
 
   <!-- Services List -->
   <section class="section services-page" id="services-page">
-    <svg class="svc-thread" viewBox="0 0 1200 3600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <svg
+      class="svc-thread"
+      viewBox="0 0 1200 3600"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+      focusable="false"
+    >
       <defs>
-        <linearGradient id="svcThread" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1200" y2="3600">
-          <stop offset="0%" stop-color="#38bdf8" />
-          <stop offset="45%" stop-color="#8b5cf6" />
-          <stop offset="100%" stop-color="#22d3ee" />
+        <linearGradient
+          id="svcThread"
+          gradientUnits="userSpaceOnUse"
+          x1="0"
+          y1="0"
+          x2="1200"
+          y2="3600"
+        >
+          <stop offset="0%" stop-color="#38bdf8"></stop>
+          <stop offset="45%" stop-color="#8b5cf6"></stop>
+          <stop offset="100%" stop-color="#22d3ee"></stop>
         </linearGradient>
       </defs>
       <path
@@ -406,59 +581,76 @@ const faqs = [
         stroke="url(#svcThread)"
         stroke-width="18"
         stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+        stroke-linejoin="round"></path>
     </svg>
 
     <div class="container">
       <div class="services-list-grouped">
-        {serviceCategories.map((cat) => (
-          <div class="svc-category-group" id={cat.categoryId}>
-            <div class="svc-category-header">
-              <h2 class="svc-category-title">{cat.categoryTitle}</h2>
-              <p class="svc-category-desc">{cat.categoryDesc}</p>
-            </div>
+        {
+          serviceCategories.map((cat) => (
+            <div class="svc-category-group" id={cat.categoryId}>
+              <div class="svc-category-header">
+                <h2 class="svc-category-title">{cat.categoryTitle}</h2>
+                <p class="svc-category-desc">{cat.categoryDesc}</p>
+              </div>
 
-            <div class="services-list">
-              {cat.items.map((service, i) => (
-                <div
-                  class={`svc-block svc-block--${service.color} ${i % 2 === 1 ? 'svc-block--reverse' : ''}`}
-                  id={service.id}
-                  data-svc-block
-                  style="position: relative;"
-                >
-                  {service.anchorIds?.map(anchor => (
-                    <span id={anchor} style="position: absolute; top: -120px; left: 0; pointer-events: none; visibility: hidden;"></span>
-                  ))}
-                  <div class="svc-block__visual">
-                    <div class="svc-block__media">
-                      <img
-                        src={service.image}
-                        alt={service.imageAlt}
-                        width="900"
-                        height="640"
-                        loading="lazy"
-                        decoding="async"
+              <div class="services-list">
+                {cat.items.map((service, i) => (
+                  <div
+                    class={`svc-block svc-block--${service.color} ${i % 2 === 1 ? "svc-block--reverse" : ""}`}
+                    id={service.id}
+                    data-svc-block
+                    style="position: relative;"
+                  >
+                    {service.anchorIds?.map((anchor) => (
+                      <span
+                        id={anchor}
+                        style="position: absolute; top: -120px; left: 0; pointer-events: none; visibility: hidden;"
                       />
+                    ))}
+                    <div class="svc-block__visual">
+                      <div class="svc-block__media">
+                        <img
+                          src={service.image}
+                          alt={service.imageAlt}
+                          width="900"
+                          height="640"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                      <div class="svc-block__features">
+                        {service.features.map((f) => (
+                          <div class="svc-feature">
+                            <svg
+                              width="14"
+                              height="14"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="var(--primary)"
+                              stroke-width="3"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                            {f}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div class="svc-block__features">
-                      {service.features.map(f => (
-                        <div class="svc-feature">
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                          {f}
-                        </div>
-                      ))}
+                    <div class="svc-block__content">
+                      <h3 class="svc-block__title">{service.title}</h3>
+                      <p class="svc-block__desc">{service.desc}</p>
                     </div>
                   </div>
-                  <div class="svc-block__content">
-                    <h3 class="svc-block__title">{service.title}</h3>
-                    <p class="svc-block__desc">{service.desc}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
@@ -469,29 +661,35 @@ const faqs = [
       <div class="section-header">
         <div class="badge badge-sky">Our Stack</div>
         <h2>The <span class="text-gradient">Tools</span> We Build With</h2>
-        <p>We pick the right tool for the problem, not the other way around. Here's the stack we use most often across web, mobile, cloud, and SaaS projects.</p>
+        <p>
+          We pick the right tool for the problem, not the other way around.
+          Here's the stack we use most often across web, mobile, cloud, and SaaS
+          projects.
+        </p>
       </div>
 
       <div class="tech-grid">
-        {[
-          ['React', 'Frontend'],
-          ['Next.js', 'Full-stack web'],
-          ['Astro', 'Marketing & docs'],
-          ['Node.js', 'Backend / APIs'],
-          ['React Native', 'Mobile cross-platform'],
-          ['Flutter', 'Mobile native UI'],
-          ['PostgreSQL', 'Relational database'],
-          ['MongoDB', 'Document database'],
-          ['Firebase', 'Realtime / auth'],
-          ['AWS', 'Cloud infrastructure'],
-          ['Docker', 'Containers'],
-          ['Kubernetes', 'Orchestration'],
-        ].map(([name, role]) => (
-          <div class="tech-tile">
-            <span class="tech-tile__name">{name}</span>
-            <span class="tech-tile__role">{role}</span>
-          </div>
-        ))}
+        {
+          [
+            ["React", "Frontend"],
+            ["Next.js", "Full-stack web"],
+            ["Astro", "Marketing & docs"],
+            ["Node.js", "Backend / APIs"],
+            ["React Native", "Mobile cross-platform"],
+            ["Flutter", "Mobile native UI"],
+            ["PostgreSQL", "Relational database"],
+            ["MongoDB", "Document database"],
+            ["Firebase", "Realtime / auth"],
+            ["AWS", "Cloud infrastructure"],
+            ["Docker", "Containers"],
+            ["Kubernetes", "Orchestration"],
+          ].map(([name, role]) => (
+            <div class="tech-tile">
+              <span class="tech-tile__name">{name}</span>
+              <span class="tech-tile__role">{role}</span>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -500,8 +698,14 @@ const faqs = [
   <section class="company-overview-section">
     <div class="container">
       <p class="company-overview__desc">
-        We are a hybrid <strong>product + service</strong> company building <a href="/custom-software-development/">custom software</a>, <a href="/saas-development-company/">SaaS platforms</a>,<br class="hide-sm" />
-        web applications, and mobile apps for businesses in Kerala, India, and globally.<br class="hide-sm" />
+        We are a hybrid <strong>product + service</strong> company building <a
+          href="/custom-software-development/">custom software</a
+        >, <a href="/saas-development-company/">SaaS platforms</a>,<br
+          class="hide-sm"
+        />
+        web applications, and mobile apps for businesses in Kerala, India, and globally.<br
+          class="hide-sm"
+        />
         Every solution we ship is scalable, performance-focused, responsive, and user-centric.
       </p>
     </div>
@@ -516,10 +720,15 @@ const faqs = [
       <div class="services-cta-box">
         <div class="services-cta-box__content">
           <h2>Ready to Transform Your Business?</h2>
-          <p>Let's discuss exactly what you need and build a plan that works for your goals and budget.</p>
+          <p>
+            Let's discuss exactly what you need and build a plan that works for
+            your goals and budget.
+          </p>
         </div>
         <div class="services-cta-box__actions">
-          <a href="/contact" class="btn btn-primary btn-lg">Start a Conversation</a>
+          <a href="/contact" class="btn btn-primary btn-lg"
+            >Start a Conversation</a
+          >
           <a href="/work" class="btn btn-ghost btn-lg">See Our Work</a>
         </div>
       </div>
@@ -542,7 +751,11 @@ const faqs = [
   .page-hero__bg-dots {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle, var(--sky-200) 1px, transparent 1px);
+    background-image: radial-gradient(
+      circle,
+      var(--sky-200) 1px,
+      transparent 1px
+    );
     background-size: 36px 36px;
     opacity: 0.25;
     pointer-events: none;
@@ -552,7 +765,11 @@ const faqs = [
     position: absolute;
     width: 800px;
     height: 400px;
-    background: radial-gradient(ellipse, rgba(14,165,233,0.12) 0%, transparent 70%);
+    background: radial-gradient(
+      ellipse,
+      rgba(14, 165, 233, 0.12) 0%,
+      transparent 70%
+    );
     top: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -564,7 +781,9 @@ const faqs = [
     z-index: 2;
   }
 
-  .page-hero__inner .badge { margin-bottom: 1.25rem; }
+  .page-hero__inner .badge {
+    margin-bottom: 1.25rem;
+  }
 
   /* Same spec as .hero__title / .flow__title on the landing page, so the display
      voice is consistent across the site. */
@@ -601,10 +820,22 @@ const faqs = [
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
   }
-  .cat-pill--sky:hover { border-color: var(--sky-400); color: var(--sky-600); }
-  .cat-pill--violet:hover { border-color: #a78bfa; color: #7c3aed; }
-  .cat-pill--teal:hover { border-color: #5eead4; color: #0d9488; }
-  .cat-pill--amber:hover { border-color: #fcd34d; color: #d97706; }
+  .cat-pill--sky:hover {
+    border-color: var(--sky-400);
+    color: var(--sky-600);
+  }
+  .cat-pill--violet:hover {
+    border-color: #a78bfa;
+    color: #7c3aed;
+  }
+  .cat-pill--teal:hover {
+    border-color: #5eead4;
+    color: #0d9488;
+  }
+  .cat-pill--amber:hover {
+    border-color: #fcd34d;
+    color: #d97706;
+  }
 
   .services-list-grouped {
     display: flex;
@@ -664,7 +895,9 @@ const faqs = [
     text-underline-offset: 3px;
   }
 
-  .hide-sm { display: block; }
+  .hide-sm {
+    display: block;
+  }
 
   /* Services blocks */
   .services-page {
@@ -703,12 +936,20 @@ const faqs = [
   }
 
   /* Default order: visual on the left, content on the right. */
-  .svc-block__visual { transform: translate3d(-70px, 0, 0); }
-  .svc-block__content { transform: translate3d(70px, 0, 0); }
+  .svc-block__visual {
+    transform: translate3d(-70px, 0, 0);
+  }
+  .svc-block__content {
+    transform: translate3d(70px, 0, 0);
+  }
 
   /* Reversed rows come from the other side, so the motion mirrors the layout. */
-  .svc-block--reverse .svc-block__visual { transform: translate3d(70px, 0, 0); }
-  .svc-block--reverse .svc-block__content { transform: translate3d(-70px, 0, 0); }
+  .svc-block--reverse .svc-block__visual {
+    transform: translate3d(70px, 0, 0);
+  }
+  .svc-block--reverse .svc-block__content {
+    transform: translate3d(-70px, 0, 0);
+  }
 
   .svc-block.is-visible .svc-block__visual,
   .svc-block.is-visible .svc-block__content {
@@ -716,7 +957,9 @@ const faqs = [
     transform: translate3d(0, 0, 0);
   }
   /* Text lands a beat after the image rather than with it. */
-  .svc-block.is-visible .svc-block__content { transition-delay: 0.12s; }
+  .svc-block.is-visible .svc-block__content {
+    transition-delay: 0.12s;
+  }
 
   /* Everything resolved, nothing moving. Also drops the thread, which is purely
      decorative and only reads once it has drawn. */
@@ -729,8 +972,12 @@ const faqs = [
       transform: none;
       transition: none;
     }
-    .svc-block:hover .svc-block__media img { transform: none; }
-    .svc-thread { display: none; }
+    .svc-block:hover .svc-block__media img {
+      transform: none;
+    }
+    .svc-thread {
+      display: none;
+    }
   }
 
   .svc-block {
@@ -779,7 +1026,9 @@ const faqs = [
     display: block;
     transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .svc-block:hover .svc-block__media img { transform: scale(1.04); }
+  .svc-block:hover .svc-block__media img {
+    transform: scale(1.04);
+  }
 
   /* The old icon survives as a floating badge over the image. */
   .svc-block__icon-badge {
@@ -796,14 +1045,35 @@ const faqs = [
     -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
   }
-  .svc-block__icon-badge svg { width: 26px; height: 26px; }
+  .svc-block__icon-badge svg {
+    width: 26px;
+    height: 26px;
+  }
 
-  .svc-block__icon-badge--sky { background: rgba(240, 249, 255, 0.92); color: var(--sky-600); }
-  .svc-block__icon-badge--violet { background: rgba(245, 243, 255, 0.92); color: #7c3aed; }
-  .svc-block__icon-badge--teal { background: rgba(240, 253, 250, 0.92); color: #0d9488; }
-  .svc-block__icon-badge--amber { background: rgba(255, 251, 235, 0.92); color: #d97706; }
-  .svc-block__icon-badge--rose { background: rgba(255, 241, 242, 0.92); color: #e11d48; }
-  .svc-block__icon-wrap--indigo { background: #eef2ff; color: #4f46e5; }
+  .svc-block__icon-badge--sky {
+    background: rgba(240, 249, 255, 0.92);
+    color: var(--sky-600);
+  }
+  .svc-block__icon-badge--violet {
+    background: rgba(245, 243, 255, 0.92);
+    color: #7c3aed;
+  }
+  .svc-block__icon-badge--teal {
+    background: rgba(240, 253, 250, 0.92);
+    color: #0d9488;
+  }
+  .svc-block__icon-badge--amber {
+    background: rgba(255, 251, 235, 0.92);
+    color: #d97706;
+  }
+  .svc-block__icon-badge--rose {
+    background: rgba(255, 241, 242, 0.92);
+    color: #e11d48;
+  }
+  .svc-block__icon-wrap--indigo {
+    background: #eef2ff;
+    color: #4f46e5;
+  }
 
   .svc-block__features {
     display: grid;
@@ -850,14 +1120,36 @@ const faqs = [
   }
 
   /* Badge colors */
-  .badge-sky { background: var(--sky-50); color: var(--sky-700); border: 1px solid var(--sky-100); }
-  .badge-violet { background: #f5f3ff; color: #7c3aed; border: 1px solid #ddd6fe; }
-  .badge-teal { background: #f0fdfa; color: #0d9488; border: 1px solid #ccfbf1; }
-  .badge-amber { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
-  .badge-rose { background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; }
-  .badge-indigo { background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; }
-
-
+  .badge-sky {
+    background: var(--sky-50);
+    color: var(--sky-700);
+    border: 1px solid var(--sky-100);
+  }
+  .badge-violet {
+    background: #f5f3ff;
+    color: #7c3aed;
+    border: 1px solid #ddd6fe;
+  }
+  .badge-teal {
+    background: #f0fdfa;
+    color: #0d9488;
+    border: 1px solid #ccfbf1;
+  }
+  .badge-amber {
+    background: #fffbeb;
+    color: #d97706;
+    border: 1px solid #fde68a;
+  }
+  .badge-rose {
+    background: #fff1f2;
+    color: #e11d48;
+    border: 1px solid #fecdd3;
+  }
+  .badge-indigo {
+    background: #eef2ff;
+    color: #4f46e5;
+    border: 1px solid #c7d2fe;
+  }
 
   /* Tech stack */
   .tech-stack-section {
@@ -885,7 +1177,7 @@ const faqs = [
   .tech-tile:hover {
     transform: translateY(-2px);
     border-color: var(--sky-200);
-    box-shadow: 0 6px 16px rgba(14,165,233,0.08);
+    box-shadow: 0 6px 16px rgba(14, 165, 233, 0.08);
   }
   .tech-tile__name {
     font-family: var(--font-heading);
@@ -900,10 +1192,14 @@ const faqs = [
     font-weight: 600;
   }
   @media (max-width: 800px) {
-    .tech-grid { grid-template-columns: repeat(2, 1fr); }
+    .tech-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   @media (max-width: 480px) {
-    .tech-grid { grid-template-columns: 1fr; }
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* CTA box */
@@ -939,7 +1235,8 @@ const faqs = [
   }
 
   @media (max-width: 900px) {
-    .svc-block, .svc-block--reverse {
+    .svc-block,
+    .svc-block--reverse {
       grid-template-columns: 1fr;
       direction: ltr;
       gap: 2rem;
@@ -954,7 +1251,9 @@ const faqs = [
   }
 
   @media (max-width: 640px) {
-    .hide-sm { display: none; }
+    .hide-sm {
+      display: none;
+    }
     .svc-block__visual {
       padding: 1.25rem;
       gap: 1.25rem;
@@ -970,7 +1269,34 @@ const faqs = [
     }
   }
 
-  /* ===== STACKED CARDS SCROLL SECTION (REFERENCE MATCH) ===== */
+  /* ===== STACKED CARDS SCROLL SECTION HEADER & LAYOUT ===== */
+  .stacked-section-header {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin: 0 auto 3.2rem auto !important;
+    width: 100% !important;
+  }
+
+  .stacked-section-title {
+    font-family:
+      "Outfit", "Plus Jakarta Sans", var(--font-heading, system-ui, sans-serif) !important;
+    font-size: clamp(2.5rem, 4.2vw, 3.8rem) !important;
+    font-weight: 500 !important;
+    color: #0f172a !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.015em !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .stacked-section-title .highlight-blue {
+    color: var(--primary, #0ea5e9) !important;
+  }
+
   .services-stacked-section {
     padding-top: 2rem !important;
     padding-bottom: 2rem !important;
@@ -999,8 +1325,12 @@ const faqs = [
     top: 90px;
     border-radius: 22px;
     overflow: hidden;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.06);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow:
+      0 30px 70px rgba(0, 0, 0, 0.18),
+      0 2px 6px rgba(0, 0, 0, 0.06);
+    transition:
+      transform 0.4s ease,
+      box-shadow 0.4s ease;
     width: 100% !important;
     /* The card must fit below the sticky navbar for sticky positioning to
        engage reliably on laptop-height desktop screens. */
@@ -1107,7 +1437,12 @@ const faqs = [
     margin-bottom: 1.5rem;
     line-height: 1.1;
     letter-spacing: -0.01em;
-    font-family: var(--font-heading, 'Plus Jakarta Sans', system-ui, sans-serif);
+    font-family: var(
+      --font-heading,
+      "Plus Jakarta Sans",
+      system-ui,
+      sans-serif
+    );
   }
 
   .stacked-card__chips {
@@ -1125,7 +1460,9 @@ const faqs = [
     padding: 0.7rem 1.65rem;
     border-radius: 24px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease;
   }
 
   .tech-chip:hover {
@@ -1151,8 +1488,8 @@ const faqs = [
 
   .circular-badge-cta {
     position: relative;
-    width: 90px;
-    height: 90px;
+    width: 126px;
+    height: 126px;
     border-radius: 50%;
     background: #ffffff;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
@@ -1160,7 +1497,9 @@ const faqs = [
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    transition:
+      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.3s ease;
   }
 
   .circular-badge-cta:hover {
@@ -1181,30 +1520,61 @@ const faqs = [
   }
 
   .badge-arrow-icon {
-    width: 42px;
-    height: 42px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
     background: rgba(15, 23, 42, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2;
-    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease;
   }
 
-  .badge-arrow-icon.icon-magenta { color: #db2777; }
-  .badge-arrow-icon.icon-blue { color: #2563eb; }
-  .badge-arrow-icon.icon-purple { color: #9333ea; }
-  .badge-arrow-icon.icon-coral { color: #e11d48; }
+  .badge-arrow-icon.icon-magenta {
+    color: #db2777;
+  }
+  .badge-arrow-icon.icon-blue {
+    color: #2563eb;
+  }
+  .badge-arrow-icon.icon-purple {
+    color: #9333ea;
+  }
+  .badge-arrow-icon.icon-coral {
+    color: #e11d48;
+  }
 
-  .circular-badge-cta:hover .badge-arrow-icon.icon-magenta { background: #db2777; color: #ffffff; transform: scale(1.08); }
-  .circular-badge-cta:hover .badge-arrow-icon.icon-blue { background: #2563eb; color: #ffffff; transform: scale(1.08); }
-  .circular-badge-cta:hover .badge-arrow-icon.icon-purple { background: #9333ea; color: #ffffff; transform: scale(1.08); }
-  .circular-badge-cta:hover .badge-arrow-icon.icon-coral { background: #e11d48; color: #ffffff; transform: scale(1.08); }
+  .circular-badge-cta:hover .badge-arrow-icon.icon-magenta {
+    background: #db2777;
+    color: #ffffff;
+    transform: scale(1.08);
+  }
+  .circular-badge-cta:hover .badge-arrow-icon.icon-blue {
+    background: #2563eb;
+    color: #ffffff;
+    transform: scale(1.08);
+  }
+  .circular-badge-cta:hover .badge-arrow-icon.icon-purple {
+    background: #9333ea;
+    color: #ffffff;
+    transform: scale(1.08);
+  }
+  .circular-badge-cta:hover .badge-arrow-icon.icon-coral {
+    background: #e11d48;
+    color: #ffffff;
+    transform: scale(1.08);
+  }
 
   @keyframes spinSlow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   /* Keep the reference proportions on shorter desktop screens without
@@ -1375,26 +1745,33 @@ const faqs = [
 
 <script is:inline>
   (function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // --- blocks slide in from their own side, once each
-    var blocks = document.querySelectorAll('[data-svc-block]');
+    var blocks = document.querySelectorAll("[data-svc-block]");
     if (reduced) {
-      blocks.forEach(function (b) { b.classList.add('is-visible'); });
+      blocks.forEach(function (b) {
+        b.classList.add("is-visible");
+      });
     } else if (blocks.length) {
-      var blockIO = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          e.target.classList.add('is-visible');
-          blockIO.unobserve(e.target);   // one-shot
-        });
-      }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
-      blocks.forEach(function (b) { blockIO.observe(b); });
+      var blockIO = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            e.target.classList.add("is-visible");
+            blockIO.unobserve(e.target); // one-shot
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -8% 0px" },
+      );
+      blocks.forEach(function (b) {
+        blockIO.observe(b);
+      });
     }
 
     // --- thread draws itself as the section scrolls past
-    var section = document.getElementById('services-page');
-    var path = document.getElementById('svc-thread-path');
+    var section = document.getElementById("services-page");
+    var path = document.getElementById("svc-thread-path");
     if (reduced || !section || !path) return;
 
     var len = path.getTotalLength();
@@ -1417,14 +1794,17 @@ const faqs = [
       path.style.strokeDashoffset = String(len * (1 - p));
     }
 
-    new IntersectionObserver(function (entries) {
-      inView = entries[0].isIntersecting;
-      wake();
-    }, { rootMargin: '200px 0px' }).observe(section);
+    new IntersectionObserver(
+      function (entries) {
+        inView = entries[0].isIntersecting;
+        wake();
+      },
+      { rootMargin: "200px 0px" },
+    ).observe(section);
 
     // Purely scroll-driven, so one pass per scroll event is enough — no loop.
-    window.addEventListener('scroll', wake, { passive: true });
-    window.addEventListener('resize', wake, { passive: true });
+    window.addEventListener("scroll", wake, { passive: true });
+    window.addEventListener("resize", wake, { passive: true });
     draw();
   })();
 </script>
