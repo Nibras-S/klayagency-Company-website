@@ -209,6 +209,61 @@ const websiteSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Show the splash on direct visits and refreshes. Internal links mark the
+         next page so normal site navigation stays instant. -->
+    <script is:inline>
+      (function () {
+        var skipSplash = false;
+        try {
+          var expectedPath = sessionStorage.getItem("n3-splash-skip-next");
+          var currentPath = location.pathname.replace(/\/+$/, "") + location.search;
+          skipSplash = expectedPath === currentPath;
+          sessionStorage.removeItem("n3-splash-skip-next");
+        } catch (_) {}
+
+        document.documentElement.classList.add(
+          skipSplash ? "site-splash-skipped" : "site-splash-pending",
+        );
+
+        document.addEventListener("click", function (event) {
+          if (
+            event.defaultPrevented ||
+            event.button !== 0 ||
+            event.metaKey ||
+            event.ctrlKey ||
+            event.shiftKey ||
+            event.altKey
+          ) return;
+
+          var anchor = event.target.closest && event.target.closest("a[href]");
+          if (
+            !anchor ||
+            anchor.target === "_blank" ||
+            anchor.hasAttribute("download")
+          ) return;
+
+          var destination;
+          try {
+            destination = new URL(anchor.href, location.href);
+          } catch (_) {
+            return;
+          }
+
+          if (
+            destination.origin !== location.origin ||
+            (destination.pathname === location.pathname &&
+              destination.search === location.search &&
+              destination.hash)
+          ) return;
+
+          try {
+            var nextPath = destination.pathname.replace(/\/+$/, "") + destination.search;
+            sessionStorage.setItem("n3-splash-skip-next", nextPath);
+          } catch (_) {}
+        });
+      })();
+    </script>
+
     <!-- Primary Meta -->
     <title>{fullTitle}</title>
     <meta name="title" content={fullTitle} />
@@ -274,6 +329,172 @@ const websiteSchema = {
     )}
   </head>
   <body>
+    <div
+      id="site-splash"
+      class="site-splash"
+      role="status"
+      aria-label="Loading N3 Global Tech"
+      aria-live="polite"
+    >
+      <div class="site-splash__inner">
+        <div class="site-splash__visual" aria-hidden="true">
+          <img
+            class="site-splash__poster"
+            data-src="/media/loading-screen-poster.webp"
+            width="360"
+            height="640"
+            alt=""
+            decoding="sync"
+            draggable="false"
+          />
+          <video
+            class="site-splash__video"
+            data-src="/media/loading-screen.mp4"
+            muted
+            playsinline
+            webkit-playsinline
+            loop
+            preload="auto"
+            disablepictureinpicture
+            aria-hidden="true"></video>
+        </div>
+        <div
+          class="site-splash__progress"
+          role="progressbar"
+          aria-label="Loading website"
+        >
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var splash = document.getElementById("site-splash");
+
+        if (!splash || !root.classList.contains("site-splash-pending")) {
+          if (splash) splash.remove();
+          return;
+        }
+
+        root.classList.add("site-splash-locked");
+
+        var visual = splash.querySelector(".site-splash__visual");
+        var poster = splash.querySelector(".site-splash__poster");
+        var video = splash.querySelector(".site-splash__video");
+        var reduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        var shownAt = performance.now();
+        var minimumVisibleTime = 2000;
+        var finished = false;
+        var main;
+
+        // Assign the lightweight sources as soon as the splash markup is parsed.
+        if (poster) {
+          poster.addEventListener(
+            "load",
+            function () {
+              if (visual) visual.classList.add("is-poster-ready");
+            },
+            { once: true },
+          );
+          poster.src = poster.dataset.src || "";
+          if (poster.complete && poster.naturalWidth && visual) {
+            visual.classList.add("is-poster-ready");
+          }
+        }
+        if (video && !reduced) {
+          video.defaultMuted = true;
+          video.muted = true;
+          video.playsInline = true;
+          video.src = video.dataset.src || "";
+
+          video.addEventListener(
+            "playing",
+            function () {
+              var showVideo = function () {
+                if (visual) visual.classList.add("is-playing");
+              };
+              if (typeof video.requestVideoFrameCallback === "function") {
+                video.requestVideoFrameCallback(showVideo);
+              } else {
+                requestAnimationFrame(showVideo);
+              }
+            },
+            { once: true },
+          );
+
+          var playRequest = video.play();
+          if (playRequest && typeof playRequest.catch === "function") {
+            // The first-frame poster and progress line remain a complete fallback
+            // if a browser declines autoplay.
+            playRequest.catch(function () {});
+          }
+        }
+
+        function releasePage() {
+          if (main) {
+            main.inert = false;
+            main.removeAttribute("aria-hidden");
+          }
+        }
+
+        function finish() {
+          if (finished) return;
+          finished = true;
+          splash.classList.add("is-leaving");
+          releasePage();
+
+          window.setTimeout(function () {
+            root.classList.remove("site-splash-pending", "site-splash-locked");
+            root.classList.add("site-splash-complete");
+            splash.remove();
+          }, reduced ? 0 : 360);
+        }
+
+        function finishAfterMinimumTime() {
+          var remaining = minimumVisibleTime - (performance.now() - shownAt);
+          if (remaining > 0) window.setTimeout(finish, remaining);
+          else finish();
+        }
+
+        function pageIsReady() {
+          // Let the browser commit the ready page before beginning the handoff.
+          requestAnimationFrame(function () {
+            requestAnimationFrame(finishAfterMinimumTime);
+          });
+        }
+
+        document.addEventListener(
+          "DOMContentLoaded",
+          function () {
+            main = document.getElementById("main-content");
+            if (main && !finished) {
+              main.inert = true;
+              main.setAttribute("aria-hidden", "true");
+            }
+          },
+          { once: true },
+        );
+
+        if (document.readyState === "complete") pageIsReady();
+        else window.addEventListener("load", pageIsReady, { once: true });
+
+        // Give the animation two seconds to register, but never let a slow
+        // third-party asset keep the usable page covered beyond three seconds.
+        window.setTimeout(finish, 3000);
+        window.addEventListener(
+          "pageshow",
+          function (event) {
+            if (event.persisted) finish();
+          },
+          { once: true },
+        );
+      })();
+    </script>
+
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <main id="main-content">
       <slot />
@@ -465,6 +686,128 @@ const websiteSchema = {
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+  }
+
+  html.site-splash-locked,
+  html.site-splash-locked body {
+    overflow: hidden;
+  }
+
+  .site-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    display: none;
+    place-items: center;
+    background: #ffffff;
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 350ms cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 0s linear 350ms;
+  }
+
+  .site-splash-pending .site-splash {
+    display: grid;
+  }
+
+  .site-splash.is-leaving {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .site-splash__inner {
+    display: grid;
+    justify-items: center;
+    gap: clamp(0.75rem, 2vh, 1.15rem);
+  }
+
+  .site-splash__visual {
+    position: relative;
+    width: clamp(160px, 19vmin, 225px);
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .site-splash__poster,
+  .site-splash__video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .site-splash__poster {
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 120ms ease-out;
+  }
+
+  .site-splash__video {
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 120ms ease-out;
+  }
+
+  .site-splash__visual.is-poster-ready .site-splash__poster {
+    opacity: 1;
+  }
+
+  .site-splash__visual.is-playing .site-splash__poster {
+    opacity: 0;
+  }
+
+  .site-splash__visual.is-playing .site-splash__video {
+    opacity: 1;
+  }
+
+  .site-splash__progress {
+    width: clamp(112px, 16vmin, 156px);
+    height: 2px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--sky-100);
+  }
+
+  .site-splash__progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--sky-400), var(--sky-600));
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: site-splash-progress 2.5s cubic-bezier(0.2, 0.7, 0.2, 1)
+      forwards;
+  }
+
+  .site-splash.is-leaving .site-splash__progress span {
+    animation: none;
+    transform: scaleX(1);
+    transition: transform 120ms ease-out;
+  }
+
+  @keyframes site-splash-progress {
+    0% { transform: scaleX(0); }
+    70% { transform: scaleX(0.78); }
+    100% { transform: scaleX(0.92); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-splash,
+    .site-splash__poster,
+    .site-splash__video,
+    .site-splash__progress span {
+      animation: none;
+      transition: none;
+    }
+    .site-splash__progress span { transform: scaleX(0.65); }
   }
 
   h1, h2, h3, h4, h5, h6 {

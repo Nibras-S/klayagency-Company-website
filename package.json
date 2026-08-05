@@ -7,7 +7,9 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "npm run generate:hero-poster",
     "build": "astro build",
+    "generate:hero-poster": "node scripts/generate-hero-poster.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

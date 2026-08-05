@@ -83,52 +83,105 @@ const faqs = [
   <!-- ========== HERO ========== -->
   <section class="hero hero--fullscreen-video" data-cursor-hidden>
     <div class="hero__video-bg">
-      <!-- Keep autoplay in the initial markup for mobile Safari. Adding it only
-           from JavaScript can leave iOS showing its native play overlay. The
-           inline setup below removes it on fine pointers before assigning src. -->
-      <!-- Keep the mobile source in the parsed markup too. WebKit can evaluate
-           the complete muted/autoplay/playsinline request as soon as it discovers
-           the element; fine-pointer devices swap to the scrub source below. -->
-      <video
-        id="hero-video"
-        class="hero-video-full"
-        src="/land-vid-mobile.mp4"
-        autoplay
-        muted
-        playsinline
-        webkit-playsinline
-        loop
-        preload="auto"
-        poster="/land-vid-poster.webp"></video>
-      <script is:inline>
-        (function () {
-          var v = document.getElementById("hero-video");
-          if (!v) return;
-          var fine = window.matchMedia("(pointer: fine)").matches;
+      <div class="hero__media">
+        <!-- This is the video's real first frame. Keeping it as a separate layer
+             prevents iOS from drawing its native play badge over the loading UI. -->
+        <img
+          class="hero-video-poster"
+          src="/land-vid-poster.webp"
+          width="1280"
+          height="724"
+          alt=""
+          aria-hidden="true"
+          fetchpriority="high"
+          decoding="sync"
+          draggable="false"
+        />
 
-          if (!fine) {
-            // Mirror the parsed attributes as properties for older WebKit builds
-            // as well. defaultMuted reflects the video's initial muted state.
-            v.defaultMuted = true;
-            v.muted = true;
-            v.playsInline = true;
-            v.setAttribute("playsinline", "");
-            v.setAttribute("webkit-playsinline", "");
-            // Native autoplay is far more reliable on iOS than a deferred play().
-            v.autoplay = true;
-          } else {
-            // Desktop uses pointer-driven scrubbing, so keep that video paused.
-            // The inline script runs before playback begins and swaps its source.
-            v.autoplay = false;
-            v.removeAttribute("autoplay");
-          }
+        <!-- Keep autoplay in the initial markup for mobile Safari. Adding it only
+             from JavaScript can leave iOS showing its native play overlay. The
+             separate poster above covers the video until a frame is playing. -->
+        <video
+          id="hero-video"
+          class="hero-video-full"
+          src="/land-vid-mobile.mp4"
+          autoplay
+          muted
+          playsinline
+          webkit-playsinline
+          loop
+          preload="auto"
+          poster="/land-vid-poster.webp"
+          aria-hidden="true"></video>
+        <script is:inline>
+          (function () {
+            var v = document.getElementById("hero-video");
+            if (!v) return;
+            var media = v.closest(".hero__media");
+            var fine = window.matchMedia("(pointer: fine)").matches;
+            var reduced = window.matchMedia(
+              "(prefers-reduced-motion: reduce)",
+            ).matches;
+            var revealQueued = false;
 
-          // Touch gets the full-resolution high-quality ping-pong encode (forward
-          // + reversed, so a plain `loop` rewinds seamlessly). Fine pointers swap
-          // to the shorter all-intra file used by the desktop scrub interaction.
-          if (fine) v.src = "/land-vid.mp4";
-        })();
-      </script>
+            // Only uncover the video once the browser has actually presented a
+            // decoded frame. requestVideoFrameCallback avoids the white/black
+            // flash that can occur between `loadeddata` and the first paint.
+            function revealVideo() {
+              if (!media || revealQueued) return;
+              revealQueued = true;
+
+              var reveal = function () {
+                media.classList.add("hero__media--video-visible");
+              };
+
+              if (typeof v.requestVideoFrameCallback === "function") {
+                v.requestVideoFrameCallback(reveal);
+              } else {
+                requestAnimationFrame(function () {
+                  requestAnimationFrame(reveal);
+                });
+              }
+            }
+
+            if (fine) {
+              // Desktop is paused for pointer scrubbing, so its first decoded
+              // frame is enough. Touch waits for `playing` so a failed autoplay
+              // simply leaves the clean poster visible.
+              v.addEventListener("loadeddata", revealVideo, { once: true });
+            } else if (!reduced) {
+              v.addEventListener("playing", revealVideo, { once: true });
+            }
+
+            if (!fine && !reduced) {
+              // Mirror the parsed attributes as properties for older WebKit builds
+              // as well. defaultMuted reflects the video's initial muted state.
+              v.defaultMuted = true;
+              v.muted = true;
+              v.playsInline = true;
+              v.setAttribute("playsinline", "");
+              v.setAttribute("webkit-playsinline", "");
+              // Native autoplay is far more reliable on iOS than a deferred play().
+              v.autoplay = true;
+            } else {
+              // Desktop uses pointer-driven scrubbing; reduced-motion users keep
+              // the static first frame.
+              v.autoplay = false;
+              v.removeAttribute("autoplay");
+            }
+
+            // Touch gets the high-quality ping-pong encode (forward + reversed,
+            // so a plain `loop` rewinds seamlessly). Fine pointers use the shorter
+            // all-intra file required by the desktop scrub interaction.
+            if (fine) v.src = "/land-vid.mp4";
+
+            if (fine && v.readyState >= 2) revealVideo();
+            if (!fine && !reduced && !v.paused && v.readyState >= 2) {
+              revealVideo();
+            }
+          })();
+        </script>
+      </div>
     </div>
 
     <div class="hero__glow hero__glow--1" style="z-index: 1; opacity: 0.5;">
@@ -1334,7 +1387,7 @@ export default function <span class="code-func">Product</span>() &#123;
               srcset="/images/about/about-2-720.webp 720w, /images/about/about-2-1200.webp 1200w"
               sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 900px) 46vw, 38vw"
               width="1200"
-              height="971"
+              height="800"
               loading="lazy"
               decoding="async"
               alt="Senior-led technical consultation in progress"
@@ -1824,6 +1877,16 @@ export default function <span class="code-func">Product</span>() &#123;
     overflow: hidden;
   }
 
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    /* Move the poster and video as one plane during desktop parallax so their
+       edges remain perfectly aligned while the crossfade is in progress. */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: paint;
+  }
+
   /* Fade out bottom of the video to blend seamlessly with the white section below */
   .hero__video-bg::after {
     content: "";
@@ -1842,16 +1905,40 @@ export default function <span class="code-func">Product</span>() &#123;
     pointer-events: none;
   }
 
+  .hero-video-poster,
   .hero-video-full {
+    position: absolute;
+    inset: 0;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     pointer-events: none;
-    /* Keep the video on its own compositor layer so repainting a scrubbed
-       frame never invalidates the hero text/glows stacked above it. */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    contain: paint;
+    user-select: none;
+  }
+
+  .hero-video-poster {
+    z-index: 0;
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 180ms ease-out,
+      visibility 0s linear 180ms;
+  }
+
+  .hero-video-full {
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 180ms ease-out;
+  }
+
+  .hero__media--video-visible .hero-video-poster {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .hero__media--video-visible .hero-video-full {
+    opacity: 1;
   }
 
   /* ===== FLOW — SCROLL-DRAWN PATH + LIQUID WARP ===== */
@@ -3199,19 +3286,20 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   .about-preview__statement {
-    max-width: 880px;
+    max-width: 960px;
     margin: 0;
     font-family: var(
-      --font-heading,
+      --font-body,
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
       "Helvetica Neue",
-      Helvetica,
-      Arial,
       sans-serif
     );
-    font-size: clamp(1.4rem, 1.85vw, 2rem);
-    font-weight: 600;
-    line-height: 1.32;
-    letter-spacing: -0.03em;
+    font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+    font-weight: 450;
+    line-height: 1.28;
+    letter-spacing: -0.025em;
   }
 
   .about-preview__statement :global(.about-word) {
@@ -3249,10 +3337,6 @@ export default function <span class="code-func">Product</span>() &#123;
     height: 100%;
     display: block;
     object-fit: cover;
-    filter: grayscale(100%);
-    transition:
-      transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1),
-      filter 0.4s ease;
   }
 
   .about-preview__image:first-child img {
@@ -3261,11 +3345,6 @@ export default function <span class="code-func">Product</span>() &#123;
 
   .about-preview__image:nth-child(2) img {
     object-position: 54% 50%;
-  }
-
-  .about-preview__image:hover img {
-    transform: scale(1.03);
-    filter: grayscale(0%);
   }
 
   .about-preview__action {
@@ -3303,9 +3382,10 @@ export default function <span class="code-func">Product</span>() &#123;
       padding: 3rem 0;
     }
     .about-preview__statement {
-      font-size: clamp(1.25rem, 5vw, 1.55rem);
-      line-height: 1.32;
-      letter-spacing: -0.03em;
+      font-size: clamp(1.25rem, 4.8vw, 1.6rem);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      font-weight: 450;
     }
     .about-preview__gallery {
       grid-template-columns: 1fr;
@@ -3325,12 +3405,6 @@ export default function <span class="code-func">Product</span>() &#123;
       align-items: center;
       justify-content: flex-start;
       padding-top: 0.25rem;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .about-preview__image img {
-      transition: none;
     }
   }
 
@@ -4413,9 +4487,9 @@ export default function <span class="code-func">Product</span>() &#123;
       mask-image: none;
     }
 
-    /* contain:paint on a full-bleed playing video gives WebKit an extra layer to
+    /* contain:paint on full-bleed media gives WebKit an extra layer to
        manage for no benefit once the scrub is gone. */
-    .hero-video-full {
+    .hero__media {
       contain: none;
     }
   }
@@ -4548,9 +4622,9 @@ export default function <span class="code-func">Product</span>() &#123;
         #ffffff 100%
       );
     }
+    .hero-video-poster,
     .hero-video-full {
       object-position: 70% 0%;
-      transform: scale(1); /* Scale up video even more */
     }
     .hero__inner {
       height: calc(100svh - 68px);
@@ -5940,7 +6014,7 @@ export default function <span class="code-func">Product</span>() &#123;
         const layers = [
           // background — the video fill
           {
-            el: heroEl.querySelector(".hero-video-full"),
+            el: heroEl.querySelector(".hero__media"),
             x: 6,
             y: 5,
             r: 0,
