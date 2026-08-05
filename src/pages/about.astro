@@ -3,6 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import PrinciplesSection from '../components/PrinciplesSection.astro';
+import AboutHeroSection from '../components/AboutHeroSection.astro';
+import ClientLogosMarquee from '../components/ClientLogosMarquee.astro';
+import TeamSection from '../components/TeamSection.astro';
 
 const founders = [
   {
@@ -69,39 +72,17 @@ const stats = [
     }
   })}></script>
 
-  <section class="page-hero">
-    <div class="page-hero__glow"></div>
-    <div class="page-hero__bg-dots"></div>
-    <div class="container page-hero__inner">
-      <div class="badge badge-sky">About Us</div>
-      <h1 class="page-hero__title">
-        From Classmates to <span class="text-gradient">Co-founders</span>
-      </h1>
-      <p class="page-hero__desc">
-        N3 Global Tech was built on a simple idea: that the right team, building practical software, can change how a business operates. Four engineers who started as classmates — this is how we got here.
-      </p>
-    </div>
-  </section>
+  <!-- Clean & Minimal About Hero (Matching Reference) -->
+  <AboutHeroSection />
 
-  <!-- Stats strip -->
-  <section class="stats-strip">
-    <div class="container">
-      <div class="stats-grid">
-        {stats.map(s => (
-          <div class="stat-item">
-            <div class="stat-item__value">{s.value}</div>
-            <div class="stat-item__label">{s.label}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- Client Logos Marquee -->
+  <ClientLogosMarquee />
 
   <!-- Origin story -->
   <section class="section about-section">
     <div class="container content-narrow">
 
-      <h2>Where it began</h2>
+      <h2>Behind N3 Global Tech</h2>
       <p>
         Our story starts at <strong>Thalassery Engineering College</strong>, where the four of us — Nibras, Nabeel, Nafi, and Farseen — studied together. What began as a shared interest in solving real problems through technology grew, project by project, into something bigger.
       </p>
@@ -146,35 +127,8 @@ const stats = [
     </div>
   </section>
 
-  <!-- Founders -->
-  <section class="section founders-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="badge badge-sky">The Team</div>
-        <h2>Meet the <span class="text-gradient">Co-founders</span></h2>
-        <p>Four engineers who grew up building together, and never stopped.</p>
-      </div>
-
-      <div class="founders-grid">
-        {foundersWithPhotos.map(f => (
-          <article class={`founder-card founder-card--${f.color}`}>
-            {f.image ? (
-              <div class={`founder-card__photo-wrap founder-card__photo-wrap--${f.color}`}>
-                <img src={f.image} alt={`${f.name}, ${f.role.replace(/&amp;/g, '&').replace(/<[^>]+>/g, '')}`} class="founder-card__photo" width="80" height="80" loading="lazy" />
-              </div>
-            ) : (
-              <div class={`founder-card__avatar founder-card__avatar--${f.color}`} aria-hidden="true">
-                {f.initials}
-              </div>
-            )}
-            <h3 class="founder-card__name">{f.name}</h3>
-            <p class="founder-card__role" set:html={f.role} />
-            <p class="founder-card__bio">{f.bio}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- Creative Team Spotlight (Matching Reference) -->
+  <TeamSection />
 
   <!-- Mission & Vision -->
   <section class="section mv-section">
@@ -216,38 +170,6 @@ const stats = [
   <!-- Three Ideas Behind Everything We Build -->
   <PrinciplesSection />
 
-  <!-- Engineering Culture -->
-  <section class="section culture-section">
-    <div class="container content-narrow">
-      <div class="section-header">
-        <div class="badge badge-sky">How We Build</div>
-        <h2><span class="text-gradient">How We Build</span></h2>
-        <p>Software is only as good as the process and the people behind it. We don't just write code — we engineer systems built to last, and hold ourselves to real quality standards.</p>
-      </div>
-      
-      <div class="culture-grid">
-        <article class="culture-card">
-          <h3>Pragmatic technology choices</h3>
-          <p>No hype-driven development. We choose tools for the problem in front of us — React, Node.js, PostgreSQL — battle-tested technology that's easier to maintain for years, not just to demo.</p>
-        </article>
-        
-        <article class="culture-card">
-          <h3>Built for scale from day one</h3>
-          <p>Whether it's a fast MVP or a complex enterprise SaaS platform, we architect for horizontal scale from the first commit: proper database indexing, caching, stateless API design.</p>
-        </article>
-
-        <article class="culture-card">
-          <h3>Security by default</h3>
-          <p>Role-based access control, secure authentication, automated security testing built into CI/CD — not bolted on after the fact.</p>
-        </article>
-
-        <article class="culture-card">
-          <h3>Continuous delivery</h3>
-          <p>Transparent, agile sprints. Automated testing and continuous integration mean features ship to staging weekly, so clients see progress and give feedback long before final release.</p>
-        </article>
-      </div>
-    </div>
-  </section>
 
   <!-- CTA -->
   <section class="section about-cta-section">
@@ -263,88 +185,225 @@ const stats = [
     </div>
   </section>
 
+  <script is:inline>
+    (function() {
+      function initAboutHeroScroll() {
+        var statement = document.getElementById("about-hero-title");
+        if (!statement) return;
+
+        var text = statement.textContent.trim();
+        var words = text.split(/\s+/);
+        statement.innerHTML = words.map(function(w) {
+          return '<span class="about-word">' + w + ' </span>';
+        }).join('');
+
+        var wordSpans = statement.querySelectorAll(".about-word");
+        var heroSection = statement.closest(".about-hero");
+
+        function updateProgress() {
+          if (!heroSection || !wordSpans.length) return;
+          var rect = heroSection.getBoundingClientRect();
+          var windowH = window.innerHeight;
+          
+          var start = windowH * 0.85;
+          var end = windowH * 0.35;
+          var progress = (start - rect.top) / (start - end);
+          progress = Math.max(0, Math.min(1, progress));
+
+          var activeIndex = Math.floor(progress * wordSpans.length);
+          wordSpans.forEach(function(span, idx) {
+            if (idx <= activeIndex) {
+              span.classList.add("is-active");
+            } else {
+              span.classList.remove("is-active");
+            }
+          });
+        }
+
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        updateProgress();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initAboutHeroScroll);
+      } else {
+        initAboutHeroScroll();
+      }
+    })();
+  </script>
+
   <Footer />
 </Layout>
 
 <style>
-  .page-hero {
-    position: relative;
-    padding: calc(80px + 4rem) 0 3rem;
-    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-    overflow: hidden;
+  .about-hero {
+    padding-top: calc(80px + 3.5rem);
+    padding-bottom: 3.5rem;
+    background: #ffffff;
+    color: #0f172a;
   }
-  .page-hero__glow {
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 800px; height: 400px;
-    background: radial-gradient(ellipse, rgba(14,165,233,0.18) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .page-hero__bg-dots {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle, var(--sky-200) 1px, transparent 1px);
-    background-size: 36px 36px;
-    opacity: 0.2;
-    pointer-events: none;
-  }
-  .page-hero__inner {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 760px;
-  }
-  .page-hero__title {
-    font-size: clamp(2.25rem, 5vw, 3.5rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin: 1rem 0 1.5rem;
-  }
-  .page-hero__desc {
-    font-size: 1.1rem;
-    color: var(--gray-600);
-    line-height: 1.75;
-    max-width: 640px;
+
+  .about-hero__container {
+    max-width: 1340px;
+    padding: 0 1.5rem;
+    width: 100%;
     margin: 0 auto;
   }
 
-  /* Stats strip */
-  .stats-strip {
-    padding: 0 0 3rem;
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  .about-hero__header {
+    max-width: 100%;
+    margin-bottom: 3.5rem;
   }
-  .stats-grid {
+
+  .about-hero__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+  }
+
+  .about-hero__kicker-sq {
+    width: 6.5px;
+    height: 6.5px;
+    background-color: #ff5722;
+    display: inline-block;
+    border-radius: 1px;
+  }
+
+  .about-hero__title {
+    font-size: clamp(1.65rem, 2.35vw, 2.3rem);
+    font-weight: 500;
+    color: #0f172a;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    font-family: var(--font-heading, "Plus Jakarta Sans", system-ui, sans-serif);
+  }
+
+  .about-hero__title :global(.about-word) {
+    opacity: 0.25;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    white-space: pre;
+  }
+
+  .about-hero__title :global(.about-word.is-active) {
+    opacity: 1;
+    color: #0f172a;
+  }
+
+  .about-hero__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 2.5rem;
-    background: #ffffff;
-    border: 1.5px solid var(--gray-100);
-    border-radius: var(--radius-xl);
-    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.06);
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: flex-start;
   }
-  .stat-item {
-    text-align: center;
-    border-right: 1px solid var(--gray-100);
+
+  .about-hero__visuals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
   }
-  .stat-item:last-child { border-right: none; }
-  .stat-item__value {
-    font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    font-weight: 800;
-    color: var(--sky-600);
-    letter-spacing: -0.02em;
+
+  .about-hero__img-card {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 350px;
+    background: #f1f5f9;
+  }
+
+  .about-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .about-hero__img-card:hover .about-hero__img {
+    transform: scale(1.03);
+  }
+
+  .about-hero__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .stats-col {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .stats-col--left {
+    padding-right: 3rem;
+    border-right: 1px solid #e2e8f0;
+  }
+
+  .stats-col--right {
+    padding-left: 3rem;
+  }
+
+  .stat-cell__value {
+    font-size: clamp(2.6rem, 3.8vw, 3.6rem);
+    font-weight: 500;
+    color: #0f172a;
     line-height: 1;
-    margin-bottom: 0.4rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.6rem;
+    font-family: var(--font-heading, "Plus Jakarta Sans", system-ui, sans-serif);
   }
-  .stat-item__label {
-    font-size: 0.85rem;
-    color: var(--gray-600);
-    font-weight: 600;
+
+  .stat-cell__label {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 450;
+    line-height: 1.4;
+  }
+
+  .about-hero__divider {
+    width: 100%;
+    height: 1px;
+    background: #e2e8f0;
+    margin-top: 5rem;
+  }
+
+  @media (max-width: 992px) {
+    .about-hero__grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .about-hero__img-card {
+      height: 280px;
+    }
+    .desktop-only-br {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .about-hero__visuals {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .about-hero__img-card {
+      height: 200px;
+    }
+    .stats-col--left {
+      padding-right: 1.25rem;
+    }
+    .stats-col--right {
+      padding-left: 1.25rem;
+    }
+    .stat-cell__value {
+      font-size: 2.2rem;
+    }
   }
 
   /* About content */

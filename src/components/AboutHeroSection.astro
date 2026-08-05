@@ -1,0 +1,354 @@
+---
+interface Props {
+  showLearnMore?: boolean;
+}
+
+const { showLearnMore = false } = Astro.props;
+---
+
+<section class="about-hero">
+  <div class="container about-hero__container">
+    <div class="about-hero__header">
+      <div class="about-hero__kicker">
+        <span class="about-hero__kicker-sq"></span> ABOUT US
+      </div>
+      <h2 class="about-hero__title" id="about-hero-title">
+        N3 Global Tech combines strategy, design, and engineering to build digital products that drive real impact.
+      </h2>
+    </div>
+
+    <div class="about-hero__grid">
+      <div class="about-hero__visuals">
+        <div class="about-hero__img-card">
+          <img src="/images/about/about-1-1200.webp" alt="N3 Global Tech Strategy & Design" class="about-hero__img" width="1200" height="900" loading="lazy" />
+        </div>
+        <div class="about-hero__img-card">
+          <img src="/images/about/about-2-1200.webp" alt="N3 Global Tech Engineering & Technology" class="about-hero__img" width="1200" height="800" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="about-hero__right-content">
+        <div class="about-hero__stats">
+          <div class="stats-col stats-col--left">
+            <div class="stat-cell">
+              <div class="stat-cell__value">50+</div>
+              <div class="stat-cell__label">Successfully delivered solutions.</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-cell__value">3+</div>
+              <div class="stat-cell__label">Years of industry experience.</div>
+            </div>
+          </div>
+
+          <div class="stats-col stats-col--right">
+            <div class="stat-cell">
+              <div class="stat-cell__value">95%</div>
+              <div class="stat-cell__label">Building trusted partnerships.</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-cell__value">92%</div>
+              <div class="stat-cell__label">Turning traffic into growth.</div>
+            </div>
+          </div>
+        </div>
+
+        {showLearnMore && (
+          <div class="about-hero__cta-row">
+            <a href="/about/" class="hero__pill-link">
+              <span class="hero__pill-text">Learn More</span>
+              <span class="hero__pill-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="about-hero__divider"></div>
+  </div>
+</section>
+
+<script is:inline>
+  (function() {
+    function initAboutHeroScroll() {
+      var statements = document.querySelectorAll("#about-hero-title");
+      statements.forEach(function(statement) {
+        if (!statement || statement.dataset.initialized) return;
+        statement.dataset.initialized = "true";
+
+        var text = statement.textContent.trim();
+        var words = text.split(/\s+/);
+        statement.innerHTML = words.map(function(w) {
+          return '<span class="about-word">' + w + ' </span>';
+        }).join('');
+
+        var wordSpans = statement.querySelectorAll(".about-word");
+        var heroSection = statement.closest(".about-hero");
+
+        function updateProgress() {
+          if (!heroSection || !wordSpans.length) return;
+          var rect = heroSection.getBoundingClientRect();
+          var windowH = window.innerHeight;
+          
+          var start = windowH * 0.85;
+          var end = windowH * 0.35;
+          var progress = (start - rect.top) / (start - end);
+          progress = Math.max(0, Math.min(1, progress));
+
+          var activeIndex = Math.floor(progress * wordSpans.length);
+          wordSpans.forEach(function(span, idx) {
+            if (idx <= activeIndex) {
+              span.classList.add("is-active");
+            } else {
+              span.classList.remove("is-active");
+            }
+          });
+        }
+
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        updateProgress();
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAboutHeroScroll);
+    } else {
+      initAboutHeroScroll();
+    }
+  })();
+</script>
+
+<style>
+  .about-hero {
+    padding-top: 4.5rem;
+    padding-bottom: 3.5rem;
+    background: #ffffff;
+    color: #0f172a;
+  }
+
+  .about-hero__container {
+    max-width: 1340px;
+    padding: 0 1.5rem;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .about-hero__header {
+    max-width: 100%;
+    margin-bottom: 3.5rem;
+  }
+
+  .about-hero__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+  }
+
+  .about-hero__kicker-sq {
+    width: 6.5px;
+    height: 6.5px;
+    background-color: #0284c7;
+    display: inline-block;
+    border-radius: 1px;
+  }
+
+  .about-hero__title {
+    font-size: clamp(1.65rem, 2.35vw, 2.3rem);
+    font-weight: 500;
+    color: #0f172a;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    font-family: var(--font-heading, "Plus Jakarta Sans", system-ui, sans-serif);
+  }
+
+  .about-hero__title :global(.about-word) {
+    opacity: 0.25;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    white-space: pre;
+  }
+
+  .about-hero__title :global(.about-word.is-active) {
+    opacity: 1;
+    color: #0f172a;
+  }
+
+  .about-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: flex-start;
+  }
+
+  .about-hero__visuals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .about-hero__img-card {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 350px;
+    background: #f1f5f9;
+  }
+
+  .about-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .about-hero__img-card:hover .about-hero__img {
+    transform: scale(1.03);
+  }
+
+  .about-hero__right-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-hero__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .stats-col {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .stats-col--left {
+    padding-right: 3rem;
+    border-right: 1px solid #e2e8f0;
+  }
+
+  .stats-col--right {
+    padding-left: 3rem;
+  }
+
+  .stat-cell__value {
+    font-size: clamp(2.6rem, 3.8vw, 3.6rem);
+    font-weight: 500;
+    color: #0f172a;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.6rem;
+    font-family: var(--font-heading, "Plus Jakarta Sans", system-ui, sans-serif);
+  }
+
+  .stat-cell__label {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 450;
+    line-height: 1.4;
+  }
+
+  .about-hero__cta-row {
+    margin-top: 3.75rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  /* Homepage Pill Link CTA Style */
+  .hero__pill-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.25rem 0.25rem 0.25rem 1.25rem;
+    border: none;
+    border-radius: 9999px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    background: #000000;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .hero__pill-link:hover {
+    background: #111111;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero__pill-text {
+    font-family: var(--font-heading, "Plus Jakarta Sans", system-ui, sans-serif);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+  .hero__pill-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: #ffffff;
+    color: #0284c7;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+
+  .hero__pill-link:hover .hero__pill-icon {
+    transform: rotate(45deg);
+  }
+
+  .about-hero__divider {
+    width: 100%;
+    height: 1px;
+    background: #e2e8f0;
+    margin-top: 4rem;
+  }
+
+  @media (max-width: 992px) {
+    .about-hero__grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .about-hero__img-card {
+      height: 280px;
+    }
+    .about-hero__cta-row {
+      margin-top: 3rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .about-hero__visuals {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .about-hero__img-card {
+      height: 200px;
+    }
+    .stats-col--left {
+      padding-right: 1.25rem;
+    }
+    .stats-col--right {
+      padding-left: 1.25rem;
+    }
+    .stat-cell__value {
+      font-size: 2.2rem;
+    }
+    .about-hero__cta-row {
+      margin-top: 2.15rem;
+    }
+  }
+</style>

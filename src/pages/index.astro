@@ -7,6 +7,8 @@ import WhatWeDoCards from "../components/WhatWeDoCards.astro";
 import HowWeWork from "../components/HowWeWork.astro";
 import TestimonialsSection from "../components/TestimonialsSection.astro";
 import FaqSection from "../components/FaqSection.astro";
+import AboutHeroSection from "../components/AboutHeroSection.astro";
+import ClientLogosMarquee from "../components/ClientLogosMarquee.astro";
 
 const clientLogoIds = [1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15];
 
@@ -259,55 +261,10 @@ const faqs = [
   <!-- All content below hero needs a white bg to cover the fixed video -->
   <div style="position: relative; z-index: 2; background: #ffffff;">
     <!-- Client Logos Marquee (outside hero to avoid overflow clipping) -->
-    <div class="clients-marquee container" id="clients-marquee">
-      <div class="clients-marquee__track-wrapper">
-        <div class="clients-marquee__track">
-          {
-            clientLogoIds.map((n) => (
-              <img
-                src={`/clientlogo/clientlogo${n}.webp`}
-                alt={`Client ${n}`}
-                class="clients-marquee__logo"
-                loading="lazy"
-                decoding="async"
-                width="160"
-                height="80"
-              />
-            ))
-          }
-          {
-            clientLogoIds.map((n) => (
-              <img
-                src={`/clientlogo/clientlogo${n}.webp`}
-                alt=""
-                aria-hidden="true"
-                class="clients-marquee__logo"
-                loading="lazy"
-                decoding="async"
-                width="160"
-                height="80"
-              />
-            ))
-          }
-        </div>
-      </div>
-    </div>
-    <script is:inline>
-      (function () {
-        var marquee = document.getElementById("clients-marquee");
-        if (!marquee) return;
-        if (!("IntersectionObserver" in window)) {
-          marquee.classList.add("is-visible");
-          return;
-        }
-        new IntersectionObserver(
-          function (entries) {
-            marquee.classList.toggle("is-visible", entries[0].isIntersecting);
-          },
-          { rootMargin: "80px 0px" },
-        ).observe(marquee);
-      })();
-    </script>
+    <ClientLogosMarquee />
+
+    <!-- ========== WHAT WE DO ========== -->
+    <WhatWeDoCards />
 
     <!-- ========== FLOW — SCROLL-DRAWN PATH + LIQUID WARP ========== -->
     <section class="flow" id="flow" aria-labelledby="flow-title">
@@ -467,9 +424,6 @@ const faqs = [
         </div>
       </div>
     </section>
-
-    <!-- ========== WHAT WE DO ========== -->
-    <WhatWeDoCards />
 
     <!-- ========== WORK SHOWCASE — STICKY SCROLL ANIMATION ========== -->
     <div class="ws-scroll-track" id="ws-scroll-track">
@@ -897,72 +851,8 @@ export default function <span class="code-func">Product</span>() &#123;
     </section>
     )}
 
-    <!-- ========== ABOUT PREVIEW ========== -->
-    <section
-      class="section about-preview reveal"
-      aria-labelledby="about-preview-title"
-    >
-      <div class="container about-preview__shell">
-        <div class="about-preview__intro">
-          <p class="about-preview__eyebrow">About N3 Global Tech</p>
-          <h2 class="about-preview__statement" id="about-preview-title">
-            We combine strategy, design, engineering, and cloud infrastructure
-            to build software that feels effortless and scales without drama.
-            <span
-              >From first MVP to enterprise platform, every engagement is led by
-              senior staff, start to finish.</span
-            >
-          </h2>
-        </div>
-
-        <div class="about-preview__gallery">
-          <figure class="about-preview__image">
-            <img
-              src="/images/about/about-1-1200.webp"
-              srcset="/images/about/about-1-720.webp 720w, /images/about/about-1-1200.webp 1200w"
-              sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 900px) 46vw, 38vw"
-              width="1200"
-              height="900"
-              loading="lazy"
-              decoding="async"
-              alt="Senior team discussing product strategy with a technology specialist"
-            />
-          </figure>
-          <figure class="about-preview__image">
-            <img
-              src="/images/about/about-2-1200.webp"
-              srcset="/images/about/about-2-720.webp 720w, /images/about/about-2-1200.webp 1200w"
-              sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 900px) 46vw, 38vw"
-              width="1200"
-              height="800"
-              loading="lazy"
-              decoding="async"
-              alt="Senior-led technical consultation in progress"
-            />
-          </figure>
-          <div class="about-preview__action">
-            <a href="/about/" class="hero__pill-link">
-              <span class="hero__pill-text">Learn More</span>
-              <span class="hero__pill-icon">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- ========== ABOUT SECTION (NEW CLEAN DESIGN) ========== -->
+    <AboutHeroSection showLearnMore={true} />
 
     <!-- ========== TESTIMONIALS SECTION ========== -->
     <TestimonialsSection />

@@ -1,13 +1,20 @@
 ---
+interface Props {
+  showTitle?: boolean;
+}
+
+const { showTitle = true } = Astro.props;
 ---
 
 <section class="section services-stacked-section" id="what-we-do-cards">
   <div class="container">
-    <div class="stacked-section-header">
-      <h2 class="stacked-section-title">
-        Our <span class="highlight-blue">Services</span>
-      </h2>
-    </div>
+    {showTitle && (
+      <div class="stacked-section-header">
+        <h2 class="stacked-section-title">
+          Our <span class="highlight-blue">Services</span>
+        </h2>
+      </div>
+    )}
 
     <div class="stacked-cards-container">
       <!-- CARD 1: Technology & Engineering -->
@@ -35,10 +42,10 @@
             </div>
 
             <p class="stacked-card__desc">
-              We develop custom software and web/mobile platforms that stand
-              out to international standards, ensuring peak quality and
-              performance. Using cutting-edge technologies, we create
-              platforms that are visually striking and highly functional.
+              We develop custom software and web/mobile platforms that stand out
+              to international standards, ensuring peak quality and performance.
+              Using cutting-edge technologies, we create platforms that are
+              visually striking and highly functional.
             </p>
 
             <div class="stacked-card__footer">
@@ -101,10 +108,9 @@
             </div>
 
             <p class="stacked-card__desc">
-              Digital transformation audits, technical roadmaps, and
-              competitive benchmarking. We map where your business is, where
-              you need to be, and the exact steps to get there — with complete
-              clarity.
+              Digital transformation audits, technical roadmaps, and competitive
+              benchmarking. We map where your business is, where you need to be,
+              and the exact steps to get there — with complete clarity.
             </p>
 
             <div class="stacked-card__footer">

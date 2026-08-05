@@ -1,0 +1,149 @@
+---
+const clientLogoIds = [1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15];
+---
+
+<div class="clients-marquee container" id="clients-marquee">
+  <div class="clients-marquee__track-wrapper">
+    <div class="clients-marquee__track">
+      {
+        clientLogoIds.map((n) => (
+          <img
+            src={`/clientlogo/clientlogo${n}.webp`}
+            alt={`Client ${n}`}
+            class="clients-marquee__logo"
+            loading="lazy"
+            decoding="async"
+            width="160"
+            height="80"
+          />
+        ))
+      }
+      {
+        clientLogoIds.map((n) => (
+          <img
+            src={`/clientlogo/clientlogo${n}.webp`}
+            alt=""
+            aria-hidden="true"
+            class="clients-marquee__logo"
+            loading="lazy"
+            decoding="async"
+            width="160"
+            height="80"
+          />
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var marquee = document.getElementById("clients-marquee");
+    if (!marquee) return;
+    if (!("IntersectionObserver" in window)) {
+      marquee.classList.add("is-visible");
+      return;
+    }
+    new IntersectionObserver(
+      function (entries) {
+        marquee.classList.toggle("is-visible", entries[0].isIntersecting);
+      },
+      { rootMargin: "80px 0px" },
+    ).observe(marquee);
+  })();
+</script>
+
+<style>
+  .clients-marquee {
+    padding: 2.5rem 0;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .clients-marquee__track-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+  }
+
+  .clients-marquee__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: marquee-scroll 40s linear infinite;
+    animation-play-state: paused;
+    will-change: auto;
+  }
+
+  .clients-marquee.is-visible .clients-marquee__track {
+    animation-play-state: running;
+    will-change: transform;
+  }
+
+  .clients-marquee__track:hover {
+    animation-play-state: paused;
+  }
+
+  .clients-marquee__logo {
+    height: 36px;
+    width: auto;
+    min-width: 80px;
+    max-width: 180px;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    margin-right: 4rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
+  }
+
+  .clients-marquee__logo:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .clients-marquee__logo {
+      height: 32px;
+      max-width: 145px;
+      margin-right: 2.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .clients-marquee__track-wrapper {
+      overflow-x: auto;
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+    .clients-marquee__track {
+      animation: none;
+      transform: none;
+      will-change: auto;
+    }
+  }
+</style>
