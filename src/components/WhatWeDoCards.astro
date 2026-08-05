@@ -1,309 +1,795 @@
 ---
-const cards = [
-  {
-    link: "/services#tech",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
-    titleLine1: "Technology &",
-    titleLine2: "Engineering",
-    desc: "Custom software, SaaS platforms, mobile apps, cloud infrastructure, and AI. Built around your workflows, deployed on AWS, and designed to handle real load from day one."
-  },
-  {
-    link: "/services#strategy",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
-    titleLine1: "Strategy &",
-    titleLine2: "Consulting",
-    desc: "Digital transformation audits, roadmaps, and competitive benchmarking. We map where you are, where you need to be, and the exact steps to get there — no fluff, no filler."
-  },
-  {
-    link: "/services#brand",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
-    titleLine1: "Brand &",
-    titleLine2: "Design",
-    desc: "Identity systems, UI/UX, and product design. Visual languages that are distinctive, consistent, and built to scale across every touchpoint — from business cards to ERP dashboards."
-  },
-  {
-    link: "/services#marketing",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>`,
-    titleLine1: "Marketing &",
-    titleLine2: "Growth",
-    desc: "SEO, digital marketing, and content that sounds like your brand — not generic marketing filler. We write and build for humans first, algorithms second."
-  }
-];
 ---
 
-<section class="wwd-section reveal" id="what-we-do-cards">
-  <div class="container wwd-container">
-    <!-- Header -->
-    <div class="wwd-header">
-      <div class="wwd-header__left">
-        <h2 class="wwd-title">What We Do</h2>
-      </div>
-      <div class="wwd-header__right">
-        <p class="wwd-subtitle">
-          End-to-end partners for companies building something that lasts.
-        </p>
-        <a href="/services" class="btn btn-primary wwd-cta">
-          <span>Explore All Services</span>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </a>
-      </div>
+<section class="section services-stacked-section" id="what-we-do-cards">
+  <div class="container">
+    <div class="stacked-section-header">
+      <h2 class="stacked-section-title">
+        Our <span class="highlight-blue">Services</span>
+      </h2>
     </div>
 
-    <!-- Cards Stack Container -->
-    <div class="wwd-cards-stack">
-      {cards.map((card, idx) => (
-        <a href={card.link} class={`wwd-card wwd-card--${idx + 1}`} data-index={idx + 1}>
-          <div class="wwd-card__top">
-            <div class="wwd-card__icon" set:html={card.icon} />
-            <h3 class="wwd-card__title">
-              <span>{card.titleLine1}</span>
-              <span>{card.titleLine2}</span>
-            </h3>
+    <div class="stacked-cards-container">
+      <!-- CARD 1: Technology & Engineering -->
+      <article class="stacked-card card-purple-magenta" id="card-tech">
+        <div class="stacked-card__inner">
+          <div class="stacked-card__visual">
+            <div class="visual-hero-stage">
+              <img
+                src="/service1.webp"
+                alt="Technology & Engineering showcase"
+                class="visual-hero-img"
+                loading="lazy"
+              />
+            </div>
           </div>
-          <div class="wwd-card__bottom">
-            <p class="wwd-card__desc">{card.desc}</p>
+
+          <div class="stacked-card__content">
+            <h3 class="stacked-card__title">Technology &amp; Engineering</h3>
+
+            <div class="stacked-card__chips">
+              <span class="tech-chip">Web Development</span>
+              <span class="tech-chip">Mobile Development</span>
+              <span class="tech-chip">Cloud Solutions</span>
+              <span class="tech-chip">Business &amp; AI Automation</span>
+            </div>
+
+            <p class="stacked-card__desc">
+              We develop custom software and web/mobile platforms that stand
+              out to international standards, ensuring peak quality and
+              performance. Using cutting-edge technologies, we create
+              platforms that are visually striking and highly functional.
+            </p>
+
+            <div class="stacked-card__footer">
+              <a
+                href="/services#tech"
+                class="circular-badge-cta"
+                aria-label="Explore Service"
+              >
+                <div class="badge-text-ring">
+                  <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <path
+                      id="circlePath-1-component"
+                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                      fill="none"></path>
+                    <text
+                      font-size="11.2"
+                      font-weight="700"
+                      letter-spacing="1.4"
+                      fill="#334155"
+                    >
+                      <textPath href="#circlePath-1-component" startOffset="0%">
+                        EXPLORE OUR SERVICES • EXPLORE •
+                      </textPath>
+                    </text>
+                  </svg>
+                </div>
+                <div class="badge-arrow-icon icon-magenta">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M7 17L17 7M17 7H7M17 7V17"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </a>
+            </div>
           </div>
-        </a>
-      ))}
+        </div>
+      </article>
+
+      <!-- CARD 2: Strategy & Consulting -->
+      <article class="stacked-card card-electric-blue" id="card-strategy">
+        <div class="stacked-card__inner layout-reverse">
+          <div class="stacked-card__content">
+            <h3 class="stacked-card__title">Strategy &amp; Consulting</h3>
+
+            <div class="stacked-card__chips">
+              <span class="tech-chip">Digital Audits</span>
+              <span class="tech-chip">Tech Roadmaps</span>
+              <span class="tech-chip">Cloud Architecture</span>
+              <span class="tech-chip">IT Consulting</span>
+              <span class="tech-chip">Growth Strategy</span>
+            </div>
+
+            <p class="stacked-card__desc">
+              Digital transformation audits, technical roadmaps, and
+              competitive benchmarking. We map where your business is, where
+              you need to be, and the exact steps to get there — with complete
+              clarity.
+            </p>
+
+            <div class="stacked-card__footer">
+              <a
+                href="/services#strategy"
+                class="circular-badge-cta"
+                aria-label="Explore Service"
+              >
+                <div class="badge-text-ring">
+                  <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <path
+                      id="circlePath-2-component"
+                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                      fill="none"></path>
+                    <text
+                      font-size="11.2"
+                      font-weight="700"
+                      letter-spacing="1.4"
+                      fill="#334155"
+                    >
+                      <textPath href="#circlePath-2-component" startOffset="0%">
+                        EXPLORE OUR SERVICES • EXPLORE •
+                      </textPath>
+                    </text>
+                  </svg>
+                </div>
+                <div class="badge-arrow-icon icon-blue">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M7 17L17 7M17 7H7M17 7V17"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="stacked-card__visual">
+            <div class="visual-hero-stage">
+              <img
+                src="/strategy.webp"
+                alt="Strategy & Consulting roadmap"
+                class="visual-hero-img"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 3: Branding & Design -->
+      <article class="stacked-card card-royal-purple" id="card-brand">
+        <div class="stacked-card__inner">
+          <div class="stacked-card__visual">
+            <div class="visual-hero-stage">
+              <img
+                src="/brandingg.webp"
+                alt="Branding & Design showcase"
+                class="visual-hero-img"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div class="stacked-card__content">
+            <h3 class="stacked-card__title">Branding &amp; Design</h3>
+
+            <div class="stacked-card__chips">
+              <span class="tech-chip">Figma</span>
+              <span class="tech-chip">UI/UX Design</span>
+              <span class="tech-chip">Brand Identity</span>
+              <span class="tech-chip">Logo Systems</span>
+              <span class="tech-chip">Design Systems</span>
+              <span class="tech-chip">Product Design</span>
+            </div>
+
+            <p class="stacked-card__desc">
+              Identity systems, UI/UX, custom logo design, and product design.
+              Visual languages that are distinctive, consistent, and built to
+              scale effortlessly across every digital touchpoint.
+            </p>
+
+            <div class="stacked-card__footer">
+              <a
+                href="/services#brand"
+                class="circular-badge-cta"
+                aria-label="Explore Service"
+              >
+                <div class="badge-text-ring">
+                  <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <path
+                      id="circlePath-3-component"
+                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                      fill="none"></path>
+                    <text
+                      font-size="11.2"
+                      font-weight="700"
+                      letter-spacing="1.4"
+                      fill="#334155"
+                    >
+                      <textPath href="#circlePath-3-component" startOffset="0%">
+                        EXPLORE OUR SERVICES • EXPLORE •
+                      </textPath>
+                    </text>
+                  </svg>
+                </div>
+                <div class="badge-arrow-icon icon-purple">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M7 17L17 7M17 7H7M17 7V17"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 4: Marketing & Growth -->
+      <article class="stacked-card card-sunset-coral" id="card-marketing">
+        <div class="stacked-card__inner layout-reverse">
+          <div class="stacked-card__content">
+            <h3 class="stacked-card__title">Marketing &amp; Growth</h3>
+
+            <div class="stacked-card__chips">
+              <span class="tech-chip">SEO &amp; SEM</span>
+              <span class="tech-chip">Digital Marketing</span>
+              <span class="tech-chip">Social Media</span>
+              <span class="tech-chip">Growth Analytics</span>
+              <span class="tech-chip">Conversion Strategy</span>
+            </div>
+
+            <p class="stacked-card__desc">
+              Grow your digital presence with targeted marketing campaigns,
+              search engine optimization (SEO), performance marketing, and
+              data-driven insights engineered for real ROI.
+            </p>
+
+            <div class="stacked-card__footer">
+              <a
+                href="/services#marketing"
+                class="circular-badge-cta"
+                aria-label="Explore Service"
+              >
+                <div class="badge-text-ring">
+                  <svg viewBox="0 0 100 100" width="100%" height="100%">
+                    <path
+                      id="circlePath-4-component"
+                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                      fill="none"></path>
+                    <text
+                      font-size="11.2"
+                      font-weight="700"
+                      letter-spacing="1.4"
+                      fill="#334155"
+                    >
+                      <textPath href="#circlePath-4-component" startOffset="0%">
+                        EXPLORE OUR SERVICES • EXPLORE •
+                      </textPath>
+                    </text>
+                  </svg>
+                </div>
+                <div class="badge-arrow-icon icon-coral">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M7 17L17 7M17 7H7M17 7V17"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="stacked-card__visual">
+            <div class="visual-hero-stage">
+              <img
+                src="/marketing.webp"
+                alt="Marketing & Growth showcase"
+                class="visual-hero-img"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
 <style>
-  .wwd-section {
-    padding: 6rem 0;
+  /* ===== STACKED CARDS SCROLL SECTION HEADER & LAYOUT ===== */
+  .stacked-section-header {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin: 0 auto 3.2rem auto !important;
+    width: 100% !important;
+  }
+
+  .stacked-section-title {
+    font-family:
+      "Outfit", "Plus Jakarta Sans", var(--font-heading, system-ui, sans-serif) !important;
+    font-size: clamp(2.5rem, 4.2vw, 3.8rem) !important;
+    font-weight: 500 !important;
+    color: #0f172a !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.015em !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .stacked-section-title .highlight-blue {
+    color: #0ea5e9 !important;
+  }
+
+  .services-stacked-section {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+    overflow: visible !important;
     background: #ffffff;
+  }
+
+  .services-stacked-section .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    box-sizing: border-box;
+  }
+
+  .stacked-cards-container {
+    display: flex;
+    flex-direction: column;
     position: relative;
-    z-index: 5;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
   }
 
-  .wwd-container {
-    display: flex;
-    flex-direction: column;
-    gap: 3.5rem;
-  }
-
-  /* Header Layout */
-  .wwd-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 2rem;
-  }
-
-  .wwd-header__left {
-    max-width: 580px;
-  }
-
-  .wwd-title {
-    font-size: clamp(2.5rem, 4.5vw, 3.8rem);
-    font-weight: 800;
-    color: var(--gray-900);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
-  }
-
-  .wwd-header__right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.25rem;
-    max-width: 280px;
-  }
-
-  .wwd-subtitle {
-    font-size: 0.88rem;
-    color: var(--gray-500);
-    line-height: 1.5;
-    font-weight: 450;
-  }
-
-  .wwd-cta {
-    padding: 0.65rem 1.35rem;
-    font-size: 0.88rem;
-    font-weight: 600;
-    border-radius: var(--radius-full);
-  }
-
-  /* Cards Grid */
-  .wwd-cards-stack {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-  }
-
-  .wwd-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 2.25rem 1.75rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 420px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, 
-                border-color 0.3s ease, 
-                transform 0.3s ease, 
-                box-shadow 0.3s ease;
-    position: relative;
+  .stacked-card {
+    position: sticky;
+    top: 90px;
+    border-radius: 22px;
     overflow: hidden;
+    box-shadow:
+      0 30px 70px rgba(0, 0, 0, 0.18),
+      0 2px 6px rgba(0, 0, 0, 0.06);
+    transition:
+      transform 0.4s ease,
+      box-shadow 0.4s ease;
+    width: 100% !important;
+    height: min(715px, calc(100svh - 118px)) !important;
+    min-height: 560px !important;
+    margin-bottom: 25vh;
+    box-sizing: border-box;
   }
 
-  .wwd-card__top {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.75rem;
+  .stacked-card:last-child {
+    margin-bottom: 0 !important;
   }
 
-  .wwd-card__icon {
-    color: var(--gray-700);
+  #card-tech {
+    top: 90px;
+    z-index: 1;
+  }
+  #card-strategy {
+    top: 90px;
+    z-index: 2;
+  }
+  #card-brand {
+    top: 90px;
+    z-index: 3;
+  }
+  #card-marketing {
+    top: 90px;
+    z-index: 4;
+  }
+
+  .card-purple-magenta {
+    background: #c66de5;
+  }
+  .card-electric-blue {
+    background: linear-gradient(135deg, #689ff8 0%, #675ae6 100%);
+  }
+  .card-royal-purple {
+    background: #7700b8;
+  }
+  .card-sunset-coral {
+    background: #1e499e;
+  }
+
+  .stacked-card__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    height: 100% !important;
+    min-height: 0 !important;
+    color: #ffffff;
+    box-sizing: border-box;
+  }
+
+  .stacked-card__visual {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.3s ease;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    height: 100% !important;
+    min-height: 0 !important;
+    background: rgba(0, 0, 0, 0.04);
   }
 
-  .wwd-card__title {
-    font-size: clamp(1.4rem, 1.8vw, 1.65rem);
-    font-weight: 700;
-    color: var(--gray-900);
-    line-height: 1.18;
-    letter-spacing: -0.02em;
+  .visual-hero-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .visual-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .stacked-card:hover .visual-hero-img {
+    transform: scale(1.03);
+  }
+
+  .stacked-card__content {
     display: flex;
     flex-direction: column;
-    transition: color 0.3s ease;
+    justify-content: center;
+    padding: 5rem 5.5rem;
+    height: 100% !important;
+    min-height: 0 !important;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
   }
 
-  .wwd-card__bottom {
+  .stacked-card__title {
+    font-size: 3.2rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-family: var(
+      --font-heading,
+      "Plus Jakarta Sans",
+      system-ui,
+      sans-serif
+    );
+  }
+
+  .stacked-card__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .tech-chip {
+    background: rgba(255, 255, 255, 0.94);
+    color: #334155;
+    font-size: 1.05rem;
+    font-weight: 550;
+    padding: 0.7rem 1.65rem;
+    border-radius: 24px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .tech-chip:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    color: #0f172a;
+  }
+
+  .stacked-card__desc {
+    font-size: 1.42rem;
+    line-height: 1.72;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 2.5rem;
+    max-width: 660px;
+    font-weight: 400;
+  }
+
+  .stacked-card__footer {
+    display: flex;
+    justify-content: flex-end;
     margin-top: auto;
   }
 
-  .wwd-card__desc {
-    font-size: 0.85rem;
-    color: var(--gray-500);
-    line-height: 1.5;
-    transition: color 0.3s ease;
+  .circular-badge-cta {
+    position: relative;
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition:
+      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.3s ease;
   }
 
-  /* Hover State: Smooth Color Shift to Blue */
-  .wwd-card:hover {
-    background: #0284c7;
-    border-color: #0284c7;
-    transform: translateY(-5px);
-    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.22);
+  .circular-badge-cta:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
   }
 
-  .wwd-card:hover .wwd-card__icon {
-    color: #ffffff;
+  .badge-text-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    animation: spinSlow 15s linear infinite;
   }
 
-  .wwd-card:hover .wwd-card__title {
-    color: #ffffff;
+  .circular-badge-cta:hover .badge-text-ring {
+    animation-duration: 6s;
   }
 
-  .wwd-card:hover .wwd-card__desc {
-    color: #e0f2fe;
+  .badge-arrow-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease;
   }
 
-  /* Responsive Layout (Tablet) */
-  @media (max-width: 1024px) {
-    .wwd-cards-stack {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-    }
+  .badge-arrow-icon.icon-magenta {
+    color: #db2777;
+  }
+  .badge-arrow-icon.icon-blue {
+    color: #2563eb;
+  }
+  .badge-arrow-icon.icon-purple {
+    color: #9333ea;
+  }
+  .badge-arrow-icon.icon-coral {
+    color: #e11d48;
+  }
 
-    .wwd-card {
-      height: 380px;
+  .circular-badge-cta:hover .badge-arrow-icon.icon-magenta {
+    background: #db2777;
+    color: #ffffff !important;
+    transform: scale(1.08);
+  }
+  .circular-badge-cta:hover .badge-arrow-icon.icon-blue {
+    background: #2563eb;
+    color: #ffffff !important;
+    transform: scale(1.08);
+  }
+  .circular-badge-cta:hover .badge-arrow-icon.icon-purple {
+    background: #9333ea;
+    color: #ffffff !important;
+    transform: scale(1.08);
+  }
+  .circular-badge-cta:hover .badge-arrow-icon.icon-coral {
+    background: #e11d48;
+    color: #ffffff !important;
+    transform: scale(1.08);
+  }
+
+  @keyframes spinSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 
-  /* Mobile Layout: Clean Flow + Lag-Free Card Stacking Scroll */
-  @media (max-width: 768px) {
-    .wwd-section {
-      padding: 3rem 0 2.5rem 0;
+  @media (min-width: 901px) and (max-height: 820px) {
+    .stacked-card__content {
+      padding: 2.75rem 3.75rem;
     }
 
-    .wwd-container {
-      gap: 2rem;
+    .stacked-card__title {
+      font-size: 2.65rem;
+      margin-bottom: 1.15rem;
     }
 
-    .wwd-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-      position: relative;
-      top: auto;
-      z-index: 1;
-      background: transparent;
-      padding: 0;
-      margin-bottom: 0.5rem;
-      border-bottom: none;
+    .stacked-card__chips {
+      gap: 0.6rem;
+      margin-bottom: 1.35rem;
     }
 
-    .wwd-title {
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: var(--gray-900);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+    .tech-chip {
+      padding: 0.52rem 1.15rem;
+      font-size: 0.86rem;
     }
 
-    .wwd-header__right {
-      max-width: 100%;
-      gap: 1rem;
-    }
-
-    .wwd-subtitle {
+    .stacked-card__desc {
+      margin-bottom: 1.25rem;
       font-size: 0.95rem;
-      color: var(--gray-600);
+      line-height: 1.55;
     }
 
-    /* Stack Cards on Mobile: Pins cleanly below mobile navbar without overlap */
-    .wwd-cards-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      padding-bottom: 2rem;
-      position: relative;
+    .circular-badge-cta {
+      width: 82px;
+      height: 82px;
     }
 
-    .wwd-card {
-      position: sticky;
-      top: 84px; /* Pins cleanly right under sticky navbar */
-      margin-bottom: 3.5rem; /* Generous scroll spacing so cards stack smoothly */
-      border-radius: 20px;
-      padding: 1.75rem 1.5rem;
-      height: 340px;
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.08);
-      background: #ffffff;
-      border: 1px solid var(--gray-200);
+    .badge-text-ring svg {
+      width: 82px;
+      height: 82px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .services-stacked-section .container {
+      padding-left: 0.75rem !important;
+      padding-right: 0.75rem !important;
     }
 
-    .wwd-card--1 {
-      top: 84px;
-      z-index: 1;
+    .stacked-cards-container {
+      width: 100% !important;
+      padding: 0 !important;
     }
 
-    .wwd-card--2 {
-      top: 96px;
-      z-index: 2;
+    .stacked-card {
+      position: sticky !important;
+      top: 75px !important;
+      height: 660px !important;
+      min-height: 660px !important;
+      margin-bottom: 22vh !important;
+      border-radius: 24px !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22) !important;
     }
 
-    .wwd-card--3 {
-      top: 108px;
-      z-index: 3;
+    .stacked-card:last-child {
+      margin-bottom: 0 !important;
     }
 
-    .wwd-card--4 {
-      top: 120px;
-      z-index: 4;
+    .stacked-card__inner,
+    .stacked-card__inner.layout-reverse {
+      display: flex !important;
+      flex-direction: column !important;
+      height: 660px !important;
+      min-height: 660px !important;
+      position: relative !important;
+    }
+
+    .stacked-card__visual {
+      order: 1 !important;
+      height: 290px !important;
+      min-height: 290px !important;
+      width: 100% !important;
+      position: relative !important;
+    }
+
+    .visual-hero-stage {
+      height: 290px !important;
+      min-height: 290px !important;
+      width: 100% !important;
+    }
+
+    .stacked-card__content {
+      order: 2 !important;
+      padding: 2.2rem 1.6rem 2.2rem 1.6rem !important;
+      height: 370px !important;
+      min-height: 370px !important;
+      justify-content: flex-start !important;
+    }
+
+    .stacked-card__title {
+      font-size: clamp(1.35rem, 4.6vw, 1.6rem) !important;
+      font-weight: 600 !important;
+      margin-bottom: 0.85rem !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+    }
+
+    .stacked-card__chips {
+      gap: 0.5rem !important;
+      margin-bottom: 1.25rem !important;
+    }
+
+    .tech-chip {
+      font-size: 0.72rem !important;
+      padding: 0.3rem 0.75rem !important;
+      border-radius: 12px !important;
+      font-weight: 500 !important;
+    }
+
+    .stacked-card__desc {
+      font-size: 0.9rem !important;
+      line-height: 1.6 !important;
+      margin-bottom: 1rem !important;
+      color: rgba(255, 255, 255, 0.88) !important;
+    }
+
+    .stacked-card__footer {
+      position: absolute !important;
+      right: 1.25rem !important;
+      bottom: 1.25rem !important;
+      top: auto !important;
+      transform: none !important;
+      z-index: 10 !important;
+      margin-top: 0 !important;
+    }
+
+    .circular-badge-cta {
+      width: 82px !important;
+      height: 82px !important;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22) !important;
+    }
+
+    .badge-text-ring svg {
+      width: 82px !important;
+      height: 82px !important;
+    }
+
+    .badge-arrow-icon {
+      width: 40px !important;
+      height: 40px !important;
+    }
+
+    .badge-arrow-icon svg {
+      width: 20px !important;
+      height: 20px !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .badge-text-ring {
+      animation: none;
+    }
+
+    .visual-hero-img,
+    .circular-badge-cta,
+    .badge-arrow-icon,
+    .tech-chip {
+      transition: none;
     }
   }
 </style>
