@@ -195,13 +195,10 @@ const faqs = [
               <h3 class="stacked-card__title">Technology &amp; Engineering</h3>
               
               <div class="stacked-card__chips">
-                <span class="tech-chip">React</span>
-                <span class="tech-chip">Next.JS</span>
-                <span class="tech-chip">Flutter</span>
-                <span class="tech-chip">Node.js</span>
-                <span class="tech-chip">Python</span>
-                <span class="tech-chip">AWS Cloud</span>
-                <span class="tech-chip">AI &amp; Automation</span>
+                <span class="tech-chip">Web Development</span>
+                <span class="tech-chip">Mobile Development</span>
+                <span class="tech-chip">Cloud Solutions</span>
+                <span class="tech-chip">Business &amp; AI Automation</span>
               </div>
 
               <p class="stacked-card__desc">
@@ -976,7 +973,7 @@ const faqs = [
   /* ===== STACKED CARDS SCROLL SECTION (REFERENCE MATCH) ===== */
   .services-stacked-section {
     padding-top: 2rem !important;
-    padding-bottom: 8rem;
+    padding-bottom: 2rem !important;
     overflow: visible !important;
   }
 
@@ -1009,6 +1006,10 @@ const faqs = [
     min-height: 715px !important;
     margin-bottom: 25vh;
     box-sizing: border-box;
+  }
+
+  .stacked-card:last-child {
+    margin-bottom: 0 !important;
   }
 
   #card-tech {
@@ -1226,7 +1227,7 @@ const faqs = [
     }
 
     .stacked-card:last-child {
-      margin-bottom: 22vh !important;
+      margin-bottom: 0 !important;
     }
 
     .stacked-card__inner,
@@ -1261,10 +1262,11 @@ const faqs = [
     }
 
     .stacked-card__title {
-      font-size: 1.85rem !important;
-      font-weight: 500 !important;
-      margin-bottom: 1rem !important;
-      line-height: 1.15 !important;
+      font-size: clamp(1.35rem, 4.6vw, 1.6rem) !important;
+      font-weight: 600 !important;
+      margin-bottom: 0.85rem !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
     }
 
     .stacked-card__chips {
@@ -1273,9 +1275,9 @@ const faqs = [
     }
 
     .tech-chip {
-      font-size: 0.8rem !important;
-      padding: 0.4rem 0.95rem !important;
-      border-radius: 16px !important;
+      font-size: 0.72rem !important;
+      padding: 0.3rem 0.75rem !important;
+      border-radius: 12px !important;
       font-weight: 500 !important;
     }
 
