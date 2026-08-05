@@ -75,33 +75,33 @@ const marqueeList = [...testimonials, ...testimonials];
     </div>
 
     <div class="ts-divider"></div>
+  </div>
 
-    <!-- Infinite Auto-Scrolling Horizontal Marquee -->
-    <div class="ts-slider-wrapper">
-      <div class="ts-slider-track">
-        {marqueeList.map((t, idx) => (
-          <article class="ts-card" data-card-idx={idx}>
-            <img 
-              src={t.image} 
-              alt={`${t.name} - ${t.role}`} 
-              class="ts-card__bg" 
-              loading="lazy"
-            />
-            <div class="ts-card__overlay"></div>
+  <!-- Full Width Edge-to-Edge Infinite Auto-Scrolling Marquee -->
+  <div class="ts-slider-wrapper">
+    <div class="ts-slider-track">
+      {marqueeList.map((t, idx) => (
+        <article class="ts-card" data-card-idx={idx}>
+          <img 
+            src={t.image} 
+            alt={`${t.name} - ${t.role}`} 
+            class="ts-card__bg" 
+            loading="lazy"
+          />
+          <div class="ts-card__overlay"></div>
 
-            <div class="ts-card__content">
-              <blockquote class="ts-card__quote">
-                “{t.quote}”
-              </blockquote>
-              <div class="ts-card__line"></div>
-              <div class="ts-card__author">
-                <span class="ts-card__name">{t.name}</span>
-                <span class="ts-card__role">{t.role}</span>
-              </div>
+          <div class="ts-card__content">
+            <blockquote class="ts-card__quote">
+              “{t.quote}”
+            </blockquote>
+            <div class="ts-card__line"></div>
+            <div class="ts-card__author">
+              <span class="ts-card__name">{t.name}</span>
+              <span class="ts-card__role">{t.role}</span>
             </div>
-          </article>
-        ))}
-      </div>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>

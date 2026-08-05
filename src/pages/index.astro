@@ -391,8 +391,8 @@ const faqs = [
             </p>
 
             <div class="flow__parallax" data-rate="0.068">
-              <a href="/work/" class="flow__cta hero__pill-link">
-                <span class="hero__pill-text">Our Work</span>
+              <a href="/process/" class="flow__cta hero__pill-link">
+                <span class="hero__pill-text">Our Process</span>
                 <span class="hero__pill-icon">
                   <svg
                     width="16"
@@ -417,6 +417,152 @@ const faqs = [
 
     <!-- ========== WHAT WE DO ========== -->
     <WhatWeDoCards />
+
+    <!-- ========== WORK SHOWCASE — STICKY SCROLL ANIMATION ========== -->
+    <div class="ws-scroll-track" id="ws-scroll-track">
+      <div class="ws-sticky" id="ws-sticky">
+        <div class="ws-sticky-inner" id="ws-sticky-inner">
+          <!-- Heading -->
+          <div class="ws-heading" id="ws-heading">
+            <h2>
+              Recent Projects We're <span class="text-gradient">Proud Of</span>
+            </h2>
+          </div>
+
+          <!-- Card stage: same cards animate from stacked → grid -->
+          <div class="ws-stage" id="ws-stage">
+            <!-- Card 0: Viera (LEFT) -->
+            <div
+              class="ws-card"
+              id="ws-card-0"
+              style="cursor: pointer;"
+              data-name="Viera Natural Wooden Flooring"
+              data-category="Digital Transformation & CRM"
+              data-desc="A digital transformation featuring an immersive 3D website and custom CRM. It elegantly showcases the brand's portfolio while the CRM manages staff operations, site progress, and task automation."
+              data-tech="3D Animations, React, Node.js"
+              data-client="Viera Natural Wooden Flooring"
+              data-status="Live"
+              data-link="https://viera-two.vercel.app/"
+              data-pdf=""
+              data-image="/products/circle-for-work/svg/vieracover.webp"
+            >
+              <div class="ws-card__img">
+                <img
+                  src="/products/circle-for-work/svg/vieracover.webp"
+                  srcset="/products/circle-for-work/svg/vieracover-480.webp 480w, /products/circle-for-work/svg/vieracover-900.webp 900w, /products/circle-for-work/svg/vieracover.webp 1536w"
+                  sizes="(max-width: 760px) 280px, 390px"
+                  width="900"
+                  height="600"
+                  alt="Viera Natural Wooden Flooring"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="ws-card__meta">
+                <strong class="ws-card__name">Viera Natural Flooring</strong>
+                <p class="ws-card__desc">
+                  Immersive 3D brand experience with custom CRM.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 1: enJoyful (CENTER) -->
+            <div
+              class="ws-card"
+              id="ws-card-1"
+              style="cursor: pointer;"
+              data-name="Enjoyful Life"
+              data-category="E-Commerce"
+              data-desc="A high-performance e-commerce platform for a natural skincare brand. It features seamless product discovery, secure payments, and a responsive UI optimized for scalability."
+              data-tech="Next.js, Tailwind, Appwrite, AWS"
+              data-client="Enjoyful Life"
+              data-status="Development Ongoing"
+              data-link="https://www.enjoyfullife.com/"
+              data-pdf=""
+              data-image="/products/circle-for-work/svg/enjoyfullifecover.webp"
+            >
+              <div class="ws-card__img">
+                <img
+                  src="/products/circle-for-work/svg/enjoyfullifecover.webp"
+                  srcset="/products/circle-for-work/svg/enjoyfullifecover-480.webp 480w, /products/circle-for-work/svg/enjoyfullifecover-900.webp 900w, /products/circle-for-work/svg/enjoyfullifecover.webp 1536w"
+                  sizes="(max-width: 760px) 280px, 390px"
+                  width="900"
+                  height="600"
+                  alt="Enjoyful Life E-Commerce"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="ws-card__meta">
+                <strong class="ws-card__name">Enjoyful Life</strong>
+                <p class="ws-card__desc">
+                  Natural skincare e-commerce, built for scale.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 2: Flyger (RIGHT) -->
+            <div
+              class="ws-card"
+              id="ws-card-2"
+              style="cursor: pointer;"
+              data-name="Flyger Aviation Services"
+              data-category="Aviation Services"
+              data-desc="A professional corporate website for a global aviation support provider specializing in end-to-end flight operations. The site showcases their flight planning, permit acquisition, dispatch coordination, and crew logistics services with a clean, premium UI tailored for international operators."
+              data-tech="Modern Web Stack"
+              data-client="Flyger Aviation Services"
+              data-status="Live"
+              data-link="https://flyger.aero"
+              data-pdf=""
+              data-image="/products/circle-for-work/svg/flygercover.webp"
+            >
+              <div class="ws-card__img">
+                <img
+                  src="/products/circle-for-work/svg/flygercover.webp"
+                  srcset="/products/circle-for-work/svg/flygercover-480.webp 480w, /products/circle-for-work/svg/flygercover-900.webp 900w, /products/circle-for-work/svg/flygercover.webp 1536w"
+                  sizes="(max-width: 760px) 280px, 390px"
+                  width="900"
+                  height="600"
+                  alt="Flyger Aviation Services"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="ws-card__meta">
+                <strong class="ws-card__name">Flyger Aviation</strong>
+                <p class="ws-card__desc">
+                  Global aviation support portal, live in production.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="ws-cta" id="ws-cta">
+            <a
+              href="/work/"
+              class="btn btn-outline btn-lg ws-cta__button cta-dark-pill"
+            >
+              <span>See All Projects</span>
+              <span class="cta-dark-pill__icon" aria-hidden="true"
+                ><svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M7 17 17 7m0 0H7m10 0v10"></path></svg
+                ></span
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ========== HOW WE WORK ========== -->
     <HowWeWork />
@@ -877,259 +1023,9 @@ const faqs = [
       });
     </script>
 
-    <!-- ========== WORK SHOWCASE — STICKY SCROLL ANIMATION ========== -->
-    <div class="ws-scroll-track" id="ws-scroll-track">
-      <div class="ws-sticky" id="ws-sticky">
-        <div class="ws-sticky-inner" id="ws-sticky-inner">
-          <!-- Heading -->
-          <div class="ws-heading" id="ws-heading">
-            <h2>
-              Recent Projects We're <span class="text-gradient">Proud Of</span>
-            </h2>
-          </div>
 
-          <!-- Card stage: same cards animate from stacked → grid -->
-          <div class="ws-stage" id="ws-stage">
-            <!-- Card 0: Viera (LEFT) -->
-            <div
-              class="ws-card"
-              id="ws-card-0"
-              style="cursor: pointer;"
-              data-name="Viera Natural Wooden Flooring"
-              data-category="Digital Transformation & CRM"
-              data-desc="A digital transformation featuring an immersive 3D website and custom CRM. It elegantly showcases the brand's portfolio while the CRM manages staff operations, site progress, and task automation."
-              data-tech="3D Animations, React, Node.js"
-              data-client="Viera Natural Wooden Flooring"
-              data-status="Live"
-              data-link="https://viera-two.vercel.app/"
-              data-pdf=""
-              data-image="/products/circle-for-work/svg/vieracover.webp"
-            >
-              <div class="ws-card__img">
-                <img
-                  src="/products/circle-for-work/svg/vieracover.webp"
-                  srcset="/products/circle-for-work/svg/vieracover-480.webp 480w, /products/circle-for-work/svg/vieracover-900.webp 900w, /products/circle-for-work/svg/vieracover.webp 1536w"
-                  sizes="(max-width: 760px) 280px, 390px"
-                  width="900"
-                  height="600"
-                  alt="Viera Natural Wooden Flooring"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div class="ws-card__meta">
-                <strong class="ws-card__name">Viera Natural Flooring</strong>
-                <p class="ws-card__desc">
-                  Immersive 3D brand experience with custom CRM.
-                </p>
-              </div>
-            </div>
 
-            <!-- Card 1: enJoyful (CENTER) -->
-            <div
-              class="ws-card"
-              id="ws-card-1"
-              style="cursor: pointer;"
-              data-name="Enjoyful Life"
-              data-category="E-Commerce"
-              data-desc="A high-performance e-commerce platform for a natural skincare brand. It features seamless product discovery, secure payments, and a responsive UI optimized for scalability."
-              data-tech="Next.js, Tailwind, Appwrite, AWS"
-              data-client="Enjoyful Life"
-              data-status="Development Ongoing"
-              data-link="https://www.enjoyfullife.com/"
-              data-pdf=""
-              data-image="/products/circle-for-work/svg/enjoyfullifecover.webp"
-            >
-              <div class="ws-card__img">
-                <img
-                  src="/products/circle-for-work/svg/enjoyfullifecover.webp"
-                  srcset="/products/circle-for-work/svg/enjoyfullifecover-480.webp 480w, /products/circle-for-work/svg/enjoyfullifecover-900.webp 900w, /products/circle-for-work/svg/enjoyfullifecover.webp 1536w"
-                  sizes="(max-width: 760px) 280px, 390px"
-                  width="900"
-                  height="600"
-                  alt="Enjoyful Life E-Commerce"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div class="ws-card__meta">
-                <strong class="ws-card__name">Enjoyful Life</strong>
-                <p class="ws-card__desc">
-                  Natural skincare e-commerce, built for scale.
-                </p>
-              </div>
-            </div>
 
-            <!-- Card 2: Flyger (RIGHT) -->
-            <div
-              class="ws-card"
-              id="ws-card-2"
-              style="cursor: pointer;"
-              data-name="Flyger Aviation Services"
-              data-category="Aviation Services"
-              data-desc="A professional corporate website for a global aviation support provider specializing in end-to-end flight operations. The site showcases their flight planning, permit acquisition, dispatch coordination, and crew logistics services with a clean, premium UI tailored for international operators."
-              data-tech="Modern Web Stack"
-              data-client="Flyger Aviation Services"
-              data-status="Live"
-              data-link="https://flyger.aero"
-              data-pdf=""
-              data-image="/products/circle-for-work/svg/flygercover.webp"
-            >
-              <div class="ws-card__img">
-                <img
-                  src="/products/circle-for-work/svg/flygercover.webp"
-                  srcset="/products/circle-for-work/svg/flygercover-480.webp 480w, /products/circle-for-work/svg/flygercover-900.webp 900w, /products/circle-for-work/svg/flygercover.webp 1536w"
-                  sizes="(max-width: 760px) 280px, 390px"
-                  width="900"
-                  height="600"
-                  alt="Flyger Aviation Services"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div class="ws-card__meta">
-                <strong class="ws-card__name">Flyger Aviation</strong>
-                <p class="ws-card__desc">
-                  Global aviation support portal, live in production.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- CTA -->
-          <div class="ws-cta" id="ws-cta">
-            <a
-              href="/work/"
-              class="btn btn-outline btn-lg ws-cta__button cta-dark-pill"
-            >
-              <span>See All Projects</span>
-              <span class="cta-dark-pill__icon" aria-hidden="true"
-                ><svg
-                  width="16"
-                  height="16"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  ><path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M7 17 17 7m0 0H7m10 0v10"></path></svg
-                ></span
-              >
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ========== WHAT N3 STANDS FOR ========== -->
-    <section class="section principles-section reveal" id="principles">
-      <!-- Weaves down the section so the three cards sit along it: the stroke
-         passes right of Next, left of Network, right of Navigate. -->
-      <svg
-        class="principles__line"
-        viewBox="0 0 1440 1200"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <defs>
-          <linearGradient
-            id="prinGrad"
-            gradientUnits="userSpaceOnUse"
-            x1="0"
-            y1="0"
-            x2="1440"
-            y2="1200"
-          >
-            <stop offset="0%" stop-color="#5eead4"></stop>
-            <stop offset="50%" stop-color="#22d3ee"></stop>
-            <stop offset="100%" stop-color="#67e8f9"></stop>
-          </linearGradient>
-        </defs>
-        <path
-          id="principles-line-path"
-          d="M -40,110 C 380,88 560,250 700,382 C 848,522 1322,540 1332,720 C 1342,902 500,878 380,1000 C 290,1092 480,1182 900,1158"
-          fill="none"
-          stroke="url(#prinGrad)"
-          stroke-width="30"
-          stroke-linecap="round"
-          stroke-linejoin="round"></path>
-      </svg>
-
-      <div class="container principles__inner">
-        <div class="principles__head">
-          <h2 class="principles__title">
-            <span class="principles__row">
-              {
-                ["Three", "Ideas", "Behind"].map((w, i) => (
-                  <span class="word" style={`--i:${i}`}>
-                    {w}
-                  </span>
-                ))
-              }
-            </span>
-            <span class="principles__row">
-              {
-                ["Everything", "We", "Build"].map((w, i) => (
-                  <span class="word" style={`--i:${i + 3}`}>
-                    {w}
-                  </span>
-                ))
-              }
-            </span>
-          </h2>
-          <p class="principles__lede">
-            N3 is built on three simple ideas that shape how we work and what we
-            create.
-          </p>
-        </div>
-
-        <div class="principles-grid">
-          <article class="principle-card">
-            <div class="principle-card__head">
-              <span class="principle-card__num">01</span>
-              <h3 class="principle-card__title">Next</h3>
-            </div>
-            <p class="principle-card__desc">
-              Always looking ahead and building solutions that are ready for
-              tomorrow.
-            </p>
-          </article>
-
-          <article class="principle-card">
-            <div class="principle-card__head">
-              <span class="principle-card__num">02</span>
-              <h3 class="principle-card__title">Network</h3>
-            </div>
-            <p class="principle-card__desc">
-              Bringing people, businesses, and technology together in meaningful
-              ways.
-            </p>
-          </article>
-
-          <article class="principle-card">
-            <div class="principle-card__head">
-              <span class="principle-card__num">03</span>
-              <h3 class="principle-card__title">Navigate</h3>
-            </div>
-            <p class="principle-card__desc">
-              Making complex things simple, clear, and easy to use.
-            </p>
-          </article>
-        </div>
-
-        <div class="principles-summary">
-          <p>
-            From <a href="/custom-software-development/">custom software</a> to <a
-              href="/saas-development-company/">SaaS platforms</a
-            >, web, and mobile, we build digital solutions that are scalable,
-            fast, and designed for real people.
-          </p>
-        </div>
-      </div>
-    </section>
 
     {
       /*

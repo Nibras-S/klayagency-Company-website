@@ -1,0 +1,241 @@
+---
+---
+
+<section class="section principles-section reveal" id="principles">
+  <!-- Wavy connecting background path -->
+  <svg
+    class="principles__line"
+    viewBox="0 0 1440 1200"
+    preserveAspectRatio="xMidYMid slice"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <defs>
+      <linearGradient
+        id="prinGrad"
+        gradientUnits="userSpaceOnUse"
+        x1="0"
+        y1="0"
+        x2="1440"
+        y2="1200"
+      >
+        <stop offset="0%" stop-color="#38bdf8"></stop>
+        <stop offset="50%" stop-color="#0284c7"></stop>
+        <stop offset="100%" stop-color="#0ea5e9"></stop>
+      </linearGradient>
+    </defs>
+    <path
+      id="principles-line-path"
+      d="M -40,110 C 380,88 560,250 700,382 C 848,522 1322,540 1332,720 C 1342,902 500,878 380,1000 C 290,1092 480,1182 900,1158"
+      fill="none"
+      stroke="url(#prinGrad)"
+      stroke-width="24"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      opacity="0.25"
+    ></path>
+  </svg>
+
+  <div class="container principles__inner">
+    <div class="principles__head">
+      <div class="badge badge-sky">Our Philosophy</div>
+      <h2 class="principles__title">
+        Three Ideas Behind<br />
+        <span class="text-gradient">Everything We Build</span>
+      </h2>
+      <p class="principles__lede">
+        N3 is built on three simple ideas that shape how we work and what we create.
+      </p>
+    </div>
+
+    <div class="principles-grid">
+      <article class="principle-card">
+        <div class="principle-card__head">
+          <span class="principle-card__num">01</span>
+          <h3 class="principle-card__title">Next</h3>
+        </div>
+        <p class="principle-card__desc">
+          Always looking ahead and building solutions that are ready for tomorrow.
+        </p>
+      </article>
+
+      <article class="principle-card">
+        <div class="principle-card__head">
+          <span class="principle-card__num">02</span>
+          <h3 class="principle-card__title">Network</h3>
+        </div>
+        <p class="principle-card__desc">
+          Bringing people, businesses, and technology together in meaningful ways.
+        </p>
+      </article>
+
+      <article class="principle-card">
+        <div class="principle-card__head">
+          <span class="principle-card__num">03</span>
+          <h3 class="principle-card__title">Navigate</h3>
+        </div>
+        <p class="principle-card__desc">
+          Making complex things simple, clear, and easy to use.
+        </p>
+      </article>
+    </div>
+
+    <div class="principles-summary">
+      <p>
+        From <a href="/custom-software-development/">custom software</a> to <a href="/saas-development-company/">SaaS platforms</a>, web, and mobile, we build digital solutions that are scalable, fast, and designed for real people.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .principles-section {
+    position: relative;
+    padding: 6rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    overflow: hidden;
+  }
+
+  .principles__line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .principles__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .principles__head {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3.5rem auto;
+  }
+
+  .principles__head .badge {
+    margin-bottom: 1rem;
+  }
+
+  .principles__title {
+    font-size: clamp(2.2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+
+  .principles__lede {
+    font-size: 1.1rem;
+    color: #475569;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .principle-card {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 2.25rem 2rem;
+    position: relative;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  }
+
+  .principle-card:hover {
+    transform: translateY(-6px);
+    border-color: #38bdf8;
+    box-shadow: 0 16px 36px rgba(14, 165, 233, 0.12);
+  }
+
+  .principle-card__head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .principle-card__num {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 2.25rem;
+    font-weight: 900;
+    color: #0ea5e9;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .principle-card__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .principle-card__desc {
+    font-size: 1rem;
+    color: #475569;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .principles-summary {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  }
+
+  .principles-summary p {
+    font-size: 1.05rem;
+    color: #334155;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .principles-summary a {
+    color: #0284c7;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .principles-summary a:hover {
+    color: #0ea5e9;
+  }
+
+  @media (max-width: 992px) {
+    .principles-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .principles-section {
+      padding: 4rem 0;
+    }
+    .principle-card {
+      padding: 1.75rem 1.5rem;
+    }
+  }
+</style>
