@@ -87,6 +87,7 @@ const marqueeList = [...testimonials, ...testimonials];
             alt={`${t.name} - ${t.role}`} 
             class="ts-card__bg" 
             loading="lazy"
+            draggable="false"
           />
           <div class="ts-card__overlay"></div>
 
@@ -105,6 +106,140 @@ const marqueeList = [...testimonials, ...testimonials];
     </div>
   </div>
 </section>
+
+<script>
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  document.querySelectorAll(".ts-slider-wrapper").forEach((wrapper) => {
+    if (!(wrapper instanceof HTMLElement) || wrapper.dataset.dragReady) return;
+    const track = wrapper.querySelector(".ts-slider-track");
+    if (!(track instanceof HTMLElement)) return;
+
+    wrapper.dataset.dragReady = "true";
+    if (reducedMotion) return;
+
+    wrapper.classList.add("is-drag-enabled");
+
+    let loopWidth = 0;
+    let offset = 0;
+    let lastFrame = performance.now();
+    let frameId = null;
+    let isVisible = true;
+    let isDragging = false;
+    let activePointer = null;
+    let dragStartX = 0;
+    let dragStartOffset = 0;
+    let didDrag = false;
+
+    const speed = () => (window.innerWidth <= 768 ? 68 : 62);
+
+    const measure = () => {
+      const styles = getComputedStyle(track);
+      const gap = parseFloat(styles.columnGap || styles.gap) || 0;
+      // The list is duplicated once. Adding one gap before halving gives the
+      // exact distance between the first card in each copy.
+      loopWidth = (track.scrollWidth + gap) / 2;
+    };
+
+    const normalizeOffset = () => {
+      if (!loopWidth) return;
+      while (offset <= -loopWidth) offset += loopWidth;
+      while (offset > 0) offset -= loopWidth;
+    };
+
+    const render = () => {
+      normalizeOffset();
+      track.style.transform = `translate3d(${offset.toFixed(2)}px, 0, 0)`;
+    };
+
+    const startMotion = () => {
+      if (frameId !== null || !isVisible || document.hidden) return;
+      lastFrame = performance.now();
+      frameId = requestAnimationFrame(tick);
+    };
+
+    function tick(now) {
+      frameId = null;
+      if (!isVisible || document.hidden) return;
+
+      const elapsed = Math.min((now - lastFrame) / 1000, 0.05);
+      lastFrame = now;
+      if (!isDragging) {
+        offset -= speed() * elapsed;
+        render();
+      }
+      frameId = requestAnimationFrame(tick);
+    }
+
+    const finishDrag = (event) => {
+      if (!isDragging || event.pointerId !== activePointer) return;
+      isDragging = false;
+      activePointer = null;
+      wrapper.classList.remove("is-dragging");
+      try {
+        wrapper.releasePointerCapture(event.pointerId);
+      } catch (_) {}
+      normalizeOffset();
+      startMotion();
+    };
+
+    wrapper.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      isDragging = true;
+      didDrag = false;
+      activePointer = event.pointerId;
+      dragStartX = event.clientX;
+      dragStartOffset = offset;
+      wrapper.classList.add("is-dragging");
+      wrapper.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    });
+
+    wrapper.addEventListener("pointermove", (event) => {
+      if (!isDragging || event.pointerId !== activePointer) return;
+      const distance = event.clientX - dragStartX;
+      if (Math.abs(distance) > 4) didDrag = true;
+      offset = dragStartOffset + distance;
+      render();
+    });
+
+    wrapper.addEventListener("pointerup", finishDrag);
+    wrapper.addEventListener("pointercancel", finishDrag);
+    wrapper.addEventListener(
+      "click",
+      (event) => {
+        if (didDrag) {
+          event.preventDefault();
+          event.stopPropagation();
+          didDrag = false;
+        }
+      },
+      true,
+    );
+
+    const visibilityObserver = new IntersectionObserver((entries) => {
+      isVisible = entries[0]?.isIntersecting ?? true;
+      if (isVisible) startMotion();
+      else if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+        frameId = null;
+      }
+    });
+    visibilityObserver.observe(wrapper);
+
+    document.addEventListener("visibilitychange", startMotion);
+    window.addEventListener("resize", () => {
+      measure();
+      render();
+    }, { passive: true });
+
+    measure();
+    render();
+    startMotion();
+  });
+</script>
 
 <style>
   .testimonials-section {
@@ -182,6 +317,7 @@ const marqueeList = [...testimonials, ...testimonials];
       #000 97%,
       transparent 100%
     );
+    touch-action: pan-y;
   }
 
   .ts-slider-wrapper:active {
@@ -196,8 +332,16 @@ const marqueeList = [...testimonials, ...testimonials];
     will-change: transform;
   }
 
-  .ts-slider-wrapper:hover .ts-slider-track {
-    animation-play-state: paused;
+  .ts-slider-wrapper.is-drag-enabled .ts-slider-track {
+    animation: none;
+  }
+
+  .ts-slider-wrapper.is-dragging {
+    cursor: grabbing;
+  }
+
+  .ts-slider-wrapper.is-dragging .ts-slider-track {
+    user-select: none;
   }
 
   @keyframes tsMarquee {
@@ -238,6 +382,8 @@ const marqueeList = [...testimonials, ...testimonials];
     object-position: center top;
     z-index: 1;
     transition: transform 0.6s ease;
+    -webkit-user-drag: none;
+    user-select: none;
   }
 
   .ts-card:hover .ts-card__bg {
@@ -332,9 +478,16 @@ const marqueeList = [...testimonials, ...testimonials];
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .ts-slider-wrapper {
+      overflow-x: auto;
+      mask-image: none;
+      -webkit-mask-image: none;
+      touch-action: auto;
+    }
+
     .ts-slider-track {
       animation: none;
-      overflow-x: auto;
+      transform: none !important;
     }
   }
 </style>
