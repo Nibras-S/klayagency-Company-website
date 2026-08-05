@@ -3,313 +3,116 @@ interface Testimonial {
   id: string;
   name: string;
   role: string;
-  company: string;
-  avatar?: string;
-  rating: number;
+  image: string;
   quote: string;
-  featured?: boolean;
-  image?: string;
-  audioUrl?: string | null;
-  audioDuration?: string | null;
 }
 
 const testimonials: Testimonial[] = [
   {
-    id: "featured-sparemec",
+    id: "t1",
     name: "Shabin Malandy",
-    role: "Founder & CEO",
-    company: "SpareMec®",
-    featured: true,
+    role: "Founder & CEO, SpareMec®",
     image: "/sparemeclient.png",
-    rating: 5,
-    quote: "Working with N3 Global Tech felt less like hiring an agency and more like gaining a strategic partner for company.",
-    audioUrl: "https://actions.google.com/sounds/v1/ambiences/rain_heavy.ogg", // Audio voice feedback URL
-    audioDuration: "38s"
+    quote: "Working with N3 Global Tech felt less like hiring an agency and more like gaining a strategic partner for our company."
   },
   {
-    id: "card-azeefit",
-    name: "AzeeFit Founder",
-    role: "Founder",
-    company: "AzeeFit",
-    rating: 5,
-    quote: "Working with N3 Global Tech was fantastic. They built exactly what we needed with N3 FitBook and felt like an extension of our team.",
-    audioUrl: "https://actions.google.com/sounds/v1/ambiences/outdoor_theme_park.ogg", // Voice feedback sample
-    audioDuration: "28s"
+    id: "t2",
+    name: "Sarah Mitchell",
+    role: "Marketing Director",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop",
+    quote: "AVOORA delivered a clean website improving usability, brand clarity, and conversions worldwide."
   },
   {
-    id: "card-viera",
-    name: "Viera Management",
-    role: "Client",
-    company: "Viera ERP & Website",
-    rating: 5,
-    quote: "N3 Global Tech delivered our ERP system and website with exceptional detail, streamlining our operations and digital presence.",
-    audioUrl: null, // No voice audio file (play button hidden)
-    audioDuration: null
+    id: "t3",
+    name: "Daniel Ross",
+    role: "Startup Founder",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
+    quote: "Clear communication fast delivery helped our team launch confidently with scalable website."
+  },
+  {
+    id: "t4",
+    name: "Emily Carter",
+    role: "Product Manager",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop",
+    quote: "They transformed ideas into modern website users love trust and use daily."
+  },
+  {
+    id: "t5",
+    name: "Jason Lee",
+    role: "Operations Lead",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop",
+    quote: "Thoughtful design development collaborate efficient enjoyable and stress free."
+  },
+  {
+    id: "t6",
+    name: "Olivia Brown",
+    role: "Growth Manager",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop",
+    quote: "They understood goals quickly delivering premium website fast & better consistently."
+  },
+  {
+    id: "t7",
+    name: "Michael Turner",
+    role: "Agency Partner",
+    image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=800&auto=format&fit=crop",
+    quote: "Reliable creative team providing consistent quality design support communication."
   }
 ];
 
-const featuredTestimonial = testimonials.find((t) => t.featured) || testimonials[0];
-const standardTestimonials = testimonials.filter((t) => !t.featured);
-
-const metrics = [
-  {
-    value: "92%",
-    label: "of our clients return for a second project",
-    progress: 92
-  },
-  {
-    value: "87%",
-    label: "reported a stronger brand perception",
-    progress: 87
-  },
-  {
-    value: "74%",
-    label: "saw increased engagement on digital",
-    progress: 74
-  }
-];
+// Double list for seamless marquee loop
+const marqueeList = [...testimonials, ...testimonials];
 ---
 
 <section class="testimonials-section reveal" id="testimonials">
   <div class="container testimonials-container">
-    <div class="testimonials-grid">
-      
-      <!-- COLUMN 1: Header & Key Metrics -->
-      <div class="testimonials-col testimonials-col--meta">
-        <div class="testimonials-meta-header">
-          <div class="testimonials-badge">
-            <span class="badge-dot"></span>
-            <span>TESTIMONIALS</span>
-          </div>
-          <h2 class="testimonials-title">What our clients are saying</h2>
-          <p class="testimonials-subtitle">Some data about our clients</p>
-        </div>
-
-        <div class="testimonials-metrics-list">
-          {metrics.map((m) => (
-            <div class="metric-item">
-              <div class="metric-value">{m.value}</div>
-              <p class="metric-label">{m.label}</p>
-              <div class="metric-progress-track">
-                <div class="metric-progress-fill" style={`width: ${m.progress}%`}></div>
-              </div>
-            </div>
-          ))}
-        </div>
+    <!-- Header -->
+    <div class="ts-header">
+      <div class="ts-badge">
+        <span class="ts-badge__square"></span>
+        <span>TESTIMONIAL</span>
       </div>
+      <h2 class="ts-title">Client Stories</h2>
+    </div>
 
-      <!-- COLUMN 2: Featured Hero Card (Center Image Card) -->
-      <div class="testimonials-col testimonials-col--featured">
-        <article class="featured-card">
-          <img 
-            src={featuredTestimonial.image} 
-            alt={`${featuredTestimonial.name} - ${featuredTestimonial.company}`} 
-            class="featured-card__bg"
-            loading="lazy"
-          />
-          <div class="featured-card__overlay"></div>
+    <div class="ts-divider"></div>
 
-          <!-- Play Audio Center Button (Only displayed if audioUrl exists) -->
-          {featuredTestimonial.audioUrl && (
-            <div class="featured-card__play-wrapper">
-              <button 
-                class="featured-play-btn audio-play-trigger" 
-                data-audio={featuredTestimonial.audioUrl}
-                data-id={featuredTestimonial.id}
-                aria-label="Play audio feedback"
-              >
-                <div class="play-icon-circle">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon-play">
-                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
-                  </svg>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon-pause" style="display: none;">
-                    <rect x="6" y="4" width="4" height="16"></rect>
-                    <rect x="14" y="4" width="4" height="16"></rect>
-                  </svg>
-                </div>
-                <span class="play-btn-text">
-                  Listen {featuredTestimonial.audioDuration ? featuredTestimonial.audioDuration : ""} client story
-                </span>
-              </button>
-            </div>
-          )}
+    <!-- Infinite Auto-Scrolling Horizontal Marquee -->
+    <div class="ts-slider-wrapper">
+      <div class="ts-slider-track">
+        {marqueeList.map((t, idx) => (
+          <article class="ts-card" data-card-idx={idx}>
+            <img 
+              src={t.image} 
+              alt={`${t.name} - ${t.role}`} 
+              class="ts-card__bg" 
+              loading="lazy"
+            />
+            <div class="ts-card__overlay"></div>
 
-          <!-- Card Content Overlay at Bottom -->
-          <div class="featured-card__content">
-            <div class="star-rating">
-              {Array.from({ length: featuredTestimonial.rating }).map(() => (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-              ))}
-            </div>
-
-            <blockquote class="featured-quote">
-              “{featuredTestimonial.quote}”
-            </blockquote>
-
-            <div class="featured-author">
-              <span class="author-name">{featuredTestimonial.name}</span>
-              <span class="author-role">{featuredTestimonial.role} at {featuredTestimonial.company}</span>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <!-- COLUMN 3: Right Column Testimonial Cards -->
-      <div class="testimonials-col testimonials-col--list">
-        {standardTestimonials.map((t) => (
-          <article class="testimonial-card">
-            <div class="testimonial-card__header">
-              <!-- Stars -->
-              <div class="star-rating">
-                {Array.from({ length: t.rating }).map(() => (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                  </svg>
-                ))}
-              </div>
-
-              <!-- Audio Play Button (Rendered ONLY if audioUrl is present) -->
-              {t.audioUrl ? (
-                <button 
-                  class="audio-listen-pill audio-play-trigger" 
-                  data-audio={t.audioUrl}
-                  data-id={t.id}
-                >
-                  <span class="pill-icon-play">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <polygon points="6 3 20 12 6 21 6 3"></polygon>
-                    </svg>
-                  </span>
-                  <span class="pill-icon-pause" style="display: none;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <rect x="6" y="4" width="4" height="16"></rect>
-                      <rect x="14" y="4" width="4" height="16"></rect>
-                    </svg>
-                  </span>
-                  <span class="pill-label">Listen {t.audioDuration}</span>
-                </button>
-              ) : null}
-            </div>
-
-            <blockquote class="testimonial-quote">
-              “{t.quote}”
-            </blockquote>
-
-            <div class="testimonial-author">
-              {t.avatar ? (
-                <img src={t.avatar} alt={t.name} class="author-avatar" loading="lazy" />
-              ) : (
-                <div class="author-avatar-fallback">{t.name.charAt(0)}</div>
-              )}
-              <div class="author-details">
-                <span class="author-name">{t.name}</span>
-                <span class="author-role">{t.role} at {t.company}</span>
+            <div class="ts-card__content">
+              <blockquote class="ts-card__quote">
+                “{t.quote}”
+              </blockquote>
+              <div class="ts-card__line"></div>
+              <div class="ts-card__author">
+                <span class="ts-card__name">{t.name}</span>
+                <span class="ts-card__role">{t.role}</span>
               </div>
             </div>
           </article>
         ))}
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- Audio Feedback Script -->
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    let currentAudio = null;
-    let activeTriggerBtn = null;
-
-    const triggers = document.querySelectorAll(".audio-play-trigger");
-
-    triggers.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const audioSrc = btn.getAttribute("data-audio");
-        if (!audioSrc) return;
-
-        // If clicking currently playing audio button -> pause it
-        if (currentAudio && activeTriggerBtn === btn) {
-          if (!currentAudio.paused) {
-            currentAudio.pause();
-            resetButtonState(btn);
-            return;
-          } else {
-            currentAudio.play();
-            setPlayingButtonState(btn);
-            return;
-          }
-        }
-
-        // If another audio was playing -> stop it and reset its button
-        if (currentAudio) {
-          currentAudio.pause();
-          if (activeTriggerBtn) resetButtonState(activeTriggerBtn);
-        }
-
-        // Create new audio instance & play
-        currentAudio = new Audio(audioSrc);
-        activeTriggerBtn = btn;
-        setPlayingButtonState(btn);
-
-        currentAudio.play().catch((err) => {
-          console.log("Audio play error:", err);
-          resetButtonState(btn);
-        });
-
-        // Reset button state when audio finishes playing
-        currentAudio.addEventListener("ended", () => {
-          resetButtonState(btn);
-          currentAudio = null;
-          activeTriggerBtn = null;
-        });
-      });
-    });
-
-    function setPlayingButtonState(btn) {
-      const playIcon = btn.querySelector(".icon-play, .pill-icon-play");
-      const pauseIcon = btn.querySelector(".icon-pause, .pill-icon-pause");
-      const label = btn.querySelector(".play-btn-text, .pill-label");
-
-      if (playIcon) playIcon.style.display = "none";
-      if (pauseIcon) pauseIcon.style.display = "inline-block";
-      if (label) {
-        if (btn.classList.contains("featured-play-btn")) {
-          label.textContent = "Playing voice note...";
-        } else {
-          label.textContent = "Playing...";
-        }
-      }
-      btn.classList.add("is-playing");
-    }
-
-    function resetButtonState(btn) {
-      const playIcon = btn.querySelector(".icon-play, .pill-icon-play");
-      const pauseIcon = btn.querySelector(".icon-pause, .pill-icon-pause");
-      const label = btn.querySelector(".play-btn-text, .pill-label");
-
-      if (playIcon) playIcon.style.display = "inline-block";
-      if (pauseIcon) pauseIcon.style.display = "none";
-      if (label) {
-        if (btn.classList.contains("featured-play-btn")) {
-          label.textContent = "Listen 38s client story";
-        } else {
-          label.textContent = "Listen 28s";
-        }
-      }
-      btn.classList.remove("is-playing");
-    }
-  });
-</script>
-
 <style>
   .testimonials-section {
-    padding: 6rem 0;
-    background: #fdfdfd;
+    padding: 5rem 0 6rem 0;
+    background: #ffffff;
     position: relative;
     z-index: 5;
+    overflow: hidden;
   }
 
   .testimonials-container {
@@ -318,436 +121,220 @@ const metrics = [
     margin: 0 auto;
   }
 
-  /* 3-Column Desktop Grid Layout */
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: 320px 1fr 1fr;
-    gap: 2.25rem;
-    align-items: stretch;
-  }
-
-  /* COLUMN 1: Meta Column */
-  .testimonials-col--meta {
+  /* Header */
+  .ts-header {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding-right: 1rem;
+    gap: 0.5rem;
   }
 
-  .testimonials-badge {
+  .ts-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.12em;
-    color: var(--gray-800);
+    color: #475569;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
   }
 
-  .badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #0284c7;
-    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+  .ts-badge__square {
+    width: 7px;
+    height: 7px;
+    background: #0ea5e9;
+    display: inline-block;
+    border-radius: 1px;
   }
 
-  .testimonials-title {
-    font-size: clamp(2.4rem, 3.5vw, 3.25rem);
+  .ts-title {
+    font-size: clamp(2.2rem, 4vw, 3.25rem);
     font-weight: 800;
-    color: var(--gray-900);
-    line-height: 1.08;
+    color: #0f172a;
+    line-height: 1.1;
     letter-spacing: -0.03em;
-    margin-bottom: 1.25rem;
   }
 
-  .testimonials-subtitle {
-    font-size: 0.95rem;
-    color: var(--gray-500);
-    line-height: 1.5;
-    margin-bottom: 2.5rem;
-  }
-
-  .testimonials-metrics-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
-    padding-top: 1.5rem;
-    border-top: 1px dashed var(--gray-200);
-  }
-
-  .metric-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .metric-value {
-    font-size: 1.85rem;
-    font-weight: 800;
-    color: var(--gray-900);
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-
-  .metric-label {
-    font-size: 0.82rem;
-    color: var(--gray-500);
-    line-height: 1.4;
-  }
-
-  .metric-progress-track {
+  .ts-divider {
     width: 100%;
-    height: 3px;
+    height: 1px;
     background: #e2e8f0;
-    border-radius: 2px;
-    margin-top: 0.5rem;
-    overflow: hidden;
+    margin: 1.25rem 0 2.5rem 0;
   }
 
-  .metric-progress-fill {
-    height: 100%;
-    background: var(--gray-900);
-    border-radius: 2px;
-  }
-
-  /* COLUMN 2: Featured Hero Card */
-  .testimonials-col--featured {
-    display: flex;
-  }
-
-  .featured-card {
-    position: relative;
+  /* Marquee Slider Wrapper */
+  .ts-slider-wrapper {
     width: 100%;
-    min-height: 540px;
-    border-radius: 28px;
     overflow: hidden;
+    position: relative;
+    cursor: grab;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 3%,
+      #000 97%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 3%,
+      #000 97%,
+      transparent 100%
+    );
+  }
+
+  .ts-slider-wrapper:active {
+    cursor: grabbing;
+  }
+
+  .ts-slider-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    animation: tsMarquee 38s linear infinite;
+    will-change: transform;
+  }
+
+  .ts-slider-wrapper:hover .ts-slider-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes tsMarquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-50% - 0.75rem));
+    }
+  }
+
+  /* Individual Vertical Card */
+  .ts-card {
+    position: relative;
+    width: 310px;
+    height: 460px;
+    border-radius: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 2.5rem 2rem;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    justify-content: flex-end;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   }
 
-  .featured-card__bg {
+  .ts-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(14, 165, 233, 0.18);
+  }
+
+  .ts-card__bg {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: center top;
     z-index: 1;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.6s ease;
   }
 
-  .featured-card:hover .featured-card__bg {
-    transform: scale(1.03);
+  .ts-card:hover .ts-card__bg {
+    transform: scale(1.05);
   }
 
-  .featured-card__overlay {
+  /* Overlay: Sleek Blue Glass Overlay Gradient */
+  .ts-card__overlay {
     position: absolute;
     inset: 0;
     z-index: 2;
     background: linear-gradient(
-      to top, 
-      rgba(15, 23, 42, 0.95) 0%, 
-      rgba(15, 23, 42, 0.65) 45%, 
-      rgba(0, 0, 0, 0.25) 100%
+      to top,
+      rgba(15, 23, 42, 0.96) 0%,
+      rgba(14, 165, 233, 0.65) 45%,
+      rgba(15, 23, 42, 0.15) 100%
     );
   }
 
-  /* Play Button on Featured Card - Centered on Desktop & Mobile */
-  .featured-card__play-wrapper {
-    position: absolute;
-    top: 48%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: max-content;
-  }
-
-  .featured-play-btn {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #ffffff;
-    opacity: 0.65;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-
-  .featured-play-btn:hover {
-    transform: scale(1.05);
-    opacity: 1;
-  }
-
-  .play-icon-circle {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease, border-color 0.3s ease;
-  }
-
-  .featured-play-btn:hover .play-icon-circle {
-    background: #0284c7;
-    border-color: #0284c7;
-  }
-
-  .play-btn-text {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #ffffff;
-    background: rgba(0, 0, 0, 0.35);
-    padding: 0.4rem 1rem;
-    border-radius: var(--radius-full);
-    backdrop-filter: blur(8px);
-    letter-spacing: 0.01em;
-  }
-
-  /* Featured Card Bottom Content */
-  .featured-card__content {
+  /* Content Overlay */
+  .ts-card__content {
     position: relative;
     z-index: 3;
+    padding: 1.75rem 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    margin-top: auto;
+    gap: 0.65rem;
   }
 
-  .star-rating {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
-
-  .featured-quote {
-    font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+  .ts-card__quote {
+    font-size: 1.02rem;
     font-weight: 600;
     color: #ffffff;
-    line-height: 1.4;
+    line-height: 1.45;
     letter-spacing: -0.015em;
   }
 
-  .featured-author {
+  .ts-card__line {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.35);
+    margin: 0.4rem 0;
+  }
+
+  .ts-card__author {
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
   }
 
-  .featured-author .author-name {
+  .ts-card__name {
     font-size: 1rem;
     font-weight: 700;
     color: #ffffff;
   }
 
-  .featured-author .author-role {
+  .ts-card__role {
     font-size: 0.85rem;
-    color: #cbd5e1;
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 450;
   }
 
-  /* COLUMN 3: Testimonial Cards List */
-  .testimonials-col--list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    justify-content: space-between;
-  }
-
-  .testimonial-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 24px;
-    padding: 2rem 1.75rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    height: 100%;
-  }
-
-  .testimonial-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
-    border-color: #cbd5e1;
-  }
-
-  .testimonial-card__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  /* Pill Audio Button */
-  .audio-listen-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.9rem;
-    border-radius: var(--radius-full);
-    background: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    color: var(--gray-800);
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .audio-listen-pill:hover {
-    background: #0284c7;
-    border-color: #0284c7;
-    color: #ffffff;
-  }
-
-  .audio-listen-pill.is-playing {
-    background: #0284c7;
-    border-color: #0284c7;
-    color: #ffffff;
-  }
-
-  .testimonial-quote {
-    font-size: 0.98rem;
-    font-weight: 600;
-    color: var(--gray-900);
-    line-height: 1.55;
-    letter-spacing: -0.01em;
-  }
-
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    margin-top: auto;
-  }
-
-  .author-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    object-fit: cover;
-  }
-
-  .author-avatar-fallback {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: var(--sky-100);
-    color: var(--sky-700);
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-  }
-
-  .author-details {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-
-  .author-details .author-name {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--gray-900);
-  }
-
-  .author-details .author-role {
-    font-size: 0.82rem;
-    color: var(--gray-500);
-  }
-
-  /* Responsive Design */
-  @media (max-width: 1200px) {
-    .testimonials-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .testimonials-col--meta {
-      grid-column: span 2;
-      flex-direction: row;
-      align-items: flex-end;
-      gap: 3rem;
-      padding-right: 0;
-      margin-bottom: 1rem;
-    }
-
-    .testimonials-metrics-list {
-      flex-direction: row;
-      gap: 2rem;
-      border-top: none;
-      padding-top: 0;
-    }
-  }
-
+  /* Responsive Adjustments */
   @media (max-width: 768px) {
     .testimonials-section {
-      padding: 3.5rem 0 2.5rem 0;
+      padding: 3.5rem 0 4rem 0;
     }
 
-    .testimonials-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    .ts-divider {
+      margin: 1rem 0 1.75rem 0;
     }
 
-    .testimonials-col--meta {
-      grid-column: span 1;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
-      padding-right: 0;
-      margin-bottom: 0.5rem;
+    .ts-card {
+      width: 270px;
+      height: 410px;
+      border-radius: 16px;
     }
 
-    .testimonials-title {
-      font-size: 2.25rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 0;
-      letter-spacing: -0.025em;
+    .ts-card__content {
+      padding: 1.35rem 1.15rem;
     }
 
-    /* Hide subtitle and metrics list on mobile to match reference screenshot */
-    .testimonials-subtitle,
-    .testimonials-metrics-list {
-      display: none !important;
-    }
-
-    .featured-card {
-      min-height: 380px;
-      border-radius: 20px;
-      padding: 1.75rem 1.25rem;
-    }
-
-    .featured-quote {
-      font-size: 1.1rem;
+    .ts-card__quote {
+      font-size: 0.95rem;
       line-height: 1.4;
     }
 
-    .testimonial-card {
-      border-radius: 20px;
-      padding: 1.5rem 1.25rem;
+    .ts-slider-track {
+      gap: 1.15rem;
+      animation-duration: 28s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ts-slider-track {
+      animation: none;
+      overflow-x: auto;
     }
   }
 </style>

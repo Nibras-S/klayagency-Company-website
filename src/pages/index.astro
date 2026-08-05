@@ -415,10 +415,14 @@ const faqs = [
       </div>
     </section>
 
+    <!-- ========== WHAT WE DO ========== -->
+    <WhatWeDoCards />
+
     <!-- ========== HOW WE WORK ========== -->
     <HowWeWork />
 
-    <!-- ========== ORIGINAL INTERACTIVE SERVICES PREVIEW ========== -->
+    <!-- ========== ORIGINAL INTERACTIVE SERVICES PREVIEW (HIDDEN FOR PRODUCTION) ========== -->
+    {false && (
     <section class="section services-preview reveal" id="services">
       <div class="container">
         <div class="section-header" style="margin-bottom: 3rem;">
@@ -781,6 +785,7 @@ const faqs = [
         </div>
       </div>
     </section>
+    )}
 
     <script is:inline>
       document.addEventListener("DOMContentLoaded", () => {
@@ -878,14 +883,9 @@ const faqs = [
         <div class="ws-sticky-inner" id="ws-sticky-inner">
           <!-- Heading -->
           <div class="ws-heading" id="ws-heading">
-            <div class="badge badge-sky">Our Work</div>
             <h2>
               Recent Projects We're <span class="text-gradient">Proud Of</span>
             </h2>
-            <p>
-              From immersive 3D websites to global aviation portals &mdash;
-              every project below is live in production.
-            </p>
           </div>
 
           <!-- Card stage: same cards animate from stacked → grid -->

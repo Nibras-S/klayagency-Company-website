@@ -67,83 +67,91 @@ const steps: StepItem[] = [
 
       <!-- Desktop / Tablet Checkerboard Grid -->
       <div class="hww-grid">
-        <!-- Col 1 (Step 01 - Initially Present) -->
-        <div class="hww-col-item hww-col-1 hww-card hww-card--col1-top">
-          <span class="hww-card__step">{steps[0].step}</span>
-          <div class="hww-card__content">
-            <h3 class="hww-card__title">{steps[0].title}</h3>
-            <p class="hww-card__desc">{steps[0].desc}</p>
+        <!-- Step 01 -->
+        <div class="hww-step-block hww-step-1">
+          <div class="hww-col-item hww-col-1 hww-card hww-card--col1-top">
+            <span class="hww-card__step">{steps[0].step}</span>
+            <div class="hww-card__content">
+              <h3 class="hww-card__title">{steps[0].title}</h3>
+              <p class="hww-card__desc">{steps[0].desc}</p>
+            </div>
           </div>
-        </div>
-        <div
-          class="hww-col-item hww-col-1 hww-image-box hww-image--col1-bottom"
-        >
-          <img
-            src={steps[0].image}
-            alt={steps[0].imageAlt}
-            loading="lazy"
-            decoding="async"
-            width="600"
-            height="600"
-          />
-        </div>
-
-        <!-- Col 2 (Step 02 - Scrolls up & locks) -->
-        <div class="hww-col-item hww-col-2 hww-image-box hww-image--col2-top">
-          <img
-            src={steps[1].image}
-            alt={steps[1].imageAlt}
-            loading="lazy"
-            decoding="async"
-            width="600"
-            height="600"
-          />
-        </div>
-        <div class="hww-col-item hww-col-2 hww-card hww-card--col2-bottom">
-          <span class="hww-card__step">{steps[1].step}</span>
-          <div class="hww-card__content">
-            <h3 class="hww-card__title">{steps[1].title}</h3>
-            <p class="hww-card__desc">{steps[1].desc}</p>
+          <div
+            class="hww-col-item hww-col-1 hww-image-box hww-image--col1-bottom"
+          >
+            <img
+              src={steps[0].image}
+              alt={steps[0].imageAlt}
+              loading="lazy"
+              decoding="async"
+              width="600"
+              height="600"
+            />
           </div>
         </div>
 
-        <!-- Col 3 (Step 03 - Scrolls up & locks) -->
-        <div class="hww-col-item hww-col-3 hww-card hww-card--col3-top">
-          <span class="hww-card__step">{steps[2].step}</span>
-          <div class="hww-card__content">
-            <h3 class="hww-card__title">{steps[2].title}</h3>
-            <p class="hww-card__desc">{steps[2].desc}</p>
+        <!-- Step 02 -->
+        <div class="hww-step-block hww-step-2">
+          <div class="hww-col-item hww-col-2 hww-image-box hww-image--col2-top">
+            <img
+              src={steps[1].image}
+              alt={steps[1].imageAlt}
+              loading="lazy"
+              decoding="async"
+              width="600"
+              height="600"
+            />
+          </div>
+          <div class="hww-col-item hww-col-2 hww-card hww-card--col2-bottom">
+            <span class="hww-card__step">{steps[1].step}</span>
+            <div class="hww-card__content">
+              <h3 class="hww-card__title">{steps[1].title}</h3>
+              <p class="hww-card__desc">{steps[1].desc}</p>
+            </div>
           </div>
         </div>
-        <div
-          class="hww-col-item hww-col-3 hww-image-box hww-image--col3-bottom"
-        >
-          <img
-            src={steps[2].image}
-            alt={steps[2].imageAlt}
-            loading="lazy"
-            decoding="async"
-            width="600"
-            height="600"
-          />
+
+        <!-- Step 03 -->
+        <div class="hww-step-block hww-step-3">
+          <div class="hww-col-item hww-col-3 hww-card hww-card--col3-top">
+            <span class="hww-card__step">{steps[2].step}</span>
+            <div class="hww-card__content">
+              <h3 class="hww-card__title">{steps[2].title}</h3>
+              <p class="hww-card__desc">{steps[2].desc}</p>
+            </div>
+          </div>
+          <div
+            class="hww-col-item hww-col-3 hww-image-box hww-image--col3-bottom"
+          >
+            <img
+              src={steps[2].image}
+              alt={steps[2].imageAlt}
+              loading="lazy"
+              decoding="async"
+              width="600"
+              height="600"
+            />
+          </div>
         </div>
 
-        <!-- Col 4 (Step 04 - Scrolls up & locks) -->
-        <div class="hww-col-item hww-col-4 hww-image-box hww-image--col4-top">
-          <img
-            src={steps[3].image}
-            alt={steps[3].imageAlt}
-            loading="lazy"
-            decoding="async"
-            width="600"
-            height="600"
-          />
-        </div>
-        <div class="hww-col-item hww-col-4 hww-card hww-card--col4-bottom">
-          <span class="hww-card__step">{steps[3].step}</span>
-          <div class="hww-card__content">
-            <h3 class="hww-card__title">{steps[3].title}</h3>
-            <p class="hww-card__desc">{steps[3].desc}</p>
+        <!-- Step 04 -->
+        <div class="hww-step-block hww-step-4">
+          <div class="hww-col-item hww-col-4 hww-image-box hww-image--col4-top">
+            <img
+              src={steps[3].image}
+              alt={steps[3].imageAlt}
+              loading="lazy"
+              decoding="async"
+              width="600"
+              height="600"
+            />
+          </div>
+          <div class="hww-col-item hww-col-4 hww-card hww-card--col4-bottom">
+            <span class="hww-card__step">{steps[3].step}</span>
+            <div class="hww-card__content">
+              <h3 class="hww-card__title">{steps[3].title}</h3>
+              <p class="hww-card__desc">{steps[3].desc}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -218,7 +226,7 @@ const steps: StepItem[] = [
   .hww-badge__square {
     width: 7px;
     height: 7px;
-    background: #ff5500;
+    background: #0ea5e9;
     display: inline-block;
     border-radius: 1px;
   }
@@ -245,6 +253,10 @@ const steps: StepItem[] = [
     grid-template-rows: repeat(2, minmax(0, 1fr));
     gap: 1.15rem;
     position: relative;
+  }
+
+  .hww-step-block {
+    display: contents;
   }
 
   /* Column transition base styles */
@@ -405,18 +417,89 @@ const steps: StepItem[] = [
     }
   }
 
-  /* Mobile Responsiveness (1-Column Stacked) */
+  /* Mobile Responsiveness (Sticky Stacking like What We Do Cards) */
   @media (max-width: 768px) {
     .hww-section {
       height: auto;
+      padding: 3rem 0;
     }
 
     .hww-sticky {
       position: static;
       min-height: 0;
-      padding: 3.5rem 0;
+      padding: 0;
       overflow: visible;
     }
+
+    .hww-title-wrapper {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .hww-badge {
+      padding-left: 0;
+      border-left: none;
+      height: auto;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+
+    .hww-title {
+      font-size: 2.1rem;
+      margin-top: 0.2rem;
+    }
+
+    .hww-subtitle {
+      display: none;
+    }
+
+    .hww-section {
+      height: auto;
+    }
+
+    .hww-sticky {
+      position: relative;
+      top: auto;
+      min-height: auto;
+      overflow: visible;
+      padding: 2.5rem 0 0 0;
+    }
+
+    .hww-divider {
+      margin: 1.15rem 0 2rem 0;
+    }
+
+    .hww-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding-bottom: 2rem;
+      position: relative;
+    }
+
+    /* Each Step (Card + Image) is a single sticky block */
+    .hww-step-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: sticky;
+      top: 80px;
+      margin-bottom: 20vh;
+      background: #ffffff;
+    }
+
+    .hww-step-1 { z-index: 1; }
+    .hww-step-2 { z-index: 2; }
+    .hww-step-3 { z-index: 3; }
+    .hww-step-4 { z-index: 4; margin-bottom: 0; }
+
+    /* For Step 2 and Step 4, ensure Card is top (order: 1) and Image is bottom (order: 2) */
+    .hww-step-2 .hww-card--col2-bottom { order: 1; }
+    .hww-step-2 .hww-image--col2-top { order: 2; }
+
+    .hww-step-4 .hww-card--col4-bottom { order: 1; }
+    .hww-step-4 .hww-image--col4-top { order: 2; }
 
     .hww-col-item {
       transform: none !important;
@@ -424,43 +507,40 @@ const steps: StepItem[] = [
       will-change: auto;
     }
 
-    .hww-title-wrapper {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-
-    .hww-badge {
-      padding-left: 0;
-      border-left: none;
-      height: auto;
-    }
-
-    .hww-title {
-      font-size: 2.25rem;
-    }
-
-    .hww-subtitle {
-      font-size: 0.95rem;
-    }
-
-    .hww-divider {
-      margin: 1.5rem 0 2rem 0;
-    }
-
-    .hww-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
     .hww-card {
-      aspect-ratio: auto;
-      min-height: 200px;
+      position: relative;
+      top: auto;
+      margin-bottom: 0;
+      aspect-ratio: 1 / 0.82;
+      min-height: 195px;
+      padding: 1.5rem 1.35rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .hww-card__title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #0f172a;
+    }
+
+    .hww-card__desc {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: #64748b;
     }
 
     .hww-image-box {
+      position: relative;
+      top: auto;
+      margin-bottom: 0;
       aspect-ratio: 4 / 3;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
     }
   }
 
@@ -507,7 +587,15 @@ const steps: StepItem[] = [
     let ticking = false;
 
     function update() {
-      if (window.innerWidth <= 768) return;
+      if (window.innerWidth <= 1024) {
+        columns.forEach((col) => {
+          col.elements.forEach((el) => {
+            el.style.transform = "";
+            el.style.opacity = "";
+          });
+        });
+        return;
+      }
 
       const rect = section.getBoundingClientRect();
       const scrollable = rect.height - window.innerHeight;

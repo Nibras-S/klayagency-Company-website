@@ -16,4 +16,12 @@ export default defineConfig({
     // gzipped each) that inlining is a net win for first paint.
     inlineStylesheets: 'always',
   },
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+        ignored: ['**/.vercel/**', '**/.astro/**', '**/.wrangler/**', '**/dist/**', '**/.git/**'],
+      },
+    },
+  },
 });
