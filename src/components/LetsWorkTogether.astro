@@ -5,49 +5,32 @@
 //   1. Enters as an inset rounded card, video paused on its poster.
 //   2. As you scroll, the card opens out to full-bleed (clip-path inset, so the
 //      video never reflows or rescales — only the reveal window changes).
-//   3. Once mostly open, video 1 plays through once.
-//   4. On its `ended`, video 2 takes over on loop and the copy fades in.
-//
-// Sources are VP9 WebM first with an H.264 MP4 fallback. Both were re-encoded
-// from the 1920p originals: 27.8 MB -> 2.43 MB.
+//   3. Once mostly open, the full video begins its seamless loop and the copy
+//      fades in near the end of its first pass.
 ---
 
 <section class="lwt" id="lwt" aria-labelledby="lwt-title">
   <div class="lwt__sticky">
     <div class="lwt__stage" id="lwt-stage">
-      <!-- No src here: the script picks the 1080 or 960 tier so only one is ever
-           fetched. H.264 throughout — measured SSIM 0.984 vs VP9's 0.942 at the
-           same size, and it's the only codec with universal hardware decode,
-           which is what actually caused the mobile stutter. -->
+      <!-- `src` is assigned only when this below-the-fold section approaches
+           the viewport. The full-resolution H.264 source is hardware-decodable
+           across modern desktop and mobile browsers. -->
       <video
-        id="lwt-v1"
+        id="lwt-video"
         class="lwt__video lwt__video--is-active"
         muted
         playsinline
-        preload="metadata"
-        poster="/video/lwt/lwt-poster.webp"
-        data-src-hd="/video/lwt/lwt-1-1080.mp4"
-        data-src-sd="/video/lwt/lwt-1-960.mp4"
-        aria-hidden="true"
-      ></video>
-
-      <!-- Video 2: loops after the first finishes. Loaded on demand. -->
-      <video
-        id="lwt-v2"
-        class="lwt__video"
-        muted
-        playsinline
+        webkit-playsinline
         loop
         preload="none"
-        data-src-hd="/video/lwt/bie-1080.mp4"
-        data-src-sd="/video/lwt/bie-960.mp4"
+        disablepictureinpicture
+        poster="/video/lwt/letwork-full-poster.webp"
+        data-src="/video/lwt/letwork-full-loop-1080.mp4"
         aria-hidden="true"
       ></video>
-
     </div>
 
     <div class="container lwt__content" id="lwt-content">
-      <p class="lwt__label">Is your big idea ready?</p>
       <h2 class="lwt__title" id="lwt-title">Let's work together</h2>
       <div class="lwt__actions">
         <a href="/contact" class="lwt__btn lwt__btn--primary">
@@ -89,7 +72,12 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    clip-path: inset(var(--lwt-inset-y, 20%) var(--lwt-inset-x, 13%) round var(--lwt-radius, 28px));
+    clip-path: inset(
+      var(--lwt-inset-top, 6%)
+      var(--lwt-inset-x, 13%)
+      var(--lwt-inset-bottom, 14%)
+      round var(--lwt-radius, 28px)
+    );
     background: #04050c;
   }
 
@@ -124,16 +112,6 @@
     opacity: 1;
     transform: none;
     filter: none;
-  }
-
-  .lwt__label {
-    font-family: var(--font-sans);
-    font-size: var(--label-sm);
-    font-weight: 500;
-    letter-spacing: 0.11em;
-    text-transform: uppercase;
-    color: var(--sky-400);
-    margin-bottom: 1.25rem;
   }
 
   /* Same display voice as the hero / flow / services titles. */
@@ -204,6 +182,23 @@
 
   @media (max-width: 860px) {
     .lwt { height: 200vh; }
+    .lwt__stage {
+      --lwt-inset-top: 5%;
+      --lwt-inset-x: 6%;
+      --lwt-inset-bottom: 9%;
+    }
+    .lwt__content {
+      width: min(82%, 22rem);
+      padding-inline: 0;
+    }
+    .lwt__title {
+      max-width: 100%;
+      margin-bottom: 1.75rem;
+      font-size: clamp(2rem, 8.5vw, 2.5rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+      white-space: nowrap;
+    }
     .lwt__actions { flex-direction: column; align-items: stretch; }
     .lwt__btn { justify-content: center; }
   }
@@ -228,9 +223,8 @@
   function initLwt() {
     const section = document.getElementById('lwt');
     const stage = document.getElementById('lwt-stage');
-    const v1 = document.getElementById('lwt-v1') as HTMLVideoElement | null;
-    const v2 = document.getElementById('lwt-v2') as HTMLVideoElement | null;
-    if (!section || !stage || !v1 || !v2) return;
+    const video = document.getElementById('lwt-video') as HTMLVideoElement | null;
+    if (!section || !stage || !video) return;
 
     // Astro view transitions re-run scripts; don't double-bind.
     if (section.dataset.lwtBound === '1') return;
@@ -238,43 +232,37 @@
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Pick the tier before anything loads. Small screens and touch devices get
-    // the 960 encode: ~60% fewer pixels to decode per frame, which is the real
-    // fix for playback stutter on a phone.
-    // NB: data-src-hd / -sd deliberately end in letters. `data-src-1080` maps to
-    // dataset["src-1080"], NOT dataset.src1080 — a hyphen only folds to camelCase
-    // when the next character is a lowercase letter, and "1" isn't.
-    const small =
-      window.matchMedia('(hover: none)').matches || window.innerWidth < 1100;
-    const pick = (el: HTMLVideoElement) =>
-      (small ? el.dataset.srcSd : el.dataset.srcHd) || el.dataset.srcHd || '';
-
-    const v1Src = pick(v1);
-    if (!v1Src) {
+    const videoSrc = video.dataset.src || '';
+    if (!videoSrc) {
       console.warn('[lwt] no video source resolved; leaving poster in place');
       section.classList.add('is-revealed');
       return;
     }
-    v1.src = v1Src;
-    v2.dataset.resolved = pick(v2);
 
     if (reduced) {
-      // Everything resolved by CSS; leave both videos paused on the poster.
+      // CSS presents the static poster and copy without requesting the video.
       section.classList.add('is-revealed');
       return;
     }
 
     // Opening geometry, driven by scroll progress.
-    const INSET_Y = 20;    // % at rest
-    const INSET_X = 13;
     const RADIUS = 28;     // px at rest
     const OPEN_AT = 0.55;  // progress by which the card is fully open
-    const PLAY_AT = 0.42;  // start video 1 a touch before it finishes opening
+    const PLAY_AT = 0.42;  // start playback just before the card finishes opening
 
     let inView = false;
     let raf: number | null = null;
     let started = false;
-    let swapped = false;
+    let revealed = false;
+    let sourceAssigned = false;
+
+    function ensureVideoLoaded() {
+      if (sourceAssigned) return;
+      sourceAssigned = true;
+      video!.src = videoSrc;
+      video!.preload = 'auto';
+      video!.load();
+    }
 
     function wake() {
       if (inView && raf === null) raf = requestAnimationFrame(tick);
@@ -289,58 +277,53 @@
       // Remap so the card is fully open by OPEN_AT, then holds.
       const o = Math.min(p / OPEN_AT, 1);
       const eased = o * o * (3 - 2 * o);   // smoothstep
+      const compact = window.innerWidth <= 860;
+      const insetTop = compact ? 5 : 6;
+      const insetX = compact ? 6 : 13;
+      const insetBottom = compact ? 9 : 14;
 
-      stage!.style.setProperty('--lwt-inset-y', `${(INSET_Y * (1 - eased)).toFixed(2)}%`);
-      stage!.style.setProperty('--lwt-inset-x', `${(INSET_X * (1 - eased)).toFixed(2)}%`);
+      stage!.style.setProperty('--lwt-inset-top', `${(insetTop * (1 - eased)).toFixed(2)}%`);
+      stage!.style.setProperty('--lwt-inset-x', `${(insetX * (1 - eased)).toFixed(2)}%`);
+      stage!.style.setProperty('--lwt-inset-bottom', `${(insetBottom * (1 - eased)).toFixed(2)}%`);
       stage!.style.setProperty('--lwt-radius', `${(RADIUS * (1 - eased)).toFixed(1)}px`);
 
-      // Video 1 starts only once the section is genuinely open.
+      // Playback starts only once the section is genuinely open.
       if (!started && p >= PLAY_AT) {
         started = true;
-        v1!.play().catch(() => {});
-        // Pull video 2 now so the handover has no gap. Assigning src here (not
-        // in markup) is what keeps it off the wire until this moment.
-        if (!v2!.src && v2!.dataset.resolved) {
-          v2!.src = v2!.dataset.resolved;
-          v2!.preload = 'auto';
-          v2!.load();
-        }
+        ensureVideoLoaded();
+        video!.play().catch(() => {});
       }
     }
 
-    // --- handover: v1 finishes -> v2 loops, copy appears
-    v1.addEventListener('ended', () => {
-      if (swapped) return;
-      swapped = true;
-      v2.classList.add('lwt__video--is-active');
-      v1.classList.remove('lwt__video--is-active');
-      v2.play().catch(() => {});
-      section.classList.add('is-revealed');
-    });
-
-    // Guard: if `ended` never fires (some mobile browsers on a stalled load),
-    // reveal the copy anyway rather than leaving the section wordless.
-    v1.addEventListener('timeupdate', () => {
-      if (!swapped && v1.duration && v1.currentTime >= v1.duration - 0.25) {
-        v1.dispatchEvent(new Event('ended'));
+    // Reveal the copy near the end of the first pass. The video itself loops,
+    // so playback stays gapless without a second media-element handoff.
+    video.addEventListener('timeupdate', () => {
+      if (!revealed && video.duration && video.currentTime >= video.duration - 0.25) {
+        revealed = true;
+        section.classList.add('is-revealed');
       }
     });
+    video.addEventListener('error', () => {
+      // Keep the call-to-action usable even if a media request is blocked.
+      section.classList.add('is-revealed');
+    }, { once: true });
 
     // --- visibility: nothing decodes while the section is off-screen
     const io = new IntersectionObserver(
       (entries) => {
         inView = entries[0].isIntersecting;
         if (inView) {
+          ensureVideoLoaded();
           wake();
-          if (started && !swapped) v1.play().catch(() => {});
-          if (swapped) v2.play().catch(() => {});
+          if (started) video.play().catch(() => {});
         } else {
-          v1.pause();
-          v2.pause();
+          video.pause();
           if (raf !== null) { cancelAnimationFrame(raf); raf = null; }
         }
       },
-      { rootMargin: '200px 0px' }
+      // Begin fetching shortly before the section arrives, without competing
+      // with above-the-fold resources during initial page load.
+      { rootMargin: '600px 0px' }
     );
     io.observe(section);
 
@@ -353,8 +336,7 @@
       window.removeEventListener('scroll', wake);
       window.removeEventListener('resize', wake);
       if (raf !== null) cancelAnimationFrame(raf);
-      v1!.pause();
-      v2!.pause();
+      video!.pause();
       section!.dataset.lwtBound = '';
     }
     window.addEventListener('pagehide', destroy, { once: true });
