@@ -275,15 +275,18 @@ import Footer from '../components/Footer.astro';
   .page-hero__inner { position: relative; z-index: 2; }
   .page-hero__inner .badge { margin-bottom: 1.25rem; }
   .page-hero__title {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    font-weight: 900;
-    letter-spacing: -0.03em;
+    font-family: var(--font-sans);
+    font-size: var(--display-lg);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
     margin-bottom: 1.5rem;
   }
   .page-hero__desc {
-    color: var(--gray-500);
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--body-md);
+    line-height: 1.7;
     max-width: 640px;
     margin: 0 auto;
   }
@@ -303,17 +306,19 @@ import Footer from '../components/Footer.astro';
 
   /* Info side */
   .contact-info h2 {
-    font-size: 1.75rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    font-family: var(--font-sans);
+    font-size: var(--heading-md);
+    font-weight: 500;
+    letter-spacing: -0.03em;
     margin-bottom: 1rem;
   }
 
   .contact-info__desc {
-    color: var(--gray-500);
-    line-height: 1.8;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    line-height: 1.7;
     margin-bottom: 2rem;
-    font-size: 0.95rem;
+    font-size: var(--body-md);
   }
 
   .contact-details {
@@ -342,8 +347,9 @@ import Footer from '../components/Footer.astro';
   }
 
   .contact-detail__label {
-    font-size: 0.72rem;
-    font-weight: 700;
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--gray-400);
@@ -351,7 +357,8 @@ import Footer from '../components/Footer.astro';
   }
 
   .contact-detail__value {
-    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
     color: var(--gray-700);
     font-weight: 500;
     line-height: 1.55;
@@ -378,11 +385,11 @@ import Footer from '../components/Footer.astro';
   }
 
   .contact-reasons h3 {
-    font-size: 0.9rem;
-    font-weight: 700;
+    font-family: var(--font-sans);
+    font-size: var(--heading-xs);
+    font-weight: 500;
     color: var(--gray-700);
     margin-bottom: 1rem;
-    font-family: var(--font-heading);
   }
 
   .contact-reasons ul {
@@ -395,8 +402,9 @@ import Footer from '../components/Footer.astro';
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    font-size: 0.875rem;
-    color: var(--gray-600);
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    color: var(--text-secondary);
     font-weight: 500;
   }
 
@@ -428,8 +436,9 @@ import Footer from '../components/Footer.astro';
   }
 
   .form-group label {
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    font-weight: 500;
     color: var(--gray-700);
   }
 
@@ -441,8 +450,8 @@ import Footer from '../components/Footer.astro';
     padding: 0.75rem 1rem;
     border: 1.5px solid var(--gray-200);
     border-radius: var(--radius-md);
-    font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
     color: var(--gray-800);
     background: var(--white);
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -489,7 +498,9 @@ import Footer from '../components/Footer.astro';
     width: 100%;
     justify-content: center;
     padding: 0.875rem 1.75rem !important;
-    font-size: 1rem !important;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem !important;
+    font-weight: 500 !important;
     gap: 0.6rem;
   }
 
@@ -501,7 +512,8 @@ import Footer from '../components/Footer.astro';
 
   .form-note {
     text-align: center;
-    font-size: 0.78rem;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
     color: var(--gray-400);
     margin-top: -0.5rem;
   }
@@ -519,13 +531,16 @@ import Footer from '../components/Footer.astro';
   }
 
   .form-success h3 {
-    font-size: 1.25rem;
+    font-family: var(--font-sans);
+    font-size: var(--heading-sm);
+    font-weight: 500;
     color: var(--gray-900);
   }
 
   .form-success p {
-    color: var(--gray-500);
-    font-size: 0.875rem;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--body-sm);
     line-height: 1.7;
   }
 
@@ -553,7 +568,8 @@ import Footer from '../components/Footer.astro';
     border: 1px solid #fecaca;
     border-radius: var(--radius-md);
     color: #b91c1c;
-    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
     line-height: 1.5;
   }
   .form-error[hidden] {
@@ -587,17 +603,19 @@ import Footer from '../components/Footer.astro';
   }
 
   .faq-q {
+    font-family: var(--font-sans);
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--gray-900);
     margin-bottom: 0.75rem;
-    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
   }
 
   .faq-a {
-    font-size: 0.875rem;
-    color: var(--gray-500);
-    line-height: 1.75;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
   }
 
   @media (max-width: 900px) {

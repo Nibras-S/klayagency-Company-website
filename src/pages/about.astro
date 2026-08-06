@@ -281,7 +281,7 @@ const stats = [
     color: #0f172a;
     line-height: 1.35;
     letter-spacing: -0.01em;
-    font-family: var(--font-heading, "Plus Jakarta Sans", system-ui, sans-serif);
+    font-family: var(--font-sans);
   }
 
   .about-hero__title :global(.about-word) {
@@ -357,7 +357,7 @@ const stats = [
     line-height: 1;
     letter-spacing: -0.03em;
     margin-bottom: 0.6rem;
-    font-family: var(--font-heading, "Plus Jakarta Sans", system-ui, sans-serif);
+    font-family: var(--font-sans);
   }
 
   .stat-cell__label {
@@ -410,17 +410,20 @@ const stats = [
   .about-section { padding-top: 4rem; padding-bottom: 4rem; }
   .content-narrow { max-width: 960px; }
   .content-narrow h2 {
-    font-size: clamp(1.6rem, 3vw, 2rem);
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: var(--heading-sm);
+    font-weight: 500;
     margin: 3rem 0 1rem;
     letter-spacing: -0.02em;
+    color: var(--text-primary);
   }
   .content-narrow h2:first-child { margin-top: 0; }
   .content-narrow p {
-    color: var(--gray-700);
-    line-height: 1.85;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    line-height: 1.7;
     margin-bottom: 1.2rem;
-    font-size: 1.05rem;
+    font-size: var(--body-md);
   }
   .content-narrow p a {
     color: var(--sky-700);
@@ -429,8 +432,10 @@ const stats = [
   }
   .content-list {
     margin: 1rem 0 1.5rem 1.5rem;
-    color: var(--gray-700);
-    line-height: 1.85;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: var(--body-md);
   }
   .content-list li { margin-bottom: 0.85rem; }
 
@@ -470,9 +475,9 @@ const stats = [
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 1.75rem;
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    font-weight: 600;
     color: #ffffff;
   }
   .founder-card__avatar--sky    { background: linear-gradient(135deg, #38bdf8, #0284c7); }
@@ -502,23 +507,26 @@ const stats = [
   }
 
   .founder-card__name {
-    font-size: 1.2rem;
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 600;
     margin-bottom: 0.25rem;
     letter-spacing: -0.02em;
     color: var(--gray-900);
   }
   .founder-card__role {
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    font-weight: 500;
     color: var(--sky-700);
     margin-bottom: 0.75rem;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
   }
   .founder-card__bio {
-    font-size: 0.92rem;
-    color: var(--gray-600);
-    line-height: 1.65;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
     margin: 0;
   }
 
@@ -557,15 +565,18 @@ const stats = [
   .mv-card__icon--mission { background: var(--sky-50); color: var(--sky-600); }
   .mv-card__icon--vision  { background: #f5f3ff; color: #7c3aed; }
   .mv-card h3 {
-    font-size: 1.35rem;
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 500;
     margin-bottom: 0.85rem;
     letter-spacing: -0.02em;
     color: var(--gray-900);
   }
   .mv-card p {
-    color: var(--gray-700);
-    line-height: 1.75;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    color: var(--text-secondary);
+    line-height: 1.65;
     margin: 0;
   }
 
@@ -581,15 +592,19 @@ const stats = [
     margin: 0 auto;
   }
   .about-cta h2 {
+    font-family: var(--font-sans);
     color: #ffffff;
     margin: 0 0 1rem;
-    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    font-size: var(--heading-md);
+    font-weight: 500;
   }
   .about-cta p {
+    font-family: var(--font-sans);
+    font-size: var(--body-md);
     color: rgba(255,255,255,0.75);
     max-width: 520px;
     margin: 0 auto 2rem;
-    line-height: 1.7;
+    line-height: 1.6;
   }
   .about-cta__actions {
     display: flex;

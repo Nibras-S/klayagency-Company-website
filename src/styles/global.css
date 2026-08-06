@@ -1,0 +1,100 @@
+@import "./tokens.css";
+@import "./typography.css";
+
+/* Global Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--white);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible Focus States */
+:focus-visible {
+  outline: 2px solid var(--sky-500);
+  outline-offset: 2px;
+}
+
+/* Container Variants */
+.container-full {
+  width: 100%;
+  padding-inline: 0;
+}
+
+.container-wide {
+  width: min(100% - 2.5rem, var(--container-max-wide));
+  margin-inline: auto;
+}
+
+.container-main {
+  width: min(100% - 2.5rem, var(--container-max-main));
+  margin-inline: auto;
+}
+
+.container-content {
+  width: min(100% - 2rem, var(--container-max-content));
+  margin-inline: auto;
+}
+
+/* Legacy fallback container class mapped to container-main */
+.container {
+  width: min(100% - 2.5rem, var(--container-max-main));
+  margin-inline: auto;
+}
+
+/* Section Spacing Classes */
+.section {
+  padding-block: var(--section-padding-desktop);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-block: var(--section-padding-mobile);
+  }
+}
+
+.section-sm {
+  padding-block: calc(var(--section-padding-desktop) * 0.6);
+}
+
+@media (max-width: 768px) {
+  .section-sm {
+    padding-block: calc(var(--section-padding-mobile) * 0.6);
+  }
+}
+
+/* Standardized Section Header */
+.section-header {
+  text-align: left;
+  margin-bottom: 3.5rem;
+}
+
+.section-header.text-center {
+  text-align: center;
+  margin-inline: auto;
+}
+
+/* Motion Accessibility Reset */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

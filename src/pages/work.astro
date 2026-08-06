@@ -261,7 +261,7 @@ const projects = [
 
   .solutions-showcase {
     padding: calc(60px + 3rem) 0 6rem;
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
   }
 
   .showcase-header {
@@ -270,9 +270,9 @@ const projects = [
   }
 
   .showcase-title {
-    font-family: var(--font-heading);
-    font-size: clamp(3rem, 6vw, 4.5rem);
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: var(--display-lg);
+    font-weight: 500;
     color: #0f172a !important;
     margin-bottom: 1rem;
     letter-spacing: -0.04em;
@@ -281,9 +281,10 @@ const projects = [
   .showcase-subtitle {
     max-width: 680px;
     margin: 0 auto;
-    color: #475569;
-    font-size: 1.05rem;
-    line-height: 1.75;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--body-md);
+    line-height: 1.7;
   }
   .showcase-subtitle a {
     color: #0369a1;
@@ -359,17 +360,19 @@ const projects = [
   }
 
   .card-name {
-    font-family: var(--font-heading);
-    font-size: 1.15rem;
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 600;
     color: #0f172a;
     margin-bottom: 0.35rem;
     line-height: 1.25;
+    letter-spacing: -0.02em;
   }
 
   .card-desc {
-    font-size: 0.88rem;
-    color: #64748b;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    color: var(--text-secondary);
     line-height: 1.5;
     margin-bottom: 0;
     display: -webkit-box;
@@ -390,16 +393,17 @@ const projects = [
   }
 
   .coming-soon-projects h3 {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: var(--heading-sm);
+    font-weight: 500;
     color: #0f172a;
     margin-bottom: 1rem;
   }
 
   .coming-soon-projects p {
-    color: #64748b;
-    font-size: 1.1rem;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--body-md);
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -414,13 +418,17 @@ const projects = [
   }
 
   .bottom-cta h2 {
+    font-family: var(--font-sans);
     color: #0f172a;
-    font-size: 2rem;
+    font-size: var(--heading-md);
+    font-weight: 500;
     margin-bottom: 1rem;
   }
 
   .bottom-cta p {
-    color: #64748b;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--body-md);
     max-width: 500px;
     margin: 0 auto 2.5rem;
   }

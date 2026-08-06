@@ -202,9 +202,10 @@ const steps: StepItem[] = [
   }
 
   .hww-title {
-    font-size: clamp(2.1rem, 3.4vw, 3.2rem);
-    font-weight: 800;
-    color: #111111;
+    font-family: var(--font-sans);
+    font-size: var(--heading-md);
+    font-weight: 500;
+    color: var(--text-primary);
     line-height: 1.08;
     letter-spacing: -0.03em;
   }
@@ -213,10 +214,11 @@ const steps: StepItem[] = [
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #666666;
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    color: var(--text-muted);
     text-transform: uppercase;
     padding-left: 1.25rem;
     border-left: 1px solid #e2e8f0;
@@ -232,11 +234,12 @@ const steps: StepItem[] = [
   }
 
   .hww-subtitle {
-    font-size: 1rem;
-    color: #666666;
+    font-family: var(--font-sans);
+    font-size: var(--body-md);
+    color: var(--text-secondary);
     margin-top: 0.4rem;
-    line-height: 1.45;
-    font-weight: 450;
+    line-height: 1.5;
+    font-weight: 400;
   }
 
   .hww-divider {
@@ -289,9 +292,10 @@ const steps: StepItem[] = [
   }
 
   .hww-card__step {
-    font-size: 0.82rem;
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
     font-weight: 500;
-    color: #777777;
+    color: var(--text-muted);
     letter-spacing: 0.02em;
   }
 
@@ -300,18 +304,20 @@ const steps: StepItem[] = [
   }
 
   .hww-card__title {
-    font-size: clamp(1.15rem, 1.4vw, 1.4rem);
-    font-weight: 700;
-    color: #111111;
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
     line-height: 1.2;
     letter-spacing: -0.02em;
     margin-bottom: 0.4rem;
   }
 
   .hww-card__desc {
-    font-size: 0.84rem;
-    color: #666666;
-    line-height: 1.45;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    color: var(--text-secondary);
+    line-height: 1.5;
   }
 
   /* Image Box Styling */

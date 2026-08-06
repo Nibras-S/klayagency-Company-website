@@ -1126,13 +1126,13 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   .hero__title {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: clamp(2.15rem, 4vw, 3.8rem);
+    font-family: var(--font-sans);
+    font-size: clamp(2.5rem, 3.8vw, 4.25rem);
     font-weight: 500;
-    line-height: 0.98;
+    line-height: 0.96;
     margin: 1.5rem 0 1.25rem 0;
-    letter-spacing: -0.06em;
-    color: #000000;
+    letter-spacing: -0.045em;
+    color: var(--text-primary);
   }
 
   .hero__title-lines,
@@ -1148,16 +1148,17 @@ export default function <span class="code-func">Product</span>() &#123;
     display: none;
   }
   .hero__title-accent {
-    color: #0284c7;
+    color: var(--sky-600);
   }
 
   .hero__desc {
-    color: var(--gray-500);
-    font-size: clamp(0.84rem, 1vw, 0.95rem);
-    line-height: 1.7;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--body-lg);
+    line-height: 1.45;
     letter-spacing: -0.015em;
     margin-bottom: 2rem;
-    max-width: none;
+    max-width: 38rem;
   }
 
   .hero__desc-line {
@@ -1186,10 +1187,10 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   .hero__pill-text {
-    font-family: var(--font-heading), "Helvetica Neue", sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 0;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 
   .hero__pill-icon {
@@ -1216,17 +1217,11 @@ export default function <span class="code-func">Product</span>() &#123;
     margin-bottom: 2.5rem;
   }
 
-  /* Shown only on touch devices that may need a deliberate motion-permission
-     prompt (notably iPhone browsers). JavaScript removes it where permission
-     is not required. */
-
   .btn-lg {
     padding: 0.875rem 2rem !important;
     font-size: 1rem !important;
   }
 
-  /* Homepage CTA variants: spacious, simple pills matching the project, story,
-     and contact calls-to-action used throughout the landing page. */
   .ws-cta__button {
     min-width: 16.5rem;
     justify-content: center;
@@ -1235,7 +1230,7 @@ export default function <span class="code-func">Product</span>() &#123;
     border-width: 2px;
     color: #12a9e8;
     border-color: #12a9e8;
-    font-weight: 700;
+    font-weight: 500;
     box-shadow: none;
   }
 
@@ -1247,9 +1242,9 @@ export default function <span class="code-func">Product</span>() &#123;
     border-color: #000000;
     color: #ffffff;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-    font-family: var(--font-heading), "Helvetica Neue", sans-serif;
-    font-size: 1rem !important;
-    font-weight: 400;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem !important;
+    font-weight: 500;
   }
   .cta-dark-pill:hover,
   .cta-dark-pill:focus-visible {
@@ -1282,11 +1277,18 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   .stat__num {
-    font-family: var(--font-heading);
+    font-family: var(--font-sans);
     font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--gray-900);
+    font-weight: 500;
+    color: var(--text-primary);
     letter-spacing: -0.03em;
+  }
+
+  .stat__label {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-muted);
   }
 
   .stat__label {
@@ -1421,12 +1423,12 @@ export default function <span class="code-func">Product</span>() &#123;
 
   /* Matches .hero__title exactly — same face, size, weight and tracking. */
   .flow__title {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: clamp(3rem, 7.5vw, 6.5rem);
+    font-family: var(--font-sans);
+    font-size: var(--display-lg);
     font-weight: 500;
-    line-height: 0.9;
-    letter-spacing: -0.06em;
-    color: #000000;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
     margin-bottom: clamp(2.5rem, 7vw, 6rem);
   }
 
@@ -1544,9 +1546,10 @@ export default function <span class="code-func">Product</span>() &#123;
   }
 
   .flow__desc {
-    font-size: clamp(1rem, 1.5vw, 1.35rem);
-    line-height: 1.6;
-    color: var(--gray-700);
+    font-family: var(--font-sans);
+    font-size: var(--body-lg);
+    line-height: 1.45;
+    color: var(--text-secondary);
     margin-bottom: 2rem;
   }
 
@@ -1775,11 +1778,11 @@ export default function <span class="code-func">Product</span>() &#123;
 
   /* Same type spec as the hero and flow titles. */
   .principles__title {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-family: var(--font-sans);
+    font-size: var(--display-lg);
     font-weight: 500;
     line-height: 0.95;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.04em;
     color: #000000;
     margin-bottom: 1.5rem;
   }
@@ -2189,14 +2192,7 @@ export default function <span class="code-func">Product</span>() &#123;
   .about-preview__statement {
     max-width: 960px;
     margin: 0;
-    font-family: var(
-      --font-body,
-      'Inter',
-      -apple-system,
-      BlinkMacSystemFont,
-      "Helvetica Neue",
-      sans-serif
-    );
+    font-family: var(--font-sans);
     font-size: clamp(1.6rem, 2.5vw, 2.5rem);
     font-weight: 450;
     line-height: 1.28;
@@ -3048,10 +3044,10 @@ export default function <span class="code-func">Product</span>() &#123;
   /* Identical spec to .flow__title / .hero__title — now that the header spans
      the container, it can carry the full size. */
   .wcu__head h2 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-family: var(--font-sans);
+    font-size: var(--display-lg);
     font-weight: 500;
-    line-height: 1.05;
+    line-height: 0.95;
     letter-spacing: -0.04em;
     color: #000000;
     margin-bottom: 1.5rem;

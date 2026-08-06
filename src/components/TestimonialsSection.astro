@@ -267,10 +267,11 @@ const marqueeList = [...testimonials, ...testimonials];
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    color: #475569;
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    color: var(--text-muted);
     text-transform: uppercase;
   }
 
@@ -283,9 +284,10 @@ const marqueeList = [...testimonials, ...testimonials];
   }
 
   .ts-title {
-    font-size: clamp(2.2rem, 4vw, 3.25rem);
-    font-weight: 800;
-    color: #0f172a;
+    font-family: var(--font-sans);
+    font-size: var(--heading-md);
+    font-weight: 500;
+    color: var(--text-primary);
     line-height: 1.1;
     letter-spacing: -0.03em;
   }
@@ -407,8 +409,9 @@ const marqueeList = [...testimonials, ...testimonials];
   }
 
   .ts-card__quote {
-    font-size: 1.02rem;
-    font-weight: 600;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
     color: #ffffff;
     line-height: 1.45;
     letter-spacing: -0.015em;
@@ -428,15 +431,17 @@ const marqueeList = [...testimonials, ...testimonials];
   }
 
   .ts-card__name {
-    font-size: 1rem;
-    font-weight: 700;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
     color: #ffffff;
   }
 
   .ts-card__role {
-    font-size: 0.85rem;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
     color: rgba(255, 255, 255, 0.82);
-    font-weight: 450;
+    font-weight: 400;
   }
 
   /* Responsive Adjustments */

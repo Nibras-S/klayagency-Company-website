@@ -225,27 +225,30 @@ const stages = [
   .process__eyebrow {
     margin: 0 0 0.8rem;
     color: var(--sky-700);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    font-weight: 500;
+    letter-spacing: 0.11em;
     text-transform: uppercase;
   }
 
   .process__head h1 {
     margin: 0 0 1.5rem;
     color: #000;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-family: var(--font-sans);
+    font-size: var(--display-lg);
     font-weight: 500;
-    line-height: 1.05;
+    line-height: 0.95;
     letter-spacing: -0.04em;
   }
 
   .process__lede {
     max-width: 52ch;
     margin: 0;
-    color: var(--gray-500);
-    line-height: 1.75;
+    font-family: var(--font-sans);
+    font-size: var(--body-md);
+    color: var(--text-secondary);
+    line-height: 1.7;
   }
 
   .process__body {
@@ -280,16 +283,19 @@ const stages = [
 
   .process__stage-title {
     margin: 0 0 0.7rem;
-    font-size: clamp(1.3rem, 2.2vw, 1.85rem);
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: var(--heading-sm);
+    font-weight: 500;
     letter-spacing: -0.02em;
   }
 
   .process__stage-desc {
     max-width: 44ch;
     margin: 0 0 1.25rem;
-    color: var(--gray-600);
-    line-height: 1.75;
+    font-family: var(--font-sans);
+    font-size: var(--body-md);
+    color: var(--text-secondary);
+    line-height: 1.7;
   }
 
   .process__tags {
@@ -304,8 +310,9 @@ const stages = [
     border-radius: var(--radius-full);
     background: #fff;
     color: var(--gray-700);
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    font-weight: 500;
   }
 
   .process__cta {
@@ -317,6 +324,9 @@ const stages = [
     border-radius: var(--radius-full);
     background: #000;
     color: #fff;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   }
@@ -384,9 +394,9 @@ const stages = [
   }
 
   .process__stat-num {
-    font-family: var(--font-heading);
+    font-family: var(--font-sans);
     font-size: clamp(2.6rem, 5vw, 4rem);
-    font-weight: 800;
+    font-weight: 500;
     line-height: 1;
     letter-spacing: -0.03em;
     background: linear-gradient(135deg, var(--sky-500), var(--sky-700));
@@ -397,9 +407,10 @@ const stages = [
 
   .process__stat-label {
     margin-top: 0.5rem;
-    color: var(--gray-500);
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    color: var(--text-secondary);
+    font-weight: 400;
   }
 
   .process__steps {

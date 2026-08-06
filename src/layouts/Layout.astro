@@ -1,4 +1,9 @@
 ---
+import '@fontsource/geist-sans/400.css';
+import '@fontsource/geist-sans/500.css';
+import '@fontsource/geist-sans/600.css';
+import '../styles/global.css';
+
 export interface Props {
   title: string;
   description?: string;
@@ -304,10 +309,7 @@ const websiteSchema = {
     <!-- Preload LCP candidate (used in navbar on every page) -->
     <link rel="preload" as="image" href="/n3logo.webp" type="image/webp" fetchpriority="high" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
 
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -656,8 +658,8 @@ const websiteSchema = {
     --accent-dark: #d97706;
     --accent-pale: #fffbeb;
 
-    --font-body: 'Inter', sans-serif;
-    --font-heading: 'Instrument Sans', sans-serif;
+    --font-body: var(--font-sans);
+    --font-heading: var(--font-sans);
 
     --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
     --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);

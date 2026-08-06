@@ -148,7 +148,7 @@ const products = [
     background-color: #ffffff !important;
     color: #111827 !important;
     min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: var(--font-sans);
     letter-spacing: -0.01em;
   }
 
@@ -161,15 +161,16 @@ const products = [
     margin: 0 auto;
   }
 
-  /* Typography specific to minimal Google layout */
+  /* Typography specific to minimal layout */
   .meta-tag, .meta-date {
-    font-size: 0.85rem;
-    color: #6b7280;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    color: var(--text-muted);
     font-weight: 500;
   }
 
   .meta-tag.uppercase {
-    text-transform: none; /* In Google design "Featured" is proper case */
+    text-transform: none; /* Featured is proper case */
     color: #374151;
   }
 
@@ -185,7 +186,8 @@ const products = [
     padding: 0.6rem 1.2rem;
     background-color: #f3f4f6;
     color: #111827;
-    font-size: 0.85rem;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
     font-weight: 500;
     border-radius: 9999px;
     text-decoration: none;
@@ -216,11 +218,12 @@ const products = [
   }
 
   .featured-title {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 400; /* Thin, elegant font weight based on images */
-    line-height: 1.1;
+    font-family: var(--font-sans);
+    font-size: var(--display-lg);
+    font-weight: 500;
+    line-height: 0.95;
     color: #111827;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
     margin-bottom: 1rem;
   }
 
@@ -311,10 +314,11 @@ const products = [
   }
 
   .card-title {
-    font-size: 1.4rem;
+    font-family: var(--font-sans);
+    font-size: var(--heading-sm);
     font-weight: 500;
     letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 1.25;
     margin-bottom: 0.5rem;
     color: #111827;
   }
@@ -373,10 +377,11 @@ const products = [
   }
   
   .section-title {
-    font-size: 1.8rem;
+    font-family: var(--font-sans);
+    font-size: var(--heading-md);
     font-weight: 500;
     color: #111827;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     padding-bottom: 0.5rem;
     margin: 0;
     text-align: left;
@@ -385,9 +390,10 @@ const products = [
 
   .section-intro {
     margin: 1.25rem 0 2rem;
-    color: #4b5563;
-    font-size: 1rem;
-    line-height: 1.75;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--body-md);
+    line-height: 1.7;
     max-width: 720px;
   }
   .section-intro a {
@@ -406,15 +412,17 @@ const products = [
     border: 1px solid #e2e8f0;
   }
   .philosophy-content h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-family: var(--font-sans);
+    font-size: var(--heading-sm);
+    font-weight: 500;
     color: #0f172a;
     margin: 0 0 1rem 0;
   }
   .philosophy-content p {
-    color: #4b5563;
-    line-height: 1.8;
-    font-size: 1.05rem;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: var(--body-md);
     margin: 0;
   }
   .philosophy-content a {

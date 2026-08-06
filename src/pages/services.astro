@@ -473,11 +473,11 @@ const faqs = [
   /* Same spec as .hero__title / .flow__title on the landing page, so the display
      voice is consistent across the site. */
   .page-hero__title {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: clamp(2.6rem, 7vw, 5.5rem);
+    font-family: var(--font-sans);
+    font-size: var(--display-lg);
     font-weight: 500;
-    line-height: 0.92;
-    letter-spacing: -0.055em;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
     color: #000000;
     margin-bottom: 1.5rem;
   }
@@ -493,10 +493,11 @@ const faqs = [
   .cat-pill {
     padding: 0.5rem 1.25rem;
     border-radius: 50px;
-    font-size: 0.88rem;
-    font-weight: 600;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    font-weight: 500;
     text-decoration: none;
-    transition: all 0.25 ease;
+    transition: all 0.25s ease;
     border: 1px solid var(--gray-200);
     background: #ffffff;
     color: var(--gray-700);
@@ -539,16 +540,18 @@ const faqs = [
   }
 
   .svc-category-title {
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: var(--heading-md);
+    font-weight: 500;
     letter-spacing: -0.03em;
     color: var(--gray-900);
     margin: 0.75rem 0 0.5rem 0;
   }
 
   .svc-category-desc {
-    font-size: 1.05rem;
-    color: var(--gray-500);
+    font-family: var(--font-sans);
+    font-size: var(--body-md);
+    color: var(--text-secondary);
     line-height: 1.6;
   }
 
@@ -561,9 +564,10 @@ const faqs = [
   }
 
   .company-overview__desc {
-    color: var(--gray-600);
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--body-lg);
+    line-height: 1.7;
     max-width: 840px;
     margin: 0 auto;
     text-align: center;
@@ -770,8 +774,9 @@ const faqs = [
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--gray-600);
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    color: var(--text-secondary);
     font-weight: 500;
   }
   .svc-feature svg {
@@ -791,16 +796,18 @@ const faqs = [
   }
 
   .svc-block__title {
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: var(--heading-sm);
+    font-weight: 500;
     letter-spacing: -0.02em;
     color: var(--gray-900);
   }
 
   .svc-block__desc {
-    color: var(--gray-500);
-    line-height: 1.8;
-    font-size: 1rem;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: var(--body-md);
     margin-bottom: 0.5rem;
   }
 
@@ -865,16 +872,17 @@ const faqs = [
     box-shadow: 0 6px 16px rgba(14, 165, 233, 0.08);
   }
   .tech-tile__name {
-    font-family: var(--font-heading);
+    font-family: var(--font-sans);
     font-size: 1rem;
-    font-weight: 800;
+    font-weight: 500;
     color: var(--gray-900);
     letter-spacing: -0.01em;
   }
   .tech-tile__role {
-    font-size: 0.78rem;
-    color: var(--gray-500);
-    font-weight: 600;
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    color: var(--text-muted);
+    font-weight: 400;
   }
   @media (max-width: 800px) {
     .tech-grid {
@@ -900,16 +908,18 @@ const faqs = [
   }
 
   .services-cta-box__content h2 {
-    font-size: 1.75rem;
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: var(--heading-sm);
+    font-weight: 500;
     letter-spacing: -0.02em;
     margin-bottom: 0.75rem;
   }
 
   .services-cta-box__content p {
-    color: var(--gray-500);
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--body-md);
+    line-height: 1.6;
   }
 
   .services-cta-box__actions {
@@ -965,13 +975,12 @@ const faqs = [
   }
 
   .stacked-section-title {
-    font-family:
-      "Outfit", "Plus Jakarta Sans", var(--font-heading, system-ui, sans-serif) !important;
-    font-size: clamp(2.5rem, 4.2vw, 3.8rem) !important;
+    font-family: var(--font-sans) !important;
+    font-size: var(--heading-md) !important;
     font-weight: 500 !important;
     color: #0f172a !important;
     line-height: 1.1 !important;
-    letter-spacing: -0.015em !important;
+    letter-spacing: -0.02em !important;
     margin: 0 auto !important;
     text-align: center !important;
     display: block !important;
