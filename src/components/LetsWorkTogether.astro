@@ -5,8 +5,8 @@
 //   1. Enters as an inset rounded card, video paused on its poster.
 //   2. As you scroll, the card opens out to full-bleed (clip-path inset, so the
 //      video never reflows or rescales — only the reveal window changes).
-//   3. Once mostly open, the full video begins its seamless loop and the copy
-//      fades in near the end of its first pass.
+//   3. The copy appears early in the reveal, while the full video begins its
+//      seamless loop as the card continues opening.
 ---
 
 <section class="lwt" id="lwt" aria-labelledby="lwt-title">
@@ -81,6 +81,24 @@
     background: #04050c;
   }
 
+  /* The footage moves between white and black areas. A soft center scrim keeps
+     the white CTA copy readable without obscuring the monitor face. */
+  .lwt__stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent 24%,
+      rgba(4, 5, 12, 0.12) 34%,
+      rgba(4, 5, 12, 0.48) 50%,
+      rgba(4, 5, 12, 0.2) 67%,
+      transparent 82%
+    );
+  }
+
   .lwt__video {
     position: absolute;
     inset: 0;
@@ -123,7 +141,10 @@
     letter-spacing: -0.04em;
     color: #ffffff;
     margin-bottom: 2.25rem;
-    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.6);
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.72);
+    text-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.9),
+      0 8px 36px rgba(0, 0, 0, 0.72);
   }
 
   .lwt__actions {
@@ -195,6 +216,7 @@
       max-width: 100%;
       margin-bottom: 1.75rem;
       font-size: clamp(2rem, 8.5vw, 2.5rem);
+      font-weight: 600;
       line-height: 1;
       letter-spacing: -0.045em;
       white-space: nowrap;
@@ -248,7 +270,8 @@
     // Opening geometry, driven by scroll progress.
     const RADIUS = 28;     // px at rest
     const OPEN_AT = 0.55;  // progress by which the card is fully open
-    const PLAY_AT = 0.42;  // start playback just before the card finishes opening
+    const REVEAL_AT = 0.2; // make the purpose and CTAs clear without a long wait
+    const PLAY_AT = 0.3;   // start playback while the card is still opening
 
     let inView = false;
     let raf: number | null = null;
@@ -287,7 +310,12 @@
       stage!.style.setProperty('--lwt-inset-bottom', `${(insetBottom * (1 - eased)).toFixed(2)}%`);
       stage!.style.setProperty('--lwt-radius', `${(RADIUS * (1 - eased)).toFixed(1)}px`);
 
-      // Playback starts only once the section is genuinely open.
+      if (!revealed && p >= REVEAL_AT) {
+        revealed = true;
+        section!.classList.add('is-revealed');
+      }
+
+      // Playback starts as the card opens, after the CTA has become visible.
       if (!started && p >= PLAY_AT) {
         started = true;
         ensureVideoLoaded();
@@ -295,14 +323,6 @@
       }
     }
 
-    // Reveal the copy near the end of the first pass. The video itself loops,
-    // so playback stays gapless without a second media-element handoff.
-    video.addEventListener('timeupdate', () => {
-      if (!revealed && video.duration && video.currentTime >= video.duration - 0.25) {
-        revealed = true;
-        section.classList.add('is-revealed');
-      }
-    });
     video.addEventListener('error', () => {
       // Keep the call-to-action usable even if a media request is blocked.
       section.classList.add('is-revealed');
