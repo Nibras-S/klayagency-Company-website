@@ -1,27 +1,51 @@
-# build output
-dist/
-
-# generated types
-.astro/
-
-# dependencies
+# Dependencies
 node_modules/
+.pnpm-store/
 
-# logs
+# Build output and generated caches
+dist/
+.astro/
+.cache/
+.vite/
+coverage/
+*.tsbuildinfo
+
+# Local environment variables and secrets
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+
+# Logs and temporary files
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+*.tmp
+*.temp
+*.swp
+*~
+tmp/
+temp/
 
-# environment variables
-.env
-.env.production
+# Locally generated/source media (publish optimized assets from public/ instead)
+media-originals/
+upscale video/
+video-frames/
 
-# macOS-specific files
-.DS_Store
-
-# jetbrains setting folder
+# Editors and operating systems
 .idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+.history/
+.DS_Store
+Thumbs.db
 
-# Cloudflare
+# Hosting and deployment tooling
 .wrangler/
+.vercel/
+.netlify/
