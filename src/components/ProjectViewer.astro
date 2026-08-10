@@ -1,0 +1,1009 @@
+---
+interface Project {
+  category: string;
+  indexName?: string;
+  indexCategory?: string;
+  name: string;
+  desc: string;
+  technologies?: string;
+  client?: string;
+  status?: string;
+  link?: string;
+  pdfLink?: string;
+  image: string;
+  titleLines?: string[];
+  surface?: string;
+  ink?: string;
+  muted?: string;
+  accent?: string;
+  gallery?: string[];
+  images?: string[];
+}
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+const projectCount = String(projects.length).padStart(2, "0");
+---
+
+<div
+  class="project-viewer"
+  id="project-viewer"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="project-viewer-title"
+  aria-label="Project viewer"
+  data-project-viewer
+  data-projects={JSON.stringify(projects)}
+  hidden
+>
+  <div class="project-viewer__ghost" data-viewer-ghost aria-hidden="true"></div>
+
+  <div class="project-viewer__shell" data-viewer-shell>
+    <header class="project-viewer__header">
+      <div class="project-viewer__locator" aria-live="polite">
+        <span>Work / Project</span>
+        <strong data-viewer-index>01 / {projectCount}</strong>
+      </div>
+
+      <button class="project-viewer__close" type="button" data-viewer-close aria-label="Close project viewer">
+        <span>Close</span>
+        <kbd>Esc</kbd>
+        <span aria-hidden="true">×</span>
+      </button>
+    </header>
+
+    <div class="project-viewer__stage" data-viewer-stage>
+      <section class="project-viewer__information" aria-label="Project information">
+        <p class="project-viewer__eyebrow" data-viewer-category></p>
+        <h2 class="project-viewer__title" id="project-viewer-title" data-viewer-title></h2>
+        <p class="project-viewer__description" data-viewer-description></p>
+
+        <dl class="project-viewer__meta">
+          <div data-viewer-client-row>
+            <dt>Client</dt>
+            <dd data-viewer-client></dd>
+          </div>
+          <div data-viewer-services-row>
+            <dt>Capabilities</dt>
+            <dd data-viewer-services></dd>
+          </div>
+          <div data-viewer-status-row>
+            <dt>Status</dt>
+            <dd data-viewer-status></dd>
+          </div>
+        </dl>
+
+        <a class="project-viewer__external-link" data-viewer-link href="" target="_blank" rel="noopener noreferrer" hidden>
+          <span data-viewer-link-label>Visit project</span>
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M6 14 14 6m0 0H8m6 0v6" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </section>
+
+      <section class="project-viewer__visual-area" aria-label="Project artwork">
+        <div class="project-viewer__visual-head">
+          <span data-viewer-visual-label>Visual 01 / 01</span>
+          <span data-viewer-project-name></span>
+        </div>
+
+        <div class="project-viewer__artwork" data-viewer-artwork>
+          <img data-viewer-image src="" alt="" decoding="async" />
+        </div>
+
+        <div class="project-viewer__gallery-controls" data-viewer-gallery-controls hidden>
+          <button type="button" data-viewer-gallery-previous aria-label="Previous visual">
+            <span aria-hidden="true">←</span>
+            <span>Visual</span>
+          </button>
+          <button type="button" data-viewer-gallery-next aria-label="Next visual">
+            <span>Visual</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <footer class="project-viewer__footer">
+      <button class="project-viewer__project-nav project-viewer__project-nav--previous" type="button" data-viewer-previous>
+        <span aria-hidden="true">←</span>
+        <span>Previous project</span>
+      </button>
+
+      <div class="project-viewer__rail" role="tablist" aria-label="Project index">
+        {projects.map((project, index) => (
+          <button
+            class="project-viewer__rail-item"
+            type="button"
+            role="tab"
+            aria-label={`Open project ${index + 1}: ${project.name}`}
+            data-viewer-project={index}
+          >
+            {String(index + 1).padStart(2, "0")}
+          </button>
+        ))}
+      </div>
+
+      <button class="project-viewer__project-nav project-viewer__project-nav--next" type="button" data-viewer-next>
+        <span>Next project</span>
+        <span aria-hidden="true">→</span>
+      </button>
+    </footer>
+  </div>
+</div>
+
+<style>
+  .project-viewer[hidden] { display: none; }
+
+  .project-viewer {
+    --viewer-surface: #f7f7f5;
+    --viewer-ink: #0f172a;
+    --viewer-muted: #64748b;
+    --viewer-accent: #0284c7;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: var(--viewer-surface);
+    color: var(--viewer-ink);
+    isolation: isolate;
+    opacity: 0;
+    transition: opacity 240ms ease;
+  }
+
+  .project-viewer.is-visible { opacity: 1; }
+
+  .project-viewer__shell {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    overflow: hidden;
+  }
+
+  .project-viewer__header,
+  .project-viewer__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-right: clamp(1.25rem, 3vw, 3.5rem);
+    padding-left: clamp(1.25rem, 3vw, 3.5rem);
+  }
+
+  .project-viewer__header {
+    min-height: clamp(4rem, 8vh, 5.5rem);
+    border-bottom: 1px solid color-mix(in srgb, var(--viewer-ink) 14%, transparent);
+  }
+
+  .project-viewer__locator {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    color: var(--viewer-muted);
+    font-size: 0.56rem;
+    font-weight: 650;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .project-viewer__locator strong {
+    color: var(--viewer-accent);
+    font-size: 0.64rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .project-viewer__close {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--viewer-ink) 28%, transparent);
+    background: transparent;
+    color: var(--viewer-ink);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    transition: border-color 180ms ease, color 180ms ease;
+  }
+
+  .project-viewer__close:hover,
+  .project-viewer__close:focus-visible {
+    border-color: var(--viewer-accent);
+    color: var(--viewer-accent);
+    outline: none;
+  }
+
+  .project-viewer__close kbd {
+    padding: 0;
+    background: transparent;
+    color: var(--viewer-muted);
+    font: inherit;
+    font-size: 0.5rem;
+    font-weight: 600;
+  }
+
+  .project-viewer__close > span:last-child {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 0.6;
+  }
+
+  .project-viewer__stage {
+    display: grid;
+    min-height: 0;
+    grid-template-columns: minmax(17rem, 0.67fr) minmax(0, 1.33fr);
+    gap: clamp(2rem, 5vw, 7rem);
+    padding: clamp(1.5rem, 3.8vh, 3.5rem) clamp(1.25rem, 3vw, 3.5rem);
+    transition: opacity 220ms ease, transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-viewer__stage.is-exiting-forward {
+    opacity: 0;
+    transform: translate3d(-5vw, 0, 0);
+  }
+
+  .project-viewer__stage.is-exiting-backward {
+    opacity: 0;
+    transform: translate3d(5vw, 0, 0);
+  }
+
+  .project-viewer__stage.is-entering-forward {
+    opacity: 0;
+    transform: translate3d(5vw, 0, 0);
+  }
+
+  .project-viewer__stage.is-entering-backward {
+    opacity: 0;
+    transform: translate3d(-5vw, 0, 0);
+  }
+
+  .project-viewer__information {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0.2rem 0 clamp(0.25rem, 1vh, 0.75rem);
+  }
+
+  .project-viewer__eyebrow {
+    margin: 0 0 clamp(1.2rem, 3.5vh, 3.5rem);
+    color: var(--viewer-accent);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .project-viewer__title {
+    width: 100%;
+    margin: 0 auto auto 0;
+    color: var(--viewer-ink);
+    font-size: clamp(3.25rem, 6.1vw, 7.25rem);
+    font-weight: 380;
+    letter-spacing: -0.075em;
+    line-height: 0.82;
+  }
+
+  :global(.project-viewer__title span) {
+    display: block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  :global(.project-viewer__title span + span) {
+    margin-left: clamp(1rem, 3vw, 3.25rem);
+    color: var(--viewer-accent);
+  }
+
+  .project-viewer__description {
+    max-width: 32rem;
+    margin: clamp(1.75rem, 5vh, 5rem) 0 clamp(1.2rem, 3.4vh, 3rem);
+    color: var(--viewer-muted);
+    font-size: clamp(0.78rem, 1vw, 0.94rem);
+    font-weight: 450;
+    line-height: 1.65;
+  }
+
+  .project-viewer__meta {
+    display: grid;
+    width: min(100%, 30rem);
+    margin: 0;
+    border-top: 1px solid color-mix(in srgb, var(--viewer-ink) 14%, transparent);
+  }
+
+  .project-viewer__meta div {
+    display: grid;
+    grid-template-columns: minmax(5.2rem, 0.38fr) minmax(0, 1fr);
+    gap: 0.7rem;
+    padding: 0.52rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--viewer-ink) 10%, transparent);
+  }
+
+  .project-viewer__meta div[hidden] { display: none; }
+
+  .project-viewer__meta dt {
+    color: color-mix(in srgb, var(--viewer-ink) 48%, transparent);
+    font-size: 0.47rem;
+    font-weight: 720;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .project-viewer__meta dd {
+    margin: 0;
+    color: var(--viewer-ink);
+    font-size: 0.69rem;
+    font-weight: 540;
+    line-height: 1.4;
+  }
+
+  .project-viewer__external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: clamp(1rem, 2.5vh, 2rem);
+    padding-bottom: 0.28rem;
+    border-bottom: 1px solid var(--viewer-accent);
+    color: var(--viewer-ink);
+    font-size: 0.56rem;
+    font-weight: 720;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 180ms ease, gap 180ms ease;
+  }
+
+  .project-viewer__external-link:hover,
+  .project-viewer__external-link:focus-visible {
+    gap: 0.9rem;
+    color: var(--viewer-accent);
+    outline: none;
+  }
+
+  .project-viewer__external-link svg { width: 0.88rem; height: 0.88rem; }
+
+  .project-viewer__visual-area {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    min-width: 0;
+    min-height: 0;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: clamp(0.65rem, 1.5vh, 1rem);
+  }
+
+  .project-viewer__visual-head {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--viewer-muted);
+    font-size: 0.5rem;
+    font-weight: 650;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .project-viewer__visual-head span:last-child {
+    overflow: hidden;
+    color: var(--viewer-ink);
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .project-viewer__artwork {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--viewer-ink) 15%, transparent);
+    background: color-mix(in srgb, var(--viewer-ink) 5%, var(--viewer-surface));
+    transition: opacity 220ms ease, transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-viewer__artwork.is-leaving-forward {
+    opacity: 0;
+    transform: translate3d(-4%, 0, 0) scale(0.985);
+  }
+
+  .project-viewer__artwork.is-leaving-backward {
+    opacity: 0;
+    transform: translate3d(4%, 0, 0) scale(0.985);
+  }
+
+  .project-viewer__artwork.is-entering-forward {
+    opacity: 0;
+    transform: translate3d(4%, 0, 0) scale(1.015);
+  }
+
+  .project-viewer__artwork.is-entering-backward {
+    opacity: 0;
+    transform: translate3d(-4%, 0, 0) scale(1.015);
+  }
+
+  .project-viewer__artwork img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .project-viewer__gallery-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .project-viewer__gallery-controls[hidden],
+  .project-viewer__external-link[hidden] {
+    display: none;
+  }
+
+  .project-viewer__gallery-controls button,
+  .project-viewer__project-nav,
+  .project-viewer__rail-item {
+    border: 0;
+    background: transparent;
+    color: var(--viewer-ink);
+    cursor: pointer;
+    font: inherit;
+  }
+
+  .project-viewer__gallery-controls button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+    color: var(--viewer-muted);
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 180ms ease;
+  }
+
+  .project-viewer__gallery-controls button:hover,
+  .project-viewer__gallery-controls button:focus-visible {
+    color: var(--viewer-accent);
+    outline: none;
+  }
+
+  .project-viewer__footer {
+    min-height: clamp(4.1rem, 8vh, 5.2rem);
+    border-top: 1px solid color-mix(in srgb, var(--viewer-ink) 14%, transparent);
+  }
+
+  .project-viewer__project-nav {
+    display: inline-flex;
+    min-width: 9rem;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.4rem 0;
+    color: var(--viewer-ink);
+    font-size: 0.56rem;
+    font-weight: 720;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 180ms ease, transform 180ms ease;
+  }
+
+  .project-viewer__project-nav--next { justify-content: flex-end; }
+
+  .project-viewer__project-nav:hover:not(:disabled),
+  .project-viewer__project-nav:focus-visible:not(:disabled) {
+    color: var(--viewer-accent);
+    outline: none;
+  }
+
+  .project-viewer__project-nav--previous:hover:not(:disabled) { transform: translateX(-3px); }
+  .project-viewer__project-nav--next:hover:not(:disabled) { transform: translateX(3px); }
+  .project-viewer__project-nav:disabled { cursor: default; opacity: 0.3; }
+
+  .project-viewer__rail {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.28rem, 0.75vw, 0.75rem);
+  }
+
+  .project-viewer__rail-item {
+    position: relative;
+    padding: 0.35rem 0.08rem;
+    color: var(--viewer-muted);
+    font-size: 0.48rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    transition: color 180ms ease;
+  }
+
+  .project-viewer__rail-item::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: var(--viewer-accent);
+    content: "";
+    opacity: 0;
+    transform: scaleX(0.4);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .project-viewer__rail-item:hover,
+  .project-viewer__rail-item:focus-visible,
+  .project-viewer__rail-item.is-active {
+    color: var(--viewer-ink);
+    outline: none;
+  }
+
+  .project-viewer__rail-item.is-active::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .project-viewer__ghost {
+    position: fixed;
+    z-index: 4;
+    display: none;
+    overflow: hidden;
+    pointer-events: none;
+    background-color: var(--viewer-surface);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid color-mix(in srgb, var(--viewer-ink) 18%, transparent);
+    will-change: left, top, width, height, opacity, border-radius;
+  }
+
+  .project-viewer__ghost.is-active { display: block; }
+
+  @media (max-width: 900px) {
+    .project-viewer__stage {
+      grid-template-columns: minmax(14rem, 0.76fr) minmax(0, 1.24fr);
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    .project-viewer__title { font-size: clamp(2.7rem, 6.5vw, 4.5rem); }
+    .project-viewer__description { font-size: 0.76rem; }
+    .project-viewer__rail { gap: 0.35rem; }
+  }
+
+  @media (max-width: 680px) {
+    .project-viewer__header,
+    .project-viewer__footer {
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+
+    .project-viewer__header { min-height: 3.8rem; }
+    .project-viewer__locator > span { display: none; }
+    .project-viewer__close kbd { display: none; }
+
+    .project-viewer__stage {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 1rem 1rem 1.5rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-viewer__stage::-webkit-scrollbar { display: none; }
+
+    .project-viewer__information {
+      display: contents;
+    }
+
+    .project-viewer__eyebrow {
+      order: 1;
+      display: flex;
+      flex: 0 0 auto;
+      min-height: 2.5rem;
+      align-items: center;
+      margin: 0 0 0.55rem;
+      padding-right: 10.5rem;
+      font-size: 0.49rem;
+    }
+
+    .project-viewer__title {
+      order: 2;
+      flex: 0 0 auto;
+      font-size: clamp(2.55rem, 11.5vw, 4rem);
+      line-height: 0.84;
+    }
+
+    .project-viewer__visual-area {
+      order: 3;
+      flex: 0 0 auto;
+      grid-template-rows: auto auto auto;
+      width: 100%;
+      margin-top: 1.1rem;
+    }
+
+    .project-viewer__artwork {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+
+    .project-viewer__description {
+      order: 4;
+      display: block;
+      flex: 0 0 auto;
+      max-width: none;
+      margin: 1.35rem 0 1rem;
+      font-size: 0.78rem;
+      line-height: 1.65;
+    }
+
+    .project-viewer__meta {
+      order: 5;
+      display: none;
+    }
+
+    .project-viewer__external-link {
+      order: 6;
+      display: inline-flex;
+      flex: 0 0 auto;
+      position: fixed;
+      right: 1rem;
+      bottom: auto;
+      left: auto;
+      top: calc(4.8rem + env(safe-area-inset-top, 0px));
+      z-index: 6;
+      width: auto;
+      max-width: calc(100vw - 2rem);
+      min-height: 2.5rem;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0.62rem 0.9rem;
+      border: 1px solid color-mix(in srgb, var(--viewer-ink) 20%, transparent);
+      border-radius: 100px;
+      background: var(--viewer-ink);
+      box-shadow: 0 8px 24px color-mix(in srgb, var(--viewer-ink) 16%, transparent);
+      color: var(--viewer-surface);
+    }
+
+    .project-viewer__visual-area { gap: 0.55rem; }
+    .project-viewer__visual-head { font-size: 0.45rem; }
+    .project-viewer__footer { min-height: 4rem; }
+    .project-viewer__project-nav { min-width: 0; font-size: 0.49rem; }
+    .project-viewer__rail { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-viewer,
+    .project-viewer__stage,
+    .project-viewer__artwork,
+    .project-viewer__ghost,
+    .project-viewer__project-nav,
+    .project-viewer__rail-item,
+    .project-viewer__external-link { transition: none !important; }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const viewer = document.querySelector('[data-project-viewer]');
+    if (!viewer) return;
+
+    let projects = [];
+    try {
+      projects = JSON.parse(viewer.dataset.projects || '[]');
+    } catch {
+      return;
+    }
+    if (!projects.length) return;
+
+    const stage = viewer.querySelector('[data-viewer-stage]');
+    const title = viewer.querySelector('[data-viewer-title]');
+    const category = viewer.querySelector('[data-viewer-category]');
+    const description = viewer.querySelector('[data-viewer-description]');
+    const index = viewer.querySelector('[data-viewer-index]');
+    const image = viewer.querySelector('[data-viewer-image]');
+    const artwork = viewer.querySelector('[data-viewer-artwork]');
+    const visualLabel = viewer.querySelector('[data-viewer-visual-label]');
+    const projectName = viewer.querySelector('[data-viewer-project-name]');
+    const client = viewer.querySelector('[data-viewer-client]');
+    const services = viewer.querySelector('[data-viewer-services]');
+    const status = viewer.querySelector('[data-viewer-status]');
+    const clientRow = viewer.querySelector('[data-viewer-client-row]');
+    const servicesRow = viewer.querySelector('[data-viewer-services-row]');
+    const statusRow = viewer.querySelector('[data-viewer-status-row]');
+    const externalLink = viewer.querySelector('[data-viewer-link]');
+    const externalLinkLabel = viewer.querySelector('[data-viewer-link-label]');
+    const closeButton = viewer.querySelector('[data-viewer-close]');
+    const previousButton = viewer.querySelector('[data-viewer-previous]');
+    const nextButton = viewer.querySelector('[data-viewer-next]');
+    const galleryControls = viewer.querySelector('[data-viewer-gallery-controls]');
+    const galleryPrevious = viewer.querySelector('[data-viewer-gallery-previous]');
+    const galleryNext = viewer.querySelector('[data-viewer-gallery-next]');
+    const ghost = viewer.querySelector('[data-viewer-ghost]');
+    const railItems = [...viewer.querySelectorAll('[data-viewer-project]')];
+    const projectTriggers = [...document.querySelectorAll('.project-detail-trigger')];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    let activeIndex = 0;
+    let activeVisual = 0;
+    let activeTrigger = null;
+    let isOpen = false;
+    let isChanging = false;
+    let closingTimer = null;
+
+    const pad = (value) => String(value + 1).padStart(2, '0');
+
+    function getGallery(project) {
+      const images = Array.isArray(project.gallery) ? project.gallery
+        : Array.isArray(project.images) ? project.images
+        : [project.image];
+      return images.filter(Boolean);
+    }
+
+    function setText(element, value) {
+      if (element) element.textContent = value || '';
+    }
+
+    function setOptionalRow(row, value, output) {
+      if (!row || !output) return;
+      row.hidden = !value;
+      output.textContent = value || '';
+    }
+
+    function setTitle(lines) {
+      if (!title) return;
+      title.replaceChildren();
+      (lines && lines.length ? lines : ['Untitled project']).forEach((line) => {
+        const span = document.createElement('span');
+        span.textContent = line;
+        title.appendChild(span);
+      });
+    }
+
+    function setTheme(project) {
+      viewer.style.setProperty('--viewer-surface', project.surface || '#f7f7f5');
+      viewer.style.setProperty('--viewer-ink', project.ink || '#0f172a');
+      viewer.style.setProperty('--viewer-muted', project.muted || '#64748b');
+      viewer.style.setProperty('--viewer-accent', project.accent || '#0284c7');
+    }
+
+    function renderVisual(visual, direction = 0, shouldAnimate = false) {
+      const project = projects[activeIndex];
+      const gallery = getGallery(project);
+      activeVisual = Math.max(0, Math.min(visual, gallery.length - 1));
+      if (!image) return;
+
+      const applyVisual = () => {
+        image.src = gallery[activeVisual] || project.image;
+        image.alt = `${project.name} project visual ${activeVisual + 1}`;
+        setText(visualLabel, `Visual ${pad(activeVisual)} / ${pad(gallery.length - 1)}`);
+        if (galleryControls) galleryControls.hidden = gallery.length < 2;
+        if (galleryPrevious) galleryPrevious.disabled = activeVisual === 0;
+        if (galleryNext) galleryNext.disabled = activeVisual === gallery.length - 1;
+      };
+
+      if (!shouldAnimate || !artwork || reduceMotion.matches) {
+        applyVisual();
+        return;
+      }
+
+      const leaving = direction > 0 ? 'is-leaving-forward' : 'is-leaving-backward';
+      const entering = direction > 0 ? 'is-entering-forward' : 'is-entering-backward';
+      artwork.classList.add(leaving);
+      window.setTimeout(() => {
+        applyVisual();
+        artwork.classList.remove(leaving);
+        artwork.classList.add(entering);
+        requestAnimationFrame(() => artwork.classList.remove(entering));
+      }, 180);
+    }
+
+    function renderProject(nextIndex, { visual = 0 } = {}) {
+      activeIndex = nextIndex;
+      activeVisual = visual;
+      const project = projects[activeIndex];
+      const total = projects.length;
+
+      setTheme(project);
+      setText(index, `${pad(activeIndex)} / ${String(total).padStart(2, '0')}`);
+      setText(category, project.category);
+      setText(description, project.desc);
+      setText(projectName, project.indexName || project.name);
+      setTitle(project.titleLines || [project.name]);
+      setOptionalRow(clientRow, project.client, client);
+      setOptionalRow(servicesRow, project.technologies, services);
+      setOptionalRow(statusRow, project.status, status);
+
+      const destination = project.link || project.pdfLink;
+      if (externalLink) {
+        externalLink.hidden = !destination;
+        externalLink.href = destination || '';
+      }
+      if (externalLinkLabel) {
+        externalLinkLabel.textContent = project.link ? 'Visit live website' : 'View design file';
+      }
+
+      if (previousButton) previousButton.disabled = activeIndex === 0;
+      if (nextButton) nextButton.disabled = activeIndex === total - 1;
+      railItems.forEach((item, itemIndex) => {
+        const selected = itemIndex === activeIndex;
+        item.classList.toggle('is-active', selected);
+        item.setAttribute('aria-selected', String(selected));
+      });
+      viewer.setAttribute('aria-label', `${project.name} project viewer`);
+      renderVisual(activeVisual);
+    }
+
+    function setGhostRect(rect, imageUrl, borderRadius = '10px') {
+      if (!ghost) return;
+      ghost.style.backgroundImage = `url("${imageUrl}")`;
+      ghost.style.left = `${rect.left}px`;
+      ghost.style.top = `${rect.top}px`;
+      ghost.style.width = `${rect.width}px`;
+      ghost.style.height = `${rect.height}px`;
+      ghost.style.borderRadius = borderRadius;
+    }
+
+    function clearGhost() {
+      if (!ghost) return;
+      ghost.classList.remove('is-active');
+      ghost.style.removeProperty('transition');
+    }
+
+    function openViewer(trigger) {
+      const panel = trigger.closest('[data-project-panel]');
+      const requestedIndex = Number(panel?.dataset.index);
+      if (!Number.isFinite(requestedIndex) || !projects[requestedIndex]) return;
+
+      if (closingTimer) window.clearTimeout(closingTimer);
+      activeTrigger = trigger;
+      renderProject(requestedIndex);
+      isOpen = true;
+      viewer.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+
+      if (reduceMotion.matches || !ghost || !artwork) {
+        viewer.classList.add('is-visible');
+        return;
+      }
+
+      const source = trigger.querySelector('.project-visual__frame') || trigger;
+      const sourceRect = source.getBoundingClientRect();
+      setGhostRect(sourceRect, projects[requestedIndex].image, '8px');
+      ghost.classList.add('is-active');
+      ghost.style.transition = 'none';
+
+      requestAnimationFrame(() => {
+        const targetRect = artwork.getBoundingClientRect();
+        viewer.classList.add('is-visible');
+        requestAnimationFrame(() => {
+          ghost.style.transition = 'left 620ms cubic-bezier(0.16, 1, 0.3, 1), top 620ms cubic-bezier(0.16, 1, 0.3, 1), width 620ms cubic-bezier(0.16, 1, 0.3, 1), height 620ms cubic-bezier(0.16, 1, 0.3, 1), border-radius 620ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease 420ms';
+          setGhostRect(targetRect, projects[requestedIndex].image, '0px');
+          ghost.style.opacity = '0';
+        });
+      });
+
+      window.setTimeout(clearGhost, 680);
+    }
+
+    function closeViewer() {
+      if (!isOpen || isChanging) return;
+      isOpen = false;
+      const project = projects[activeIndex];
+      const destination = activeTrigger?.querySelector('.project-visual__frame') || activeTrigger;
+
+      if (!reduceMotion.matches && ghost && artwork && destination) {
+        const fromRect = artwork.getBoundingClientRect();
+        const targetRect = destination.getBoundingClientRect();
+        setGhostRect(fromRect, project.image, '0px');
+        ghost.classList.add('is-active');
+        ghost.style.opacity = '1';
+        ghost.style.transition = 'none';
+        requestAnimationFrame(() => {
+          viewer.classList.remove('is-visible');
+          requestAnimationFrame(() => {
+            ghost.style.transition = 'left 460ms cubic-bezier(0.4, 0, 0.2, 1), top 460ms cubic-bezier(0.4, 0, 0.2, 1), width 460ms cubic-bezier(0.4, 0, 0.2, 1), height 460ms cubic-bezier(0.4, 0, 0.2, 1), border-radius 460ms cubic-bezier(0.4, 0, 0.2, 1), opacity 160ms ease 290ms';
+            setGhostRect(targetRect, project.image, '8px');
+            ghost.style.opacity = '0';
+          });
+        });
+      } else {
+        viewer.classList.remove('is-visible');
+      }
+
+      closingTimer = window.setTimeout(() => {
+        clearGhost();
+        viewer.hidden = true;
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        activeTrigger?.focus({ preventScroll: true });
+      }, reduceMotion.matches ? 0 : 500);
+    }
+
+    function changeProject(nextIndex, direction) {
+      if (isChanging || nextIndex < 0 || nextIndex >= projects.length || nextIndex === activeIndex) return;
+      isChanging = true;
+      const exiting = direction > 0 ? 'is-exiting-forward' : 'is-exiting-backward';
+      const entering = direction > 0 ? 'is-entering-forward' : 'is-entering-backward';
+
+      if (reduceMotion.matches || !stage) {
+        renderProject(nextIndex);
+        isChanging = false;
+        return;
+      }
+
+      stage.classList.add(exiting);
+      window.setTimeout(() => {
+        renderProject(nextIndex);
+        stage.classList.remove(exiting);
+        stage.classList.add(entering);
+        requestAnimationFrame(() => {
+          stage.classList.remove(entering);
+          window.setTimeout(() => { isChanging = false; }, 420);
+        });
+      }, 220);
+    }
+
+    projectTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => openViewer(trigger));
+    });
+
+    closeButton?.addEventListener('click', closeViewer);
+    previousButton?.addEventListener('click', () => changeProject(activeIndex - 1, -1));
+    nextButton?.addEventListener('click', () => changeProject(activeIndex + 1, 1));
+    railItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const requestedIndex = Number(item.dataset.viewerProject);
+        changeProject(requestedIndex, requestedIndex > activeIndex ? 1 : -1);
+      });
+    });
+    galleryPrevious?.addEventListener('click', () => renderVisual(activeVisual - 1, -1, true));
+    galleryNext?.addEventListener('click', () => renderVisual(activeVisual + 1, 1, true));
+
+    window.addEventListener('keydown', (event) => {
+      if (!isOpen) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeViewer();
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        if (activeVisual > 0) renderVisual(activeVisual - 1, -1, true);
+        else changeProject(activeIndex - 1, -1);
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        const gallery = getGallery(projects[activeIndex]);
+        if (activeVisual < gallery.length - 1) renderVisual(activeVisual + 1, 1, true);
+        else changeProject(activeIndex + 1, 1);
+      }
+    });
+
+    viewer.addEventListener('wheel', (event) => {
+      if (isOpen) event.preventDefault();
+    }, { passive: false });
+  })();
+</script>
