@@ -10,6 +10,7 @@ export interface Props {
   keywords?: string;
   image?: string;
   noindex?: boolean;
+  lockViewportScale?: boolean;
   type?: 'website' | 'article';
   faqs?: { question: string; answer: string }[];
   article?: {
@@ -33,6 +34,7 @@ const {
   keywords = "N3GlobalTech, n3global.tech, n3globaltech, software development company, web development, mobile app development, cloud solutions, SaaS development, custom software, AI development, UI UX design, MVP development, digital transformation, startup tech partner, CRM, ERP, Astro, React, Node.js",
   image = "/og-img.jpeg",
   noindex = false,
+  lockViewportScale = false,
   type = 'website',
   faqs,
   article,
@@ -211,7 +213,12 @@ const websiteSchema = {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content={lockViewportScale
+        ? "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+        : "width=device-width, initial-scale=1, viewport-fit=cover"}
+    />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Show the splash on direct visits and refreshes. Internal links mark the

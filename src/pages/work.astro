@@ -244,6 +244,7 @@ const projectCount = String(totalProjects).padStart(2, '0');
   title="Portfolio & Case Studies"
   description="Real client success stories spanning renewable energy, automotive e-commerce, AI talent ecosystems, 3D websites, custom CRMs, aviation portals and digital transformation."
   keywords="software development portfolio, web development case studies, renewable energy website, automotive e-commerce, custom CRM examples, 3D website portfolio, digital transformation case studies, aviation website, AI talent platform"
+  lockViewportScale
 >
   <div class="work-page">
     <Navbar />
@@ -364,10 +365,6 @@ const projectCount = String(totalProjects).padStart(2, '0');
                         </svg>
                       </span>
                     </button>
-
-                    <div class="project-dek-wrap">
-                      <p class="project-dek">{project.desc}</p>
-                    </div>
 
                     <div class="project-panel__footer">
                       <dl class="project-meta">
@@ -874,28 +871,6 @@ const projectCount = String(totalProjects).padStart(2, '0');
   .project-visual__command svg { width: 0.9rem; height: 0.9rem; }
   .project-visual:hover .project-visual__command { opacity: 1; transform: none; }
 
-  .project-dek-wrap { display: block; }
-
-  .project-dek {
-    position: absolute;
-    top: clamp(3rem, 6vh, 5rem);
-    right: 0;
-    z-index: 6;
-    display: -webkit-box;
-    width: min(30%, 20rem);
-    overflow: hidden;
-    margin: 0;
-    color: var(--panel-muted);
-    font-size: clamp(0.78rem, 0.88vw, 0.95rem);
-    font-weight: 420;
-    line-height: 1.6;
-    opacity: 0;
-    transform: translate3d(0, 16px, 0);
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    transition: opacity 400ms ease, transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
   .project-panel__footer {
     position: absolute;
     right: 0;
@@ -986,7 +961,6 @@ const projectCount = String(totalProjects).padStart(2, '0');
   .project-explorer.is-entered .project-panel.is-active .project-kicker,
   .project-explorer.is-entered .project-panel.is-active .project-title-mask h2 span,
   .project-explorer.is-entered .project-panel.is-active .project-visual,
-  .project-explorer.is-entered .project-panel.is-active .project-dek,
   .project-explorer.is-entered .project-panel.is-active .project-link,
   .project-explorer.is-entered .project-panel.is-active .project-meta div {
     opacity: 1;
@@ -1001,7 +975,6 @@ const projectCount = String(totalProjects).padStart(2, '0');
   .project-explorer.is-entered .project-panel.is-active .project-title-mask h2 span:nth-child(2) { transition-delay: 190ms; }
   .project-explorer.is-entered .project-panel.is-active .project-visual { transition-delay: 30ms; }
   .project-explorer.is-entered .project-panel.is-active .project-visual__frame { transition-delay: 30ms; }
-  .project-explorer.is-entered .project-panel.is-active .project-dek { transition-delay: 240ms; }
   .project-explorer.is-entered .project-panel.is-active .project-link { transition-delay: 300ms; }
   .project-explorer.is-entered .project-panel.is-active .project-meta div { transition-delay: 280ms; }
 
@@ -1009,7 +982,6 @@ const projectCount = String(totalProjects).padStart(2, '0');
   .project-panel.is-leaving .project-kicker,
   .project-panel.is-leaving .project-title-mask h2 span,
   .project-panel.is-leaving .project-visual,
-  .project-panel.is-leaving .project-dek,
   .project-panel.is-leaving .project-link,
   .project-panel.is-leaving .project-meta div {
     opacity: 0;
@@ -1796,14 +1768,6 @@ const projectCount = String(totalProjects).padStart(2, '0');
       bottom: clamp(4.75rem, 10vh, 5.5rem);
     }
 
-    .project-dek {
-      top: 3rem;
-      width: 27%;
-      font-size: clamp(0.72rem, 0.82vw, 0.82rem);
-      line-height: 1.5;
-      -webkit-line-clamp: 4;
-    }
-
     .project-panel__footer {
       right: 0;
       bottom: 0;
@@ -1873,7 +1837,15 @@ const projectCount = String(totalProjects).padStart(2, '0');
   /* ─── MOBILE EDITORIAL VIEW (@media max-width: 991px) ─── */
 
   @media (max-width: 991px) {
-    .work-page,
+    .work-page {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: clip !important;
+      overflow-y: visible !important;
+      overscroll-behavior-x: none;
+      touch-action: pan-y;
+    }
+
     .work-intro {
       overflow: visible !important;
     }
@@ -2027,8 +1999,6 @@ const projectCount = String(totalProjects).padStart(2, '0');
     }
 
     /* Hide description, client, capabilities, status, and metadata on mobile */
-    .project-dek-wrap,
-    .project-dek,
     .dna-desc,
     .project-meta,
     .dna-meta,
