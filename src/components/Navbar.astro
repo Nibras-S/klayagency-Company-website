@@ -1,419 +1,574 @@
 ---
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
-  { href: "/services", label: "Services" },
-  { href: "/process", label: "Process" },
-  { href: "/products", label: "Our Products" },
   { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/process", label: "Process" },
+  { href: "/products", label: "Products" },
+  { href: "/blog", label: "Guides & Blog" },
+  { href: "/testimonials", label: "Testimonials" },
   { href: "/contact", label: "Contact" },
 ];
 
 const pathname = Astro.url.pathname;
 ---
 
-<header class="navbar-wrapper" id="navbar-wrapper">
-  <nav class="navbar" id="navbar" aria-label="Primary">
+<header class="site-header" id="site-header">
+  <div class="site-header__container">
     <!-- Logo -->
-    <a href="/" class="navbar__logo" aria-label="N3GlobalTech Home">
+    <a href="/" class="site-logo" aria-label="N3 Global Tech Home">
       <img
         src="/n3logo.webp"
-        alt="N3GlobalTech Logo"
-        class="logo-img"
-        width="36"
-        height="36"
+        alt="N3 Global Tech Logo"
+        class="site-logo__img"
+        width="40"
+        height="40"
       />
-      <span class="logo-text">N3 Global Tech</span>
+      <span class="site-logo__text">Global Tech</span>
     </a>
 
-    <!-- Desktop Nav -->
-    <ul class="nav-list">
-      {
-        navLinks.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class={`nav-link ${pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)) ? "active" : ""}`}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-
-    <!-- CTA -->
-    <div class="navbar__cta">
-      <a href="/contact" class="btn-nav-cta">Start a Project</a>
-    </div>
-
-    <!-- Hamburger (mobile) -->
+    <!-- Minimalist Menu Trigger (Hamburger) -->
     <button
-      class="hamburger"
-      id="hamburger"
-      aria-label="Toggle menu"
+      class="site-menu-trigger"
+      id="site-menu-trigger"
+      type="button"
+      aria-label="Open navigation menu"
       aria-expanded="false"
     >
-      <span></span>
-      <span></span>
-      <span></span>
+      <span class="site-menu-trigger__bars" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </span>
     </button>
-  </nav>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <ul class="mobile-nav-list">
-      {
-        navLinks.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class={`mobile-nav-link ${pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)) ? "active" : ""}`}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))
-      }
-      <li>
-        <a href="/contact" class="mobile-cta-btn">Start a Project →</a>
-      </li>
-    </ul>
   </div>
 </header>
 
+<!-- Full-Screen Editorial Menu Overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay__bg-glow"></div>
+
+  <div class="nav-overlay__header">
+    <a href="/" class="site-logo site-logo--overlay" aria-label="N3 Global Tech Home">
+      <img
+        src="/n3logo.webp"
+        alt="N3 Global Tech Logo"
+        class="site-logo__img"
+        width="40"
+        height="40"
+      />
+      <span class="site-logo__text">Global Tech</span>
+    </a>
+
+    <button
+      class="nav-overlay__close"
+      id="nav-overlay-close"
+      type="button"
+      aria-label="Close navigation menu"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div class="nav-overlay__content">
+    <div class="nav-overlay__grid">
+      <!-- Left Meta Info -->
+      <div class="nav-overlay__meta">
+        <div class="nav-overlay__section">
+          <h4 class="nav-overlay__label">LET'S MEET</h4>
+          <p class="nav-overlay__text">
+            TK Junction, Near Capital Mall,<br />
+            Thana, Kannur, Kerala 670002, India
+          </p>
+        </div>
+
+        <div class="nav-overlay__section">
+          <h4 class="nav-overlay__label">LET'S TALK</h4>
+          <p class="nav-overlay__text">
+            <a href="tel:+919645091256">+91 96450 91256</a><br />
+            <a href="mailto:contact@n3global.tech">contact@n3global.tech</a>
+          </p>
+        </div>
+
+        <div class="nav-overlay__section">
+          <h4 class="nav-overlay__label">CONNECT</h4>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/company/n3-global-tech" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+            <a href="https://www.instagram.com/n3globaltech" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+            <a href="mailto:contact@n3global.tech" aria-label="Email">Email</a>
+          </div>
+        </div>
+
+        <div class="nav-overlay__footer-tag">
+          <p>Let's build something <strong>great together</strong></p>
+          <a href="mailto:contact@n3global.tech" class="nav-overlay__footer-email">contact@n3global.tech</a>
+        </div>
+      </div>
+
+      <!-- Right Navigation Links Stack -->
+      <nav class="nav-overlay__nav" aria-label="Full menu">
+        <ul class="nav-overlay__list">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class:list={["nav-overlay__link", { "is-active": isActive }]}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Mobile Footer -->
+    <div class="nav-overlay__mobile-footer">
+      <p>Let's build something <strong>great together</strong></p>
+      <a href="mailto:contact@n3global.tech" class="nav-overlay__footer-email">contact@n3global.tech</a>
+    </div>
+  </div>
+</div>
+
 <style>
-  /* ── Wrapper: always fixed at top, full-width ── */
-  .navbar-wrapper {
+  /* ── SITE HEADER ── */
+  .site-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* padding will animate on scroll */
-    padding: 0;
-    pointer-events: none; /* let clicks pass through the gap */
-  }
-
-  /* ── The actual nav bar ── */
-  .navbar {
-    pointer-events: all;
-    width: 100%;
-    max-width: 100%;
+    height: 80px;
     display: flex;
     align-items: center;
-    height: 68px;
-    padding: 0 2rem;
-    gap: 1.5rem;
-
-    /* Initial state: flat, full-width, transparent bg */
-    background: rgba(255, 255, 255, 0);
-    border-radius: 0;
-    border: 1px solid transparent;
-    box-shadow: none;
+    background: transparent;
+    border-bottom: 1px solid transparent;
     backdrop-filter: blur(0px);
     -webkit-backdrop-filter: blur(0px);
-
-    /* Smooth all transitions */
-    transition:
-      max-width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-      padding 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-      background 0.35s ease,
-      border-radius 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-      border-color 0.35s ease,
-      box-shadow 0.35s ease,
-      backdrop-filter 0.35s ease,
-      margin-top 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-
-    margin-top: 0;
+    transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.4s ease,
+                border-color 0.4s ease,
+                backdrop-filter 0.4s ease,
+                box-shadow 0.4s ease;
   }
 
-  /* ── SCROLLED state (applied via JS) ── */
-  .navbar-wrapper.scrolled {
-    padding: 10px 1rem;
+  .site-header.scrolled {
+    height: 66px;
+    background: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   }
 
-  .navbar-wrapper.scrolled .navbar {
-    max-width: 980px;
-    height: 56px;
-    padding: 0 1.25rem;
-    background: rgba(255, 255, 255, 0.68);
-    border-radius: 9999px;
-    border-color: rgba(0, 0, 0, 0.07);
-    box-shadow:
-      0 4px 20px rgba(0, 0, 0, 0.07),
-      0 1px 3px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px) saturate(140%);
-    -webkit-backdrop-filter: blur(10px) saturate(140%);
+  :global(.dark) .site-header.scrolled,
+  :global([data-theme="dark"]) .site-header.scrolled {
+    background: rgba(15, 23, 42, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   }
 
-  /* ── Logo ── */
-  .navbar__logo {
+  .site-header__container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 3rem;
     display: flex;
     align-items: center;
-    gap: 0.55rem;
-    flex-shrink: 0;
-    text-decoration: none;
+    justify-content: space-between;
   }
 
-  .logo-img {
-    width: 36px;
-    height: 36px;
+  /* Logo */
+  .site-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    z-index: 10;
+  }
+
+  .site-logo__img {
+    width: 40px;
+    height: 40px;
     object-fit: contain;
     border-radius: 9px;
-    transition:
-      width 0.4s ease,
-      height 0.4s ease;
   }
 
-  .navbar-wrapper.scrolled .logo-img {
-    width: 30px;
-    height: 30px;
-  }
-
-  .logo-text {
+  .site-logo__text {
     font-family: var(--font-sans);
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--gray-900);
+    font-size: 1.2rem;
+    font-weight: 650;
     letter-spacing: -0.02em;
+    color: var(--gray-900, #0f172a);
     white-space: nowrap;
+    transition: color 0.3s ease;
   }
 
-  /* ── Nav links ── */
-  .nav-list {
-    flex: 1;
+  :global(.dark) .site-logo__text,
+  :global([data-theme="dark"]) .site-logo__text,
+  :global(.dark) .site-header.scrolled .site-logo__text,
+  :global([data-theme="dark"]) .site-header.scrolled .site-logo__text {
+    color: #ffffff;
+  }
+
+  /* Minimalist Hamburger Trigger */
+  .site-menu-trigger {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.1rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .nav-link {
-    display: block;
-    padding: 0.45rem 0.75rem;
-    border-radius: 9999px;
-    font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    color: var(--gray-600);
-    text-decoration: none;
-    transition:
-      color 0.2s,
-      background 0.2s;
-    white-space: nowrap;
-  }
-
-  .nav-link:hover {
-    color: var(--gray-900);
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  .nav-link.active {
-    color: var(--gray-900);
-    background: rgba(14, 165, 233, 0.1);
-    color: var(--sky-700);
-  }
-
-  /* ── CTA button ── */
-  .navbar__cta {
-    flex-shrink: 0;
-  }
-
-  .btn-nav-cta {
-    display: inline-block;
-    padding: 0.5rem 1.2rem;
-    background: var(--gray-900);
-    color: #fff;
-    border-radius: 9999px;
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    text-decoration: none;
-    white-space: nowrap;
-    transition:
-      background 0.2s,
-      transform 0.2s,
-      box-shadow 0.2s;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
-  }
-
-  .btn-nav-cta:hover {
-    background: var(--sky-600);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
-  }
-
-  /* ── Hamburger ── */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
+    width: 48px;
+    height: 48px;
+    background: transparent;
     border: none;
     cursor: pointer;
-    padding: 0.4rem;
+    padding: 0;
+    color: var(--gray-900, #0f172a);
+    border-radius: 50%;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  :global(.dark) .site-menu-trigger,
+  :global([data-theme="dark"]) .site-menu-trigger,
+  :global(.dark) .site-header.scrolled .site-menu-trigger,
+  :global([data-theme="dark"]) .site-header.scrolled .site-menu-trigger {
+    color: #ffffff;
+  }
+
+  .site-menu-trigger:hover {
+    background: color-mix(in srgb, currentColor 10%, transparent);
+    transform: scale(1.06);
+  }
+
+  .site-menu-trigger__bars {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 26px;
+  }
+
+  .site-menu-trigger__bars span {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    background-color: currentColor;
+    border-radius: 2px;
+    transition: transform 0.3s ease, width 0.25s ease;
+  }
+
+  .site-menu-trigger__bars span:nth-child(2) {
+    width: 68%;
     margin-left: auto;
   }
 
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--gray-700);
-    border-radius: 2px;
-    transition: all 0.25s;
+  .site-menu-trigger:hover .site-menu-trigger__bars span:nth-child(2) {
+    width: 100%;
   }
 
-  .hamburger.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .hamburger.open span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
-  /* ── Mobile menu ── */
-  .mobile-menu {
-    display: none;
-    pointer-events: all;
-    width: calc(100% - 2rem);
-    max-width: 480px;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 1.25rem;
-    margin-top: 0.5rem;
-    padding: 1rem 1.25rem 1.25rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-    animation: dropDown 0.2s ease;
-  }
-
-  @keyframes dropDown {
-    from {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .mobile-menu.open {
-    display: block;
-  }
-
-  .mobile-nav-list {
+  /* ── FULL-SCREEN EDITORIAL MENU OVERLAY ── */
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
-    list-style: none;
-    padding: 0;
+    background: var(--gray-900, #0f172a);
+    color: #f8fafc;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-12px);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+    overflow-y: auto;
+  }
+
+  .nav-overlay__bg-glow {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .nav-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+
+  .nav-overlay__header {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 1.75rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .site-logo--overlay .site-logo__text {
+    color: #ffffff;
+  }
+
+  .nav-overlay__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.25s ease;
+  }
+
+  .nav-overlay__close:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: rotate(90deg);
+  }
+
+  .nav-overlay__close svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .nav-overlay__content {
+    flex: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2.25rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .nav-overlay__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* Left Meta Details */
+  .nav-overlay__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .nav-overlay__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .nav-overlay__label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sky-400, #38bdf8); /* N3 Sky Blue Accent */
     margin: 0;
   }
 
-  .mobile-nav-link {
-    display: block;
-    padding: 0.7rem 0.875rem;
-    border-radius: 0.75rem;
-    font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    color: var(--gray-700);
+  .nav-overlay__text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--gray-400, #94a3b8);
+    margin: 0;
+  }
+
+  .nav-overlay__text a {
+    color: #cbd5e1;
     text-decoration: none;
-    transition:
-      background 0.2s,
-      color 0.2s;
+    transition: color 0.2s ease;
   }
 
-  .mobile-nav-link:hover,
-  .mobile-nav-link.active {
-    background: var(--sky-50);
-    color: var(--sky-700);
+  .nav-overlay__text a:hover {
+    color: var(--sky-400, #38bdf8);
   }
 
-  .mobile-cta-btn {
-    display: block;
-    text-align: center;
-    margin-top: 0.5rem;
-    padding: 0.75rem;
-    background: var(--gray-900);
-    color: #fff;
-    border-radius: 9999px;
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+  .nav-overlay__socials {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .nav-overlay__socials a {
+    font-size: 0.9rem;
+    color: var(--gray-400, #94a3b8);
     text-decoration: none;
-    transition: background 0.2s;
+    transition: color 0.2s ease;
   }
 
-  .mobile-cta-btn:hover {
-    background: var(--sky-600);
+  .nav-overlay__socials a:hover {
+    color: var(--sky-400, #38bdf8);
   }
 
-  /* ── Responsive ── */
-  @media (max-width: 860px) {
-    .nav-list,
-    .navbar__cta {
-      display: none;
+  .nav-overlay__footer-tag {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-overlay__footer-tag p {
+    font-size: 0.95rem;
+    color: var(--gray-500, #64748b);
+    margin: 0 0 0.25rem;
+  }
+
+  .nav-overlay__footer-tag strong {
+    color: #e2e8f0;
+  }
+
+  .nav-overlay__footer-email {
+    font-size: 0.9rem;
+    color: var(--sky-400, #38bdf8);
+    text-decoration: none;
+  }
+
+  /* Right Navigation Links List */
+  .nav-overlay__nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-overlay__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .nav-overlay__link {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: clamp(2rem, 3.6vw, 3.1rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: #cbd5e1;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-overlay__link:hover {
+    color: #ffffff;
+    transform: translateX(12px);
+  }
+
+  .nav-overlay__link.is-active {
+    color: var(--sky-400, #38bdf8); /* N3 Sky Blue Active Highlight */
+    font-weight: 600;
+  }
+
+  .nav-overlay__mobile-footer {
+    display: none;
+  }
+
+  /* Responsive Media Queries */
+  @media (max-width: 900px) {
+    .nav-overlay__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
-    .hamburger {
-      display: flex;
+
+    .nav-overlay__meta {
+      display: none; /* Hide left column on tablet/mobile so links take priority */
+    }
+
+    .nav-overlay__link {
+      font-size: clamp(1.85rem, 7vw, 2.75rem);
+    }
+
+    .nav-overlay__mobile-footer {
+      display: block;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-overlay__mobile-footer p {
+      font-size: 0.9rem;
+      color: var(--gray-500, #64748b);
+      margin: 0 0 0.25rem;
+    }
+
+    .nav-overlay__mobile-footer strong {
+      color: #e2e8f0;
     }
   }
 
-  @media (max-width: 480px) {
-    .logo-text {
-      display: none;
+  @media (max-width: 600px) {
+    .site-header__container,
+    .nav-overlay__header,
+    .nav-overlay__content {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
     }
   }
 </style>
 
 <script is:inline>
   (function () {
-    var wrapper = document.getElementById("navbar-wrapper");
-    var hamburger = document.getElementById("hamburger");
-    var mobileMenu = document.getElementById("mobile-menu");
-    if (!wrapper || !hamburger || !mobileMenu) return;
+    var header = document.getElementById("site-header");
+    var trigger = document.getElementById("site-menu-trigger");
+    var overlay = document.getElementById("nav-overlay");
+    var closeBtn = document.getElementById("nav-overlay-close");
+    if (!header || !trigger || !overlay || !closeBtn) return;
 
     function onScroll() {
-      var y = window.scrollY;
-      if (y > 40) {
-        wrapper.classList.add("scrolled");
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
       } else {
-        wrapper.classList.remove("scrolled");
+        header.classList.remove("scrolled");
       }
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    hamburger.addEventListener("click", function () {
-      var isOpen = hamburger.classList.toggle("open");
-      mobileMenu.classList.toggle("open", isOpen);
-      hamburger.setAttribute("aria-expanded", String(isOpen));
-      mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+    function openMenu() {
+      overlay.classList.add("is-open");
+      trigger.setAttribute("aria-expanded", "true");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      overlay.classList.remove("is-open");
+      trigger.setAttribute("aria-expanded", "false");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    trigger.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+
+    // Close when clicking any nav link
+    overlay.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
     });
 
-    mobileMenu.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        hamburger.classList.remove("open");
-        mobileMenu.classList.remove("open");
-      });
+    // Close on Escape key press
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && overlay.classList.contains("is-open")) {
+        closeMenu();
+      }
     });
   })();
 </script>
