@@ -23,8 +23,8 @@ const projects = [
     ink: "var(--gray-900)",
     muted: "var(--gray-600)",
     accent: "var(--sky-600)",
-    visualWidth: "91%",
-    visualOffset: "8%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
   {
     category: "Automotive E-Commerce",
@@ -38,14 +38,14 @@ const projects = [
     link: "https://www.smautospareparts.com/",
     image: "/products/circle-for-work/svg/sparemeccover.webp",
     imageRatio: "1536 / 1024",
-    titleLines: ["SM Auto", "Spare Parts"],
+    titleLines: ["SpareMec"],
     composition: "mechanical",
     surface: "#f7f7f5",
     ink: "var(--gray-900)",
     muted: "var(--gray-600)",
     accent: "#c6533c",
-    visualWidth: "82%",
-    visualOffset: "8%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
   {
     category: "Digital Transformation & CRM",
@@ -58,14 +58,14 @@ const projects = [
     link: "https://www.vierawoodenflooring.com/",
     image: "/products/circle-for-work/svg/vieracover.webp",
     imageRatio: "1536 / 1024",
-    titleLines: ["Viera Natural", "Wooden Flooring"],
+    titleLines: ["Viera Flooring"],
     composition: "material",
     surface: "#f5f2ed",
     ink: "var(--gray-900)",
     muted: "var(--gray-600)",
     accent: "#72775b",
-    visualWidth: "88%",
-    visualOffset: "11%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
   {
     category: "E-Commerce",
@@ -85,8 +85,8 @@ const projects = [
     ink: "var(--gray-900)",
     muted: "var(--gray-600)",
     accent: "#b9665c",
-    visualWidth: "91%",
-    visualOffset: "5%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
   {
     category: "EdTech & Talent Tech",
@@ -105,8 +105,8 @@ const projects = [
     ink: "var(--gray-900)",
     muted: "var(--gray-600)",
     accent: "#6755b8",
-    visualWidth: "90%",
-    visualOffset: "9%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
   {
     category: "Aviation Services",
@@ -119,14 +119,14 @@ const projects = [
     link: "https://flyger.aero",
     image: "/products/circle-for-work/svg/flygercover.webp",
     imageRatio: "1536 / 1024",
-    titleLines: ["Flyger Aviation", "Services"],
+    titleLines: ["Flyger Aviation"],
     composition: "cinematic",
     surface: "var(--gray-900)",
     ink: "var(--white)",
     muted: "var(--gray-400)",
     accent: "var(--sky-400)",
-    visualWidth: "98%",
-    visualOffset: "0%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
   {
     category: "Custom Printing Services",
@@ -139,15 +139,15 @@ const projects = [
     status: "Design / Concept",
     pdfLink: "/ui&pdf/Rida.pdf",
     image: "/products/Rida.webp",
-    imageRatio: "1381 / 888",
+    imageRatio: "1536 / 1024",
     titleLines: ["Rida"],
     composition: "graphic",
     surface: "#f7f8f5",
     ink: "var(--gray-900)",
     muted: "var(--gray-600)",
     accent: "#5c7f58",
-    visualWidth: "92%",
-    visualOffset: "6%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
   {
     category: "Corporate Website",
@@ -160,15 +160,15 @@ const projects = [
     status: "Design / Concept",
     pdfLink: "/ui&pdf/hapadrs.pdf",
     image: "/products/happiness-address.webp",
-    imageRatio: "1022 / 813",
-    titleLines: ["Happiness", "Address"],
+    imageRatio: "1536 / 1024",
+    titleLines: ["Happiness Address"],
     composition: "editorial",
     surface: "#f3f8f7",
     ink: "var(--gray-900)",
     muted: "var(--gray-600)",
     accent: "#23847d",
-    visualWidth: "76%",
-    visualOffset: "16%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
   {
     category: "Social Impact Platform",
@@ -181,15 +181,15 @@ const projects = [
     status: "Design / Concept",
     pdfLink: "/ui&pdf/impulseloop.pdf",
     image: "/products/impulseloop.webp",
-    imageRatio: "1157 / 638",
+    imageRatio: "1536 / 1024",
     titleLines: ["Impulse Loop"],
     composition: "social",
     surface: "#faf6ef",
     ink: "var(--gray-900)",
     muted: "var(--gray-600)",
     accent: "#c66b1d",
-    visualWidth: "100%",
-    visualOffset: "0%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
   {
     category: "Training & Certification",
@@ -209,8 +209,8 @@ const projects = [
     ink: "var(--gray-900)",
     muted: "var(--gray-600)",
     accent: "#d9534f",
-    visualWidth: "90%",
-    visualOffset: "5%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
   {
     category: "Immigration Consulting",
@@ -230,8 +230,8 @@ const projects = [
     ink: "var(--gray-900)",
     muted: "var(--gray-600)",
     accent: "#2b6cb0",
-    visualWidth: "88%",
-    visualOffset: "6%",
+    visualWidth: "86%",
+    visualOffset: "3%",
   },
 ];
 
@@ -743,7 +743,7 @@ const projectCount = String(totalProjects).padStart(2, '0');
     top: 0;
     left: 0;
     z-index: 5;
-    width: min(95%, 62rem);
+    width: min(92%, 52rem);
     pointer-events: none;
   }
 
@@ -751,14 +751,14 @@ const projectCount = String(totalProjects).padStart(2, '0');
     display: inline-flex;
     align-items: center;
     gap: 0.85rem;
-    margin: 0 0 clamp(0.7rem, 1.4vh, 1rem);
-    padding: 0.38rem 1.1rem;
+    margin: 0 0 clamp(0.5rem, 1vh, 0.75rem);
+    padding: 0.35rem 1rem;
     border-radius: 100px;
     background: color-mix(in srgb, var(--panel-ink) 6%, transparent);
     backdrop-filter: blur(16px);
     border: 1px solid color-mix(in srgb, var(--panel-ink) 14%, transparent);
     color: var(--panel-muted);
-    font-size: clamp(0.6rem, 0.68vw, 0.72rem);
+    font-size: clamp(0.58rem, 0.65vw, 0.7rem);
     font-weight: 650;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -783,17 +783,17 @@ const projectCount = String(totalProjects).padStart(2, '0');
   .project-title-mask h2 {
     margin: 0;
     color: var(--panel-ink);
-    font-size: clamp(4.2rem, 8vw, 9.5rem);
-    font-weight: 350;
-    line-height: 0.86;
-    letter-spacing: -0.072em;
+    font-size: clamp(2.2rem, 3.8vw, 4.2rem);
+    font-weight: 380;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
     transition: letter-spacing 300ms ease, transform 300ms ease;
     cursor: default;
     text-shadow: 0 10px 40px color-mix(in srgb, var(--panel-surface) 80%, transparent);
   }
 
   .project-title-mask h2:hover {
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     transform: translateY(-2px);
   }
 
@@ -806,19 +806,21 @@ const projectCount = String(totalProjects).padStart(2, '0');
   }
 
   .project-title-mask h2 span:nth-child(2) {
-    margin-left: clamp(2rem, 5vw, 6rem);
+    margin-left: 0;
     font-weight: 300;
     transition-delay: 60ms;
   }
 
   .project-visual {
     position: absolute;
-    bottom: clamp(5.4rem, 9vh, 7rem);
-    left: var(--project-offset);
+    top: clamp(6.25rem, 13vh, 8.5rem);
+    bottom: clamp(4.25rem, 8.5vh, 5.5rem);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     z-index: 2;
     display: block;
-    width: var(--project-width);
-    aspect-ratio: var(--project-ratio);
+    width: min(94%, 52rem);
     overflow: visible;
     padding: 0;
     border: 0;
@@ -845,9 +847,9 @@ const projectCount = String(totalProjects).padStart(2, '0');
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    transform: scale(1.035);
+    object-fit: contain;
+    object-position: center;
+    transform: scale(1);
     transition: transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -1729,43 +1731,44 @@ const projectCount = String(totalProjects).padStart(2, '0');
     object-position: top left;
   }
 
-  /* ─── COMPACT DESKTOP / LAPTOP VIEW ───
-     Preserve the large-screen composition while fitting every element inside
-     shorter 13–15 inch laptop viewports. Larger desktop screens keep the base
-     styling above unchanged. */
-  @media (min-width: 992px) and (max-width: 1536px) and (max-height: 900px) {
+  /* ─── COMPACT DESKTOP / LAPTOP VIEW (13–15.6 inch screens) ─── */
+  @media (min-width: 992px) and (max-width: 1600px) {
     .explorer-frame {
       grid-template-columns: minmax(0, 1fr) clamp(14.5rem, 19vw, 17rem);
-      gap: clamp(1.75rem, 3vw, 2.75rem);
-      padding-top: clamp(2.25rem, 5vh, 3.5rem);
+      gap: clamp(1.5rem, 2.5vw, 2.5rem);
+      padding-top: clamp(2rem, 4.5vh, 3.25rem);
       padding-bottom: clamp(1rem, 2.5vh, 1.5rem);
     }
 
     .project-heading {
-      top: 2rem;
-      width: 68%;
+      top: 0;
+      width: 100%;
     }
 
     .project-kicker {
       gap: 0.65rem;
-      margin-bottom: 0.65rem;
+      margin-bottom: 0.5rem;
       padding: 0.3rem 0.9rem;
       font-size: 0.56rem;
     }
 
     .project-title-mask h2 {
-      font-size: clamp(3rem, 5.2vw, 5.3rem);
-      line-height: 0.9;
-      letter-spacing: -0.065em;
+      font-size: clamp(2.2rem, 3.8vw, 3.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
     }
 
     .project-title-mask h2 span:nth-child(2) {
-      margin-left: clamp(1.25rem, 3vw, 2.75rem);
+      margin-left: 0;
     }
 
     .project-visual {
-      width: min(var(--project-width), 66%);
-      bottom: clamp(4.75rem, 10vh, 5.5rem);
+      top: clamp(5rem, 10.5vh, 6.75rem);
+      bottom: clamp(3.75rem, 7.5vh, 4.75rem);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: min(96%, 46rem);
     }
 
     .project-panel__footer {
@@ -1776,17 +1779,17 @@ const projectCount = String(totalProjects).padStart(2, '0');
     }
 
     .project-meta {
-      grid-template-columns: minmax(6rem, 0.9fr) minmax(8rem, 1.2fr) minmax(5rem, 0.65fr);
-      gap: clamp(1rem, 2vw, 2rem);
+      grid-template-columns: minmax(5.5rem, 0.85fr) minmax(7.5rem, 1.15fr) minmax(4.5rem, 0.6fr);
+      gap: clamp(0.85rem, 1.8vw, 1.75rem);
     }
 
     .project-meta dt {
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.25rem;
       font-size: 0.44rem;
     }
 
     .project-meta dd {
-      font-size: clamp(0.64rem, 0.7vw, 0.72rem);
+      font-size: clamp(0.62rem, 0.68vw, 0.7rem);
     }
 
     .project-link {
@@ -1795,15 +1798,15 @@ const projectCount = String(totalProjects).padStart(2, '0');
     }
 
     .project-index__head {
-      padding-bottom: clamp(0.85rem, 1.5vh, 1.1rem);
+      padding-bottom: clamp(0.75rem, 1.3vh, 1rem);
     }
 
     .project-index {
-      padding-top: 2rem;
+      padding-top: 1.5rem;
     }
 
     .index-counter [data-current-count] {
-      font-size: clamp(2.65rem, 3.3vw, 3.35rem);
+      font-size: clamp(2.4rem, 3vw, 3.1rem);
     }
 
     .project-index__list li {
@@ -1815,22 +1818,22 @@ const projectCount = String(totalProjects).padStart(2, '0');
     }
 
     .index-row.is-active .index-item__copy strong {
-      font-size: clamp(1.35rem, 1.8vw, 1.8rem);
+      font-size: clamp(1.25rem, 1.6vw, 1.65rem);
       line-height: 0.9;
     }
 
     .index-item__copy strong {
-      font-size: clamp(0.61rem, 0.67vw, 0.7rem);
+      font-size: clamp(0.58rem, 0.64vw, 0.68rem);
     }
 
     .index-item__copy small,
     .index-row.is-active .index-item__copy small {
-      font-size: 0.54rem;
+      font-size: 0.52rem;
     }
 
     .project-index__foot {
-      padding-top: 0.7rem;
-      font-size: 0.44rem;
+      padding-top: 0.6rem;
+      font-size: 0.42rem;
     }
   }
 
@@ -1965,6 +1968,7 @@ const projectCount = String(totalProjects).padStart(2, '0');
 
     .project-visual {
       position: relative !important;
+      top: auto !important;
       bottom: auto !important;
       left: auto !important;
       width: 100% !important;
