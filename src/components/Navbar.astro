@@ -25,7 +25,6 @@ const pathname = Astro.url.pathname;
         width="40"
         height="40"
       />
-      <span class="site-logo__text">Global Tech</span>
     </a>
 
     <!-- Minimalist Menu Trigger (Hamburger) -->
@@ -57,7 +56,6 @@ const pathname = Astro.url.pathname;
         width="40"
         height="40"
       />
-      <span class="site-logo__text">Global Tech</span>
     </a>
 
     <button
@@ -74,9 +72,30 @@ const pathname = Astro.url.pathname;
   </div>
 
   <div class="nav-overlay__content">
-    <div class="nav-overlay__grid">
-      <!-- Left Meta Info -->
-      <div class="nav-overlay__meta">
+    <!-- Right Stack Navigation Links -->
+    <div class="nav-overlay__main">
+      <nav class="nav-overlay__nav" aria-label="Full menu">
+        <ul class="nav-overlay__list">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class:list={["nav-overlay__link", { "is-active": isActive }]}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Bottom Section: Meta 3 Columns & Bottom Tagline -->
+    <div class="nav-overlay__footer">
+      <div class="nav-overlay__meta-row">
         <div class="nav-overlay__section">
           <h4 class="nav-overlay__label">LET'S MEET</h4>
           <p class="nav-overlay__text">
@@ -101,37 +120,12 @@ const pathname = Astro.url.pathname;
             <a href="mailto:contact@n3global.tech" aria-label="Email">Email</a>
           </div>
         </div>
-
-        <div class="nav-overlay__footer-tag">
-          <p>Let's build something <strong>great together</strong></p>
-          <a href="mailto:contact@n3global.tech" class="nav-overlay__footer-email">contact@n3global.tech</a>
-        </div>
       </div>
 
-      <!-- Right Navigation Links Stack -->
-      <nav class="nav-overlay__nav" aria-label="Full menu">
-        <ul class="nav-overlay__list">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
-            return (
-              <li>
-                <a
-                  href={link.href}
-                  class:list={["nav-overlay__link", { "is-active": isActive }]}
-                >
-                  {link.label}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-    </div>
-
-    <!-- Mobile Footer -->
-    <div class="nav-overlay__mobile-footer">
-      <p>Let's build something <strong>great together</strong></p>
-      <a href="mailto:contact@n3global.tech" class="nav-overlay__footer-email">contact@n3global.tech</a>
+      <div class="nav-overlay__bottom-bar">
+        <p class="nav-overlay__tagline">Let's build something <strong>great together</strong></p>
+        <a href="mailto:contact@n3global.tech" class="nav-overlay__footer-email">contact@n3global.tech</a>
+      </div>
     </div>
   </div>
 </div>
@@ -188,7 +182,7 @@ const pathname = Astro.url.pathname;
   .site-logo {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.45rem;
     text-decoration: none;
     color: inherit;
     z-index: 10;
@@ -278,8 +272,10 @@ const pathname = Astro.url.pathname;
     z-index: 2000;
     display: flex;
     flex-direction: column;
-    background: var(--gray-900, #0f172a);
-    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    color: var(--gray-900, #0f172a);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -294,7 +290,7 @@ const pathname = Astro.url.pathname;
     right: -100px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -317,7 +313,7 @@ const pathname = Astro.url.pathname;
   }
 
   .site-logo--overlay .site-logo__text {
-    color: #ffffff;
+    color: var(--gray-900, #0f172a);
   }
 
   .nav-overlay__close {
@@ -326,16 +322,16 @@ const pathname = Astro.url.pathname;
     justify-content: center;
     width: 48px;
     height: 48px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(15, 23, 42, 0.05);
+    border: 1px solid rgba(15, 23, 42, 0.12);
     border-radius: 50%;
-    color: #ffffff;
+    color: var(--gray-900, #0f172a);
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.25s ease;
   }
 
   .nav-overlay__close:hover {
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(15, 23, 42, 0.12);
     transform: rotate(90deg);
   }
 
@@ -347,26 +343,71 @@ const pathname = Astro.url.pathname;
   .nav-overlay__content {
     flex: 1;
     width: 100%;
-    max-width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 1rem 2.25rem 3rem;
+    padding: 0.5rem 3rem 2.25rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
   }
 
-  .nav-overlay__grid {
-    display: grid;
-    grid-template-columns: 1fr 1.25fr;
-    gap: 4rem;
-    align-items: center;
+  /* Right Main Links Stack */
+  .nav-overlay__main {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 2.5rem;
   }
 
-  /* Left Meta Details */
-  .nav-overlay__meta {
+  .nav-overlay__nav {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    min-width: 340px;
+  }
+
+  .nav-overlay__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .nav-overlay__link {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: clamp(2rem, 3.4vw, 2.95rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: #475569;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-overlay__link:hover {
+    color: #0f172a;
+    transform: translateX(10px);
+  }
+
+  .nav-overlay__link.is-active {
+    color: var(--sky-600, #0284c7); /* N3 Sky Blue Active Highlight */
+    font-weight: 650;
+  }
+
+  /* Bottom Meta & Bar Section */
+  .nav-overlay__footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .nav-overlay__meta-row {
+    display: flex;
+    gap: 5rem;
+    align-items: flex-start;
   }
 
   .nav-overlay__section {
@@ -380,25 +421,25 @@ const pathname = Astro.url.pathname;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--sky-400, #38bdf8); /* N3 Sky Blue Accent */
+    color: var(--sky-600, #0284c7); /* N3 Sky Blue Accent */
     margin: 0;
   }
 
   .nav-overlay__text {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     line-height: 1.6;
-    color: var(--gray-400, #94a3b8);
+    color: #475569;
     margin: 0;
   }
 
   .nav-overlay__text a {
-    color: #cbd5e1;
+    color: #1e293b;
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
   .nav-overlay__text a:hover {
-    color: var(--sky-400, #38bdf8);
+    color: var(--sky-600, #0284c7);
   }
 
   .nav-overlay__socials {
@@ -407,118 +448,112 @@ const pathname = Astro.url.pathname;
   }
 
   .nav-overlay__socials a {
-    font-size: 0.9rem;
-    color: var(--gray-400, #94a3b8);
+    font-size: 0.88rem;
+    color: #475569;
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
   .nav-overlay__socials a:hover {
-    color: var(--sky-400, #38bdf8);
+    color: var(--sky-600, #0284c7);
   }
 
-  .nav-overlay__footer-tag {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  .nav-overlay__bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
   }
 
-  .nav-overlay__footer-tag p {
-    font-size: 0.95rem;
-    color: var(--gray-500, #64748b);
-    margin: 0 0 0.25rem;
+  .nav-overlay__tagline {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin: 0;
   }
 
-  .nav-overlay__footer-tag strong {
-    color: #e2e8f0;
+  .nav-overlay__tagline strong {
+    color: #0f172a;
   }
 
   .nav-overlay__footer-email {
-    font-size: 0.9rem;
-    color: var(--sky-400, #38bdf8);
+    font-size: 0.88rem;
+    color: var(--sky-600, #0284c7);
     text-decoration: none;
+    transition: color 0.2s ease;
   }
 
-  /* Right Navigation Links List */
-  .nav-overlay__nav {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .nav-overlay__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
-
-  .nav-overlay__link {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: clamp(2rem, 3.6vw, 3.1rem);
-    font-weight: 500;
-    line-height: 1.15;
-    color: #cbd5e1;
-    text-decoration: none;
-    letter-spacing: -0.02em;
-    transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .nav-overlay__link:hover {
-    color: #ffffff;
-    transform: translateX(12px);
-  }
-
-  .nav-overlay__link.is-active {
-    color: var(--sky-400, #38bdf8); /* N3 Sky Blue Active Highlight */
-    font-weight: 600;
-  }
-
-  .nav-overlay__mobile-footer {
-    display: none;
+  .nav-overlay__footer-email:hover {
+    color: var(--sky-300, #7dd3fc);
   }
 
   /* Responsive Media Queries */
   @media (max-width: 900px) {
-    .nav-overlay__grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
+    .site-header__container,
+    .nav-overlay__header {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
 
-    .nav-overlay__meta {
-      display: none; /* Hide left column on tablet/mobile so links take priority */
+    .nav-overlay__content {
+      padding: 0.5rem 1.5rem 2rem;
+    }
+
+    .nav-overlay__main {
+      justify-content: flex-start;
+      margin-bottom: 2rem;
+    }
+
+    .nav-overlay__nav {
+      min-width: 100%;
+    }
+
+    .nav-overlay__list {
+      gap: 0.35rem;
     }
 
     .nav-overlay__link {
-      font-size: clamp(1.85rem, 7vw, 2.75rem);
+      font-size: clamp(1.5rem, 5.2vw, 2.1rem);
+      font-weight: 500;
     }
 
-    .nav-overlay__mobile-footer {
-      display: block;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    .nav-overlay__meta-row {
+      display: none; /* Hide 3 meta columns on mobile to match reference layout */
     }
 
-    .nav-overlay__mobile-footer p {
-      font-size: 0.9rem;
-      color: var(--gray-500, #64748b);
-      margin: 0 0 0.25rem;
+    .nav-overlay__bottom-bar {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.35rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    .nav-overlay__mobile-footer strong {
-      color: #e2e8f0;
+    .nav-overlay__tagline {
+      font-size: 0.85rem;
+    }
+
+    .nav-overlay__footer-email {
+      font-size: 0.85rem;
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 480px) {
     .site-header__container,
-    .nav-overlay__header,
+    .nav-overlay__header {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
     .nav-overlay__content {
       padding-left: 1.25rem;
       padding-right: 1.25rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .nav-overlay__link {
+      font-size: 1.55rem;
     }
   }
 </style>
