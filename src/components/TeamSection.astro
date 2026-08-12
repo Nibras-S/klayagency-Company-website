@@ -59,12 +59,12 @@ const founders = [
             
             <!-- Arrow Navigation -->
             <div class="team-spotlight__nav">
-              <button id="team-prev" class="team-nav-btn" aria-label="Previous Team Member">
+              <button type="button" id="team-prev" class="team-nav-btn" aria-label="Previous Team Member">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
               </button>
-              <button id="team-next" class="team-nav-btn" aria-label="Next Team Member">
+              <button type="button" id="team-next" class="team-nav-btn" aria-label="Next Team Member">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
@@ -88,6 +88,7 @@ const founders = [
     <div class="team-thumbnails">
       {founders.map((f, idx) => (
         <button
+          type="button"
           class={`team-thumb ${idx === 0 ? 'is-active' : ''}`}
           data-index={idx}
           aria-label={`Select ${f.name}`}
@@ -142,6 +143,7 @@ const founders = [
       var prevBtn = document.getElementById("team-prev");
       var nextBtn = document.getElementById("team-next");
       var thumbs = document.querySelectorAll(".team-thumb");
+      var thumbsContainer = document.querySelector(".team-thumbnails");
 
       function updateSpotlight(index) {
         if (index < 0) index = teamData.length - 1;
@@ -166,20 +168,22 @@ const founders = [
         thumbs.forEach(function(thumb, idx) {
           if (idx === currentIndex) {
             thumb.classList.add("is-active");
-            try {
-              thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            } catch (e) {}
+            if (thumbsContainer && thumbsContainer.scrollWidth > thumbsContainer.clientWidth) {
+              var targetLeft = thumb.offsetLeft - (thumbsContainer.clientWidth / 2) + (thumb.clientWidth / 2);
+              thumbsContainer.scrollTo({ left: targetLeft, behavior: "smooth" });
+            }
           } else {
             thumb.classList.remove("is-active");
           }
         });
       }
 
-      if (prevBtn) prevBtn.addEventListener("click", function() { updateSpotlight(currentIndex - 1); });
-      if (nextBtn) nextBtn.addEventListener("click", function() { updateSpotlight(currentIndex + 1); });
+      if (prevBtn) prevBtn.addEventListener("click", function(e) { e.preventDefault(); updateSpotlight(currentIndex - 1); });
+      if (nextBtn) nextBtn.addEventListener("click", function(e) { e.preventDefault(); updateSpotlight(currentIndex + 1); });
 
       thumbs.forEach(function(thumb) {
-        thumb.addEventListener("click", function() {
+        thumb.addEventListener("click", function(e) {
+          e.preventDefault();
           var idx = parseInt(thumb.getAttribute("data-index"), 10);
           updateSpotlight(idx);
         });
