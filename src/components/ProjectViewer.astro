@@ -92,6 +92,14 @@ const projectCount = String(projects.length).padStart(2, "0");
 
         <div class="project-viewer__artwork" data-viewer-artwork>
           <img data-viewer-image src="" alt="" decoding="async" />
+          <a class="project-viewer__artwork-overlay" data-viewer-artwork-link href="" target="_blank" rel="noopener noreferrer" aria-label="Visit project website">
+            <span class="project-viewer__artwork-badge">
+              <span data-viewer-artwork-label>Visit live website</span>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M6 14 14 6m0 0H8m6 0v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </a>
         </div>
 
         <div class="project-viewer__gallery-controls" data-viewer-gallery-controls hidden>
@@ -448,6 +456,75 @@ const projectCount = String(projects.length).padStart(2, "0");
     height: 100%;
     object-fit: cover;
     object-position: center top;
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-viewer__artwork-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--viewer-ink) 28%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    text-decoration: none;
+    transition: opacity 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+
+  .project-viewer__artwork-overlay[hidden] {
+    display: none !important;
+  }
+
+  .project-viewer__artwork-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.75rem 1.35rem;
+    border: 1px solid color-mix(in srgb, #ffffff 30%, transparent);
+    border-radius: 100px;
+    background: color-mix(in srgb, var(--viewer-ink) 85%, #000000);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transform: scale(0.92) translateY(6px);
+    transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease, border-color 200ms ease;
+  }
+
+  .project-viewer__artwork-badge svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    transition: transform 200ms ease;
+  }
+
+  .project-viewer__artwork:hover .project-viewer__artwork-overlay,
+  .project-viewer__artwork:focus-within .project-viewer__artwork-overlay {
+    opacity: 1;
+  }
+
+  .project-viewer__artwork:hover .project-viewer__artwork-badge,
+  .project-viewer__artwork:focus-within .project-viewer__artwork-badge {
+    transform: scale(1) translateY(0);
+  }
+
+  .project-viewer__artwork:hover .project-viewer__artwork-badge:hover {
+    border-color: var(--viewer-accent);
+    background: var(--viewer-accent);
+    color: #ffffff;
+  }
+
+  .project-viewer__artwork:hover .project-viewer__artwork-badge:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  .project-viewer__artwork:hover img {
+    transform: scale(1.025);
   }
 
   .project-viewer__gallery-controls {
@@ -738,6 +815,8 @@ const projectCount = String(projects.length).padStart(2, "0");
     const statusRow = viewer.querySelector('[data-viewer-status-row]');
     const externalLink = viewer.querySelector('[data-viewer-link]');
     const externalLinkLabel = viewer.querySelector('[data-viewer-link-label]');
+    const artworkLink = viewer.querySelector('[data-viewer-artwork-link]');
+    const artworkLinkLabel = viewer.querySelector('[data-viewer-artwork-label]');
     const closeButton = viewer.querySelector('[data-viewer-close]');
     const previousButton = viewer.querySelector('[data-viewer-previous]');
     const nextButton = viewer.querySelector('[data-viewer-next]');
@@ -846,6 +925,15 @@ const projectCount = String(projects.length).padStart(2, "0");
       }
       if (externalLinkLabel) {
         externalLinkLabel.textContent = project.link ? 'Visit live website' : 'View design file';
+      }
+
+      if (artworkLink) {
+        artworkLink.hidden = !destination;
+        artworkLink.href = destination || '';
+        artworkLink.setAttribute('aria-label', project.link ? `Visit ${project.name} live website` : `View ${project.name} design file`);
+      }
+      if (artworkLinkLabel) {
+        artworkLinkLabel.textContent = project.link ? 'Visit live website' : 'View design file';
       }
 
       if (previousButton) previousButton.disabled = activeIndex === 0;
