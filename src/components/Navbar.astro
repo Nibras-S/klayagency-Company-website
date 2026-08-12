@@ -351,12 +351,15 @@ const pathname = Astro.url.pathname;
     justify-content: space-between;
   }
 
-  /* Right Main Links Stack */
+  /* Right Main Links Stack (Vertically Centered in Middle) */
   .nav-overlay__main {
+    flex: 1;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
     width: 100%;
-    margin-bottom: 2.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .nav-overlay__nav {
