@@ -38,13 +38,14 @@
 
   <div class="container principles__inner">
     <div class="principles__head">
-      <div class="badge badge-sky">Our Philosophy</div>
+      <div class="principles__kicker">
+        <span class="principles__kicker-sq"></span> OUR PHILOSOPHY
+      </div>
       <h2 class="principles__title">
-        Three Ideas Behind<br />
-        <span class="text-gradient">Everything We Build</span>
+        Three Ideas Behind <span class="text-gradient">Everything We Build</span>
       </h2>
       <p class="principles__lede">
-        N3 is built on three simple ideas that shape how we work and what we create.
+        N3 is built on three core engineering principles that shape how we work and what we create.
       </p>
     </div>
 
@@ -119,8 +120,24 @@
     margin: 0 auto 3.5rem auto;
   }
 
-  .principles__head .badge {
-    margin-bottom: 1rem;
+  .principles__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+  }
+
+  .principles__kicker-sq {
+    width: 6.5px;
+    height: 6.5px;
+    background-color: #0284c7;
+    display: inline-block;
+    border-radius: 1px;
   }
 
   .principles__title {

@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import PrinciplesSection from '../components/PrinciplesSection.astro';
-import AboutHeroSection from '../components/AboutHeroSection.astro';
 import ClientLogosMarquee from '../components/ClientLogosMarquee.astro';
 import TeamSection from '../components/TeamSection.astro';
 
@@ -41,14 +40,6 @@ const founders = [
     image: "/team/farseen.webp",
   },
 ];
-
-const foundersWithPhotos = founders;
-
-const stats = [
-  { value: "4", label: "Co-founders" },
-  { value: "30+", label: "Companies Served" },
-  { value: "3+", label: "Years in Production" }
-];
 ---
 
 <Layout
@@ -72,114 +63,207 @@ const stats = [
     }
   })}></script>
 
-  <!-- Clean & Minimal About Hero (Matching Reference) -->
-  <AboutHeroSection />
+  <!-- Dedicated Unique About Hero -->
+  <section class="about-hero-custom">
+    <div class="container about-hero-custom__container">
+      <div class="story-section__kicker">
+        <span class="story-section__kicker-sq"></span> ABOUT N3 GLOBAL TECH
+      </div>
+      <h1 class="about-hero-custom__title">
+        Engineers turned founders, building custom software &amp; SaaS for businesses worldwide.
+      </h1>
+      <p class="about-hero-custom__subtitle">
+        Founded in Kerala with engineering hubs in India &amp; Dubai, we unite cloud infrastructure, native mobile engineering, and backend systems to build products that scale.
+      </p>
+
+      <div class="about-stats-grid">
+        <div class="about-stat-card">
+          <div class="about-stat-card__num">04</div>
+          <div class="about-stat-card__label">Co-Founders &amp; Leads</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="about-stat-card__num">30+</div>
+          <div class="about-stat-card__label">Active Business Partners</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="about-stat-card__num">03+</div>
+          <div class="about-stat-card__label">Years Shipping SaaS</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="about-stat-card__num">02</div>
+          <div class="about-stat-card__label">Global Hubs (India &amp; UAE)</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Client Logos Marquee -->
   <ClientLogosMarquee />
 
-  <!-- Origin story -->
-  <section class="section about-section">
-    <div class="container content-narrow">
+  <!-- Origin Story: Modern Editorial Grid -->
+  <section class="section story-section">
+    <div class="container story-section__container">
+      <div class="story-section__header">
+        <div class="story-section__kicker">
+          <span class="story-section__kicker-sq"></span> OUR JOURNEY
+        </div>
+        <h2 class="story-section__title">Behind N3 Global Tech</h2>
+      </div>
+      <div class="story-section__divider"></div>
 
-      <h2>Behind N3 Global Tech</h2>
-      <p>
-        Our story starts at <strong>Thalassery Engineering College</strong>, where the four of us — Nibras, Nabeel, Nafi, and Farseen — studied together. What began as a shared interest in solving real problems through technology grew, project by project, into something bigger.
-      </p>
-      <p>
-        Across our third-year mini projects and final-year build, we got hands-on with the kind of work that doesn't show up in a textbook: shipping software that real people actually rely on. Farseen played a defining role here, both as a peer and a mentor, shaping how we approach problems to this day.
-      </p>
+      <div class="story-grid">
+        <!-- Story Card 1 -->
+        <article class="story-card">
+          <div class="story-card__badge">01 / THE BEGINNING</div>
+          <h3 class="story-card__title">Thalassery Roots</h3>
+          <p class="story-card__text">
+            Our story starts at <strong>Thalassery Engineering College</strong>, where Nibras, Nabeel, Nafi, and Farseen studied together. What began as a shared passion for solving complex engineering challenges grew, project by project, into an enterprise technology agency.
+          </p>
+          <p class="story-card__text">
+            Across our third-year mini projects and final-year build, we got hands-on with shipping production software that real users actually rely on. Farseen played a defining role here, both as a peer and mentor, shaping our standard of engineering rigor.
+          </p>
+        </article>
 
-      <h2>Our first client</h2>
-      <p>
-        Our first real opportunity came in our final year: a <strong>perfume e-commerce platform for a client in the UAE</strong>. It was the moment we stopped being students with a project and became a team with a customer.
-      </p>
-      <p>
-        Soon after came our first product: a <strong>fitness management system for gym owners</strong> — member management, payments, automated reminders, daily operations. That platform is still in active use more than two years on, with regular updates and new features as the client's needs evolve.
-      </p>
+        <!-- Story Card 2 -->
+        <article class="story-card">
+          <div class="story-card__badge">02 / FIRST MILESTONE</div>
+          <h3 class="story-card__title">UAE E-Commerce & FitBook</h3>
+          <p class="story-card__text">
+            Our first client milestone arrived during our final year: a custom <strong>perfume e-commerce platform for a client in the UAE</strong>. It was the moment we transformed from students to a dedicated engineering team.
+          </p>
+          <p class="story-card__text">
+            Soon after came our flagship fitness product — <strong>N3 FitBook</strong> — managing memberships, automated recurring payments, and daily operations for gym owners. That platform remains active today, serving growing operations across 2+ years of continuous updates.
+          </p>
+        </article>
 
-      <h2>Real-world experience, before we came back together</h2>
-      <p>
-        After graduation, each of us went a different direction to build real industry experience:
-      </p>
-      <ul class="content-list">
-        <li><strong>Nabeel</strong> — Mobile Developer, Kochi — native and cross-platform apps for production users.</li>
-        <li><strong>Nafi</strong> — Java Developer, Wayanad — backend systems and enterprise integrations.</li>
-        <li><strong>Nibras</strong> — Cloud &amp; DevOps Engineer, Abu Dhabi — infrastructure for global-scale applications.</li>
-      </ul>
-      <p>
-        Different paths, one shared plan: get real experience first, then come back and build something of our own.
-      </p>
+        <!-- Story Card 3: Experience Pills -->
+        <article class="story-card story-card--full">
+          <div class="story-card__badge">03 / SPECIALIZATION</div>
+          <h3 class="story-card__title">Industry Mastery Before Uniting</h3>
+          <p class="story-card__text story-card__text--lead">
+            After graduation, each of us gained real-world domain expertise in top engineering hubs before founding N3 Global Tech:
+          </p>
 
-      <h2>Today</h2>
-      <p>
-        We reunited and founded N3 Global Tech. Since then we've shipped multiple products — <strong>N3 FitBook, N3 ServiceBook, and N3 BusinessBook</strong> — and we're actively building new platforms for everyday operational problems businesses actually have.
-      </p>
-      <p>
-        We've supported <strong>more than 30 companies</strong> so far, helping them adopt modern technology and move from manual, traditional processes to systems that actually hold up.
-      </p>
+          <div class="experience-grid">
+            <div class="experience-pill">
+              <div class="experience-pill__header">
+                <span class="experience-pill__name">Nabeel</span>
+                <span class="experience-pill__tag">Kochi</span>
+              </div>
+              <p class="experience-pill__role">Mobile Developer</p>
+              <p class="experience-pill__desc">Engineered native iOS, Android, and cross-platform mobile apps for production users.</p>
+            </div>
 
-      <h2>Building for the GCC</h2>
-      <p>
-        That first UAE client wasn't a one-off. Today, N3 Global Tech is also the engineering and delivery arm behind <strong>Klay Agency</strong>, our Dubai-based studio — same team, same standard, serving clients across the UAE and wider GCC alongside our work in India.
-      </p>
+            <div class="experience-pill">
+              <div class="experience-pill__header">
+                <span class="experience-pill__name">Nafi</span>
+                <span class="experience-pill__tag">Wayanad</span>
+              </div>
+              <p class="experience-pill__role">Java &amp; Backend Engineer</p>
+              <p class="experience-pill__desc">Anchored enterprise backend architecture, high-throughput APIs, and microservices.</p>
+            </div>
 
+            <div class="experience-pill">
+              <div class="experience-pill__header">
+                <span class="experience-pill__name">Nibras</span>
+                <span class="experience-pill__tag">Abu Dhabi</span>
+              </div>
+              <p class="experience-pill__role">Cloud &amp; DevOps Engineer</p>
+              <p class="experience-pill__desc">Designed resilient cloud infrastructure, automated CI/CD pipelines, and scalability systems.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Story Card 4 -->
+        <article class="story-card story-card--full story-card--highlight">
+          <div class="story-card__flex-row">
+            <div class="story-card__col">
+              <div class="story-card__badge story-card__badge--sky">04 / GLOBAL IMPACT</div>
+              <h3 class="story-card__title">Today &amp; The GCC Expansion</h3>
+              <p class="story-card__text">
+                Today, N3 Global Tech has shipped multiple SaaS platforms — <strong>N3 FitBook, N3 ServiceBook, and N3 BusinessBook</strong> — empowering <strong>over 30 companies</strong> to transition from manual workflows to robust digital infrastructure.
+              </p>
+            </div>
+            <div class="story-card__col">
+              <div class="dubai-badge">
+                <span class="dubai-badge__dot"></span>
+                Dubai Studio Partnership
+              </div>
+              <p class="story-card__text">
+                N3 Global Tech serves as the primary engineering and delivery force behind <strong>Klay Agency</strong>, our Dubai-based studio — delivering high-grade software solutions to clients across the UAE and wider GCC alongside our India operations.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- Creative Team Spotlight (Matching Reference) -->
+  <!-- Creative Team Spotlight -->
   <TeamSection />
 
   <!-- Mission & Vision -->
   <section class="section mv-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="badge badge-sky">Our Purpose</div>
-        <h2>Mission &amp; <span class="text-gradient">Vision</span></h2>
+    <div class="container mv-section__container">
+      <div class="mv-section__header">
+        <div class="story-section__kicker">
+          <span class="story-section__kicker-sq"></span> OUR PURPOSE
+        </div>
+        <h2 class="mv-section__title">Mission &amp; Vision</h2>
       </div>
+      <div class="story-section__divider"></div>
 
       <div class="mv-grid">
         <article class="mv-card">
           <div class="mv-card__icon mv-card__icon--mission">
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
               <path d="m12 15 3.3 3.3a1 1 0 0 0 1.4 0l2.6-2.6a1 1 0 0 0 0-1.4L16 11"/>
               <path d="m11 16-4.3-4.3a1 1 0 0 1 0-1.4l2.6-2.6a1 1 0 0 1 1.4 0L14 11"/>
               <path d="M15 4c-5-2-12 1-12 1s3 7 1 12l2.6 2.6c5 2 12-1 12-1s-3-7-1-12z"/>
             </svg>
           </div>
-          <h3>Our Mission</h3>
-          <p>To give businesses practical, scalable, user-focused digital solutions that solve real problems and drive sustainable growth.</p>
+          <h3 class="mv-card__heading">Our Mission</h3>
+          <p class="mv-card__desc">To empower businesses with practical, scalable, user-focused digital solutions that eliminate operational friction and drive long-term sustainable growth.</p>
         </article>
 
         <article class="mv-card">
           <div class="mv-card__icon mv-card__icon--vision">
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"/>
               <circle cx="12" cy="12" r="6"/>
               <circle cx="12" cy="12" r="2"/>
             </svg>
           </div>
-          <h3>Our Vision</h3>
-          <p>To become a trusted technology partner — building digital solutions that improve everyday operations and add up to a more connected, efficient way of working.</p>
+          <h3 class="mv-card__heading">Our Vision</h3>
+          <p class="mv-card__desc">To stand as a globally trusted technology partner — crafting high-performing digital systems that elevate everyday business operations and define modern engineering standards.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Three Ideas Behind Everything We Build -->
+  <!-- Three Principles -->
   <PrinciplesSection />
 
-
-  <!-- CTA -->
+  <!-- High-End Glassmorphic CTA -->
   <section class="section about-cta-section">
     <div class="container">
       <div class="about-cta">
-        <h2>Want to work with us?</h2>
-        <p>Whether you have a project in mind or just want to talk through what's possible, tell us where things stand — we'll respond within 24 hours.</p>
+        <div class="about-cta__glow"></div>
+        <h2 class="about-cta__title">Want to build something great together?</h2>
+        <p class="about-cta__desc">Whether you have a specific software project in mind or want to explore scalable technology solutions for your business, we're ready. We respond within 24 hours.</p>
+        
         <div class="about-cta__actions">
-          <a href="/contact/" class="btn btn-primary btn-xl">Start a Project</a>
-          <a href="/work/" class="btn btn-ghost btn-xl">See Our Work</a>
+          <a href="/contact/" class="hero__pill-link">
+            <span class="hero__pill-text">Start a Project</span>
+            <span class="hero__pill-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </a>
+          <a href="/work/" class="about-cta__secondary-btn">See Our Work</a>
         </div>
       </div>
     </div>
@@ -236,26 +320,94 @@ const stats = [
 </Layout>
 
 <style>
-  .about-hero {
-    padding-top: calc(80px + 3.5rem);
-    padding-bottom: 3.5rem;
+  /* DEDICATED ABOUT HERO */
+  .about-hero-custom {
+    padding-top: calc(80px + 4rem);
+    padding-bottom: 4rem;
     background: #ffffff;
-    color: #0f172a;
   }
 
-  .about-hero__container {
-    max-width: 1340px;
+  .about-hero-custom__container {
+    max-width: 1200px;
     padding: 0 1.5rem;
-    width: 100%;
     margin: 0 auto;
   }
 
-  .about-hero__header {
-    max-width: 100%;
+  .about-hero-custom__title {
+    font-size: clamp(2.2rem, 3.8vw, 3.25rem);
+    font-weight: 600;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin: 1.25rem 0 1rem;
+    max-width: 980px;
+  }
+
+  .about-hero-custom__subtitle {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: #475569;
+    max-width: 820px;
     margin-bottom: 3.5rem;
   }
 
-  .about-hero__kicker {
+  .about-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .about-stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .about-stat-card__num {
+    font-size: clamp(2.2rem, 3.2vw, 3rem);
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.03em;
+    font-family: var(--font-sans);
+  }
+
+  .about-stat-card__label {
+    font-size: 0.88rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  /* STORY SECTION */
+  .story-section {
+    padding: 5rem 0;
+    background: #ffffff;
+  }
+
+  .story-section__container {
+    max-width: 1200px;
+    padding: 0 1.5rem;
+    margin: 0 auto;
+  }
+
+  .story-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .story-section__title {
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    font-weight: 600;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
+  .story-section__kicker {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -264,386 +416,436 @@ const stats = [
     letter-spacing: 0.06em;
     color: #64748b;
     text-transform: uppercase;
-    margin-bottom: 1.1rem;
   }
 
-  .about-hero__kicker-sq {
+  .story-section__kicker-sq {
     width: 6.5px;
     height: 6.5px;
-    background-color: #ff5722;
+    background-color: #0284c7;
     display: inline-block;
     border-radius: 1px;
   }
 
-  .about-hero__title {
-    font-size: clamp(1.65rem, 2.35vw, 2.3rem);
-    font-weight: 500;
-    color: #0f172a;
-    line-height: 1.35;
-    letter-spacing: -0.01em;
-    font-family: var(--font-sans);
-  }
-
-  .about-hero__title :global(.about-word) {
-    opacity: 0.25;
-    transition: opacity 0.3s ease, color 0.3s ease;
-    display: inline-block;
-    white-space: pre;
-  }
-
-  .about-hero__title :global(.about-word.is-active) {
-    opacity: 1;
-    color: #0f172a;
-  }
-
-  .about-hero__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: flex-start;
-  }
-
-  .about-hero__visuals {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-    align-items: stretch;
-  }
-
-  .about-hero__img-card {
-    border-radius: 16px;
-    overflow: hidden;
-    height: 350px;
-    background: #f1f5f9;
-  }
-
-  .about-hero__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .about-hero__img-card:hover .about-hero__img {
-    transform: scale(1.03);
-  }
-
-  .about-hero__stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-  }
-
-  .stats-col {
-    display: flex;
-    flex-direction: column;
-    gap: 3.5rem;
-  }
-
-  .stats-col--left {
-    padding-right: 3rem;
-    border-right: 1px solid #e2e8f0;
-  }
-
-  .stats-col--right {
-    padding-left: 3rem;
-  }
-
-  .stat-cell__value {
-    font-size: clamp(2.6rem, 3.8vw, 3.6rem);
-    font-weight: 500;
-    color: #0f172a;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.6rem;
-    font-family: var(--font-sans);
-  }
-
-  .stat-cell__label {
-    font-size: 0.9rem;
-    color: #64748b;
-    font-weight: 450;
-    line-height: 1.4;
-  }
-
-  .about-hero__divider {
+  .story-section__divider {
     width: 100%;
     height: 1px;
     background: #e2e8f0;
-    margin-top: 5rem;
+    margin-bottom: 3rem;
   }
 
-  @media (max-width: 992px) {
-    .about-hero__grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-    .about-hero__img-card {
-      height: 280px;
-    }
-    .desktop-only-br {
-      display: none;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .about-hero__visuals {
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-    }
-    .about-hero__img-card {
-      height: 200px;
-    }
-    .stats-col--left {
-      padding-right: 1.25rem;
-    }
-    .stats-col--right {
-      padding-left: 1.25rem;
-    }
-    .stat-cell__value {
-      font-size: 2.2rem;
-    }
-  }
-
-  /* About content */
-  .about-section { padding-top: 4rem; padding-bottom: 4rem; }
-  .content-narrow { max-width: 960px; }
-  .content-narrow h2 {
-    font-family: var(--font-sans);
-    font-size: var(--heading-sm);
-    font-weight: 500;
-    margin: 3rem 0 1rem;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-  }
-  .content-narrow h2:first-child { margin-top: 0; }
-  .content-narrow p {
-    font-family: var(--font-sans);
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1.2rem;
-    font-size: var(--body-md);
-  }
-  .content-narrow p a {
-    color: var(--sky-700);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .content-list {
-    margin: 1rem 0 1.5rem 1.5rem;
-    font-family: var(--font-sans);
-    color: var(--text-secondary);
-    line-height: 1.7;
-    font-size: var(--body-md);
-  }
-  .content-list li { margin-bottom: 0.85rem; }
-
-  /* Founders */
-  .founders-section {
-    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-    padding: 5rem 0;
-  }
-  .founders-grid {
+  .story-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
-  .founder-card {
-    background: #ffffff;
-    border: 1.5px solid var(--gray-100);
-    border-radius: var(--radius-xl);
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: var(--transition);
-  }
-  .founder-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.12);
-  }
-  .founder-card--sky:hover { border-color: var(--sky-300); }
-  .founder-card--violet:hover { border-color: #ddd6fe; }
-  .founder-card--teal:hover { border-color: #99f6e4; }
-  .founder-card--amber:hover { border-color: #fde68a; }
 
-  .founder-card__avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
+  .story-card {
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 20px;
+    padding: 2.5rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-sans);
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .story-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.04);
+    border-color: #e2e8f0;
+  }
+
+  .story-card--full {
+    grid-column: 1 / -1;
+  }
+
+  .story-card--highlight {
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+    border-color: #e0f2fe;
+  }
+
+  .story-card__badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #64748b;
+    text-transform: uppercase;
+  }
+
+  .story-card__badge--sky {
+    color: #0284c7;
+  }
+
+  .story-card__title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #ffffff;
-  }
-  .founder-card__avatar--sky    { background: linear-gradient(135deg, #38bdf8, #0284c7); }
-  .founder-card__avatar--violet { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
-  .founder-card__avatar--teal   { background: linear-gradient(135deg, #2dd4bf, #0d9488); }
-  .founder-card__avatar--amber  { background: linear-gradient(135deg, #fbbf24, #d97706); }
-
-  /* Founder photo (when image present) */
-  .founder-card__photo-wrap {
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    padding: 3px;
-    background: linear-gradient(135deg, #38bdf8, #0284c7);
-  }
-  .founder-card__photo-wrap--violet { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
-  .founder-card__photo-wrap--teal   { background: linear-gradient(135deg, #2dd4bf, #0d9488); }
-  .founder-card__photo-wrap--amber  { background: linear-gradient(135deg, #fbbf24, #d97706); }
-  .founder-card__photo {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    background: #ffffff;
-  }
-
-  .founder-card__name {
+    color: #0f172a;
     font-family: var(--font-sans);
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-    letter-spacing: -0.02em;
-    color: var(--gray-900);
-  }
-  .founder-card__role {
-    font-family: var(--font-sans);
-    font-size: var(--body-sm);
-    font-weight: 500;
-    color: var(--sky-700);
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.01em;
-  }
-  .founder-card__bio {
-    font-family: var(--font-sans);
-    font-size: var(--body-sm);
-    color: var(--text-secondary);
-    line-height: 1.6;
     margin: 0;
   }
 
-  /* Mission & Vision */
-  .mv-section { padding: 5rem 0; }
+  .story-card__text {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0;
+  }
+
+  .story-card__text--lead {
+    font-size: 1.05rem;
+    color: #334155;
+  }
+
+  .story-card__flex-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .story-card__col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* Experience Pills */
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 0.75rem;
+  }
+
+  .experience-pill {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  }
+
+  .experience-pill__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .experience-pill__name {
+    font-size: 1.15rem;
+    font-weight: 650;
+    color: #0f172a;
+  }
+
+  .experience-pill__tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0284c7;
+    background: #f0f9ff;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+  }
+
+  .experience-pill__role {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0;
+  }
+
+  .experience-pill__desc {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #64748b;
+    margin: 0;
+  }
+
+  .dubai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 650;
+    color: #0369a1;
+    background: #e0f2fe;
+    padding: 0.4rem 0.85rem;
+    border-radius: 9999px;
+    width: fit-content;
+  }
+
+  .dubai-badge__dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0284c7;
+    border-radius: 50%;
+  }
+
+  /* MISSION & VISION */
+  .mv-section {
+    padding: 5rem 0;
+    background: #ffffff;
+  }
+
+  .mv-section__container {
+    max-width: 1200px;
+    padding: 0 1.5rem;
+    margin: 0 auto;
+  }
+
+  .mv-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .mv-section__title {
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    font-weight: 600;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
   .mv-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    gap: 2rem;
   }
+
   .mv-card {
-    background: #ffffff;
-    border: 1.5px solid var(--gray-100);
-    border-radius: var(--radius-xl);
-    padding: 2.25rem 2rem;
-    transition: var(--transition);
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 24px;
+    padding: 2.75rem 2.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
+
   .mv-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.1);
-    border-color: var(--sky-200);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.05);
+    border-color: #e2e8f0;
   }
+
   .mv-card__icon {
-    width: 56px;
-    height: 56px;
-    border-radius: var(--radius-md);
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
   }
-  .mv-card__icon--mission { background: var(--sky-50); color: var(--sky-600); }
-  .mv-card__icon--vision  { background: #f5f3ff; color: #7c3aed; }
-  .mv-card h3 {
-    font-family: var(--font-sans);
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin-bottom: 0.85rem;
-    letter-spacing: -0.02em;
-    color: var(--gray-900);
+
+  .mv-card__icon--mission {
+    background: #e0f2fe;
+    color: #0284c7;
   }
-  .mv-card p {
+
+  .mv-card__icon--vision {
+    background: #f3e8ff;
+    color: #7c3aed;
+  }
+
+  .mv-card__heading {
+    font-size: 1.5rem;
+    font-weight: 650;
+    color: #0f172a;
     font-family: var(--font-sans);
-    font-size: var(--body-sm);
-    color: var(--text-secondary);
+    margin: 0 0 0.75rem;
+  }
+
+  .mv-card__desc {
+    font-size: 0.98rem;
     line-height: 1.65;
+    color: #475569;
     margin: 0;
   }
 
-  /* CTA */
-  .about-cta-section { padding-top: 0; padding-bottom: 6rem; }
+  /* ABOUT CTA */
+  .about-cta-section {
+    padding: 5rem 0 6rem;
+  }
+
   .about-cta {
-    background: linear-gradient(135deg, var(--gray-900), var(--sky-900));
-    color: #ffffff;
-    padding: 3.5rem 2.5rem;
-    border-radius: 1.5rem;
+    position: relative;
+    background: linear-gradient(135deg, #0f172a 0%, #0369a1 100%);
+    border-radius: 30px;
+    padding: 4.5rem 3rem;
     text-align: center;
-    max-width: 880px;
-    margin: 0 auto;
-  }
-  .about-cta h2 {
-    font-family: var(--font-sans);
     color: #ffffff;
-    margin: 0 0 1rem;
-    font-size: var(--heading-md);
-    font-weight: 500;
+    overflow: hidden;
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.12);
   }
-  .about-cta p {
+
+  .about-cta__glow {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .about-cta__title {
+    font-size: clamp(2rem, 3.5vw, 2.85rem);
+    font-weight: 600;
+    color: #ffffff;
     font-family: var(--font-sans);
-    font-size: var(--body-md);
-    color: rgba(255,255,255,0.75);
-    max-width: 520px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
+    margin: 0 0 1.25rem;
+    line-height: 1.2;
   }
+
+  .about-cta__desc {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 620px;
+    margin: 0 auto 2.5rem;
+  }
+
   .about-cta__actions {
     display: flex;
-    gap: 1rem;
+    align-items: center;
     justify-content: center;
+    gap: 1.25rem;
     flex-wrap: wrap;
   }
-  .about-cta__actions .btn-ghost {
-    background: rgba(255,255,255,0.08);
+
+  .hero__pill-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.3rem 0.3rem 0.3rem 1.35rem;
+    border-radius: 9999px;
+    text-decoration: none;
     color: #ffffff;
-    border-color: rgba(255,255,255,0.2);
+    background: #000000;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   }
-  .about-cta__actions .btn-ghost:hover {
-    background: rgba(255,255,255,0.15);
+
+  .hero__pill-link:hover {
+    background: #111111;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  .hero__pill-text {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 500;
     color: #ffffff;
-    border-color: rgba(255,255,255,0.4);
   }
 
-  .btn-xl { padding: 1rem 2.5rem; font-size: 1.05rem; }
+  .hero__pill-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: #ffffff;
+    color: #0284c7;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
 
-  /* Culture Section */
-  .culture-section { background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); padding-top: 5rem; padding-bottom: 5rem; }
-  .culture-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
-  .culture-card { background: #ffffff; padding: 2.25rem 2rem; border-radius: var(--radius-xl); border: 1.5px solid var(--gray-100); transition: var(--transition); }
-  .culture-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(14, 165, 233, 0.1); border-color: var(--sky-200); }
-  .culture-card h3 { font-size: 1.25rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.85rem; letter-spacing: -0.01em; }
-  .culture-card p { color: var(--gray-600); line-height: 1.75; font-size: 0.95rem; margin: 0; }
+  .hero__pill-link:hover .hero__pill-icon {
+    transform: rotate(45deg);
+  }
 
-  /* Responsive */
+  .about-cta__secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 1.75rem;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .about-cta__secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* RESPONSIVE MEDIA QUERIES */
   @media (max-width: 900px) {
-    .stats-grid { padding: 1.5rem; }
-    .founders-grid { grid-template-columns: repeat(2, 1fr); }
-    .mv-grid { grid-template-columns: 1fr; }
-    .culture-grid { grid-template-columns: 1fr; }
+    .story-section, .mv-section {
+      padding: 3.5rem 0;
+    }
+
+    .story-grid, .mv-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .story-card__flex-row {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .experience-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .about-stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .about-cta {
+      padding: 3rem 1.5rem;
+      border-radius: 20px;
+    }
   }
-  @media (max-width: 600px) {
-    .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .stat-item { border-right: none; border-bottom: 1px solid var(--gray-100); padding-bottom: 1.5rem; }
-    .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .founders-grid { grid-template-columns: 1fr; }
+
+  @media (max-width: 640px) {
+    .about-hero-custom {
+      padding-top: calc(70px + 2rem);
+      padding-bottom: 2.5rem;
+    }
+
+    .about-hero-custom__title {
+      font-size: 1.85rem;
+      margin: 0.75rem 0 0.75rem;
+    }
+
+    .about-hero-custom__subtitle {
+      font-size: 0.98rem;
+      margin-bottom: 2rem;
+    }
+
+    .about-stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .story-section__header, .mv-section__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .story-section__divider {
+      margin-bottom: 1.5rem;
+    }
+
+    .story-card, .mv-card {
+      padding: 1.5rem;
+      border-radius: 16px;
+    }
   }
 </style>
