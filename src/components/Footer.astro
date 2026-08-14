@@ -2,248 +2,472 @@
 const year = new Date().getFullYear();
 
 const footerLinks = {
-  Company: [
-    { href: "/", label: "Home" },
-    { href: "/about/", label: "About Us" },
-    { href: "/our-mission/", label: "Our Mission" },
-    { href: "/services/", label: "Services" },
-    { href: "/products/", label: "Our Products" },
-    { href: "/work/", label: "Our Work" },
-    { href: "/contact/", label: "Contact Us" },
-  ],
   Services: [
-    { href: "/custom-software-development/", label: "Custom Software Development" },
+    { href: "/custom-software-development/", label: "Custom Software" },
     { href: "/saas-development-company/", label: "SaaS Development" },
-    { href: "/services#web", label: "Web Development" },
+    { href: "/services/", label: "Web Development" },
     { href: "/services#mobile", label: "Mobile Apps" },
     { href: "/services#ai", label: "AI & Automation" },
   ],
+  Company: [
+    { href: "/about/", label: "About Us" },
+    { href: "/our-mission/", label: "Our Mission" },
+    { href: "/work/", label: "Case Studies" },
+    { href: "/testimonials/", label: "Testimonials" },
+    { href: "/contact/", label: "Contact Us" },
+  ],
   Resources: [
-    { href: "/blog/", label: "Blog" },
+    { href: "/blog/", label: "Blog & Insights" },
     { href: "/guides/", label: "Engineering Guides" },
     { href: "/faq/", label: "FAQ" },
-    { href: "/work/", label: "Case Studies" },
-    { href: "/products/", label: "Our SaaS Products" },
-    { href: "/contact/", label: "Get a Quote" },
-  ],
-  Connect: [
-    { href: "mailto:contact@n3global.tech", label: "contact@n3global.tech" },
-    { href: "tel:+919645091256", label: "+91 96450 91256" },
-    { href: "https://www.linkedin.com/company/n3-global-tech", label: "LinkedIn" },
-    // { href: "#", label: "Twitter / X" }, // hidden until profile URL is ready
-    { href: "https://www.instagram.com/n3globaltech?igsh=MWoyYnFuZ3I2cTZxcQ%3D%3D&utm_source=qr", label: "Instagram" },
+    { href: "/process/", label: "Our Process" },
+    { href: "/software-development-company-kannur/", label: "Kannur Tech Hub" },
   ],
 };
 ---
 
-<footer class="footer">
-  <div class="footer__glow"></div>
-  <div class="container">
-    <div class="footer__top">
-      <!-- Brand -->
-      <div class="footer__brand">
-        <a href="/" class="footer__logo">
-          <img src="/n3logo.webp" alt="N3 Global Tech" class="footer-logo-img" width="38" height="38" />
-          <span>N3 Global Tech</span>
-        </a>
-        <p class="footer__tagline">
-          Empowering businesses through innovative technology solutions that drive growth, efficiency and transformation. Operating as N3 Global Tech (n3global.tech / N3GlobalTech / n3globaltech).
-        </p>
-        <address class="footer__nap">
-          <strong>N3 Global Tech</strong><br />
-          TK Junction, Near Capital Mall,<br />
-          Thana, Kannur, Kerala 670002, India
-        </address>
-
-      </div>
-
-      <!-- Links -->
-      {Object.entries(footerLinks).map(([group, links]) => (
-        <div class={`footer__col footer__col--${group.toLowerCase()}`}>
-          <h4 class="footer__col-title">{group}</h4>
-          <ul class="footer__col-links">
-            {links.map(link => (
-              <li><a href={link.href}>{link.label}</a></li>
-            ))}
-          </ul>
+<footer class="footer-section">
+  <div class="footer-container">
+    <div class="footer-card">
+      <!-- Top Section -->
+      <div class="footer-top">
+        <!-- Brand & Description -->
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">
+            <img 
+              src="/n3logo.webp" 
+              alt="N3 Global Tech Logo" 
+              class="footer-logo-img" 
+              width="36" 
+              height="36" 
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="footer-logo-text">N3 Global Tech</span>
+          </a>
+          <p class="footer-description">
+            Empowering businesses to transform raw vision into scalable, compelling digital products — making innovation accessible, efficient, and impactful.
+          </p>
+          <div class="footer-socials">
+            <a 
+              href="https://x.com/n3globaltech" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="X (Twitter)"
+              class="footer-social-link"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a 
+              href="https://www.instagram.com/n3globaltech?igsh=MWoyYnFuZ3I2cTZxcQ%3D%3D&utm_source=qr" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Instagram"
+              class="footer-social-link"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+            </a>
+            <a 
+              href="https://www.linkedin.com/company/n3-global-tech" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="LinkedIn"
+              class="footer-social-link"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect width="4" height="12" x="2" y="9"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a 
+              href="mailto:contact@n3global.tech" 
+              aria-label="Email Us"
+              class="footer-social-link"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </a>
+            <a 
+              href="tel:+919645091256" 
+              aria-label="Call Us"
+              class="footer-social-link"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </a>
+          </div>
         </div>
-      ))}
-    </div>
 
-    <div class="footer__bottom">
-      <p>&copy; {year} N3 Global Tech. All rights reserved.</p>
-      <div class="footer__bottom-links">
-        <a href="/privacy-policy/">Privacy Policy</a>
-        <a href="/terms-of-service/">Terms of Service</a>
-        <a href="/cookie-policy/">Cookie Policy</a>
+        <!-- Navigation Links Grid -->
+        <div class="footer-columns">
+          {Object.entries(footerLinks).map(([group, links]) => (
+            <div class={`footer-col footer-col--${group.toLowerCase()}`}>
+              <h4 class="footer-col-title">{group}</h4>
+              <ul class="footer-col-links">
+                {links.map(link => (
+                  <li>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Divider Line -->
+      <div class="footer-divider"></div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; {year} N3 Global Tech. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="/privacy-policy/">Privacy Policy</a>
+          <a href="/terms-of-service/">Terms of Service</a>
+          <a href="/cookie-policy/">Cookie Policy</a>
+        </div>
       </div>
     </div>
+  </div>
+
+  <!-- Oversized Faint Background Wordmark (Graphy Reference Detail) -->
+  <div class="footer-watermark-wrapper" aria-hidden="true">
+    <span class="footer-watermark">N3 Global Tech</span>
   </div>
 </footer>
 
 <style>
-  .footer {
-    background: var(--gray-900);
-    color: var(--gray-400);
-    padding-top: 5rem;
+  .footer-section {
+    background-color: var(--gray-50, #f8fafc);
+    padding-top: clamp(2.5rem, 5vw, 4.5rem);
+    padding-bottom: 0;
     position: relative;
     overflow: hidden;
+    color: var(--gray-900, #0f172a);
+    font-family: var(--font-sans);
   }
 
-  .footer__glow {
-    position: absolute;
-    top: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 300px;
-    background: radial-gradient(ellipse, rgba(14,165,233,0.12) 0%, transparent 70%);
-    pointer-events: none;
+  .footer-container {
+    width: min(100% - 2.5rem, var(--container-max-main, 1280px));
+    margin-inline: auto;
+    position: relative;
+    z-index: 2;
   }
 
-  .footer__top {
+  /* Rounded Container Card */
+  .footer-card {
+    background: #ffffff;
+    border-radius: clamp(1.25rem, 2.5vw, 1.75rem);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 
+      0 12px 32px -8px rgba(0, 0, 0, 0.04),
+      0 4px 12px -2px rgba(0, 0, 0, 0.02);
+    padding: clamp(2rem, 4.5vw, 3.5rem) clamp(1.5rem, 4.5vw, 3.5rem) clamp(1.5rem, 3.5vw, 2.25rem);
+    position: relative;
+  }
+
+  /* Top Layout Grid */
+  .footer-top {
     display: grid;
-    grid-template-columns: 2fr 1.2fr 1.2fr 1fr 1.4fr;
-    gap: 2.5rem;
-    padding-bottom: 3.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    grid-template-columns: 1.1fr 1.6fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
   }
 
-  /* Brand */
-  .footer__logo {
+  /* Left Brand Column */
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-logo {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    color: var(--white);
-    font-family: var(--font-sans);
-    font-weight: 600;
-    font-size: 1.125rem;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--gray-900, #0f172a);
     margin-bottom: 1.25rem;
-    letter-spacing: -0.02em;
   }
 
   .footer-logo-img {
-    width: 38px;
-    height: 38px;
-    border-radius: 9px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
     object-fit: contain;
   }
 
-  .footer__tagline {
+  .footer-logo-text {
     font-family: var(--font-sans);
-    font-size: var(--body-sm);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--gray-900, #0f172a);
+  }
+
+  .footer-description {
+    font-size: 0.875rem;
     line-height: 1.6;
-    color: var(--gray-400);
+    color: #52525b;
     margin-bottom: 1.5rem;
-    max-width: 320px;
+    max-width: 340px;
   }
 
-  .footer__nap {
-    font-family: var(--font-sans);
-    font-size: var(--body-sm);
-    line-height: 1.6;
-    color: var(--gray-400);
-    font-style: normal;
-    margin-bottom: 1.75rem;
-    max-width: 320px;
-  }
-  .footer__nap strong {
-    color: var(--white);
-    font-weight: 500;
-  }
-  .footer__nap a {
-    color: var(--gray-400);
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-  .footer__nap a:hover {
-    color: var(--sky-300);
+  .footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
   }
 
-  /* Columns */
-  .footer__col-title {
-    font-family: var(--font-sans);
-    font-size: var(--label-sm);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--white);
+  .footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #18181b;
+    transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .footer-social-link:hover {
+    color: var(--sky-600, #0284c7);
+    transform: translateY(-2px);
+  }
+
+  /* Right Navigation Grid */
+  .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .footer-col-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gray-900, #0f172a);
     margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
   }
 
-  .footer__col-links {
+  .footer-col-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.75rem;
   }
 
-  .footer__col-links a {
-    font-family: var(--font-sans);
-    font-size: var(--body-sm);
-    color: var(--gray-400);
-    transition: var(--transition);
-    display: block;
+  .footer-col-links a {
+    font-size: 0.875rem;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: inline-block;
   }
 
-  .footer__col-links a:hover {
-    color: var(--sky-400);
-    transform: translateX(3px);
+  .footer-col-links a:hover {
+    color: var(--gray-900, #0f172a);
   }
 
-  /* Bottom */
-  .footer__bottom {
+  /* Divider Line */
+  .footer-divider {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.07);
+    margin-top: clamp(2rem, 3.5vw, 3rem);
+    margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+
+  /* Bottom Row */
+  .footer-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.75rem 0;
-    font-family: var(--font-sans);
+    gap: 1.5rem;
     font-size: 0.8125rem;
-    color: var(--gray-500);
+    color: #64748b;
   }
 
-  .footer__bottom-links {
+  .footer-copyright {
+    color: #64748b;
+    margin: 0;
+  }
+
+  .footer-legal {
     display: flex;
+    align-items: center;
     gap: 1.5rem;
   }
 
-  .footer__bottom-links a {
-    color: var(--gray-500);
-    transition: color 0.2s;
+  .footer-legal a {
+    color: #64748b;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(100, 116, 139, 0.35);
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
   }
 
-  .footer__bottom-links a:hover {
-    color: var(--sky-400);
+  .footer-legal a:hover {
+    color: var(--gray-900, #0f172a);
+    text-decoration-color: var(--gray-900, #0f172a);
   }
 
+  /* Oversized Faint Background Wordmark (Graphy Reference Detail) */
+  .footer-watermark-wrapper {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(1.5rem, 3.5vw, 3rem);
+    pointer-events: none;
+    user-select: none;
+    line-height: 0.8;
+  }
+
+  .footer-watermark {
+    font-family: var(--font-sans);
+    font-size: clamp(4rem, 15vw, 16rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: rgba(15, 23, 42, 0.045);
+    white-space: nowrap;
+    text-align: center;
+    transform: translateY(25%);
+    display: block;
+  }
+
+  /* Tablet Responsiveness */
   @media (max-width: 1024px) {
-    .footer__top {
-      grid-template-columns: 1fr 1fr;
+    .footer-top {
+      grid-template-columns: 1fr;
       gap: 2.5rem;
     }
-    .footer__brand {
-      grid-column: 1 / -1;
+
+    .footer-description {
+      max-width: 100%;
     }
   }
 
+  /* Mobile Responsiveness - Hide Resources & Keep 2 Clean Side-by-Side Columns */
   @media (max-width: 640px) {
-    .footer__top {
-      grid-template-columns: 1fr 1fr;
+    .footer-section {
+      padding-top: 2rem;
+    }
+
+    .footer-container {
+      width: min(100% - 1.25rem, 100%);
+    }
+
+    .footer-card {
+      padding: 1.85rem 1.25rem 1.5rem 1.25rem;
+      border-radius: 1.35rem;
+    }
+
+    .footer-top {
       gap: 2rem;
     }
-    .footer__bottom {
+
+    .footer-logo {
+      margin-bottom: 0.875rem;
+    }
+
+    .footer-description {
+      font-size: 0.84375rem;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-socials {
+      gap: 0.85rem;
+    }
+
+    .footer-social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    /* 2 side-by-side columns: Services & Company */
+    .footer-columns {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 1rem;
+    }
+
+    /* Hide Resources column on mobile for a clean, compact single-row footer */
+    .footer-col--resources {
+      display: none;
+    }
+
+    .footer-col-title {
+      font-size: 0.875rem;
+      margin-bottom: 0.875rem;
+      font-weight: 600;
+    }
+
+    .footer-col-links {
+      gap: 0.7rem;
+    }
+
+    .footer-col-links a {
+      font-size: 0.84375rem;
+      line-height: 1.4;
+    }
+
+    .footer-divider {
+      margin-top: 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-bottom {
       flex-direction: column;
-      gap: 1rem;
-      text-align: center;
+      align-items: flex-start;
+      gap: 0.875rem;
+      font-size: 0.8125rem;
     }
-    .footer__bottom-links {
+
+    .footer-legal {
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
+      gap: 0.875rem 1.25rem;
     }
-    :global(.footer__col--company) {
-      display: none !important;
+
+    .footer-watermark-wrapper {
+      margin-top: 1.25rem;
+    }
+
+    .footer-watermark {
+      font-size: clamp(2.5rem, 12.5vw, 6.5rem);
+      transform: translateY(22%);
     }
   }
 
-  /* Removed 400px breakpoint keeping 2-column layout on all small devices */
+  /* Extra Small Devices */
+  @media (max-width: 480px) {
+    .footer-container {
+      width: min(100% - 1rem, 100%);
+    }
+
+    .footer-card {
+      padding: 1.65rem 1rem 1.35rem 1rem;
+      border-radius: 1.25rem;
+    }
+
+    .footer-columns {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 0.85rem;
+    }
+
+    .footer-col-links a {
+      font-size: 0.8125rem;
+    }
+  }
 </style>
