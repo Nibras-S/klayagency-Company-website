@@ -8,14 +8,14 @@ body, h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select {
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   line-height: 1.1;
-  font-weight: 500;
+  font-weight: 450;
 }
 
 /* Display & Heading Scale */
 .display-xl {
   font-family: var(--font-sans);
   font-size: var(--display-xl);
-  font-weight: 500;
+  font-weight: 450;
   line-height: 0.92;
   letter-spacing: -0.05em;
   color: var(--text-primary);
@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
 .display-lg {
   font-family: var(--font-sans);
   font-size: var(--display-lg);
-  font-weight: 500;
+  font-weight: 450;
   line-height: 0.95;
   letter-spacing: -0.04em;
   color: var(--text-primary);
@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 .heading-md {
   font-family: var(--font-sans);
   font-size: var(--heading-md);
-  font-weight: 500;
+  font-weight: 450;
   line-height: 1.05;
   letter-spacing: -0.03em;
   color: var(--text-primary);
@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 .heading-sm {
   font-family: var(--font-sans);
   font-size: var(--heading-sm);
-  font-weight: 500;
+  font-weight: 450;
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--text-primary);

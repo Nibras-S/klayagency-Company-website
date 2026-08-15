@@ -88,7 +88,7 @@ const categories = ['All', 'AI', 'Software Architecture', 'Cloud Engineering', '
       padding: 0.45rem 1.1rem;
       border-radius: 9999px;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 1.5rem;
@@ -98,7 +98,7 @@ const categories = ['All', 'AI', 'Software Architecture', 'Cloud Engineering', '
     .hero-title {
       font-family: var(--font-heading);
       font-size: clamp(2.2rem, 5vw, 3.75rem);
-      font-weight: 900;
+      font-weight: 500;
       letter-spacing: -0.03em;
       margin: 0 0 1.25rem;
       color: var(--gray-900);
@@ -135,7 +135,7 @@ const categories = ['All', 'AI', 'Software Architecture', 'Cloud Engineering', '
       padding: 0.6rem 1.25rem;
       border-radius: 9999px;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.2s ease;
     }
@@ -175,7 +175,7 @@ const categories = ['All', 'AI', 'Software Architecture', 'Cloud Engineering', '
       background: #0ea5e9;
       color: #ffffff;
       font-size: 0.78rem;
-      font-weight: 800;
+      font-weight: 500;
       padding: 0.3rem 0.8rem;
       border-radius: 0.5rem;
       text-transform: uppercase;
@@ -184,7 +184,7 @@ const categories = ['All', 'AI', 'Software Architecture', 'Cloud Engineering', '
     .featured-title {
       font-family: var(--font-heading);
       font-size: clamp(1.5rem, 3vw, 2.25rem);
-      font-weight: 800;
+      font-weight: 500;
       color: var(--gray-900);
       margin: 0;
       line-height: 1.3;
@@ -206,7 +206,7 @@ const categories = ['All', 'AI', 'Software Architecture', 'Cloud Engineering', '
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-weight: 700;
+      font-weight: 500;
       color: var(--sky-600);
       text-decoration: none;
       font-size: 0.95rem;
@@ -255,7 +255,7 @@ const categories = ['All', 'AI', 'Software Architecture', 'Cloud Engineering', '
       <article class="featured-banner">
         <div class="featured-meta">
           <span class="featured-tag">Featured Guide</span>
-          <span style="color: #64748b; font-size: 0.88rem; font-weight: 600;">{featuredGuide.category} · {featuredGuide.readTime}</span>
+          <span style="color: #64748b; font-size: 0.88rem; font-weight: 500;">{featuredGuide.category} · {featuredGuide.readTime}</span>
         </div>
         <h2 class="featured-title">
           <a href={featuredGuide.url}>{featuredGuide.title}</a>
@@ -277,10 +277,10 @@ const categories = ['All', 'AI', 'Software Architecture', 'Cloud Engineering', '
       {guides.map(guide => (
         <article class="guide-card" data-category={guide.category}>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <span style="background: #f0f9ff; color: #0369a1; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 9999px; text-transform: uppercase;">{guide.category}</span>
+            <span style="background: #f0f9ff; color: #0369a1; font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.6rem; border-radius: 9999px; text-transform: uppercase;">{guide.category}</span>
             <span style="font-size: 0.8rem; color: #94a3b8; font-weight: 500;">{guide.readTime}</span>
           </div>
-          <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin: 0 0 0.75rem; line-height: 1.35;">
+          <h3 style="font-size: 1.25rem; font-weight: 500; color: #0f172a; margin: 0 0 0.75rem; line-height: 1.35;">
             <a href={guide.url} style="color: inherit; text-decoration: none;">{guide.title}</a>
           </h3>
           <p style="font-size: 0.92rem; color: #64748b; line-height: 1.6; margin: 0 0 1.5rem; flex: 1;">{guide.description}</p>
