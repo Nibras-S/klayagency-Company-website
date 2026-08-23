@@ -35,7 +35,7 @@ const {
   title,
   description = "Human creativity meets AI. Klay helps ambitious companies create brands, products, and experiences built for what's next.",
   keywords = "Klay Agency, klay.agency, digital transformation, website development, custom software, AI automation, cloud solutions, SaaS development, technology consulting, Dubai, UAE, GCC",
-  image = "/og-image.png",
+  image = "/og-img.jpeg",
   noindex = false,
   lockViewportScale = false,
   type = 'website',
@@ -46,7 +46,7 @@ const {
 
 const siteName = "Klay Agency";
 const alternateSiteName = "klay.agency";
-const fullTitle = title.includes(siteName) || title.includes(alternateSiteName) ? title : `${title} | ${siteName}`;
+const fullTitle = title.toLowerCase().includes("klay") ? title : `${title} | ${siteName}`;
 const siteUrl = Astro.site ?? new URL("https://www.klay.agency");
 const canonicalPath = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
@@ -302,8 +302,10 @@ const websiteSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="900" />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content="en_US" />
 
