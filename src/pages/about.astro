@@ -8,44 +8,52 @@ import TeamSection from '../components/TeamSection.astro';
 
 const founders = [
   {
+    name: "Mohammed Rafeel",
+    role: "Founder &amp; Digital Transformation Lead",
+    bio: "Leads Klay's vision, client partnerships, and digital transformation initiatives.",
+    initials: "M",
+    color: "sky",
+    image: "/team/nibras.webp",
+  },
+  {
     name: "Nibras",
-    role: "Founder &amp; CEO",
-    bio: "Cloud and DevOps engineer with industry experience in Abu Dhabi. Drives infrastructure, scalability, and deployment strategy.",
+    role: "Cloud Infrastructure Architect",
+    bio: "Designs and oversees the cloud environments that power Klay's digital solutions.",
     initials: "N",
     color: "sky",
     image: "/team/nibras.webp",
   },
   {
-    name: "Nabeel",
-    role: "Co-founder &amp; CTO",
-    bio: "Mobile developer who began his career in Kochi. Leads native iOS, Android, and cross-platform work across our products.",
+    name: "Nabeel PP",
+    role: "Technology Strategist &amp; Solutions Architect",
+    bio: "Defines the technical architecture behind Klay's platforms and digital systems.",
     initials: "N",
     color: "violet",
     image: "/team/nabeel.webp",
   },
   {
-    name: "Nafi",
-    role: "Co-founder",
-    bio: "Java developer with hands-on experience in Wayanad. Anchors backend architecture, APIs, and integrations.",
-    initials: "N",
+    name: "Ashwal P",
+    role: "AI &amp; Intelligent Systems Architect",
+    bio: "Develops AI-powered solutions that enhance operational efficiency and digital experiences.",
+    initials: "A",
     color: "teal",
-    image: "/team/nafi.webp",
+    image: "/team/farseen.webp",
   },
   {
-    name: "Farseen",
-    role: "Co-founder",
-    bio: "Our earliest mentor. Guided us from first projects to industry practice, and still shapes how we build today.",
-    initials: "F",
+    name: "Abdul Nafih",
+    role: "Platform &amp; Integration Architect",
+    bio: "Ensures digital solutions are delivered with reliability and precision.",
+    initials: "A",
     color: "amber",
-    image: "/team/farseen.webp",
+    image: "/team/nafi.webp",
   },
 ];
 ---
 
 <Layout
-  title="About Us | Our Story, Founders & Mission"
-  description="Meet the team behind N3 Global Tech. Founded by Nibras, Nabeel, Nafi, and Farseen, four engineers turned co-founders building custom software and SaaS for businesses in Kerala, India, and beyond."
-  keywords="about N3 Global Tech, n3globaltech, N3GlobalTech, software company Kerala, software company Kannur, custom software founders, N3 team, Nibras Nabeel Nafi Farseen, Kerala tech founders, software company story"
+  title="About Klay | Our Story, Team & Mission"
+  description="Klay is a digital transformation agency helping businesses modernize their digital presence, streamline operations, and unlock new opportunities through technology."
+  keywords="about Klay Agency, klay.agency, digital transformation agency, Dubai tech company, GCC technology partner, Klay team, cloud infrastructure, AI automation"
 >
   <Navbar />
 
@@ -54,12 +62,12 @@ const founders = [
     "@type": "AboutPage",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://www.n3global.tech/about/"
+      "@id": "https://www.klay.agency/about/"
     },
-    "name": "About N3 Global Tech",
-    "description": "Meet the team behind N3 Global Tech. Four engineers turned founders building custom software and SaaS for businesses worldwide.",
+    "name": "About Klay Agency",
+    "description": "Klay is a digital transformation agency helping businesses modernize through strategy, technology, cloud infrastructure, and intelligent automation.",
     "publisher": {
-      "@id": "https://www.n3global.tech/#organization"
+      "@id": "https://www.klay.agency/#organization"
     }
   })}></script>
 
@@ -67,19 +75,19 @@ const founders = [
   <section class="about-hero-custom">
     <div class="container about-hero-custom__container">
       <div class="story-section__kicker">
-        <span class="story-section__kicker-sq"></span> ABOUT N3 GLOBAL TECH
+        <span class="story-section__kicker-sq"></span> ABOUT KLAY
       </div>
       <h1 class="about-hero-custom__title">
-        Engineers turned founders, building custom software &amp; SaaS for businesses worldwide.
+        Building Digital Systems That Drive Business Growth
       </h1>
       <p class="about-hero-custom__subtitle">
-        Founded in Kerala with engineering hubs in India &amp; Dubai, we unite cloud infrastructure, native mobile engineering, and backend systems to build products that scale.
+        Klay is a digital transformation agency helping businesses modernize their digital presence, streamline operations, and unlock new opportunities through technology.
       </p>
 
       <div class="about-stats-grid">
         <div class="about-stat-card">
-          <div class="about-stat-card__num">04</div>
-          <div class="about-stat-card__label">Co-Founders &amp; Leads</div>
+          <div class="about-stat-card__num">05</div>
+          <div class="about-stat-card__label">Leadership &amp; Tech Team</div>
         </div>
         <div class="about-stat-card">
           <div class="about-stat-card__num">30+</div>
@@ -87,7 +95,7 @@ const founders = [
         </div>
         <div class="about-stat-card">
           <div class="about-stat-card__num">03+</div>
-          <div class="about-stat-card__label">Years Shipping SaaS</div>
+          <div class="about-stat-card__label">Years Delivering Solutions</div>
         </div>
         <div class="about-stat-card">
           <div class="about-stat-card__num">02</div>
@@ -107,7 +115,7 @@ const founders = [
         <div class="story-section__kicker">
           <span class="story-section__kicker-sq"></span> OUR JOURNEY
         </div>
-        <h2 class="story-section__title">Behind N3 Global Tech</h2>
+        <h2 class="story-section__title">Our Journey</h2>
       </div>
       <div class="story-section__divider"></div>
 
@@ -117,10 +125,10 @@ const founders = [
           <div class="story-card__badge">01 / THE BEGINNING</div>
           <h3 class="story-card__title">Thalassery Roots</h3>
           <p class="story-card__text">
-            Our story starts at <strong>Thalassery Engineering College</strong>, where Nibras, Nabeel, Nafi, and Farseen studied together. What began as a shared passion for solving complex engineering challenges grew, project by project, into an enterprise technology agency.
+            Our story starts at <strong>Thalassery Engineering College</strong>, where the founding members of our team studied together. What began as a shared passion for solving complex engineering challenges grew, project by project, into a technology agency.
           </p>
           <p class="story-card__text">
-            Across our third-year mini projects and final-year build, we got hands-on with shipping production software that real users actually rely on. Farseen played a defining role here, both as a peer and mentor, shaping our standard of engineering rigor.
+            Across our third-year mini projects and final-year build, we got hands-on with shipping production software that real users actually rely on. Each member played a defining role, shaping our standard of engineering rigor.
           </p>
         </article>
 
@@ -141,7 +149,7 @@ const founders = [
           <div class="story-card__badge">03 / SPECIALIZATION</div>
           <h3 class="story-card__title">Industry Mastery Before Uniting</h3>
           <p class="story-card__text story-card__text--lead">
-            After graduation, each of us gained real-world domain expertise in top engineering hubs before founding N3 Global Tech:
+            After gaining deep domain expertise across different engineering hubs, our team came together to form Klay:
           </p>
 
           <div class="experience-grid">
@@ -181,16 +189,16 @@ const founders = [
               <div class="story-card__badge story-card__badge--sky">04 / GLOBAL IMPACT</div>
               <h3 class="story-card__title">Today &amp; The GCC Expansion</h3>
               <p class="story-card__text">
-                Today, N3 Global Tech has shipped multiple SaaS platforms — <strong>N3 FitBook, N3 ServiceBook, and N3 BusinessBook</strong> — empowering <strong>over 30 companies</strong> to transition from manual workflows to robust digital infrastructure.
+                Today, Klay has delivered multiple digital platforms and solutions — empowering <strong>over 30 companies</strong> to transition from manual workflows to robust digital infrastructure.
               </p>
             </div>
             <div class="story-card__col">
               <div class="dubai-badge">
                 <span class="dubai-badge__dot"></span>
-                Dubai Studio Partnership
+                Dubai Headquarters
               </div>
               <p class="story-card__text">
-                N3 Global Tech serves as the primary engineering and delivery force behind <strong>Klay Agency</strong>, our Dubai-based studio — delivering high-grade software solutions to clients across the UAE and wider GCC alongside our India operations.
+                Klay operates as the GCC-facing brand of Klay Agency, bringing together a multidisciplinary team across India and the UAE — delivering high-grade software solutions to clients across the wider GCC.
               </p>
             </div>
           </div>

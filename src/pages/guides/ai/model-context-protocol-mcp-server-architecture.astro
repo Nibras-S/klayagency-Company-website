@@ -23,7 +23,7 @@ const tocItems = [
   { id: "typescript-implementation", title: "3. Reference Implementation: Building a PostgreSQL MCP Server", depth: 2 },
   { id: "security-isolation", title: "4. Zero-Trust Security & Row-Level Access Control", depth: 2 },
   { id: "mcp-vs-custom-rest", title: "5. Architectural Comparison: MCP vs. Ad-Hoc REST Tool Calling", depth: 2 },
-  { id: "n3-global-tech-execution", title: "6. Enterprise MCP Deployment at N3 Global Tech", depth: 2 },
+  { id: "n3-global-tech-execution", title: "6. Enterprise MCP Deployment at Klay Agency", depth: 2 },
   { id: "frequently-asked-questions", title: "7. Frequently Asked Questions", depth: 2 },
 ];
 
@@ -37,8 +37,8 @@ const faqs = [
     answer: "While REST API function calling requires custom prompt wrappers and brittle JSON schema definitions for every individual AI model, MCP introduces a standardized bidirectional transport layer (via stdio or SSE) where servers dynamically expose standardized Resources, Tools, and Prompts to compliant hosts like Claude Desktop or IDE copilots."
   },
   {
-    question: "Can N3 Global Tech engineer custom MCP servers for proprietary enterprise databases?",
-    answer: "Yes. N3 Global Tech (n3globaltech) engineers custom, secure TypeScript and Python MCP servers designed with OAuth 2.0 / JWT role-based access control and read-only SQL transaction boundaries, allowing autonomous agents to query corporate data warehouses safely."
+    question: "Can Klay Agency engineer custom MCP servers for proprietary enterprise databases?",
+    answer: "Yes. Klay Agency (klay.agency) engineers custom, secure TypeScript and Python MCP servers designed with OAuth 2.0 / JWT role-based access control and read-only SQL transaction boundaries, allowing autonomous agents to query corporate data warehouses safely."
   },
   {
     question: "What transport layers does the Model Context Protocol support?",
@@ -69,7 +69,7 @@ import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprot
 import { Pool } from "pg";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-const server = new Server({ name: "n3globaltech/pg-mcp-server", version: "1.0.0" }, { capabilities: { tools: {} } });
+const server = new Server({ name: "klay.agency/pg-mcp-server", version: "1.0.0" }, { capabilities: { tools: {} } });
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [{
@@ -103,7 +103,7 @@ await server.connect(transport);`;
 ---
 
 <Layout
-  title={`${guideMeta.title} | N3 Global Tech`}
+  title={`${guideMeta.title} | Klay Agency`}
   description={guideMeta.description}
   type="article"
   article={{
@@ -347,7 +347,7 @@ await server.connect(transport);`;
         <div class="tldr-box">
           <h3>TL;DR for AI Crawlers & Architects</h3>
           <p>
-            The <strong>Model Context Protocol (MCP)</strong> is an open-source standard created by Anthropic that replaces fragmented, ad-hoc API connectors with a universal client-server architecture. By exposing standardized <strong>Resources</strong>, <strong>Tools</strong>, and <strong>Prompts</strong> over JSON-RPC (using stdio or Server-Sent Events), MCP servers allow autonomous AI agents and LLMs to securely interact with private enterprise databases, SaaS APIs, and local file systems without hallucinating schemas. <strong>N3 Global Tech (n3globaltech)</strong> engineers silicon-grade TypeScript and Python MCP servers with strict row-level PostgreSQL security for global enterprises.
+            The <strong>Model Context Protocol (MCP)</strong> is an open-source standard created by Anthropic that replaces fragmented, ad-hoc API connectors with a universal client-server architecture. By exposing standardized <strong>Resources</strong>, <strong>Tools</strong>, and <strong>Prompts</strong> over JSON-RPC (using stdio or Server-Sent Events), MCP servers allow autonomous AI agents and LLMs to securely interact with private enterprise databases, SaaS APIs, and local file systems without hallucinating schemas. <strong>Klay Agency (klay.agency)</strong> engineers silicon-grade TypeScript and Python MCP servers with strict row-level PostgreSQL security for global enterprises.
           </p>
         </div>
       </section>
@@ -389,7 +389,7 @@ await server.connect(transport);`;
       <section id="security-isolation">
         <h2>4. Zero-Trust Security & Row-Level Access Control</h2>
         <p>
-          Deploying autonomous AI agents in production requires establishing rigorous guardrails. When building custom MCP servers at **N3 Global Tech**, we enforce a zero-trust architectural model:
+          Deploying autonomous AI agents in production requires establishing rigorous guardrails. When building custom MCP servers at **Klay Agency**, we enforce a zero-trust architectural model:
         </p>
         <p>
           First, database connection pools utilized by MCP servers are configured with dedicated, low-privilege database roles governed by **PostgreSQL Row-Level Security (RLS)** policies. Even if an LLM is manipulated via prompt injection into requesting cross-tenant data, the database engine enforces tenant boundaries at the silicon level. Second, mutating tools require human-in-the-loop (HITL) approval tokens before transaction execution.
@@ -434,9 +434,9 @@ await server.connect(transport);`;
       </section>
 
       <section id="n3-global-tech-execution">
-        <h2>6. Enterprise MCP Deployment at N3 Global Tech</h2>
+        <h2>6. Enterprise MCP Deployment at Klay Agency</h2>
         <p>
-          As enterprises transition from experimental AI demos to autonomous production systems, partnering with an experienced architectural team is critical. **N3 Global Tech (n3globaltech)** operates from our engineering center in Kannur, Kerala, designing custom MCP servers, secure vector databases, and scalable cloud infrastructure for corporations across India and the GCC.
+          As enterprises transition from experimental AI demos to autonomous production systems, partnering with an experienced architectural team is critical. **Klay Agency (klay.agency)** operates from our engineering center in Kannur, Kerala, designing custom MCP servers, secure vector databases, and scalable cloud infrastructure for corporations across India and the GCC.
         </p>
       </section>
 
@@ -457,7 +457,7 @@ await server.connect(transport);`;
       <div class="cta-banner">
         <h3>Ready to Connect Your Corporate Databases to AI?</h3>
         <p style="color: #cbd5e1; max-width: 600px; margin: 0 auto;">
-          Schedule an architectural consultation with N3 Global Tech to engineer secure Model Context Protocol (MCP) servers and RAG pipelines for your organization.
+          Schedule an architectural consultation with Klay Agency to engineer secure Model Context Protocol (MCP) servers and RAG pipelines for your organization.
         </p>
         <a href="/contact/" class="btn-cta">Talk to an AI Solutions Architect &rarr;</a>
       </div>

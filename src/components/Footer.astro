@@ -3,25 +3,24 @@ const year = new Date().getFullYear();
 
 const footerLinks = {
   Services: [
+    { href: "/services/", label: "Digital Transformation" },
+    { href: "/services/", label: "Website Development" },
     { href: "/custom-software-development/", label: "Custom Software" },
-    { href: "/saas-development-company/", label: "SaaS Development" },
-    { href: "/services/", label: "Web Development" },
-    { href: "/services#mobile", label: "Mobile Apps" },
     { href: "/services#ai", label: "AI & Automation" },
+    { href: "/services#cloud", label: "Cloud Solutions" },
   ],
   Company: [
     { href: "/about/", label: "About Us" },
-    { href: "/our-mission/", label: "Our Mission" },
+    { href: "/about/#team", label: "Leadership Team" },
     { href: "/work/", label: "Case Studies" },
-    { href: "/testimonials/", label: "Testimonials" },
+    { href: "/contact/", label: "Careers" },
     { href: "/contact/", label: "Contact Us" },
   ],
   Resources: [
     { href: "/blog/", label: "Blog & Insights" },
-    { href: "/guides/", label: "Engineering Guides" },
+    { href: "/work/", label: "Case Studies" },
     { href: "/faq/", label: "FAQ" },
     { href: "/process/", label: "Our Process" },
-    { href: "/software-development-company-kannur/", label: "Kannur Tech Hub" },
   ],
 };
 ---
@@ -35,22 +34,22 @@ const footerLinks = {
         <div class="footer-brand">
           <a href="/" class="footer-logo">
             <img 
-              src="/n3logo.webp" 
-              alt="N3 Global Tech Logo" 
+              src="/klay-logo.png" 
+              alt="Klay Agency Logo" 
               class="footer-logo-img" 
               width="36" 
               height="36" 
               loading="lazy"
               decoding="async"
             />
-            <span class="footer-logo-text">N3 Global Tech</span>
+            <span class="footer-logo-text">Klay Agency</span>
           </a>
           <p class="footer-description">
-            Empowering businesses to transform raw vision into scalable, compelling digital products — making innovation accessible, efficient, and impactful.
+            Helping businesses across the GCC transform through strategy, technology, cloud infrastructure, and intelligent automation. We build digital systems that create sustainable growth and lasting business value.
           </p>
           <div class="footer-socials">
             <a 
-              href="https://x.com/n3globaltech" 
+              href="https://x.com/klayagency" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="X (Twitter)"
@@ -61,7 +60,7 @@ const footerLinks = {
               </svg>
             </a>
             <a 
-              href="https://www.instagram.com/n3globaltech?igsh=MWoyYnFuZ3I2cTZxcQ%3D%3D&utm_source=qr" 
+              href="https://www.instagram.com/klay.agency" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="Instagram"
@@ -74,7 +73,7 @@ const footerLinks = {
               </svg>
             </a>
             <a 
-              href="https://www.linkedin.com/company/n3-global-tech" 
+              href="https://www.linkedin.com/company/klay-agency" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="LinkedIn"
@@ -87,7 +86,7 @@ const footerLinks = {
               </svg>
             </a>
             <a 
-              href="mailto:contact@n3global.tech" 
+              href="mailto:hello@klay.agency" 
               aria-label="Email Us"
               class="footer-social-link"
             >
@@ -97,7 +96,7 @@ const footerLinks = {
               </svg>
             </a>
             <a 
-              href="tel:+919645091256" 
+              href="tel:+971585806313" 
               aria-label="Call Us"
               class="footer-social-link"
             >
@@ -130,7 +129,7 @@ const footerLinks = {
 
       <!-- Bottom Row -->
       <div class="footer-bottom">
-        <p class="footer-copyright">&copy; {year} N3 Global Tech. All rights reserved.</p>
+        <p class="footer-copyright">&copy; {year} Klay Agency. All rights reserved.</p>
         <div class="footer-legal">
           <a href="/privacy-policy/">Privacy Policy</a>
           <a href="/terms-of-service/">Terms of Service</a>
@@ -142,7 +141,7 @@ const footerLinks = {
 
   <!-- Oversized Faint Background Wordmark (Graphy Reference Detail) -->
   <div class="footer-watermark-wrapper" aria-hidden="true">
-    <span class="footer-watermark">N3 Global Tech</span>
+    <span class="footer-watermark">klay.agency</span>
   </div>
 </footer>
 
@@ -386,7 +385,7 @@ const footerLinks = {
       gap: 2.25rem;
     }
 
-    /* CENTER ALIGNED: Logo, N3 Global Tech Title, Description, and Social Icons */
+    /* CENTER ALIGNED: Logo, Klay Agency Title, Description, and Social Icons */
     .footer-brand {
       align-items: center;
       text-align: center;

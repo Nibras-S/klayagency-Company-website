@@ -33,9 +33,9 @@ export interface Props {
 
 const {
   title,
-  description = "N3 Global Tech is a custom software development company building scalable web apps, mobile apps, cloud platforms, AI solutions, and SaaS products for startups and enterprises worldwide.",
-  keywords = "N3GlobalTech, n3global.tech, n3globaltech, software development company, web development, mobile app development, cloud solutions, SaaS development, custom software, AI development, UI UX design, MVP development, digital transformation, startup tech partner, CRM, ERP, Astro, React, Node.js",
-  image = "/og-img.jpeg",
+  description = "Human creativity meets AI. Klay helps ambitious companies create brands, products, and experiences built for what's next.",
+  keywords = "Klay Agency, klay.agency, digital transformation, website development, custom software, AI automation, cloud solutions, SaaS development, technology consulting, Dubai, UAE, GCC",
+  image = "/og-image.png",
   noindex = false,
   lockViewportScale = false,
   type = 'website',
@@ -44,10 +44,10 @@ const {
   service,
 } = Astro.props;
 
-const siteName = "N3 Global Tech";
-const alternateSiteName = "N3GlobalTech";
-const fullTitle = title.includes(siteName) || title.includes(alternateSiteName) ? title : `${title} | ${siteName} (${alternateSiteName})`;
-const siteUrl = Astro.site ?? new URL("https://www.n3global.tech");
+const siteName = "Klay Agency";
+const alternateSiteName = "klay.agency";
+const fullTitle = title.includes(siteName) || title.includes(alternateSiteName) ? title : `${title} | ${siteName}`;
+const siteUrl = Astro.site ?? new URL("https://www.klay.agency");
 const canonicalPath = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';
@@ -97,7 +97,7 @@ const articleSchema = article ? {
   dateModified: article.dateModified ?? article.datePublished,
   author: {
     "@type": "Organization",
-    name: article.author ?? "N3 Global Tech",
+    name: article.author ?? "Klay Agency",
     url: siteUrlString,
   },
   publisher: { "@id": `${siteUrlString}#organization` },
@@ -120,74 +120,72 @@ const orgSchema = {
   "@type": "ProfessionalService",
   "@id": `${siteUrlString}#organization`,
   name: siteName,
-  legalName: "N3 Global Tech",
-  alternateName: ["N3GlobalTech", "n3globaltech", "n3global.tech", "N3 Global Tech"],
+  legalName: "Klay Agency FZCO",
+  alternateName: ["Klay", "klay.agency", "Klay Agency"],
   url: siteUrlString,
   logo: {
     "@type": "ImageObject",
-    url: new URL("/n3logo.webp", siteUrl).href,
+    url: new URL("/klay-logo.png", siteUrl).href,
     width: 512,
     height: 512,
   },
   image: ogImage,
-  description: "Custom software development company offering web, mobile, cloud, AI and SaaS product engineering for startups and enterprises.",
-  email: "contact@n3global.tech",
-  telephone: "+91-9645091256",
+  description: "Digital transformation agency helping businesses modernize through strategy, technology, cloud infrastructure, and intelligent automation.",
+  email: "hello@klay.agency",
+  telephone: "+971-585806313",
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "TK Junction, Near Capital Mall, Thana",
-    addressLocality: "Kannur",
-    addressRegion: "Kerala",
-    postalCode: "670002",
-    addressCountry: "IN",
+    streetAddress: "Dubai South",
+    addressLocality: "Dubai",
+    addressRegion: "Dubai",
+    addressCountry: "AE",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 11.8745,
-    longitude: 75.3704,
+    latitude: 24.8961,
+    longitude: 55.1614,
   },
-  hasMap: "https://maps.google.com/?q=TK+Junction+Thana+Kannur+Kerala+670002",
+  hasMap: "https://maps.google.com/?q=Dubai+South+Dubai+UAE",
   areaServed: [
-    { "@type": "Place", name: "Kannur" },
-    { "@type": "Place", name: "Kerala" },
-    { "@type": "Place", name: "India" },
+    { "@type": "Place", name: "Dubai" },
+    { "@type": "Place", name: "UAE" },
+    { "@type": "Place", name: "GCC" },
     { "@type": "Place", name: "Worldwide" },
   ],
   knowsAbout: [
-    "Software Development",
-    "Web Development",
-    "Mobile App Development",
-    "Cloud Solutions",
-    "Artificial Intelligence",
-    "SaaS Development",
-    "UI/UX Design",
     "Digital Transformation",
-    "MVP Development",
-    "CRM",
-    "ERP",
+    "Website Development",
+    "Custom Software Solutions",
+    "Cloud Infrastructure",
+    "Artificial Intelligence",
+    "Intelligent Automation",
+    "SaaS Platforms",
+    "Technology Consulting",
+    "Business Process Digitization",
+    "Platform Modernization",
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Services",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Web Development", description: "Custom websites & landing pages built with modern frameworks." } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Mobile App Development", description: "iOS, Android and cross-platform mobile applications." } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "UI/UX Design", description: "Wireframes, prototypes, and full design systems." } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "MVP Development", description: "Validate ideas fast with launch-ready MVPs." } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Product Redesign", description: "Modernize legacy products with refreshed UX and tech." } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Marketing", description: "Grow online presence through SEO, content and ads." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Transformation", description: "End-to-end digital transformation strategy and execution." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Website Development", description: "Modern, high-performance websites and web applications." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Software", description: "Scalable custom software solutions tailored to your business." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI & Automation", description: "Intelligent automation and AI-powered solutions." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Cloud Solutions", description: "Cloud infrastructure, architecture, and platform modernization." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "SaaS Platforms", description: "End-to-end SaaS platform design, development, and scaling." } },
     ],
   },
   sameAs: [
-    "https://www.linkedin.com/company/n3-global-tech",
-    "https://www.instagram.com/n3globaltech",
+    "https://www.linkedin.com/company/klay-agency",
+    "https://www.instagram.com/klay.agency",
   ],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
-    email: "contact@n3global.tech",
-    telephone: "+91-9645091256",
+    email: "hello@klay.agency",
+    telephone: "+971-585806313",
     availableLanguage: ["English"],
   },
 };
@@ -197,7 +195,7 @@ const websiteSchema = {
   "@type": "WebSite",
   "@id": `${siteUrlString}#website`,
   name: siteName,
-  alternateName: ["N3GlobalTech", "n3globaltech", "n3global.tech", "N3 Global Tech"],
+  alternateName: ["Klay", "klay.agency", "Klay Agency"],
   url: siteUrlString,
   publisher: { "@id": `${siteUrlString}#organization` },
   inLanguage: "en-US",
@@ -294,7 +292,7 @@ const websiteSchema = {
 
     <!-- Icons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/webp" href="/n3logo.webp" />
+    <link rel="icon" type="image/png" href="/klay-logo.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Open Graph -->
@@ -317,7 +315,7 @@ const websiteSchema = {
     <meta name="twitter:image:alt" content={title} />
 
     <!-- Preload LCP candidate (used in navbar on every page) -->
-    <link rel="preload" as="image" href="/n3logo.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/klay-logo.png" type="image/png" fetchpriority="high" />
 
 
 
@@ -345,7 +343,7 @@ const websiteSchema = {
       id="site-splash"
       class="site-splash"
       role="status"
-      aria-label="Loading N3 Global Tech"
+      aria-label="Loading Klay Agency"
       aria-live="polite"
     >
       <div class="site-splash__inner">
@@ -518,11 +516,11 @@ const websiteSchema = {
     {/* Floating WhatsApp button hidden for now. Uncomment to re-enable. */}
     {false && (
       <a
-        href="https://wa.me/919645091256?text=Hi%20N3%20Global%20Tech%2C%20I%27d%20like%20to%20discuss%20a%20project."
+        href="https://wa.me/971585806313?text=Hi%20Klay%20Agency%2C%20I%27d%20like%20to%20discuss%20a%20project."
         class="wa-fab"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat with N3 Global Tech on WhatsApp"
+        aria-label="Chat with Klay Agency on WhatsApp"
       >
         <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>

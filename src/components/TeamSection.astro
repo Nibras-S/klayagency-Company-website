@@ -1,28 +1,34 @@
 ---
 const founders = [
   {
-    name: "Nibras",
-    role: "Founder & CEO",
-    bio: "Cloud and DevOps engineer with industry experience in Abu Dhabi. Drives infrastructure, scalability, and deployment strategy.",
+    name: "Mohammed Rafeel",
+    role: "Founder & Digital Transformation Lead",
+    bio: "Leads Klay's vision, client partnerships, and digital transformation initiatives. Works closely with business leaders to align strategy, technology, and customer experience.",
     image: "/team/nibras.webp",
   },
   {
-    name: "Nabeel",
-    role: "Co-founder & CTO",
-    bio: "Mobile developer who began his career in Kochi. Leads native iOS, Android, and cross-platform work across our products.",
+    name: "Nibras",
+    role: "Cloud Infrastructure Architect",
+    bio: "Designs and oversees the cloud environments that power Klay's digital solutions. Expertise spans cloud architecture, infrastructure automation, security, and platform reliability.",
+    image: "/team/nibras.webp",
+  },
+  {
+    name: "Nabeel PP",
+    role: "Technology Strategist & Solutions Architect",
+    bio: "Defines the technical architecture behind Klay's platforms and digital systems. Develops scalable technology ecosystems that connect software, infrastructure, and business operations.",
     image: "/team/nabeel.webp",
   },
   {
-    name: "Nafi",
-    role: "Co-founder",
-    bio: "Java developer with hands-on experience in Wayanad. Anchors backend architecture, APIs, and integrations.",
-    image: "/team/nafi.webp",
+    name: "Ashwal P",
+    role: "AI & Intelligent Systems Architect",
+    bio: "Develops AI-powered solutions that enhance operational efficiency and digital experiences. Focuses on intelligent automation, AI workflows, and practical applications of emerging technologies.",
+    image: "/team/farseen.webp",
   },
   {
-    name: "Farseen",
-    role: "Co-founder",
-    bio: "Our earliest mentor. Guided us from first projects to industry practice, and still shapes how we build today.",
-    image: "/team/farseen.webp",
+    name: "Abdul Nafih",
+    role: "Platform & Integration Architect",
+    bio: "Ensures digital solutions are delivered with reliability and precision. Specializes in backend systems, platform integrations, deployment architecture, and production readiness.",
+    image: "/team/nafi.webp",
   },
 ];
 ---
@@ -33,7 +39,7 @@ const founders = [
       <div class="team-section__kicker">
         <span class="team-section__kicker-sq"></span> OUR TEAM
       </div>
-      <h2 class="team-section__title">Creative Team</h2>
+      <h2 class="team-section__title">Leadership & Technology Team</h2>
     </div>
     <div class="team-section__divider"></div>
 
@@ -79,7 +85,7 @@ const founders = [
             <p id="spotlight-bio" class="team-spotlight__bio">{founders[0].bio}</p>
           </div>
 
-          <div id="spotlight-counter" class="team-spotlight__counter">(01/04)</div>
+          <div id="spotlight-counter" class="team-spotlight__counter">(01/05)</div>
         </div>
       </div>
     </div>
@@ -108,28 +114,34 @@ const founders = [
     function initTeamSlider() {
       var teamData = [
         {
-          name: "Nibras",
-          role: "Founder & CEO",
-          bio: "Cloud and DevOps engineer with industry experience in Abu Dhabi. Drives infrastructure, scalability, and deployment strategy.",
+          name: "Mohammed Rafeel",
+          role: "Founder & Digital Transformation Lead",
+          bio: "Leads Klay's vision, client partnerships, and digital transformation initiatives. Works closely with business leaders to align strategy, technology, and customer experience.",
           image: "/team/nibras.webp"
         },
         {
-          name: "Nabeel",
-          role: "Co-founder & CTO",
-          bio: "Mobile developer who began his career in Kochi. Leads native iOS, Android, and cross-platform work across our products.",
+          name: "Nibras",
+          role: "Cloud Infrastructure Architect",
+          bio: "Designs and oversees the cloud environments that power Klay's digital solutions. Expertise spans cloud architecture, infrastructure automation, security, and platform reliability.",
+          image: "/team/nibras.webp"
+        },
+        {
+          name: "Nabeel PP",
+          role: "Technology Strategist & Solutions Architect",
+          bio: "Defines the technical architecture behind Klay's platforms and digital systems. Develops scalable technology ecosystems that connect software, infrastructure, and business operations.",
           image: "/team/nabeel.webp"
         },
         {
-          name: "Nafi",
-          role: "Co-founder",
-          bio: "Java developer with hands-on experience in Wayanad. Anchors backend architecture, APIs, and integrations.",
-          image: "/team/nafi.webp"
+          name: "Ashwal P",
+          role: "AI & Intelligent Systems Architect",
+          bio: "Develops AI-powered solutions that enhance operational efficiency and digital experiences. Focuses on intelligent automation, AI workflows, and practical applications of emerging technologies.",
+          image: "/team/farseen.webp"
         },
         {
-          name: "Farseen",
-          role: "Co-founder",
-          bio: "Our earliest mentor. Guided us from first projects to industry practice, and still shapes how we build today.",
-          image: "/team/farseen.webp"
+          name: "Abdul Nafih",
+          role: "Platform & Integration Architect",
+          bio: "Ensures digital solutions are delivered with reliability and precision. Specializes in backend systems, platform integrations, deployment architecture, and production readiness.",
+          image: "/team/nafi.webp"
         }
       ];
 
@@ -377,7 +389,7 @@ const founders = [
   /* Thumbnails Grid */
   .team-thumbnails {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1.25rem;
   }
 
@@ -463,7 +475,7 @@ const founders = [
       height: 280px;
     }
     .team-thumbnails {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
     .team-thumb {

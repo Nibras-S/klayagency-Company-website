@@ -23,10 +23,10 @@ export interface Props {
 
 const {
   type = 'WebPage',
-  title = 'N3 Global Tech | Software Development Company Kannur & Kerala',
-  description = 'High-performance custom software, SaaS platforms, AI automation, and cloud native engineering solutions by N3 Global Tech.',
+  title = 'Klay Agency | Building What\'s Next',
+  description = 'High-performance custom software, SaaS platforms, AI automation, and cloud native engineering solutions by Klay Agency.',
   url = Astro.url.href,
-  image = 'https://www.n3globaltech.com/n3logo.webp',
+  image = 'https://www.klay.agency/klay-logo.png',
   datePublished,
   dateModified,
   faqs = [],
@@ -35,18 +35,18 @@ const {
 
 const orgSchema = {
   "@type": "Organization",
-  "@id": "https://www.n3globaltech.com/#organization",
-  "name": "N3 Global Tech",
+  "@id": "https://www.klay.agency.com/#organization",
+  "name": "Klay Agency",
   "alternateName": [
-    "n3globaltech",
-    "N3GlobalTech",
-    "N3 Global Technology Solutions",
-    "N3 Global Tech Kannur"
+    "klay.agency",
+    "Klay Agency",
+    "Klay Agencynology Solutions",
+    "Klay Agency Kannur"
   ],
-  "url": "https://www.n3globaltech.com/",
+  "url": "https://www.klay.agency.com/",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://www.n3globaltech.com/n3logo.webp"
+    "url": "https://www.klay.agency/klay-logo.png"
   },
   "foundingDate": "2024",
   "address": {
@@ -56,18 +56,18 @@ const orgSchema = {
     "addressCountry": "IN"
   },
   "sameAs": [
-    "https://www.linkedin.com/company/n3globaltech",
-    "https://github.com/n3globaltech",
-    "https://twitter.com/n3globaltech"
+    "https://www.linkedin.com/company/klay.agency",
+    "https://github.com/klay.agency",
+    "https://twitter.com/klay.agency"
   ]
 };
 
 const webSiteSchema = {
   "@type": "WebSite",
-  "@id": "https://www.n3globaltech.com/#website",
-  "url": "https://www.n3globaltech.com/",
-  "name": "N3 Global Tech",
-  "publisher": { "@id": "https://www.n3globaltech.com/#organization" }
+  "@id": "https://www.klay.agency.com/#website",
+  "url": "https://www.klay.agency.com/",
+  "name": "Klay Agency",
+  "publisher": { "@id": "https://www.klay.agency.com/#organization" }
 };
 
 const graph: any[] = [orgSchema, webSiteSchema];
@@ -84,10 +84,10 @@ if (type === 'Article' || type === 'TechArticle') {
     "dateModified": dateModified || datePublished || new Date().toISOString().split('T')[0],
     "author": {
       "@type": "Organization",
-      "@id": "https://www.n3globaltech.com/#organization",
-      "name": "N3 Global Tech Engineering Leadership"
+      "@id": "https://www.klay.agency.com/#organization",
+      "name": "Klay Agency Engineering Leadership"
     },
-    "publisher": { "@id": "https://www.n3globaltech.com/#organization" },
+    "publisher": { "@id": "https://www.klay.agency.com/#organization" },
     "mainEntityOfPage": { "@type": "WebPage", "@id": url }
   });
 }
@@ -100,7 +100,7 @@ if (breadcrumbs && breadcrumbs.length > 0) {
       "@type": "ListItem",
       "position": idx + 1,
       "name": b.name,
-      "item": b.item.startsWith('http') ? b.item : `https://www.n3globaltech.com${b.item}`
+      "item": b.item.startsWith('http') ? b.item : `https://www.klay.agency.com${b.item}`
     }))
   });
 }

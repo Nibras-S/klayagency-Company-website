@@ -28,7 +28,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return jsonResponse(500, {
       success: false,
       error_code: 'misconfigured',
-      message: 'Contact endpoint is not configured. Please email contact@n3global.tech.',
+      message: 'Contact endpoint is not configured. Please email hello@klay.agency.',
     });
   }
 
@@ -143,7 +143,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         error_code: typeof upstreamBody.error_code === 'string' ? upstreamBody.error_code : 'upstream_error',
         message: typeof upstreamBody.message === 'string'
           ? upstreamBody.message
-          : 'We could not deliver your message right now. Please try again or email contact@n3global.tech.',
+          : 'We could not deliver your message right now. Please try again or email hello@klay.agency.',
       });
     }
 
@@ -157,7 +157,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return jsonResponse(502, {
       success: false,
       error_code: 'upstream_unreachable',
-      message: 'We could not reach our CRM right now. Please try again or email contact@n3global.tech.',
+      message: 'We could not reach our CRM right now. Please try again or email hello@klay.agency.',
     });
   }
 };
