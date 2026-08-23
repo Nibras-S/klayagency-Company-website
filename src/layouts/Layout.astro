@@ -47,7 +47,7 @@ const {
 const siteName = "Klay Agency";
 const alternateSiteName = "klay.agency";
 const fullTitle = title.toLowerCase().includes("klay") ? title : `${title} | ${siteName}`;
-const siteUrl = Astro.site ?? new URL("https://www.klay.agency");
+const siteUrl = Astro.site ?? new URL("https://klay.agency");
 const canonicalPath = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : Astro.url.pathname + '/';

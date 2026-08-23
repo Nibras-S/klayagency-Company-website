@@ -4,7 +4,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.klay.agency',
+  site: 'https://klay.agency',
   // Static by default; only API routes opt into server-side via `export const prerender = false`
   output: 'static',
   adapter: cloudflare({

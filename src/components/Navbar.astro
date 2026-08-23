@@ -496,6 +496,16 @@ const pathname = Astro.url.pathname;
 
   /* Responsive Media Queries */
   @media (max-width: 900px) {
+    .site-logo__img {
+      height: 34px;
+      max-height: 34px;
+    }
+
+    .site-header.scrolled .site-logo__img {
+      height: 28px;
+      max-height: 28px;
+    }
+
     .site-header__container,
     .nav-overlay__header {
       padding-left: 1.5rem;
@@ -547,6 +557,16 @@ const pathname = Astro.url.pathname;
   }
 
   @media (max-width: 480px) {
+    .site-logo__img {
+      height: 28px;
+      max-height: 28px;
+    }
+
+    .site-header.scrolled .site-logo__img {
+      height: 25px;
+      max-height: 25px;
+    }
+
     .site-header__container,
     .nav-overlay__header {
       padding-left: 1.25rem;
