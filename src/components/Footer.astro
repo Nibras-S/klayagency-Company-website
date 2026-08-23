@@ -32,17 +32,16 @@ const footerLinks = {
       <div class="footer-top">
         <!-- Brand & Description -->
         <div class="footer-brand">
-          <a href="/" class="footer-logo">
+          <a href="/" class="footer-logo" aria-label="Klay Agency Home">
             <img 
               src="/klay-logo.png" 
               alt="Klay Agency Logo" 
               class="footer-logo-img" 
-              width="36" 
+              width="140" 
               height="36" 
               loading="lazy"
               decoding="async"
             />
-            <span class="footer-logo-text">Klay Agency</span>
           </a>
           <p class="footer-description">
             Helping businesses across the GCC transform through strategy, technology, cloud infrastructure, and intelligent automation. We build digital systems that create sustainable growth and lasting business value.
@@ -200,18 +199,10 @@ const footerLinks = {
   }
 
   .footer-logo-img {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
+    width: auto;
+    height: 48px;
     object-fit: contain;
-  }
-
-  .footer-logo-text {
-    font-family: var(--font-sans);
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: var(--gray-900, #0f172a);
+    display: block;
   }
 
   .footer-description {

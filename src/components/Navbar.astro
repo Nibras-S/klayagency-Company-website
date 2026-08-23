@@ -20,7 +20,7 @@ const pathname = Astro.url.pathname;
         src="/klay-logo.png"
         alt="Klay Agency Logo"
         class="site-logo__img"
-        width="40"
+        width="140"
         height="40"
       />
     </a>
@@ -51,7 +51,7 @@ const pathname = Astro.url.pathname;
         src="/klay-logo.png"
         alt="Klay Agency Logo"
         class="site-logo__img"
-        width="40"
+        width="140"
         height="40"
       />
     </a>
@@ -186,10 +186,17 @@ const pathname = Astro.url.pathname;
   }
 
   .site-logo__img {
-    width: 40px;
-    height: 40px;
+    width: auto;
+    height: 48px;
+    max-height: 48px;
     object-fit: contain;
-    border-radius: 9px;
+    display: block;
+    transition: height 0.3s ease;
+  }
+
+  .site-header.scrolled .site-logo__img {
+    height: 40px;
+    max-height: 40px;
   }
 
   .site-logo__text {
