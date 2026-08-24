@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import PrinciplesSection from '../components/PrinciplesSection.astro';
+
 import ClientLogosMarquee from '../components/ClientLogosMarquee.astro';
 import TeamSection from '../components/TeamSection.astro';
 
@@ -62,12 +62,12 @@ const founders = [
     "@type": "AboutPage",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://www.klay.agency/about/"
+      "@id": "https://klay.agency/about/"
     },
     "name": "About Klay Agency",
     "description": "Klay is a digital transformation agency helping businesses modernize through strategy, technology, cloud infrastructure, and intelligent automation.",
     "publisher": {
-      "@id": "https://www.klay.agency/#organization"
+      "@id": "https://klay.agency/#organization"
     }
   })}></script>
 
@@ -108,88 +108,86 @@ const founders = [
   <!-- Client Logos Marquee -->
   <ClientLogosMarquee />
 
-  <!-- Origin Story: Modern Editorial Grid -->
+  <!-- What We Do & Our Approach -->
   <section class="section story-section">
     <div class="container story-section__container">
       <div class="story-section__header">
         <div class="story-section__kicker">
-          <span class="story-section__kicker-sq"></span> OUR JOURNEY
+          <span class="story-section__kicker-sq"></span> WHAT WE DO
         </div>
-        <h2 class="story-section__title">Our Journey</h2>
+        <h2 class="story-section__title">We help businesses navigate digital change through strategy, technology, and innovation.</h2>
       </div>
       <div class="story-section__divider"></div>
 
       <div class="story-grid">
-        <!-- Story Card 1 -->
-        <article class="story-card">
-          <div class="story-card__badge">01 / THE BEGINNING</div>
-          <h3 class="story-card__title">Thalassery Roots</h3>
-          <p class="story-card__text">
-            Our story starts at <strong>Thalassery Engineering College</strong>, where the founding members of our team studied together. What began as a shared passion for solving complex engineering challenges grew, project by project, into a technology agency.
-          </p>
-          <p class="story-card__text">
-            Across our third-year mini projects and final-year build, we got hands-on with shipping production software that real users actually rely on. Each member played a defining role, shaping our standard of engineering rigor.
-          </p>
-        </article>
-
-        <!-- Story Card 2 -->
-        <article class="story-card">
-          <div class="story-card__badge">02 / FIRST MILESTONE</div>
-          <h3 class="story-card__title">UAE E-Commerce & FitBook</h3>
-          <p class="story-card__text">
-            Our first client milestone arrived during our final year: a custom <strong>perfume e-commerce platform for a client in the UAE</strong>. It was the moment we transformed from students to a dedicated engineering team.
-          </p>
-          <p class="story-card__text">
-            Soon after came our flagship fitness product — <strong>N3 FitBook</strong> — managing memberships, automated recurring payments, and daily operations for gym owners. That platform remains active today, serving growing operations across 2+ years of continuous updates.
-          </p>
-        </article>
-
-        <!-- Story Card 3: Experience Pills -->
+        <!-- Intro -->
         <article class="story-card story-card--full">
-          <div class="story-card__badge">03 / SPECIALIZATION</div>
-          <h3 class="story-card__title">Industry Mastery Before Uniting</h3>
           <p class="story-card__text story-card__text--lead">
-            After gaining deep domain expertise across different engineering hubs, our team came together to form Klay:
+            We partner with ambitious organizations to bridge the gap between business strategy and technical execution. By combining digital strategy, software solutions, cloud infrastructure, and intelligent automation, we create systems that improve efficiency, strengthen customer experiences, and support long-term growth.
+          </p>
+          <p class="story-card__text">
+            Whether you're launching a new venture, modernizing an existing business, or exploring AI-driven transformation, Klay helps turn ideas into scalable digital solutions.
+          </p>
+        </article>
+
+        <!-- Approach Card 1 -->
+        <article class="story-card">
+          <div class="story-card__badge">01 / STRATEGY FIRST</div>
+          <h3 class="story-card__title">Strategy First</h3>
+          <p class="story-card__text">
+            Every project begins with a clear understanding of <strong>business objectives and growth priorities</strong>. Technology is most effective when it serves a clear business purpose — so we start by understanding your organization, challenges, goals, and opportunities.
+          </p>
+        </article>
+
+        <!-- Approach Card 2 -->
+        <article class="story-card">
+          <div class="story-card__badge">02 / SCALABLE SYSTEMS</div>
+          <h3 class="story-card__title">Build for Scale</h3>
+          <p class="story-card__text">
+            We create <strong>digital systems designed to evolve alongside your business</strong>. Every solution we deliver is built on modern architecture that supports growth, adapts to change, and creates measurable business value — not just technical functionality.
+          </p>
+        </article>
+
+        <!-- Approach Card 3 -->
+        <article class="story-card story-card--full">
+          <div class="story-card__badge">03 / INTELLIGENT INNOVATION</div>
+          <h3 class="story-card__title">Intelligent Innovation</h3>
+          <p class="story-card__text story-card__text--lead">
+            We leverage <strong>cloud technologies, automation, and AI</strong> where they create meaningful impact. Our capabilities span:
           </p>
 
           <div class="experience-grid">
             <div class="experience-pill">
               <div class="experience-pill__header">
-                <span class="experience-pill__name">Nabeel</span>
-                <span class="experience-pill__tag">Kochi</span>
+                <span class="experience-pill__name">Digital Transformation</span>
               </div>
-              <p class="experience-pill__role">Mobile Developer</p>
-              <p class="experience-pill__desc">Engineered native iOS, Android, and cross-platform mobile apps for production users.</p>
+              <p class="experience-pill__desc">Strategy, website design &amp; development, and business process digitization.</p>
             </div>
 
             <div class="experience-pill">
               <div class="experience-pill__header">
-                <span class="experience-pill__name">Nafi</span>
-                <span class="experience-pill__tag">Wayanad</span>
+                <span class="experience-pill__name">Software &amp; Cloud</span>
               </div>
-              <p class="experience-pill__role">Java &amp; Backend Engineer</p>
-              <p class="experience-pill__desc">Anchored enterprise backend architecture, high-throughput APIs, and microservices.</p>
+              <p class="experience-pill__desc">Custom software solutions, SaaS platforms, cloud infrastructure &amp; architecture.</p>
             </div>
 
             <div class="experience-pill">
               <div class="experience-pill__header">
-                <span class="experience-pill__name">Nibras</span>
-                <span class="experience-pill__tag">Abu Dhabi</span>
+                <span class="experience-pill__name">AI &amp; Automation</span>
               </div>
-              <p class="experience-pill__role">Cloud &amp; DevOps Engineer</p>
-              <p class="experience-pill__desc">Designed resilient cloud infrastructure, automated CI/CD pipelines, and scalability systems.</p>
+              <p class="experience-pill__desc">AI &amp; intelligent automation, platform modernization, and technology consulting.</p>
             </div>
           </div>
         </article>
 
-        <!-- Story Card 4 -->
+        <!-- Global Impact Card -->
         <article class="story-card story-card--full story-card--highlight">
           <div class="story-card__flex-row">
             <div class="story-card__col">
-              <div class="story-card__badge story-card__badge--sky">04 / GLOBAL IMPACT</div>
-              <h3 class="story-card__title">Today &amp; The GCC Expansion</h3>
+              <div class="story-card__badge story-card__badge--sky">04 / LONG-TERM PARTNERSHIP</div>
+              <h3 class="story-card__title">One Team. Global Perspective.</h3>
               <p class="story-card__text">
-                Today, Klay has delivered multiple digital platforms and solutions — empowering <strong>over 30 companies</strong> to transition from manual workflows to robust digital infrastructure.
+                We remain invested in our clients' success beyond deployment, supporting <strong>continuous growth and improvement</strong>. Klay has delivered multiple digital platforms and solutions — empowering over 30 companies to transition from manual workflows to robust digital infrastructure.
               </p>
             </div>
             <div class="story-card__col">
@@ -198,7 +196,7 @@ const founders = [
                 Dubai Headquarters
               </div>
               <p class="story-card__text">
-                Klay operates as the GCC-facing brand of Klay Agency, bringing together a multidisciplinary team across India and the UAE — delivering high-grade software solutions to clients across the wider GCC.
+                Klay operates as the GCC-facing brand of N3 Global Tech, bringing together a multidisciplinary team across India and the UAE — delivering high-grade software solutions to clients across the wider GCC.
               </p>
             </div>
           </div>
@@ -232,7 +230,7 @@ const founders = [
             </svg>
           </div>
           <h3 class="mv-card__heading">Our Mission</h3>
-          <p class="mv-card__desc">To empower businesses with practical, scalable, user-focused digital solutions that eliminate operational friction and drive long-term sustainable growth.</p>
+          <p class="mv-card__desc">To help organizations harness technology more effectively through modern digital systems, intelligent automation, and innovative solutions that drive sustainable growth.</p>
         </article>
 
         <article class="mv-card">
@@ -244,22 +242,35 @@ const founders = [
             </svg>
           </div>
           <h3 class="mv-card__heading">Our Vision</h3>
-          <p class="mv-card__desc">To stand as a globally trusted technology partner — crafting high-performing digital systems that elevate everyday business operations and define modern engineering standards.</p>
+          <p class="mv-card__desc">To become a trusted digital transformation partner across the GCC and beyond, helping businesses innovate, adapt, and thrive in an increasingly connected world.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Three Principles -->
-  <PrinciplesSection />
+  <!-- Why Klay -->
+  <section class="section mv-section">
+    <div class="container mv-section__container">
+      <div class="mv-section__header">
+        <div class="story-section__kicker">
+          <span class="story-section__kicker-sq"></span> WHY KLAY
+        </div>
+        <h2 class="mv-section__title">Businesses don't need more technology. They need better systems.</h2>
+      </div>
+      <div class="story-section__divider"></div>
+      <p class="story-card__text" style="max-width: 780px; font-size: 1.05rem; line-height: 1.7; color: #475569;">
+        Klay helps organizations connect strategy, technology, and execution to build digital foundations that improve efficiency, enhance customer experiences, and support long-term growth. Our focus is on delivering outcomes, creating value, and building lasting partnerships.
+      </p>
+    </div>
+  </section>
 
   <!-- High-End Glassmorphic CTA -->
   <section class="section about-cta-section">
     <div class="container">
       <div class="about-cta">
         <div class="about-cta__glow"></div>
-        <h2 class="about-cta__title">Want to build something great together?</h2>
-        <p class="about-cta__desc">Whether you have a specific software project in mind or want to explore scalable technology solutions for your business, we're ready. We respond within 24 hours.</p>
+        <h2 class="about-cta__title">Ready to Build What's Next?</h2>
+        <p class="about-cta__desc">Whether you're launching a new venture, modernizing your digital presence, or exploring AI-driven transformation, Klay helps turn ambitious ideas into scalable digital systems. Let's start the conversation.</p>
         
         <div class="about-cta__actions">
           <a href="/contact/" class="hero__pill-link">
